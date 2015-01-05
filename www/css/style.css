@@ -1,1 +1,7 @@
 /* Empty. Add your own CSS if you like */
+
+.bigicon:before {
+        font-size: 10vmin;
+        margin-left: 0px;
+
+}

@@ -1,0 +1,21 @@
+<ion-view>
+    <ion-nav-title>Diary</ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button" ng-click="newTask()">New</button>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="item in list" id="{{item.key}}" ng-switch on="item.type" href="#/app/playlists/{{playlist.id}}">
+                <div ng-switch-when='nurse'>{{item.time | date : 'shortTime'}}<span style="float:right">{{item.length}}min</span><br>{{item.type}}<span style="float:right">{{item.breast}}</span></div>
+                <div ng-switch-default>{{item.item}}</div>
+            </ion-item>
+        </ion-list>
+        <div class="card">
+            <div class="item item-text-wrap" ng-show="noData">
+                <span>
+      No Items in your bucket List. Click  <a href="javascript:" ng-click="openNewModal()">Here</a> and create one
+      </span>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
