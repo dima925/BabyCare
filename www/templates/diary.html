@@ -1,13 +1,76 @@
 <ion-view>
     <ion-nav-title>Diary</ion-nav-title>
     <ion-nav-buttons side="right">
-        <button class="button" ng-click="newTask()">New</button>
+        <a class="ion-ios-calendar-outline button" ng-click="newTask()">New</a>
     </ion-nav-buttons>
     <ion-content class="fixheight">
-        <ion-slide-box style="height:30%">
+        <ion-slide-box>
             <ion-slide>
-                <div class="box positive" style="height:100%;background-color:#02b6ee;">
-                    <h1>BLUE</h1>
+                <div class="box positive">
+                    <div class="row padding container-center">
+                        <div class="col col-30 center-block padding">
+                            <div class="row">
+                                <div class="col col-50 ">
+                                    <img src="/img/bottle.png" class="icon-size">
+                                </div>
+                                <div class="col col-50">
+                                    <div class="circle">
+                                        <div class="arc-top">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="col col-40 center-block padding">
+                            <img src="/img/baby.png" class="icon-size">
+                            <div class="row">
+                                <div class="col col-50">
+                                    <h4>7 weeks</h4>
+                                </div>
+                                <div class="col col-50">
+                                    <h4>2 Days</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-50">
+                                    <h4>5.4 Kg</h4>
+                                </div>
+                                <div class="col col-50">
+                                    <h4>59 Cm</h4>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="col col-30 center-block padding">
+                            <div class="row">
+                                <div class="col col-50"></div>
+                                <div class="col col-50">
+                                    <img src="/img/diapers.png" class="icon-size">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row dayli-checklist">
+                        <div class="col col-20 center">
+                            <h5>5</h5>
+                            <h5>Nurse</h5>
+                        </div>
+                        <div class="col col-20 center">
+                            <h5>3</h5>
+                            <h5>Change</h5>
+                        </div>
+                        <div class="col col-20 center">
+                            <h5>Bath</h5>
+                        </div>
+                        <div class="col col-20 center">
+                            <h5>Play</h5>
+                        </div>
+                        <div class="col col-20">
+                            
+                        </div>
+                    </div>
                 </div>
             </ion-slide>
             <ion-slide>

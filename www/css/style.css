@@ -9,3 +9,79 @@
 .fixheight > .scroll {
   height:100% !important
 }
+.bar-header{
+	background-color: #0099cc !important;
+}
+.positive{
+	background-color: #0099cc !important;
+	height: auto;
+}
+.icon-size{
+	width: 90%;
+	vertical-align: middle;
+	text-align: center;
+	float: right;
+
+}
+.center{
+	text-align: center;
+	color: #fff;
+}
+.left{
+	text-align: left;
+}
+.right{
+	text-align: right;
+}
+.dayli-checklist{
+	background-color: #006699;
+}
+h4, h5{
+	color: #fff;
+}
+.container-center { display: -webkit-flex;  display: flex;  height: 100%;  }
+.center-block {    -webkit-align-self: center;    align-self: center;    width: 100%; margin:0 auto; text-align:center }
+
+/*circle progress bar css*/
+.circle {
+   -webkit-animation-duration: 5s;
+   -webkit-animation-name: animation;
+   -webkit-animation-iteration-count: 1;
+   -webkit-animation-timing-function: linear;
+    
+   -moz-animation-duration: 5s;
+   -moz-animation-name: animation;
+   -moz-animation-iteration-count: 1;
+   -moz-animation-timing-function: linear;
+    
+   animation-duration: 5s;
+   animation-name: animation;
+   animation-iteration-count: 1;
+   animation-timing-function: linear;
+   width: 60px;
+   height: 60px;   
+   border-style: solid;
+   border-radius: 35px;
+   border-width: 5px;
+   border-color: #999 transparent transparent transparent;
+}
+.arc-top { border-color: #999 transparent transparent transparent;}
+
+@-moz-keyframes animation {
+    0% {-moz-transform: rotate(0);}
+    50% {-moz-transform: rotate(180deg);}
+    100% {-moz-transform: rotate(360deg);}
+}
+
+@-webkit-keyframes animation {
+    0% {-webkit-transform: rotate(0);}
+    50% {-webkit-transform: rotate(180deg);}
+    100% {-webkit-transform: rotate(360deg);}
+}
+
+@keyframes animation {
+    0% {transform: rotate(0);}
+    50% {transform: rotate(180deg);}
+    100% {transform: rotate(360deg);}
+}
+/*end circle progress bar css*/
