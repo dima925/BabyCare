@@ -21,6 +21,7 @@ angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers'])
 
         $rootScope.userEmail = null;
         $rootScope.baseUrl = 'https://cleverbaby.firebaseio.com/';
+        
         var authRef = new Firebase($rootScope.baseUrl);
         $rootScope.auth = $firebaseAuth(authRef);
 
@@ -63,7 +64,8 @@ angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers'])
                 // user authenticated with Firebase
                 $rootScope.userEmail = auth.uid;
                 console.log("firebase url", $rootScope.baseUrl + escapeEmailAddress($rootScope.userEmail));
-                var bucketListRef = $firebase(new Firebase($rootScope.baseUrl + escapeEmailAddress($rootScope.userEmail)));
+                OfflineFirebase.restore();
+                var bucketListRef = $firebase(new OfflineFirebase($rootScope.baseUrl + escapeEmailAddress($rootScope.userEmail)));
                 $rootScope.fbData = bucketListRef.$asArray();
                 $window.location.href = ('#/app/diary');
             } else {

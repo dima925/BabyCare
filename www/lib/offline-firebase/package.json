@@ -1,0 +1,38 @@
+{
+  "name": "offline-firebase",
+  "version": "0.0.1",
+  "homepage": "https://github.com/yeldarby/offline-firebase",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/yeldarby/offline-firebase.git"
+  },
+  "author": {
+    "name": "Brad Dwyer <github@barbdwyer.com>"
+  },
+  "description": "A Firebase wrapper that stores a cache of your data offline in localStorage when there is no Internet connection available.",
+  "keywords": [
+    "firebase",
+    "offline-firebase",
+    "offline"
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/yeldarby/offline-firebase/blob/master/LICENSE.txt"
+    }
+  ],
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/yeldarby/offline-firebase/issues"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "files": [
+    "OfflineFirebase.js",
+    "LICENSE.txt"
+  ],
+  "devDependencies": {
+    "firebase": "^1.0.24"
+  }
+}
