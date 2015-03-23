@@ -1,54 +1,75 @@
 <ion-view>
     <ion-nav-title>Diary</ion-nav-title>
     <ion-nav-buttons side="right">
-        <a class="ion-ios-calendar-outline button" ng-click="newTask()">New</a>
+        <a class="button button-icon icon ion-settings activated" ng-click="newTask()"><span class="ion-ios-calendar-outline"></span></a>
     </ion-nav-buttons>
     <ion-content class="fixheight">
         <ion-slide-box>
             <ion-slide>
                 <div class="box positive">
-                    <div class="row padding container-center">
-                        <div class="col col-30 center-block padding">
+                    <div class="row container-center">
+                        <div class="col center-block">
+                            <div
+                                        round-progress
+                                        max="100"
+                                        current="75"
+                                        color="#ffcc66"
+                                        bgcolor="#eaeaea"
+                                        radius="30"
+                                        stroke="10"
+                                        semi="false"
+                                        rounded="true"
+                                        iterations="50"
+                                        animation="easeInOutQuart">
+                                    </div>
+                                    
+                        </div>
+                        <div class="col center">
+                            <img src="/img/baby.png" class="circular">
+                        </div>
+                        <div class="col center-block">
+                            <div
+                                        round-progress
+                                        max="100"
+                                        current="75"
+                                        color="#66cc00"
+                                        bgcolor="#eaeaea"
+                                        radius="30"
+                                        stroke="10"
+                                        semi="false"
+                                        rounded="true"
+                                        iterations="50"
+                                        animation="easeInOutQuart">14Mins ETA
+                                    </div>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
                             <div class="row">
-                                <div class="col col-50 ">
-                                    <img src="/img/bottle.png" class="icon-size">
-                                </div>
-                                <div class="col col-50">
-                                    <div class="circle">
-                                        <div class="arc-top">
-                                            
-                                        </div>
+                                <div class="col center"><img src="/img/bottle.png" class="icon-size"></div>
+                                <div class="col center">15 Mins ETA</div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col center">
+                                    <div class="row">
+                                        <div class="col">7W</div>
+                                        <div class="col">2D</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">5.4 Kg</div>
+                                        <div class="col">59 Cm</div>
                                     </div>
                                 </div>
+                                
                             </div>
-                            
                         </div>
-                        <div class="col col-40 center-block padding">
-                            <img src="/img/baby.png" class="icon-size">
+                        <div class="col">
                             <div class="row">
-                                <div class="col col-50">
-                                    <h4>7 weeks</h4>
-                                </div>
-                                <div class="col col-50">
-                                    <h4>2 Days</h4>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col col-50">
-                                    <h4>5.4 Kg</h4>
-                                </div>
-                                <div class="col col-50">
-                                    <h4>59 Cm</h4>
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <div class="col col-30 center-block padding">
-                            <div class="row">
-                                <div class="col col-50"></div>
-                                <div class="col col-50">
-                                    <img src="/img/diapers.png" class="icon-size">
-                                </div>
+                                <div class="col center"><img src="/img/diapers.png" class="icon-size"></div>
+                                <div class="col center"> > 1H ETA</div>
                             </div>
                         </div>
                     </div>
@@ -62,9 +83,11 @@
                             <h5>Change</h5>
                         </div>
                         <div class="col col-20 center">
+                            <h5><input type="checkbox"></h5>
                             <h5>Bath</h5>
                         </div>
                         <div class="col col-20 center">
+                            <h5><input type="checkbox"></h5>
                             <h5>Play</h5>
                         </div>
                         <div class="col col-20">
@@ -84,13 +107,56 @@
                 </div>
             </ion-slide>
         </ion-slide-box>
-
+        <div class="card">
+          <div class="item item-text-wrap">
+            <div class="row">
+                <div class="col col-80"><h2>Dayli Tips</h2></div>
+                <div class="col col-20" style="text-align:right;">Hide</div>
+            </div>
+            
+            <p class="justify padding">Baby not sleeping? Try going for a stroll. A lot of 
+                babies will get better sleep when they're in a 
+                stroller, a car seat, a carrier. It's counterintuitive.</p>
+          </div>
+        </div>
         <ion-list>
-            <ion-item ng-repeat="item in list" id="{{item.key}}" ng-switch on="item.type" href="#/app/playlists/{{playlist.id}}">
-                <div ng-switch-when='nurse'>{{item.time | date : 'shortTime'}}<span style="float:right">{{item.length}}min</span>
-                    <br>{{item.type}}<span style="float:right">{{item.breast}}</span>
+            <p>TODAY</p>
+            <ion-item class="timeline" ng-repeat="item in list" id="{{item.key}}" ng-switch on="item.type" href="#/app/playlists/{{playlist.id}}">
+                <div ng-switch-when='nurse'>
+                    <div class="row">
+                        <div class="col col-20">
+                            <p class="time">{{item.time | date : 'shortTime'}}</p>
+                        </div>
+                        <div class="col col-10">
+                            
+                        </div>
+                        <div class="col col-60">
+                            <p class="nursed">{{item.type}}</p>
+                            <div class="row">
+                                <div class="col-70">
+                                    <p>LEFT {{item.length}}min</p>
+                                </div>
+                                <div class="col-50">
+                                    <p>RIGHT 0min</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div ng-switch-default>{{item.item}}</div>
+                <div ng-switch-default>
+                    <div class="row">
+                        <div class="col col-20">
+                            <p class="time">{{item.time | date : 'shortTime'}}</p>
+                        </div>
+                        <div class="col col-10">
+                            
+                        </div>
+                        <div class="col col-70">
+                            <p class="nursed">{{item.item}}</p>
+                            <p>LOREM IPSUM</p>
+                        </div>
+                    </div>
+                </div>
             </ion-item>
         </ion-list>
         <div class="card">

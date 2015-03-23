@@ -1,4 +1,4 @@
-<ion-modal-view>
+<ion-modal-view  class="loginbg">
   <ion-header-bar>
     <h1 class="title">Login</h1>
     <div class="buttons">
@@ -6,20 +6,42 @@
     </div>
   </ion-header-bar>
   <ion-content>
-    <form ng-submit="doLogin()">
+    <div class="loginlogo">
+      <img src="/img/loginlogo.png" class="logo">
+    </div>
+    <form ng-submit="doLogin()" class="loginbg">
       <div class="list">
-        <label class="item item-input">
+        <label class="item loginform item-input">
           <span class="input-label">Username</span>
           <input type="text" ng-model="loginData.username">
         </label>
-        <label class="item item-input">
+        <label class="item loginform item-input">
           <span class="input-label">Password</span>
           <input type="password" ng-model="loginData.password">
         </label>
-        <label class="item">
-          <button class="button button-block button-positive" type="submit">Log in</button>
+        <label class="item loginform">
+          <div class="row">
+            <div class="col col-30"></div>
+            <div class="col col-40">
+              
+               <button class="button button-block button-positive" type="submit">Log in</button>
+            </div>
+            <div class="col col-30"></div>
+          </div>
+         
         </label>
       </div>
     </form>
+    <div class="signup padding">
+      <div class="row">
+        <div class="col col-20"></div>
+        <div class="col col-60">
+          <p>Don't have an account yet?</p>
+          <button class="button button-block button-square" type="submit">Sign Up For Free</button>
+        </div>
+        <div class="col col-20"></div>
+      </div>
+      
+    </div>
   </ion-content>
 </ion-modal-view>

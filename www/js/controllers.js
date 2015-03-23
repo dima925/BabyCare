@@ -67,10 +67,7 @@ angular.module('cleverbaby.controllers', [])
     $ionicModal.fromTemplateUrl('templates/newItem.html', function (modal) {
         $scope.newTemplate = modal;
     });
-
-
-
-
+    
     $scope.newTask = function () {
         $scope.newTemplate.show();
     };

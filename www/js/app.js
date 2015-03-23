@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers'])
+angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers','angular-svg-round-progress'])
 
 .run(function ($ionicPlatform, $rootScope, $firebaseAuth, $firebase, $window, $ionicLoading, $timeout, $ionicModal) {
     $ionicPlatform.ready(function () {
