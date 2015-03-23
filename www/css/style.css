@@ -1,5 +1,8 @@
 /* Empty. Add your own CSS if you like */
 
+body{
+  background-color: #00ccff !important;
+}
 .bigicon:before {
         font-size: 10vmin;
         margin-left: 0px;
@@ -9,18 +12,16 @@
 .fixheight > .scroll {
   height:100% !important
 }
-.bar-header{
-	background-color: #0099cc !important;
+.bar.bar-stable{
+	background-color: rgba(0,0,0,0); !important;
 }
 .positive{
 	background-color: #0099cc !important;
 	height: auto;
 }
 .icon-size{
-	width: 90%;
-	vertical-align: middle;
+	width: 100%;
 	text-align: center;
-	float: right;
 
 }
 .center{
@@ -38,50 +39,146 @@
 }
 h4, h5{
 	color: #fff;
+  font-size: 100%;
+  text-align: center;
 }
 .container-center { display: -webkit-flex;  display: flex;  height: 100%;  }
 .center-block {    -webkit-align-self: center;    align-self: center;    width: 100%; margin:0 auto; text-align:center }
-
-/*circle progress bar css*/
-.circle {
-   -webkit-animation-duration: 5s;
-   -webkit-animation-name: animation;
-   -webkit-animation-iteration-count: 1;
-   -webkit-animation-timing-function: linear;
-    
-   -moz-animation-duration: 5s;
-   -moz-animation-name: animation;
-   -moz-animation-iteration-count: 1;
-   -moz-animation-timing-function: linear;
-    
-   animation-duration: 5s;
-   animation-name: animation;
-   animation-iteration-count: 1;
-   animation-timing-function: linear;
-   width: 60px;
-   height: 60px;   
-   border-style: solid;
-   border-radius: 35px;
-   border-width: 5px;
-   border-color: #999 transparent transparent transparent;
-}
-.arc-top { border-color: #999 transparent transparent transparent;}
-
-@-moz-keyframes animation {
-    0% {-moz-transform: rotate(0);}
-    50% {-moz-transform: rotate(180deg);}
-    100% {-moz-transform: rotate(360deg);}
+.progress-wrapper{
+    position: relative;
+    margin:20px auto;
+    font-size: 40px;
 }
 
-@-webkit-keyframes animation {
-    0% {-webkit-transform: rotate(0);}
-    50% {-webkit-transform: rotate(180deg);}
-    100% {-webkit-transform: rotate(360deg);}
+.progress{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    line-height: 1em;
+    font-size:0.5em;
+    text-align: center;
+    color: #fff;
+}
+.slider-pager{
+  display: none!important ;
 }
 
-@keyframes animation {
-    0% {transform: rotate(0);}
-    50% {transform: rotate(180deg);}
-    100% {transform: rotate(360deg);}
+.circular {
+  width: 100%;
+  height: 100%;
+  border-radius: 150px;
+  -webkit-border-radius: 150px;
+  -moz-border-radius: 150px;
+  border: 5px solid #fff;
+  max-width: 90px;
+  max-height: 90px;
+  }
+  .justify{
+    text-align: justify;
+  }
+
+/*timeline*/
+  .nursed{
+    color: #339966 !important;
+  }
+p.time{
+    font-size: 12px;
+  }
+  .item.timeline{
+    border: none!important;
+
+  }
+/*end timeline*/
+/* .squaredTwo */
+.squaredTwo {
+  width: 28px;
+  height: 28px;
+  position: relative;
+  margin: 20px auto;
+  background: #fcfff4;
+  background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+  label {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    background: linear-gradient(top, #222 0%, #45484d 100%);
+    box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+    &:after {
+      content: '';
+      width: 9px;
+      height: 5px;
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      border: 3px solid #fcfff4;
+      border-top: none;
+      border-right: none;
+      background: transparent;
+      opacity: 0;
+      transform: rotate(-45deg);
+    }
+    &:hover::after {
+      opacity: 0.3;
+    }
+  }
+  input[type=checkbox] {
+    visibility: hidden;
+    &:checked + label:after {
+      opacity: 1;
+    }    
+  }
 }
-/*end circle progress bar css*/
+/* end .squaredTwo */
+
+/*LOGIN PAGE START*/
+.loginbg{
+  background-color: #20BAEF;
+  color: #fff;
+}
+.item.loginform{
+  background-color: #20BAEF;
+  border: none;
+  text-align: center;
+}
+.item.loginform.item-input{
+  border-bottom: 1px solid #fff;
+}
+.input-label{
+  color: #fff!important;
+}
+.logo{
+  width: 90px;
+}
+.loginlogo{
+  
+  padding:50px;
+  text-align: center;
+}
+.bar.bar-header{
+  background-color: #20BAEF;
+  color: #fff;
+}
+.title{
+  color: #fff;
+}
+.button.button-positive{
+  border-color: #003366;
+  background-color: #003366;
+  border-radius: 50px;
+}
+.button.button-square{
+  border-color: #003366;
+  background-color: #003366;
+  color: #fff;
+  font-weight: bold;
+}
+.signup{
+  text-align: center;
+  padding-top: 70px;
+}
+
+/*LOGIN PAGE END*/
