@@ -1,7 +1,10 @@
 /* Empty. Add your own CSS if you like */
 
 body{
-  background-color: #00ccff !important;
+  background-color: #20BAEF !important;
+}
+.bgcolor{
+  background-color: #20BAEF !important;
 }
 .bigicon:before {
         font-size: 10vmin;
@@ -13,14 +16,14 @@ body{
   height:100% !important
 }
 .bar.bar-stable{
-	background-color: rgba(0,0,0,0); !important;
+	background-color: #0099cc !important;
 }
 .positive{
 	background-color: #0099cc !important;
 	height: auto;
 }
 .icon-size{
-	width: 100%;
+	width: 70%;
 	text-align: center;
 
 }
@@ -44,20 +47,37 @@ h4, h5{
 }
 .container-center { display: -webkit-flex;  display: flex;  height: 100%;  }
 .center-block {    -webkit-align-self: center;    align-self: center;    width: 100%; margin:0 auto; text-align:center }
+.cf:before,.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
 .progress-wrapper{
-    position: relative;
-    margin:20px auto;
-    font-size: 40px;
+  display: -webkit-flex;  
+  display: flex;  
+  height: 100%;
+  position: relative;
+  margin:20px auto;
+  font-size: 40px;
 }
 
 .progress{
+    -webkit-align-self: center;    
+    align-self: center;    
+    width: 100%; 
+    margin:0 auto; 
     position: absolute;
     width: 100%;
     height: 100%;
-    line-height: 1em;
-    font-size:0.5em;
+    font-size:10px;
+    line-height: 10px;
     text-align: center;
     color: #fff;
+    padding-top: 15px;
+    padding-right: 16px;
 }
 .slider-pager{
   display: none!important ;
@@ -87,6 +107,57 @@ p.time{
   .item.timeline{
     border: none!important;
 
+  }
+  .default-logo{
+    background-image: url('../img/played.png');
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+  }
+  .default-logo:after {
+    content:"";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    border-left: 1px solid #9999cc;
+}
+  .nursed-logo{
+    background-image: url('../img/nursed.png');
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+  }
+  .nursed-logo:after {
+    content:"";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    border-left: 1px solid #9999cc;
+}
+  .played-logo{
+    background-image: url('../img/played.png');
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+  }
+  .napped-logo{
+    background-image: url('../img/napped.png');
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+  }
+  .changed-logo{
+    background-image: url('../img/changed.png');
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    background-size: contain;
   }
 /*end timeline*/
 /* .squaredTwo */
@@ -133,16 +204,27 @@ p.time{
   }
 }
 /* end .squaredTwo */
-
+/*DIARY*/
+.plus-button{
+  background-image: url('../img/plusbutton.png');
+  background-repeat: no-repeat;
+  width: 90px;
+  height:90px;
+  margin: -48px 0 auto;
+}
+/*DIARY END*/
 /*LOGIN PAGE START*/
 .loginbg{
   background-color: #20BAEF;
   color: #fff;
 }
+.loginbg .item{
+  background-color: #20BAEF;
+  border: none !important;
+}
 .item.loginform{
   background-color: #20BAEF;
   border: none;
-  text-align: center;
 }
 .item.loginform.item-input{
   border-bottom: 1px solid #fff;
@@ -180,5 +262,7 @@ p.time{
   text-align: center;
   padding-top: 70px;
 }
-
+.tabs{
+  background-color: #20BAEF;
+}
 /*LOGIN PAGE END*/

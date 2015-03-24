@@ -1,6 +1,16 @@
-<ion-view view-title="Diary">
-    <ion-content>
-        <div class="list">
+
+    <ion-header-bar class="bar-positive">
+      <h1 class="title">Sign Up</h1>
+    </ion-header-bar>
+    <ion-content class="loginbg padding">
+        <div class="loginlogo">
+          <img src="/img/loginlogo.png" class="logo">
+        </div>
+        <div class="list loginbg">
+            <label class="item item-input">
+                <span class="input-label">Name</span>
+                <input type="text" ng-model="user.name">
+            </label>
             <label class="item item-input">
                 <span class="input-label">Email</span>
                 <input type="text" ng-model="user.email">
@@ -16,4 +26,4 @@
             </label>
         </div>
     </ion-content>
-</ion-view>
+
