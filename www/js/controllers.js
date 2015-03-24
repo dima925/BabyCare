@@ -85,33 +85,6 @@ angular.module('cleverbaby.controllers', [])
             }
         });
     };
-
-    $scope.playlists = [
-        {
-            title: 'Reggae',
-            id: 1
-        },
-        {
-            title: 'Chill',
-            id: 2
-        },
-        {
-            title: 'Dubstep',
-            id: 3
-        },
-        {
-            title: 'Indie',
-            id: 4
-        },
-        {
-            title: 'Rap',
-            id: 5
-        },
-        {
-            title: 'Cowbell',
-            id: 6
-        }
-  ];
 })
 
 .controller('PlaylistCtrl', function ($scope, $stateParams) {})
@@ -152,12 +125,6 @@ angular.module('cleverbaby.controllers', [])
                     }).catch(function (error) {
                         console.error("Authentication failed:", error);
                     });
-
-
-
-
-
-
 
                 })
 
@@ -222,7 +189,6 @@ angular.module('cleverbaby.controllers', [])
   }
 ])
 
-
 .controller('newCtrl', function ($rootScope, $scope, $window, $firebase) {
     $scope.data = {
         item: ""
@@ -255,14 +221,7 @@ angular.module('cleverbaby.controllers', [])
 
         $rootScope.hide();
     };
-})
-
-
-;
-
-
-
-
+});
 function escapeEmailAddress(email) {
     if (!email) return false
         // Replace '.' (not allowed in a Firebase key) with ','
