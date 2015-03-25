@@ -42,8 +42,6 @@ angular.module('cleverbaby.controllers', [])
     $scope.list = $rootScope.fbData;
 
 
-
-
     /*
     bucketListRef.on('value', function (snapshot) {
         var data = snapshot.val();
@@ -147,8 +145,8 @@ angular.module('cleverbaby.controllers', [])
   ])
 
 .controller('SignInCtrl', [
-  '$scope', '$rootScope', '$firebaseAuth', '$window',
-  function ($scope, $rootScope, $firebaseAuth, $window) {
+  '$scope', '$rootScope', 'AuthService', '$window',
+  function ($scope, $rootScope, AuthService, $window) {
         // check session
         $rootScope.checkSession();
         $scope.user = {
@@ -163,11 +161,7 @@ angular.module('cleverbaby.controllers', [])
                 $rootScope.notify("Please enter valid credentials");
                 return false;
             }
-
-            $rootScope.auth.$authWithPassword({
-                email: email,
-                password: password
-            })
+            AuthService.authWithPassword
                 .then(function (user) {
                     $rootScope.hide();
                     $rootScope.userEmail = user.email;

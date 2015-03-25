@@ -4,9 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers','angular-svg-round-progress'])
+angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers','angular-svg-round-progress', 'cleverbaby.networking'])
 
-.run(function ($ionicPlatform, $rootScope, $firebaseAuth, $firebase, $window, $ionicLoading, $timeout, $ionicModal) {
+.run(function ($ionicPlatform, $rootScope, AuthService, $window, $ionicLoading, $timeout, $ionicModal, $firebase) {
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -20,10 +20,7 @@ angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers','ang
 
 
         $rootScope.userEmail = null;
-        $rootScope.baseUrl = 'https://cleverbaby.firebaseio.com/';
-        
-        var authRef = new Firebase($rootScope.baseUrl);
-        $rootScope.auth = $firebaseAuth(authRef);
+
 
         $rootScope.show = function (text) {
             $rootScope.loading = $ionicLoading.show({
@@ -45,36 +42,27 @@ angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers','ang
         };
 
         $rootScope.logout = function () {
-            $rootScope.auth.$logout();
+            AuthService.logout();
             $rootScope.checkSession();
         };
 
         $rootScope.checkSession = function () {
-            var auth = $rootScope.auth.$getAuth();
 
-
-            if (auth == null) {
-                // no user session exists
-                // $rootScope.userEmail = null;
+            console.log(AuthService.isLoggedIn());
+            if (!AuthService.isLoggedIn()) {
                 $window.location.href = '#/auth/signin';
-                return;
-            }
-
-            if (auth.uid) {
-                // user authenticated with Firebase
-                $rootScope.userEmail = auth.uid;
-                console.log("firebase url", $rootScope.baseUrl + escapeEmailAddress($rootScope.userEmail));
-                OfflineFirebase.restore();
-                var bucketListRef = $firebase(new OfflineFirebase($rootScope.baseUrl + escapeEmailAddress($rootScope.userEmail)));
-                $rootScope.fbData = bucketListRef.$asArray();
-                $window.location.href = ('#/app/diary');
-            } else {
-                // user is logged out
                 $rootScope.userEmail = null;
                 $window.location.href = '#/auth/signin';
+            } else{
+                $rootScope.userEmail = AuthService.userEmail();
+                console.log("firebase url", $rootScope.baseUrl + escapeEmailAddress($rootScope.userEmail));
+                OfflineFirebase.restore();
+                var bucketListRef = $firebase(new OfflineFirebase('https://cleverbaby.firebaseio.com/' + escapeEmailAddress($rootScope.userEmail)));
+                $rootScope.fbData = bucketListRef.$asArray();
+                $window.location.href = ('#/app/diary');
             }
 
-        }
+        };
         $rootScope.checkSession();
 
         $ionicModal.fromTemplateUrl('templates/newChoose.html', {
@@ -114,7 +102,8 @@ angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers','ang
                 time: time == undefined ? Date.now() : time,
                 created: Date.now(),
                 updated: Date.now()
-            }
+            };
+            $rootScope.fbData.$add(data);
             $rootScope.fbData.$add(data);
         }
 
