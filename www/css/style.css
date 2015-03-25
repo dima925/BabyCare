@@ -1,8 +1,4 @@
 /* Empty. Add your own CSS if you like */
-
-body{
-  background-color: #20BAEF !important;
-}
 .bgcolor{
   background-color: #20BAEF !important;
 }
@@ -15,13 +11,28 @@ body{
 .fixheight > .scroll {
   height:100% !important
 }
-.bar.bar-stable{
-	background-color: #0099cc !important;
+/*transparent header bar*/
+.bar.bar-positive {
+    border-color: rgba(12, 99, 238, 0);
+    background-color: rgba(56, 126, 245, 0);
+    /* background-image: linear-gradient(0deg, #0c63ee, #0c63ee 50%, transparent 50%); */
+    color: #fff; }
+/*end transparent header bar*/
+/*SLIDER*/
+.box {
+    padding-top: 50px;
 }
 .positive{
-	background-color: #0099cc !important;
-	height: auto;
+  background-color: #0099cc !important;
+  height: auto;
 }
+.balanced{
+  background-color: blue !important;
+  height: auto;
+}
+/*END SLIDER*/
+
+
 .icon-size{
 	width: 70%;
 	text-align: center;
@@ -211,6 +222,7 @@ p.time{
   width: 90px;
   height:90px;
   margin: -48px 0 auto;
+
 }
 /*DIARY END*/
 /*LOGIN PAGE START*/
@@ -236,14 +248,10 @@ p.time{
   width: 90px;
 }
 .loginlogo{
-  
-  padding:50px;
+  padding: 50px;
   text-align: center;
 }
-.bar.bar-header{
-  background-color: #20BAEF;
-  color: #fff;
-}
+
 .title{
   color: #fff;
 }
@@ -266,3 +274,95 @@ p.time{
   background-color: #20BAEF;
 }
 /*LOGIN PAGE END*/
+/*ADD NEW TASK*/
+.addnew_nurse{
+  height: auto;
+  text-align: center;
+  background-color: #339966;
+  color: #fff;
+}
+.addnew_nurse_icon{
+  text-align: left;
+}
+.toggle.toggle-positive input:checked + .track {
+    border-color: #66cc66;
+    background-color: #66cc66; 
+}
+.addnew_feed{
+  height: auto;
+  text-align: center;
+  background-color: #4CAF50;
+  color: #fff;
+}
+.addnew_diaper{
+  height: auto;
+  text-align: center;
+  background-color: #EF6C00;
+  color: #fff;
+}
+.addnew_nap{
+  height: auto;
+  text-align: center;
+  background-color: #03A9F4;
+  color: #fff;
+}
+.button{
+  color:#ffffff; 
+  width:100%;
+  line-height: 35px !important;
+}
+.range .icon {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0;
+  -moz-box-flex: 0;
+  -moz-flex: 0;
+  -ms-flex: 0;
+  flex: 0;
+  display: block;
+  min-width: 30px;
+  text-align: center;
+  font-size: 12px; }
+.item-checkbox{
+  padding-left: 0 !important;
+}
+.checkbox input:after, .checkbox-icon:after {
+  -webkit-transition: opacity 0.05s ease-in-out;
+  transition: opacity 0.05s ease-in-out;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  position: absolute;
+  top: 33%;
+  left: 25%;
+  display: table;
+  width: 14px;
+  height: 6px;
+  border: 3px solid #339966;
+  border-top: 0;
+  border-right: 0;
+  content: ' ';
+  opacity: 0; 
+}
+.checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
+    background: #FFFFFF;
+    border-color: #FFFFFF; 
+}
+.item-radio .item-content{
+  padding: 8px;
+  position: relative;
+  z-index: 2;
+  border: none;
+  background-color: rgba(255, 255, 255, 0); 
+  border: 1px solid white;
+
+}
+.item-radio input:checked ~ .item-content {
+    /* style the item content when its checked */
+    background: rgba(247, 247, 247, 1); 
+    border: 1px solid white;
+    color: #000;
+}
+.item-radio input:checked ~ .radio-icon{
+  visibility: none !important;
+  color: rgba(0, 0, 0, 0);
+}
+/*END ADD NEW TASK*/

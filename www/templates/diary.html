@@ -1,10 +1,16 @@
 <ion-view>
-    <ion-nav-title>Diary</ion-nav-title>
-    <ion-nav-buttons side="right">
-        <a class="button button-icon icon ion-calendar activated" ng-click="newTask()"><span class="ion-ios-calendar-outline"></span></a>
-    </ion-nav-buttons>
     <ion-content class="fixheight">
-        <ion-slide-box>
+        <ion-nav-bar class="bar-positive">
+            <ion-nav-back-button></ion-nav-back-button>
+            <ion-nav-buttons side="left">
+                <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+            </ion-nav-buttons>
+            <ion-nav-title>Diary</ion-nav-title>
+            <ion-nav-buttons side="right">
+                <a class="button button-icon icon ion-calendar activated" ng-click="newTask()"><span class="ion-ios-calendar-outline"></span></a>
+            </ion-nav-buttons>
+        </ion-nav-bar>
+        <ion-slide-box on-slide-changed="slideChanged(index)">
             <ion-slide>
                 <div class="box positive">
                     <div class="row container-center">
@@ -230,4 +236,5 @@
             </div>
         </div>
     </ion-content>
+    
 </ion-view>
