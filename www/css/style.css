@@ -156,6 +156,14 @@ p.time{
     height: 30px;
     background-size: contain;
   }
+  .played-logo:after {
+    content:"";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    border-left: 1px solid #9999cc;
+}
   .napped-logo{
     background-image: url('../img/napped.png');
     background-repeat: no-repeat;
@@ -163,6 +171,14 @@ p.time{
     height: 30px;
     background-size: contain;
   }
+  .napped-logo:after {
+    content:"";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    border-left: 1px solid #9999cc;
+}
   .changed-logo{
     background-image: url('../img/changed.png');
     background-repeat: no-repeat;

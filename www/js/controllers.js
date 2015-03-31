@@ -33,13 +33,17 @@ angular.module('cleverbaby.controllers', [])
     };
 })
 
-.controller('DiaryCtrl', function ($scope, $rootScope, $ionicModal, $firebase) {
+.controller('DiaryCtrl', function ($scope, $rootScope, $ionicModal, $firebase,activityService) {
 
 
 
     $scope.noData = true;
 
-    $scope.list = $rootScope.fbData;
+    activityService.get(escapeEmailAddress($rootScope.userEmail)).then(function(data){
+        $scope.list = data;
+        console.log($scope.list);
+    })
+    
 
     $ionicModal.fromTemplateUrl('templates/newItem.html', function (modal) {
         $scope.newTemplate = modal;
@@ -205,6 +209,8 @@ angular.module('cleverbaby.controllers', [])
         $rootScope.hide();
     };
 })
+
+/*ACTIVITY CONTROLLER*/
 .controller('activityCtrl', function ($rootScope,$scope,$window,$firebase,activityService,babiesService) {
     $scope.diaper = {
         wet : "",
@@ -312,6 +318,7 @@ angular.module('cleverbaby.controllers', [])
     /*END NAP ACTIVITY*/
     
 })
+/*END ACTIVITY CONTROLLER*/
 function escapeEmailAddress(email) {
     if (!email) return false
         // Replace '.' (not allowed in a Firebase key) with ','

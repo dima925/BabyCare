@@ -1,7 +1,7 @@
 angular.module('cleverbaby.services',[])
 
 .service('activityService', function($firebase,firebaseConfig,$q){
-	var refActivity = new OfflineFirebase(firebaseConfig.baseUrl);
+	var refActivity = new Firebase(firebaseConfig.baseUrl);
 	var childRefActivity =  refActivity.child('activities');
 
 	function SaveActivity(babyId,data){
@@ -12,9 +12,15 @@ angular.module('cleverbaby.services',[])
 	}
 	function getActivity(userId){
 		/* here is the function to retieve activity by user and baby*/
+		var deffered = $q.defer();
+		var activity = $firebase(childRefActivity);
+		var activity2 = activity.$asArray();
+		deffered.resolve(activity2);
+		return deffered.promise;
 	}
 	return{
-		save : SaveActivity
+		save : SaveActivity,
+		get : getActivity
 	}
 
 })
@@ -26,7 +32,7 @@ angular.module('cleverbaby.services',[])
 	function getBabiesId(){
 		/* here is the function to retieve babies by user*/
 		var deffered = $q.defer();
-		babiesRefActivity.once('child_added', function (snapshot) {
+		babiesRefActivity.on('child_added', function (snapshot) {
 			var hasil = snapshot.key();
 			deffered.resolve(hasil);
         });
