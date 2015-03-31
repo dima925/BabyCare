@@ -21,7 +21,6 @@ angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers','ang
 
         $rootScope.userEmail = null;
 
-
         $rootScope.show = function (text) {
             $rootScope.loading = $ionicLoading.show({
                 template: text ? text : 'Loading..',
@@ -47,7 +46,6 @@ angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers','ang
         };
 
         $rootScope.checkSession = function () {
-
             console.log(AuthService.isLoggedIn());
             if (!AuthService.isLoggedIn()) {
                 $window.location.href = '#/auth/signin';
@@ -61,9 +59,20 @@ angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers','ang
                 $rootScope.fbData = bucketListRef.$asArray();
                 $window.location.href = ('#/app/diary');
             }
-
         };
+
         $rootScope.checkSession();
+
+        /*get babies data*/
+        $rootScope.bab = [];
+        babies = new Firebase('https://cleverbaby.firebaseio.com/babies/');
+        babies.on('value',function(snap){
+            snap.forEach(function(item){
+                $rootScope.bab = item.key();
+                console.log($rootScope.bab);
+            })
+        });
+        /*end get babies data*/
 
         $ionicModal.fromTemplateUrl('templates/newChoose.html', {
             scope: $rootScope,
@@ -91,21 +100,7 @@ angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers','ang
         $rootScope.$on('modal.removed', function (modal) {
             // Execute action
         });
-
-
-        $rootScope.addNurse = function(breast, length, time) {
-            $rootScope.newmodal.hide();
-            var data = {
-                type: 'nurse',
-                breast: breast == undefined ? 'both' : breast,
-                length: length == undefined ? 0 : length,
-                time: time == undefined ? Date.now() : time,
-                created: Date.now(),
-                updated: Date.now()
-            };
-            $rootScope.fbData.$add(data);
-            $rootScope.fbData.$add(data);
-        }
+        
 
 
     });

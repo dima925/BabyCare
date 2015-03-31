@@ -170,6 +170,14 @@ p.time{
     height: 30px;
     background-size: contain;
   }
+  .changed-logo:after {
+    content:"";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    border-left: 1px solid #9999cc;
+}
 /*end timeline*/
 /* .squaredTwo */
 .squaredTwo {

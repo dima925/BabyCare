@@ -1,7 +1,7 @@
-<ion-modal-view>
+<ion-modal-view ng-controller="activityCtrl">
     <ion-header-bar class="bar-energized">
         <div class="buttons">
-            <button class="button icon-left ion-chevron-left button-clear button-dark activated" ng-click="closeNewModal()"></button>
+            <button class="button icon-left ion-chevron-left button-clear button-dark activated" ng-click="closeActivity()"></button>
         </div>
         <h1 class="title">Add Activity</h1>
     </ion-header-bar>
@@ -13,18 +13,18 @@
                             <i class="smallicon flaticon-mother19">Nursing</i>
                         </div>
                         <div class="col col-50 center-block" style="text-align:right">
-                            <ion-toggle ng-model="airplaneMode" toggle-class="toggle-positive">Time it?</ion-toggle>
+                            <ion-toggle ng-model="nurse.timeit" toggle-class="toggle-positive">Time it?</ion-toggle>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col col-50">
                             <button ng-click="addNurse('left',0)" class="button button-outline button-light">Left</button>
                         </div>
-                        <div class="col col-50"><button class="button button-outline button-light" style="color:#ffffff;">Right</button></div>
+                        <div class="col col-50"><button ng-click="addNurse('right',0)" class="button button-outline button-light" style="color:#ffffff;">Right</button></div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <button class="button button-block button-outline button-light">Both</button>
+                            <button class="button button-block button-outline button-light" ng-click="addNurse()">Both</button>
                         </div>
                     </div>
                     
@@ -37,7 +37,7 @@
                             <i class="smallicon flaticon-baby1"></i>Feed
                             <div class="range">
                               <i class="icon">0oz</i>
-                              <input type="range" name="feed">
+                              <input type="range" min="0" max="12" value="0" step="1">
                               <i class="icon">12oz</i>
                             </div>
                         </div>
@@ -59,21 +59,22 @@
                     </div>
                     <div class="row">
                         <div class="col col-50">
-                            <ion-checkbox ng-model="wet" name="wet">Wet</ion-checkbox>
+                            <ion-checkbox ng-model="diaper.wet" name="wet">Wet</ion-checkbox>
                         </div>
                         <div class="col col-50">
-                            <ion-checkbox ng-model="solid">Solid</ion-checkbox>
+                            <ion-checkbox ng-model="diaper.solid">Solid</ion-checkbox>
                         </div>
                     </div>
                     <div class="row">
                             <div class="col">
-                                <ion-radio ng-model="choice" ng-value="''">Tiny</ion-radio>
+                                
+                                <ion-radio ng-model="choice" ng-value="''"  ng-click="addDiapers('tiny')">Tiny</ion-radio>
                             </div>
                             <div class="col">
-                                <ion-radio ng-model="choice" ng-value="''">Medium</ion-radio>
+                                <ion-radio ng-model="choice" ng-value="''" ng-click="addDiapers('medium')">Medium</ion-radio>
                             </div>
                             <div class="col">
-                                <ion-radio ng-model="choice" ng-value="''">XXL</ion-radio>
+                                <ion-radio ng-model="choice" ng-value="''" ng-click="addDiapers('XXL')">XXL</ion-radio>
                             </div>
                     </div>
                 </div>

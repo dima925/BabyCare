@@ -95,7 +95,7 @@
                             <h5>Play</h5>
                         </div>
                         <div class="col col-20">
-                            <div class="plus-button" ng-click="openNewModal()">
+                            <div class="plus-button" ng-click="newActivity()">
                                 
                             </div>
                         </div>
@@ -191,7 +191,7 @@
                         </div>
                     </div>
                 </div>
-                <div ng-switch-when='diapers'>
+                <div ng-switch-when='diaper'>
                     <div class="row">
                         <div class="col col-20">
                             <p class="time">{{item.time | date : 'shortTime'}}</p>
@@ -201,14 +201,8 @@
                         </div>
                         <div class="col col-60">
                             <p class="nursed">{{item.type}}</p>
-                            <div class="row">
-                                <div class="col-50">
-                                    <p>LEFT {{item.length}}min</p>
-                                </div>
-                                <div class="col-50">
-                                    <p>RIGHT 0min</p>
-                                </div>
-                            </div>
+                            <p>{{item.consistency}}</p>
+                            
                         </div>
                     </div>
                 </div>
@@ -235,6 +229,7 @@
                   </span>
             </div>
         </div>
+        
     </ion-content>
     
 </ion-view>

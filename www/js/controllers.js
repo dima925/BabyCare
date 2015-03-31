@@ -41,31 +41,16 @@ angular.module('cleverbaby.controllers', [])
 
     $scope.list = $rootScope.fbData;
 
-
-    /*
-    bucketListRef.on('value', function (snapshot) {
-        var data = snapshot.val();
-        console.log('data',snapshot);
-        $scope.list = [];
-        $scope.list = data;
-        if ($scope.list) {
-            if ($scope.list.length == 0) {
-                $scope.noData = true;
-            } else {
-                $scope.noData = false;
-            }
-        } else {
-
-            $scope.noData = true;
-        }
-
-
-    }); */
-
     $ionicModal.fromTemplateUrl('templates/newItem.html', function (modal) {
         $scope.newTemplate = modal;
     });
-    
+
+    $ionicModal.fromTemplateUrl('templates/newChoose.html',function(activity){
+        $scope.activityModal = activity;
+    })
+    $scope.newActivity = function(){
+        $scope.activityModal.show();
+    }
     $scope.newTask = function () {
         $scope.newTemplate.show();
     };
@@ -161,8 +146,12 @@ angular.module('cleverbaby.controllers', [])
                 $rootScope.notify("Please enter valid credentials");
                 return false;
             }
-            AuthService.authWithPassword
-                .then(function (user) {
+            AuthService.authWithPassword(this.user);
+            $rootScope.checkSession();
+            $window.location.href = ('#/app/diary');
+            
+            /*note: deactive because get error on .then*/
+                /*.then(function (user) {
                     $rootScope.hide();
                     $rootScope.userEmail = user.email;
                     $rootScope.checkSession();
@@ -178,7 +167,7 @@ angular.module('cleverbaby.controllers', [])
                     } else {
                         $rootScope.notify('Oops something went wrong. Please try again later');
                     }
-                });
+                });*/
         }
   }
 ])
@@ -215,7 +204,78 @@ angular.module('cleverbaby.controllers', [])
 
         $rootScope.hide();
     };
-});
+})
+.controller('activityCtrl', function ($rootScope,$scope,$window,$firebase) {
+    var activity = $firebase(new OfflineFirebase('https://cleverbaby.firebaseio.com/activities/'));
+    var activityData = activity.$asArray();
+    
+    $scope.diaper = {
+        wet : "",
+        solid : ""
+    };
+    $scope.closeActivity = function(){
+        $scope.modal.hide();
+    }
+    /*NURSE ACTVITY*/
+    $scope.addNurse = function(breast, length, time) {
+        $scope.modal.hide();
+        var data = {
+            type: 'nurse',
+            breast: breast == undefined ? 'both' : breast,
+            length: length == undefined ? 0 : length,
+            time: time == undefined ? Date.now() : time,
+            created: Date.now(),
+            updated: Date.now(),
+            created_by : escapeEmailAddress($rootScope.userEmail),
+            updated_by : escapeEmailAddress($rootScope.userEmail),
+            timeit : true
+
+        };
+        activityData.$add(data);
+    }
+    /*END NURSE ACTIVITY*/
+
+    /*DIAPERS ACTIVITY*/
+        $scope.addDiapers = function(size,time){
+            //$scope.modal.hide();
+            
+            var wet = this.diaper.wet;
+            var solid = this.diaper.solid;
+            var cons = ""
+            if(wet == true && solid == true){
+                cons = "wet and solid";
+            }else if(wet==true && solid == false){
+                cons = "wet";
+            }else if($wet == false && solid == true){
+                cons = "solid";
+            }
+            var b = $rootScope.bab;
+            console.log(b);
+            var diapers = {
+                type : 'diaper',
+                consistency : cons,
+                size : size,
+                babies : { baby : b } ,
+                created: Date.now(),
+                updated: Date.now(),
+                time: time == undefined ? Date.now() : time,
+                created_by : escapeEmailAddress($rootScope.userEmail),
+                updated_by : escapeEmailAddress($rootScope.userEmail)
+            };
+            console.log(diapers);
+            activityData.$add(diapers);
+        }
+    /*END DIAPER ACTIVITY*/
+    /*BOTTLE ACTIVITY*/
+        
+    /*END BOTTLE ACTIVITY*/
+    /*NAP ACTIVITY*/
+        $scope.addNap = function(){
+
+        }
+    /*END NAP ACTIVITY*/
+    
+})
 function escapeEmailAddress(email) {
     if (!email) return false
         // Replace '.' (not allowed in a Firebase key) with ','

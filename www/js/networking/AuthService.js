@@ -23,6 +23,7 @@ angular.module('cleverbaby.networking')
             var auth = authService.$getAuth();
             return  auth.uid;
         }
+        
     }
 
 }]);
