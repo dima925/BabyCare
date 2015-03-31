@@ -37,14 +37,14 @@
                             <i class="smallicon flaticon-baby1"></i>Feed
                             <div class="range">
                               <i class="icon">0oz</i>
-                              <input type="range" min="0" max="12" value="0" step="1" ng-model="bottle.amount">
-                              <i class="icon">12oz</i>
+                              <input type="range" min="0" max="12" value="{{bottle.value}}" step="1" ng-model="bottle.value">
+                              <i class="icon">12oz {{bottle.value}}</i>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col col-50">
-                            <button ng-click="" class="button button-outline button-light" ng-click="addBottle()">Formula</button>
+                            <button class="button button-outline button-light" ng-click="addBottle()">Formula</button>
                         </div>
                         <div class="col col-50"><button class="button button-outline button-light" ng-click="addBottle()">Milk</button></div>
                     </div>

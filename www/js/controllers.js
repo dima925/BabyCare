@@ -211,8 +211,10 @@ angular.module('cleverbaby.controllers', [])
         solid : ""
     };
     $scope.bottle = {
-        amount:""
-    };
+        min:"1",
+        max:"12",
+        value:"1"
+    }
     $scope.closeActivity = function(){
         $scope.modal.hide();
     }
@@ -273,7 +275,7 @@ angular.module('cleverbaby.controllers', [])
     /*BOTTLE ACTIVITY*/
     $scope.addBottle = function(time){
         $scope.modal.hide();
-        var amount = this.bottle.amount;
+        var amount = this.bottle.value;
         var bottle = {
             type : "bottle",
             amount : amount,

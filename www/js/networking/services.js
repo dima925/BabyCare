@@ -10,6 +10,9 @@ angular.module('cleverbaby.services',[])
 		console.log("baby ID :"+babyId);
 		childRefActivity.child(activityID+"/babies/"+babyId).set("true");
 	}
+	function getActivity(userId){
+		/* here is the function to retieve activity by user and baby*/
+	}
 	return{
 		save : SaveActivity
 	}
@@ -21,6 +24,7 @@ angular.module('cleverbaby.services',[])
 	var babiesRefActivity =  refBabies.child('babies');
 
 	function getBabiesId(){
+		/* here is the function to retieve babies by user*/
 		var deffered = $q.defer();
 		babiesRefActivity.once('child_added', function (snapshot) {
 			var hasil = snapshot.key();
