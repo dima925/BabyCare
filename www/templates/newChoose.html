@@ -37,16 +37,16 @@
                             <i class="smallicon flaticon-baby1"></i>Feed
                             <div class="range">
                               <i class="icon">0oz</i>
-                              <input type="range" min="0" max="12" value="0" step="1">
+                              <input type="range" min="0" max="12" value="0" step="1" ng-model="bottle.amount">
                               <i class="icon">12oz</i>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col col-50">
-                            <button ng-click="" class="button button-outline button-light">Formula</button>
+                            <button ng-click="" class="button button-outline button-light" ng-click="addBottle()">Formula</button>
                         </div>
-                        <div class="col col-50"><button class="button button-outline button-light">Milk</button></div>
+                        <div class="col col-50"><button class="button button-outline button-light" ng-click="addBottle()">Milk</button></div>
                     </div>
                 </div>
             </div>
@@ -91,7 +91,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <button class="button button-block button-outline button-light">Start</button>
+                            <button class="button button-block button-outline button-light" ng-click="addNap()">Start</button>
                         </div>
                     </div>
                     

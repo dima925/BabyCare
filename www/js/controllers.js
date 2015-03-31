@@ -205,13 +205,13 @@ angular.module('cleverbaby.controllers', [])
         $rootScope.hide();
     };
 })
-.controller('activityCtrl', function ($rootScope,$scope,$window,$firebase) {
-    var activity = $firebase(new OfflineFirebase('https://cleverbaby.firebaseio.com/activities/'));
-    var activityData = activity.$asArray();
-    
+.controller('activityCtrl', function ($rootScope,$scope,$window,$firebase,activityService,babiesService) {
     $scope.diaper = {
         wet : "",
         solid : ""
+    };
+    $scope.bottle = {
+        amount:""
     };
     $scope.closeActivity = function(){
         $scope.modal.hide();
@@ -219,7 +219,7 @@ angular.module('cleverbaby.controllers', [])
     /*NURSE ACTVITY*/
     $scope.addNurse = function(breast, length, time) {
         $scope.modal.hide();
-        var data = {
+        var nurse = {
             type: 'nurse',
             breast: breast == undefined ? 'both' : breast,
             length: length == undefined ? 0 : length,
@@ -231,14 +231,17 @@ angular.module('cleverbaby.controllers', [])
             timeit : true
 
         };
-        activityData.$add(data);
+        babiesService.getbabiesId().then(function(data){
+            var babies = data;
+            activityService.save(babies,nurse);
+        })
+        
     }
     /*END NURSE ACTIVITY*/
 
     /*DIAPERS ACTIVITY*/
         $scope.addDiapers = function(size,time){
-            //$scope.modal.hide();
-            
+            $scope.modal.hide();
             var wet = this.diaper.wet;
             var solid = this.diaper.solid;
             var cons = ""
@@ -246,32 +249,63 @@ angular.module('cleverbaby.controllers', [])
                 cons = "wet and solid";
             }else if(wet==true && solid == false){
                 cons = "wet";
-            }else if($wet == false && solid == true){
+            }else if(wet == false && solid == true){
                 cons = "solid";
             }
-            var b = $rootScope.bab;
-            console.log(b);
             var diapers = {
                 type : 'diaper',
                 consistency : cons,
                 size : size,
-                babies : { baby : b } ,
                 created: Date.now(),
                 updated: Date.now(),
                 time: time == undefined ? Date.now() : time,
                 created_by : escapeEmailAddress($rootScope.userEmail),
                 updated_by : escapeEmailAddress($rootScope.userEmail)
             };
-            console.log(diapers);
-            activityData.$add(diapers);
+            babiesService.getbabiesId().then(function(data){
+                var babies = data;
+                activityService.save(babies,diapers);
+            })
+            
+            
         }
     /*END DIAPER ACTIVITY*/
     /*BOTTLE ACTIVITY*/
-        
+    $scope.addBottle = function(time){
+        $scope.modal.hide();
+        var amount = this.bottle.amount;
+        var bottle = {
+            type : "bottle",
+            amount : amount,
+            created : time == undefined ? Date.now() : time,
+            updated : time == undefined ? Date.now() : time,
+            created_by : escapeEmailAddress($rootScope.userEmail),
+            updated_by : escapeEmailAddress($rootScope.userEmail),
+            deleted : false
+        }
+        babiesService.getbabiesId().then(function(data){
+            var babies = data;
+            activityService.save(babies,bottle);
+        })
+    }
     /*END BOTTLE ACTIVITY*/
     /*NAP ACTIVITY*/
-        $scope.addNap = function(){
-
+        $scope.addNap = function(time){
+            $scope.modal.hide();
+            var nap = {
+                type : 'sleep',
+                start : time == undefined ? Date.now() : time,
+                end : time == undefined ? Date.now() : time,
+                created : time == undefined ? Date.now() : time,
+                updated : time == undefined ? Date.now() : time,
+                created_by : escapeEmailAddress($rootScope.userEmail),
+                updated_by : escapeEmailAddress($rootScope.userEmail),
+                deleted : false
+            }
+            babiesService.getbabiesId().then(function(data){
+                var babies = data;
+                activityService.save(babies,nap);
+            })
         }
     /*END NAP ACTIVITY*/
     
