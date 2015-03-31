@@ -152,42 +152,30 @@
                 <div ng-switch-when='bottle'>
                     <div class="row">
                         <div class="col col-20">
-                            <p class="time">{{item.time | date : 'shortTime'}}</p>
+                            <p class="time">{{item.created | date : 'shortTime'}}</p>
                         </div>
                         <div class="col col-10 container-center">
                             <div class="center-block played-logo"></div>
                         </div>
                         <div class="col col-60">
                             <p class="nursed">{{item.type}}</p>
-                            <div class="row">
-                                <div class="col-50">
-                                    <p>LEFT {{item.length}}min</p>
-                                </div>
-                                <div class="col-50">
-                                    <p>RIGHT 0min</p>
-                                </div>
-                            </div>
+                            <p>{{item.amount}}oz of FORMULA</p>
+                            
                         </div>
                     </div>
                 </div>
                 <div ng-switch-when='sleep'>
                     <div class="row">
                         <div class="col col-20">
-                            <p class="time">{{item.time | date : 'shortTime'}}</p>
+                            <p class="time">{{item.created | date : 'shortTime'}}</p>
                         </div>
                         <div class="col col-10 container-center">
                             <div class="center-block napped-logo"></div>
                         </div>
                         <div class="col col-60">
                             <p class="nursed">{{item.type}}</p>
-                            <div class="row">
-                                <div class="col-50">
-                                    <p>LEFT {{item.length}}min</p>
-                                </div>
-                                <div class="col-50">
-                                    <p>RIGHT 0min</p>
-                                </div>
-                            </div>
+                            <p>SLEPT FOR 2 HOURS</p>
+                            
                         </div>
                     </div>
                 </div>
