@@ -178,10 +178,7 @@ angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers','ang
                     controller: 'SignUpCtrl'
                 }
             }
-        })
-
-
-    ;
+        });
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/auth/signin');
+    $urlRouterProvider.otherwise('/app/diary');
 });
