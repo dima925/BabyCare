@@ -31,7 +31,7 @@ angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers','ang
                 OfflineFirebase.restore();
                 var bucketListRef = $firebase(new OfflineFirebase('https://cleverbaby.firebaseio.com/' + escapeEmailAddress($rootScope.userEmail)));
                 $rootScope.fbData = bucketListRef.$asArray();
-                //$location.path('app/diary');
+                $location.path('app/diary');
             } else{
                 $location.path ('app/signin');
                 $rootScope.userEmail = null;

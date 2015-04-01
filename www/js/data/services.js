@@ -1,6 +1,7 @@
 angular.module('cleverbaby.services',[])
 
-.service('activityService', function($firebase,firebaseConfig,$q){
+.service('activityService', ['$firebase', 'firebaseConfig', '$q',
+	function($firebase,firebaseConfig,$q){
 	var refActivity = new Firebase(firebaseConfig.baseUrl);
 	var childRefActivity =  refActivity.child('activities');
 
@@ -23,9 +24,10 @@ angular.module('cleverbaby.services',[])
 		get : getActivity
 	};
 
-})
+}])
 
-.service('babiesService',function($firebase,firebaseConfig,$q){
+.service('babiesService',['$firebase', 'firebaseConfig', '$q',
+	function($firebase,firebaseConfig,$q){
 	var refBabies = new OfflineFirebase(firebaseConfig.baseUrl);
 	var babiesRefActivity =  refBabies.child('babies');
 
@@ -41,4 +43,4 @@ angular.module('cleverbaby.services',[])
 	return{
 		getbabiesId : getBabiesId
 	};
-});
+}]);

@@ -1,5 +1,6 @@
 angular.module('cleverbaby.controllers')
-.controller('newCtrl', function ($rootScope, $scope, $window, $firebase, NotificationService) {
+.controller('newCtrl', ['$rootScope', '$scope', '$window', '$firebase', 'NotificationService',
+    function ($rootScope, $scope, $window, $firebase, NotificationService) {
     $scope.data = {
         item: ""
     };
@@ -31,4 +32,4 @@ angular.module('cleverbaby.controllers')
 
         NotificationService.hide();
     };
-});
+}]);

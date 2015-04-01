@@ -1,6 +1,6 @@
 angular.module('cleverbaby.controllers')
-
-.controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', 
+    function ($scope, $ionicModal, $timeout) {
     // Form data for the login modal
     $scope.loginData = {};
 
@@ -31,4 +31,4 @@ angular.module('cleverbaby.controllers')
             $scope.closeLogin();
         }, 1000);
     };
-});
+}]);

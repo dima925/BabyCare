@@ -1,5 +1,6 @@
 angular.module('cleverbaby.controllers')
-.controller('DiaryCtrl', function ($scope, $rootScope, $ionicModal, $firebase,activityService, NotificationService) {
+.controller('DiaryCtrl', ['$scope', '$rootScope', '$ionicModal', '$firebase', 'activityService', 'NotificationService',
+    function ($scope, $rootScope, $ionicModal, $firebase,activityService, NotificationService) {
 
 
 
@@ -38,4 +39,4 @@ angular.module('cleverbaby.controllers')
             }
         });
     };
-});
+}]);

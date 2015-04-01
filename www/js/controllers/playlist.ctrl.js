@@ -1,3 +1,3 @@
 angular.module('cleverbaby.controllers')
 
-.controller('PlaylistCtrl', function ($scope, $stateParams) {});
+.controller('PlaylistCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {}]);

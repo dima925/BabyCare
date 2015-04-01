@@ -1,6 +1,5 @@
 angular.module('cleverbaby.controllers')
-.controller('SignInCtrl', [
-  '$scope', '$rootScope', 'AuthService', '$location', 'NotificationService',
+.controller('SignInCtrl', ['$scope', '$rootScope', 'AuthService', '$location', 'NotificationService',
   function ($scope, $rootScope, AuthService, $location, NotificationService) {
         // check session
         $rootScope.checkSession();

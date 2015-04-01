@@ -1,6 +1,7 @@
 angular.module('cleverbaby.controllers')
 /*ACTIVITY CONTROLLER*/
-.controller('activityCtrl', function ($rootScope,$scope,$window,$firebase,activityService,babiesService) {
+.controller('activityCtrl', ['$rootScope','$scope','$window','$firebase','activityService','babiesService',
+    function ($rootScope,$scope,$window,$firebase,activityService,babiesService) {
     $scope.diaper = {
         wet : "",
         solid : ""
@@ -106,4 +107,4 @@ angular.module('cleverbaby.controllers')
         }
     /*END NAP ACTIVITY*/
     
-})
+}]);
