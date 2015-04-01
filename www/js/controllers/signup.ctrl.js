@@ -1,8 +1,8 @@
 angular.module('cleverbaby.controllers')
 
 .controller('SignUpCtrl', [
-    '$scope', '$rootScope', '$firebaseAuth', '$location', 'NotificationService',
-    function ($scope, $rootScope, $firebaseAuth, $location, NotificationService) {
+    '$scope', '$rootScope', '$firebaseAuth', '$location', 'NotificationService', 'AuthService',
+    function ($scope, $rootScope, $firebaseAuth, $location, NotificationService, AuthService) {
         $scope.user = {
             email: "",
             password: ""
@@ -17,21 +17,18 @@ angular.module('cleverbaby.controllers')
             }
 
             NotificationService.show('Please wait.. Registering');
-            return $rootScope.auth.$createUser(email, password)
+            return AuthService.createUser(email, password)
                 .then(function () {
-                    // createUser success
-                    console.log("createUser success");
-
                     NotificationService.hide();
 
-                    return $rootScope.auth.$authWithPassword({
+                    return AuthService.authWithPassword({
                         "email": email,
                         "password": password
                     }).then(function (authData) {
                         console.log("Logged in as:", authData.uid);
                         $rootScope.userEmail = authData.uid;
                         $rootScope.checkSession();
-                        $location.path('app/diary');
+                        $location.path('/app/diary');
                     }).catch(function (error) {
                         console.error("Authentication failed:", error);
                     });
