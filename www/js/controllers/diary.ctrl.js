@@ -1,5 +1,5 @@
 angular.module('cleverbaby.controllers')
-.controller('DiaryCtrl', function ($scope, $rootScope, $ionicModal, $firebase,activityService) {
+.controller('DiaryCtrl', function ($scope, $rootScope, $ionicModal, $firebase,activityService, NotificationService) {
 
 
 
@@ -30,11 +30,11 @@ angular.module('cleverbaby.controllers')
         var itemRef = new Firebase($rootScope.baseUrl + escapeEmailAddress($rootScope.userEmail));
         bucketListRef.child(key).remove(function (error) {
             if (error) {
-                $rootScope.hide();
-                $rootScope.notify('Oops! something went wrong. Try again later');
+                NotificationService.hide();
+                NotificationService.notify('Oops! something went wrong. Try again later');
             } else {
-                $rootScope.hide();
-                $rootScope.notify('Successfully deleted');
+                NotificationService.hide();
+                NotificationService.notify('Successfully deleted');
             }
         });
     };

@@ -1,5 +1,5 @@
 angular.module('cleverbaby.controllers')
-.controller('newCtrl', function ($rootScope, $scope, $window, $firebase) {
+.controller('newCtrl', function ($rootScope, $scope, $window, $firebase, NotificationService) {
     $scope.data = {
         item: ""
     };
@@ -17,7 +17,7 @@ angular.module('cleverbaby.controllers')
 
         $scope.modal.hide();
 
-        $rootScope.show("Please wait... Creating new");
+        NotificationService.show("Please wait... Creating new");
 
         var form = {
             item: item,
@@ -29,6 +29,6 @@ angular.module('cleverbaby.controllers')
         $rootScope.fbData.$add(form);
 
 
-        $rootScope.hide();
+        NotificationService.hide();
     };
 });

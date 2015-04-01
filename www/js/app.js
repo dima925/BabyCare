@@ -4,9 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers','angular-svg-round-progress', 'cleverbaby.networking','cleverbaby.services'])
+angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers','angular-svg-round-progress', 'cleverbaby.data','cleverbaby.services'])
 
-.run(function ($ionicPlatform, $rootScope, AuthService, $window, $ionicLoading, $timeout, $ionicModal, $firebase, $location) {
+.run(function ($ionicPlatform, $rootScope, AuthService, $timeout, $ionicModal, $firebase, $location) {
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -18,28 +18,7 @@ angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers','ang
             StatusBar.styleDefault();
         }
 
-
         $rootScope.userEmail = null;
-
-        $rootScope.show = function (text) {
-            $rootScope.loading = $ionicLoading.show({
-                template: text ? text : 'Loading..',
-                showBackdrop: true,
-                delay: 0
-            });
-        };
-
-        $rootScope.hide = function () {
-            $ionicLoading.hide();
-        };
-
-        $rootScope.notify = function (text) {
-            $rootScope.show(text);
-            $window.setTimeout(function () {
-                $rootScope.hide();
-            }, 1999);
-        };
-
         $rootScope.logout = function () {
             AuthService.logout();
             $rootScope.checkSession();
@@ -52,9 +31,9 @@ angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers','ang
                 OfflineFirebase.restore();
                 var bucketListRef = $firebase(new OfflineFirebase('https://cleverbaby.firebaseio.com/' + escapeEmailAddress($rootScope.userEmail)));
                 $rootScope.fbData = bucketListRef.$asArray();
-                $window.location.href = ('#/app/diary');
+                //$location.path('app/diary');
             } else{
-                $location.path ('#/app/signin');
+                $location.path ('app/signin');
                 $rootScope.userEmail = null;
             }
         };

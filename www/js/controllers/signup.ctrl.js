@@ -1,8 +1,8 @@
 angular.module('cleverbaby.controllers')
 
 .controller('SignUpCtrl', [
-    '$scope', '$rootScope', '$firebaseAuth', '$window',
-    function ($scope, $rootScope, $firebaseAuth, $window) {
+    '$scope', '$rootScope', '$firebaseAuth', '$location', 'NotificationService',
+    function ($scope, $rootScope, $firebaseAuth, $location, NotificationService) {
         $scope.user = {
             email: "",
             password: ""
@@ -12,17 +12,17 @@ angular.module('cleverbaby.controllers')
             var password = this.user.password;
 
             if (!email || !password) {
-                $rootScope.notify("Please enter valid credentials");
+                NotificationService.notify("Please enter valid credentials");
                 return false;
             }
 
-            $rootScope.show('Please wait.. Registering');
+            NotificationService.show('Please wait.. Registering');
             return $rootScope.auth.$createUser(email, password)
                 .then(function () {
                     // createUser success
                     console.log("createUser success");
 
-                    $rootScope.hide();
+                    NotificationService.hide();
 
                     return $rootScope.auth.$authWithPassword({
                         "email": email,
@@ -31,7 +31,7 @@ angular.module('cleverbaby.controllers')
                         console.log("Logged in as:", authData.uid);
                         $rootScope.userEmail = authData.uid;
                         $rootScope.checkSession();
-                        $window.location.href = ('#/app/diary');
+                        $location.path('app/diary');
                     }).catch(function (error) {
                         console.error("Authentication failed:", error);
                     });
@@ -41,13 +41,13 @@ angular.module('cleverbaby.controllers')
             .catch(function (error) {
                 // createUser failed
                 console.error("Error: ", error);
-                $rootScope.hide();
+                NotificationService.hide();
                 if (error.code == 'INVALID_EMAIL') {
-                    $rootScope.notify('Invalid Email Address');
+                    NotificationService.notify('Invalid Email Address');
                 } else if (error.code == 'EMAIL_TAKEN') {
-                    $rootScope.notify('Email Address already taken');
+                    NotificationService.notify('Email Address already taken');
                 } else {
-                    $rootScope.notify('Oops something went wrong. Please try again later');
+                    NotificationService.notify('Oops something went wrong. Please try again later');
                 }
             });
         };
