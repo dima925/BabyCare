@@ -1,6 +1,6 @@
 angular.module('cleverbaby.controllers')
-.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', 
-    function ($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout',  'AuthService',
+    function ($scope, $ionicModal, $timeout, AuthService) {
     // Form data for the login modal
     $scope.loginData = {};
 
@@ -19,6 +19,10 @@ angular.module('cleverbaby.controllers')
     // Open the login modal
     $scope.login = function () {
         $scope.modal.show();
+    };
+
+    $scope.logout = function () {
+        AuthService.logout();
     };
 
     // Perform the login action when the user submits the login form

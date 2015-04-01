@@ -25,7 +25,6 @@ angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers','ang
         };
 
         $rootScope.checkSession = function () {
-            console.log(AuthService.isLoggedIn(), "logged in");
             if (AuthService.isLoggedIn()) {
                 $rootScope.userEmail = AuthService.userEmail();
                 OfflineFirebase.restore();
@@ -38,7 +37,11 @@ angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers','ang
             }
         };
 
-        $rootScope.checkSession();
+        if(!AuthService.isLoggedIn()){
+            AuthService.authAnonymously().then(function(){
+                
+            });
+        }
 
         /*get babies data
         babies = new Firebase('https://cleverbaby.firebaseio.com/babies/');

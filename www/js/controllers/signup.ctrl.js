@@ -7,6 +7,12 @@ angular.module('cleverbaby.controllers')
             email: "",
             password: ""
         };
+
+        $scope.createWithOAuth = function(type){
+            AuthService.authWithOAuthPopup(type).then(function(authData){
+                $location.path('app/diary');
+            });
+        };
         $scope.createUser = function () {
             var email = this.user.email;
             var password = this.user.password;
@@ -27,7 +33,6 @@ angular.module('cleverbaby.controllers')
                     }).then(function (authData) {
                         console.log("Logged in as:", authData.uid);
                         $rootScope.userEmail = authData.uid;
-                        $rootScope.checkSession();
                         $location.path('/app/diary');
                     }).catch(function (error) {
                         console.error("Authentication failed:", error);

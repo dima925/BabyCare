@@ -2,11 +2,18 @@ angular.module('cleverbaby.controllers')
 .controller('SignInCtrl', ['$scope', '$rootScope', 'AuthService', '$location', 'NotificationService',
   function ($scope, $rootScope, AuthService, $location, NotificationService) {
         // check session
-        $rootScope.checkSession();
+        //$rootScope.checkSession();
         $scope.user = {
             email: "",
             password: ""
         };
+
+        $scope.createWithOAuth = function(type){
+            AuthService.authWithOAuthPopup(type).then(function(authData){
+                $location.path('app/diary');
+            });
+        };
+        
         $scope.validateUser = function () {
             NotificationService.show('Please wait.. Authenticating');
             var email = this.user.email;
