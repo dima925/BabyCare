@@ -134,8 +134,8 @@ angular.module('cleverbaby.controllers', [])
   ])
 
 .controller('SignInCtrl', [
-  '$scope', '$rootScope', 'AuthService', '$window',
-  function ($scope, $rootScope, AuthService, $window) {
+  '$scope', '$rootScope', 'AuthService', '$location',
+  function ($scope, $rootScope, AuthService, $location) {
         // check session
         $rootScope.checkSession();
         $scope.user = {
@@ -150,9 +150,13 @@ angular.module('cleverbaby.controllers', [])
                 $rootScope.notify("Please enter valid credentials");
                 return false;
             }
-            AuthService.authWithPassword(this.user);
-            $rootScope.checkSession();
-            $window.location.href = ('#/app/diary');
+            AuthService.authWithPassword(this.user).then(function(user){
+                //$rootScope.checkSession();
+                $rootScope.hide();
+                $location.path ('#/app/diary');
+            }, function(error){
+                $rootScope.notify('Wrong username or password');
+            });
             
             /*note: deactive because get error on .then*/
                 /*.then(function (user) {

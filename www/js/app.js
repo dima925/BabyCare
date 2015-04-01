@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers','angular-svg-round-progress', 'cleverbaby.networking','cleverbaby.services'])
 
-.run(function ($ionicPlatform, $rootScope, AuthService, $window, $ionicLoading, $timeout, $ionicModal, $firebase) {
+.run(function ($ionicPlatform, $rootScope, AuthService, $window, $ionicLoading, $timeout, $ionicModal, $firebase, $location) {
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -46,18 +46,16 @@ angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers','ang
         };
 
         $rootScope.checkSession = function () {
-            console.log(AuthService.isLoggedIn());
-            if (!AuthService.isLoggedIn()) {
-                $window.location.href = '#/auth/signin';
-                $rootScope.userEmail = null;
-                $window.location.href = '#/auth/signin';
-            } else{
+            console.log(AuthService.isLoggedIn(), "logged in");
+            if (AuthService.isLoggedIn()) {
                 $rootScope.userEmail = AuthService.userEmail();
-                console.log("firebase url", $rootScope.baseUrl + escapeEmailAddress($rootScope.userEmail));
                 OfflineFirebase.restore();
                 var bucketListRef = $firebase(new OfflineFirebase('https://cleverbaby.firebaseio.com/' + escapeEmailAddress($rootScope.userEmail)));
                 $rootScope.fbData = bucketListRef.$asArray();
                 $window.location.href = ('#/app/diary');
+            } else{
+                $location.path ('#/app/signin');
+                $rootScope.userEmail = null;
             }
         };
 
@@ -185,5 +183,5 @@ angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers','ang
 
     ;
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/diary');
+    $urlRouterProvider.otherwise('/auth/signin');
 });

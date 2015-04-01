@@ -7,7 +7,7 @@ angular.module('cleverbaby.networking')
     var authService = $firebaseAuth(authRef);
     return {
         logout: function(){
-            authService.$logout();
+            return authService.$unauth();
         },
         authWithPassword: function(credentials){
             return authService.$authWithPassword({
