@@ -21,7 +21,7 @@ angular.module('cleverbaby.services',[])
 	return{
 		save : SaveActivity,
 		get : getActivity
-	}
+	};
 
 })
 
@@ -40,5 +40,5 @@ angular.module('cleverbaby.services',[])
 	}
 	return{
 		getbabiesId : getBabiesId
-	}
-})
+	};
+});

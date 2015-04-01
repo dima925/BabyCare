@@ -51,7 +51,7 @@ gulp.task('git-check', function(done) {
   done();
 });
 gulp.task('lint', function() {
-  return gulp.src('./www/js/*.js')
+  return gulp.src('./www/js/**/*.js')
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'));
 });

@@ -24,6 +24,6 @@ angular.module('cleverbaby.networking')
             return  auth.uid;
         }
         
-    }
+    };
 
 }]);
