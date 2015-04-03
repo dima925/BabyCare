@@ -37,12 +37,6 @@ angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers','ang
             }
         };
 
-        if(!AuthService.isLoggedIn()){
-            AuthService.authAnonymously().then(function(){
-                
-            });
-        }
-
         /*get babies data
         babies = new Firebase('https://cleverbaby.firebaseio.com/babies/');
         
