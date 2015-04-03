@@ -4,9 +4,17 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('cleverbaby', ['ionic', 'firebase', 'cleverbaby.controllers','angular-svg-round-progress', 'cleverbaby.data','cleverbaby.services'])
+angular.module('cleverbaby', [
+    'ionic', 
+    'firebase', 
+    'cleverbaby.controllers',
+    'angular-svg-round-progress', 
+    'cleverbaby.data',
+    'cleverbaby.services',
+    'ngCordova'
+])
 
-.run(function ($ionicPlatform, $rootScope, AuthService, $timeout, $ionicModal, $firebase, $location) {
+.run(function ($ionicPlatform, $rootScope, AuthService, $timeout, $ionicModal, $firebase, $location, $cordovaLocalNotification) {
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
