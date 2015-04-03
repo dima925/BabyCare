@@ -5,7 +5,7 @@
             <ion-nav-buttons side="left">
                 <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
             </ion-nav-buttons>
-            <ion-nav-title>Diary</ion-nav-title>
+            <ion-nav-title data-translate>celeverbaby.app.diary.title</ion-nav-title>
             <ion-nav-buttons side="right">
                 <a class="button button-icon icon ion-calendar activated" ng-click="newTask()"><span class="ion-ios-calendar-outline"></span></a>
             </ion-nav-buttons>
@@ -80,19 +80,19 @@
                     <div class="row dayli-checklist">
                         <div class="col col-20 center">
                             <h5>5</h5>
-                            <h5>Nurse</h5>
+                            <h5 data-translate>celeverbaby.app.diary.bar.nurses</h5>
                         </div>
                         <div class="col col-20 center">
                             <h5>3</h5>
-                            <h5>Change</h5>
+                            <h5 data-translate>celeverbaby.app.diary.bar.change</h5>
                         </div>
                         <div class="col col-20 center">
                             <h5><input type="checkbox"></h5>
-                            <h5>Bath</h5>
+                            <h5 data-translate>celeverbaby.app.diary.bar.bath</h5>
                         </div>
                         <div class="col col-20 center">
                             <h5><input type="checkbox"></h5>
-                            <h5>Play</h5>
+                            <h5 data-translate>celeverbaby.app.diary.bar.play</h5>
                         </div>
                         <div class="col col-20">
                             <div class="plus-button" ng-click="newActivity()">
@@ -116,13 +116,13 @@
         <div class="card">
           <div class="item item-text-wrap">
             <div class="row">
-                <div class="col col-80"><h2>Dayli Tips</h2></div>
-                <div class="col col-20" style="text-align:right;"><a ng-click="hide()">Hide</a></div>
+                <div class="col col-80"><h2 data-translate>celeverbaby.app.diary.box1.title</h2></div>
+                <div class="col col-20" style="text-align:right;">
+                    <a ng-click="hide()" data-translate>celeverbaby.app.diary.box1.hide</a>
+                </div>
             </div>
             
-            <p class="justify padding">Baby not sleeping? Try going for a stroll. A lot of 
-                babies will get better sleep when they're in a 
-                stroller, a car seat, a carrier. It's counterintuitive.</p>
+            <p class="justify padding" data-translate>celeverbaby.app.diary.box1.text</p>
           </div>
         </div>
         <ion-list class="padding">
@@ -212,9 +212,9 @@
         </ion-list>
         <div class="card">
             <div class="item item-text-wrap" ng-show="noData">
-                <span>
-                  No Items in your bucket List. Click  <a href="javascript:" ng-click="openNewModal()">Here</a> and create one
-                  </span>
+                <span data-translate ng-click="openNewModal()">
+                  celeverbaby.app.diary.box2.text
+                </span>
             </div>
         </div>
         

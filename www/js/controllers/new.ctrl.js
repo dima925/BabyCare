@@ -1,6 +1,6 @@
 angular.module('cleverbaby.controllers')
-.controller('newCtrl', ['$rootScope', '$scope', '$window', '$firebase', 'NotificationService',
-    function ($rootScope, $scope, $window, $firebase, NotificationService) {
+.controller('newCtrl', ['$rootScope', '$scope', '$window', '$firebase', 'NotificationService', '$translate',
+    function ($rootScope, $scope, $window, $firebase, NotificationService, $translate) {
     $scope.data = {
         item: ""
     };
@@ -14,11 +14,9 @@ angular.module('cleverbaby.controllers')
 
         if (!item) return;
 
-        console.log("itme", item);
-
         $scope.modal.hide();
 
-        NotificationService.show("Please wait... Creating new");
+        NotificationService.show($translate('celeverbaby.app.activity.add.message'));
 
         var form = {
             item: item,

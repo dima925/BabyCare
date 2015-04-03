@@ -1,6 +1,6 @@
 angular.module('cleverbaby.controllers')
-.controller('SignInCtrl', ['$scope', '$rootScope', 'AuthService', '$location', 'NotificationService',
-  function ($scope, $rootScope, AuthService, $location, NotificationService) {
+.controller('SignInCtrl', ['$scope', '$rootScope', 'AuthService', '$location', 'NotificationService', '$translate',
+  function ($scope, $rootScope, AuthService, $location, NotificationService, $translate) {
         // check session
         //$rootScope.checkSession();
         $scope.user = {
@@ -15,11 +15,11 @@ angular.module('cleverbaby.controllers')
         };
         
         $scope.validateUser = function () {
-            NotificationService.show('Please wait.. Authenticating');
+            NotificationService.show($translate('celeverbaby.auth.signin.message'));
             var email = this.user.email;
             var password = this.user.password;
             if (!email || !password) {
-                NotificationService.notify("Please enter valid credentials");
+                NotificationService.notify($translate('celeverbaby.auth.signin.error1'));
                 return false;
             }
             AuthService.authWithPassword(this.user).then(function(user){
@@ -27,7 +27,7 @@ angular.module('cleverbaby.controllers')
                 NotificationService.hide();
                 $location.path ('app/diary');
             }, function(error){
-                NotificationService.notify('Wrong username or password');
+                NotificationService.notify($translate('celeverbaby.auth.signin.error2'));
             });
             
             /*note: deactive because get error on .then*/

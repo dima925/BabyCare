@@ -1,31 +1,37 @@
 <ion-content class="padding loginbg fixheight">
   <ion-header-bar class="bar-positive">
-  <h1 class="title">Sign In</h1>
+  <h1 class="title" data-translate>celeverbaby.auth.signin.title</h1>
 </ion-header-bar>
   <div class="loginlogo">
       <img src="/img/loginlogo.png" class="logo">
     </div>
   <div class="list loginbg">
     <label class="item item-input">
-      <span class="input-label">Email</span>
+      <span class="input-label" data-translate>celeverbaby.auth.signin.email</span>
       <input type="text" ng-model="user.email">
     </label>
     <label class="item item-input">
-      <span class="input-label">Password</span>
+      <span class="input-label" data-translate>celeverbaby.auth.signin.password</span>
       <input type="password" ng-model="user.password">
     </label>
     <label class="item item-input">
-      <button class="button button-block button-positive" ng-click="validateUser()">Sign In</button>
+      <button class="button button-block button-positive" 
+              ng-click="validateUser()"
+              data-translate >celeverbaby.auth.signin.submit</button>
     </label>
     
     <label class="item item-input">
-        <button class="button button-block button-positive" ng-click="createWithOAuth('facebook')">
-            FaceBook
+        <button class="button button-block button-positive" 
+                ng-click="createWithOAuth('facebook')"
+                data-translate> 
+                celeverbaby.auth.signin.facebook
         </button>
     </label>
     <label class="item item-input">
-        <button class="button button-block button-positive" ng-click="createWithOAuth('google')">
-            Google
+        <button class="button button-block button-positive" 
+        ng-click="createWithOAuth('google')"
+        data-translate>
+            celeverbaby.auth.signin.google
         </button>
     </label>
   </div>
@@ -33,11 +39,11 @@
       <div class="row">
         <div class="col col-20"></div>
         <div class="col col-60">
-          <p>Don't have an account yet?</p>
-          <button class="button button-block button-square" type="submit">Sign Up For Free</button>
+          <p data-translate>celeverbaby.auth.signin.message1</p>
+          <button class="button button-block button-square" 
+          type="submit" data-translate>celeverbaby.auth.signin.signup</button>
         </div>
         <div class="col col-20"></div>
       </div>
-      
-    </div>
+  </div>
 </ion-content>

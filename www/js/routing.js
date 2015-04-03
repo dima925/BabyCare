@@ -26,16 +26,15 @@ angular.module('cleverbaby')
             }
         }
     })
-        .state('app.diary', {
-            url: "/diary",
-            views: {
-                'menuContent': {
-                    templateUrl: "templates/diary.html",
-                    controller: 'DiaryCtrl'
-                }
+    .state('app.diary', {
+        url: "/diary",
+        views: {
+            'menuContent': {
+                templateUrl: "templates/diary.html",
+                controller: 'DiaryCtrl'
             }
-        })
-
+        }
+    })
     .state('app.single', {
         url: "/playlists/:playlistId",
         views: {
@@ -45,8 +44,6 @@ angular.module('cleverbaby')
             }
         }
     })
-
-
     .state('auth', {
         url: "/auth",
         abstract: true,

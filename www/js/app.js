@@ -6,6 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('cleverbaby', [
     'ionic', 
+    'pascalprecht.translate',
     'firebase', 
     'cleverbaby.controllers',
     'angular-svg-round-progress', 
@@ -87,7 +88,15 @@ angular.module('cleverbaby', [
             // Execute action
         });
     });
-});
+})
+.config(["$translateProvider",
+    function($translateProvider){
+    $translateProvider.preferredLanguage('en');
+    $translateProvider.useStaticFilesLoader({
+        'prefix': '/languages/',
+        'suffix': '.json'
+    });
+ }]);
 
 function escapeEmailAddress(email) {
     if (!email) return false;

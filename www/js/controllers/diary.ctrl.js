@@ -1,6 +1,6 @@
 angular.module('cleverbaby.controllers')
-.controller('DiaryCtrl', ['$scope', '$rootScope', '$ionicModal', '$firebase', 'activityService', 'NotificationService',
-    function ($scope, $rootScope, $ionicModal, $firebase,activityService, NotificationService) {
+.controller('DiaryCtrl', ['$scope', '$rootScope', '$ionicModal', '$firebase', 'activityService', 'NotificationService', '$translate',
+    function ($scope, $rootScope, $ionicModal, $firebase,activityService, NotificationService, $translate) {
 
 
 
@@ -27,15 +27,15 @@ angular.module('cleverbaby.controllers')
     };
 
     $scope.deleteItem = function (key) {
-        $rootScope.show("Please wait... Deleting from List");
+        $rootScope.show($translate('celeverbaby.app.diary.delete.message'));
         var itemRef = new Firebase($rootScope.baseUrl + escapeEmailAddress($rootScope.userEmail));
         bucketListRef.child(key).remove(function (error) {
             if (error) {
                 NotificationService.hide();
-                NotificationService.notify('Oops! something went wrong. Try again later');
+                NotificationService.notify($translate('celeverbaby.app.diary.delete.error'));
             } else {
                 NotificationService.hide();
-                NotificationService.notify('Successfully deleted');
+                NotificationService.notify($translate('celeverbaby.app.diary.delete.success'));
             }
         });
     };
