@@ -50,8 +50,8 @@
 
     "celeverbaby.auth.modal.signin.title": "Login",
     "celeverbaby.auth.modal.signin.close": "Close",
-    "celeverbaby.auth.modal.signin.email": "Login",
-    "celeverbaby.auth.modal.signin.pasword": "Password",
+    "celeverbaby.auth.modal.signin.email": "Email",
+    "celeverbaby.auth.modal.signin.password": "Password",
     "celeverbaby.auth.modal.signin.submit": "Login",
     "celeverbaby.auth.modal.message1": "Don't have an account yet?",
     "celeverbaby.auth.modal.signin.signup": "Sign Up For Free",
