@@ -1,7 +1,7 @@
 angular.module('cleverbaby.data')
 	.factory('InviteSystem', ['GroupService', 'AuthService', '$q', function(GroupService, AuthService, $q){
 		"use strict";
-		var serviceRef = new OfflineFirebase(firebaseConfig.baseUrl);	
+		var serviceRef = new Firebase(firebaseConfig.baseUrl);
 
 		function addInvite(userId, groupId){
 			serviceRef.child('invites').child(userId).push({

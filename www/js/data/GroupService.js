@@ -2,7 +2,7 @@ angular.module('cleverbaby.data')
 	.factory('GroupService', ['firebaseConfig', '$q',
 		function(firebaseConfig, $q){
 
-		var authRef = new OfflineFirebase(firebaseConfig.baseUrl);
+		var authRef = new Firebase(firebaseConfig.baseUrl);
 
 		return {
 			createGroup: function(authData){

@@ -4,7 +4,7 @@
 angular.module('cleverbaby.data')
 .factory('AuthService', ['$firebaseAuth', 'firebaseConfig', '$q', 'GroupService',
     function ($firebaseAuth, firebaseConfig, $q, GroupService){
-    var authRef = new OfflineFirebase(firebaseConfig.baseUrl);
+    var authRef = new Firebase(firebaseConfig.baseUrl);
     var authService = $firebaseAuth(authRef);
     var anonymousUserId = null;
 

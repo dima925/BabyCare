@@ -36,8 +36,8 @@ angular.module('cleverbaby', [
         $rootScope.checkSession = function () {
             if (AuthService.isLoggedIn()) {
                 $rootScope.userEmail = AuthService.userEmail();
-                OfflineFirebase.restore();
-                var bucketListRef = $firebase(new OfflineFirebase('https://cleverbaby.firebaseio.com/' + escapeEmailAddress($rootScope.userEmail)));
+                //OfflineFirebase.restore();
+                var bucketListRef = $firebase(new Firebase('https://cleverbaby.firebaseio.com/' + escapeEmailAddress($rootScope.userEmail)));
                 $rootScope.fbData = bucketListRef.$asArray();
                 $location.path('app/diary');
             } else{

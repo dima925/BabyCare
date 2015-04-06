@@ -11,6 +11,7 @@
     "ngCordova": "~0.1.14-alpha",
     "angular-translate": "~2.6.1",
     "angular-translate-loader-static-files": "~2.6.1",
-    "angular-svg-round-progressbar": "~0.2.5"
+    "angular-svg-round-progressbar": "~0.2.5",
+    "requirejs": "~2.1.17"
   }
 }
