@@ -7,3 +7,6 @@ plugins/
 .DS_STORE
 /.project
 /.idea/
+cleverbaby.iml
+www/lib
+platforms

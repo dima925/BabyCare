@@ -17,5 +17,12 @@
     "jshint-stylish": "~0.1.5",
     "protractor": "~2.0.0",
     "ripple-emulator": "~0.9.28"
-  }
+  },
+  "cordovaPlugins": [
+    "org.apache.cordova.device",
+    "de.appplant.cordova.plugin.local-notification"
+  ],
+  "cordovaPlatforms": [
+    "android"
+  ]
 }
