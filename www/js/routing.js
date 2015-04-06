@@ -5,14 +5,14 @@ angular.module('cleverbaby')
     .state('app', {
         url: "/app",
         abstract: true,
-        templateUrl: "templates/menu.html",
+        templateUrl: "templates/app.html",
         controller: 'AppCtrl'
     })
 
     .state('app.search', {
         url: "/search",
         views: {
-            'menuContent': {
+            'search': {
                 templateUrl: "templates/search.html"
             }
         }
@@ -21,7 +21,7 @@ angular.module('cleverbaby')
     .state('app.browse', {
         url: "/browse",
         views: {
-            'menuContent': {
+            'browse': {
                 templateUrl: "templates/browse.html"
             }
         }
@@ -29,7 +29,7 @@ angular.module('cleverbaby')
     .state('app.diary', {
         url: "/diary",
         views: {
-            'menuContent': {
+            'home': {
                 templateUrl: "templates/diary.html",
                 controller: 'DiaryCtrl'
             }
@@ -38,7 +38,7 @@ angular.module('cleverbaby')
     .state('app.single', {
         url: "/playlists/:playlistId",
         views: {
-            'menuContent': {
+            'playlist': {
                 templateUrl: "templates/playlist.html",
                 controller: 'PlaylistCtrl'
             }

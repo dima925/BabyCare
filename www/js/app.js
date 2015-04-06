@@ -93,7 +93,7 @@ angular.module('cleverbaby', [
     function($translateProvider){
     $translateProvider.preferredLanguage('en');
     $translateProvider.useStaticFilesLoader({
-        'prefix': '/languages/',
+        'prefix': 'languages/',
         'suffix': '.json'
     });
  }]);
