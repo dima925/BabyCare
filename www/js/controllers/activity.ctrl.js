@@ -34,7 +34,7 @@ angular.module('cleverbaby.controllers')
             activityService.save(babies,nurse);
         })
         
-    }
+    };
     /*END NURSE ACTIVITY*/
 
     /*DIAPERS ACTIVITY*/

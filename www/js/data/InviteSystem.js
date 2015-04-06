@@ -1,5 +1,5 @@
 angular.module('cleverbaby.data')
-	.factory('InviteSystem', ['GroupService', 'AuthService', '$q', function(GroupService, AuthService, $q){
+	.factory('InviteSystem', ['GroupService', 'AuthService', '$q', 'firebaseConfig', function(GroupService, AuthService, $q, firebaseConfig){
 		"use strict";
 		var serviceRef = new Firebase(firebaseConfig.baseUrl);
 
@@ -41,7 +41,7 @@ angular.module('cleverbaby.data')
 						}
 					}
 				});
-			}, 
+			}
 		};
 
 	}]);
