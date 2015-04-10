@@ -219,5 +219,21 @@
         </div>
         
     </ion-content>
-    
+    <div class="fixed-outside" ng-show="timerRunning">
+        <div class="row">
+            <div class="col" style="text-align:left;">Nursing Timer</div>
+            <div class="col" style="text-align:right;"><i class="icon-close"></i></div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button class="button" ng-click="startTimer()">END LEFT</button>
+            </div>
+            <div class="col container-center">
+                <p class="text-center center-block"><timer interval="1000">{{minutes}}:{{seconds}}</timer></p>
+            </div>
+            <div class="col">
+                <button class="button">Start Right</button>
+            </div>
+        </div>
+    </div>
 </ion-view>

@@ -1,7 +1,17 @@
 angular.module('cleverbaby.controllers')
 /*ACTIVITY CONTROLLER*/
-.controller('activityCtrl', ['$rootScope','$scope','$window','$firebase','activityService','babiesService',
-    function ($rootScope,$scope,$window,$firebase,activityService,babiesService) {
+.controller('activityCtrl', ['$rootScope','$scope','$window','$firebase','activityService','babiesService','timerService',
+    function ($rootScope,$scope,$window,$firebase,activityService,babiesService,timerService) {
+    $scope.manual = true;
+    $scope.timer = false;
+    $scope.switchtimer = function(manual,timer){
+        $scope.manual = manual;
+        $scope.timer = timer;
+    };
+    $scope.setTimer = function(){
+       timerService.setTimer();
+       $scope.timerr = true;
+    };
     $scope.diaper = {
         wet : "",
         solid : ""

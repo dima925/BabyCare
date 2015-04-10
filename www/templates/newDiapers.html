@@ -1,0 +1,107 @@
+<div class="modal transparent" ng-controller="activityCtrl" ng-click="closeModal()">
+	<div class="row addnew_nurse">
+			<ion-header-bar class="bar-energized">
+		        <div class="buttons">
+		            <button class="button icon-left ion-chevron-left button-clear button-dark activated" ng-click="closeActivity()"></button>
+		        </div>
+		        <h1 class="title">ADD DIAPERS</h1>
+		    </ion-header-bar>
+            <div class="col padding-top">
+                <div class="row container-center">
+                        <div class="col addnew_nurse_icon center-block">
+                            <i class="smallicon flaticon-nappy1"></i>Diaper
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <ion-checkbox ng-model="diaper.empty" name="wet">Empty</ion-checkbox>
+                        </div>
+                        <div class="col">
+                            <ion-checkbox ng-model="diaper.wet" name="wet">Wet</ion-checkbox>
+                        </div>
+                        <div class="col">
+                            <ion-checkbox ng-model="diaper.solid">Solid</ion-checkbox>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                            <div class="col">
+                                <ion-checkbox ng-model="choice.tiny" ng-value="''"  >Tiny</ion-checkbox>
+                            </div>
+                            <div class="col">
+                                <ion-checkbox ng-model="choice.medium" ng-value="''" >Medium</ion-checkbox>
+                            </div>
+                            <div class="col">
+                                <ion-checkbox ng-model="choice.xxl" ng-value="''" >XXL</ion-checkbox>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <ion-radio ng-model="color.Yellow">Yellow</ion-radio>
+                        </div>
+                        <div class="col">
+                            <ion-radio ng-model="color.LimeGreen">LimeGreen</ion-radio>
+                        </div>
+                        <div class="col">
+                            <ion-radio ng-model="color.EverGreen">EverGreen</ion-radio>
+                        </div>
+                        <div class="col">
+                            <ion-radio ng-model="color.Red">Red</ion-radio>
+                        </div>
+                        <div class="col">
+                            <ion-radio ng-model="color.Brown">Brown</ion-radio>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <ion-radio ng-model="color.Black">Black</ion-radio>
+                        </div>
+                        <div class="col">
+                            <ion-radio ng-model="color.WhiteOrGrey">White Or Grey</ion-radio>
+                        </div>
+                        <div class="col">
+                            <ion-radio ng-model="color.Other">Other</ion-radio>
+                        </div>
+                        <div class="col">
+                            <ion-radio ng-model="color.Pink">Pink</ion-radio>
+                        </div>
+                        <div class="col">
+                            <ion-radio ng-model="color.none">?</ion-radio>
+                        </div>
+                    </div>
+                    <div class="row">
+                            <div class="col">
+                                <ion-checkbox ng-model="texture.Runny" ng-value="''"  >Runny</ion-checkbox>
+                            </div>
+                            <div class="col">
+                                <ion-checkbox ng-model="choice.Mushy" ng-value="''" >Mushy</ion-checkbox>
+                            </div>
+                            <div class="col">
+                                <ion-checkbox ng-model="choice.Hard" ng-value="''" >Hard</ion-checkbox>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-60">
+                            Some note the user entered
+                            Click to edit
+                        </div>
+                        <div class="col col-40">
+                            <button class="button ion-trash-a button-clear button-dark activated"></button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-40 border">
+                            Pict
+                        </div>
+                        <div class="col col-40">
+                            <button class="button ion-trash-a button-clear button-dark activated"></button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button class="button button-block button-outline button-light" ng-click="addDiapers()">Save</button>
+                        </div>
+                    </div>
+            </div>
+        </div>
+</div>

@@ -34,25 +34,25 @@
 
 
 .icon-size{
-	width: 70%;
-	text-align: center;
+  width: 70%;
+  text-align: center;
 
 }
 .center{
-	text-align: center;
-	color: #fff;
+  text-align: center;
+  color: #fff;
 }
 .left{
-	text-align: left;
+  text-align: left;
 }
 .right{
-	text-align: right;
+  text-align: right;
 }
 .dayli-checklist{
-	background-color: #006699;
+  background-color: #006699;
 }
 h4, h5{
-	color: #fff;
+  color: #fff;
   font-size: 100%;
   text-align: center;
 }
@@ -299,6 +299,9 @@ p.time{
 }
 /*LOGIN PAGE END*/
 /*ADD NEW TASK*/
+.padding-top{
+  padding-top: 44px;
+}
 .bar-energized{
   background-color: #00ccff !important;
 }
@@ -307,6 +310,8 @@ p.time{
   text-align: center;
   background-color: #339966;
   color: #fff;
+  position: absolute;
+  bottom: 0px;
 }
 .addnew_nurse_icon{
   text-align: left;
@@ -350,7 +355,7 @@ p.time{
   text-align: center;
   font-size: 12px; }
 .item-checkbox{
-  padding-left: 0 !important;
+  padding-left: 40px !important;
 }
 .checkbox input:after, .checkbox-icon:after {
   -webkit-transition: opacity 0.05s ease-in-out;
@@ -393,3 +398,116 @@ p.time{
   color: rgba(0, 0, 0, 0);
 }
 /*END ADD NEW TASK*/
+/*START TIMER BOTTOM*/
+
+.fixed-outside{
+  position: absolute;
+  bottom: 44px;
+  color:#000;
+  width: 100%;
+  height: 100px;
+  text-align:center;
+  background: #EAEAEA;
+}
+
+.has-bottom .scroll{
+  padding-bottom:120px !important;
+}
+
+.button-circle {
+  width: 50% !important;
+  height: 50% !important;
+  border-radius: 50% !important;
+}
+
+/*END TIMER BOTTOM*/
+/*BOTTOM BAR*/
+.btn-add { width: 44px; height: 44px; font-size:50px; overflow: hidden; display: inline-block;}
+.btn-add span.icon-plus {  margin: -6px 0 0 -6px; float: left; text-shadow:0 0 1px rgba(0,0,0,1);}
+.bottom{
+  text-align: center;
+  padding : 0!important;
+}
+.plusbutton{
+  background:#006699 !important;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50% !important;
+}
+.bar.bar-assertive {
+    border-color: #00ccff;
+    background-color: #00ccff;
+    background-image: linear-gradient(0deg, #00ccff, #00ccff 50%, transparent 50%);
+    color: #fff; }
+.bar.bar-assertive .title {
+      color: #fff; }
+.bar.bar-assertive.bar-footer {
+      background-image: linear-gradient(180deg, #00ccff, #00ccff 50%, transparent 50%); }
+.bar-assertive .button {
+      border-color: rgba(0,0,0,0);
+      background-color: rgba(0,0,0,0);
+      color: #fff;  
+}
+.bar-assertive .button.active, .bar-assertive .button.activated {
+   border-color: rgba(0,0,0,0);
+      background-color: rgba(0,0,0,0);
+      color: #fff;
+}
+.bar-footer {
+  bottom: 0;
+  border-top-width: 1px;
+  border-bottom-width: 0;
+  background-position: top;
+  height: 44px; 
+  padding: 0 !important;
+}
+.zeropadding{
+  padding:0 !important;
+}
+/*END BOTTOM BAR*/
+.transparent {
+  background: transparent !important;
+  width: 100% !important;
+  height: 100%;
+  top: 0 !important;
+  left: 0 !important;
+}
+.border{
+  background: #818181;
+}
+.menu-bot{
+  position: absolute;
+  bottom: 45px;
+  background: none;
+  padding:10px;
+  margin: 10px;
+  text-align: center;
+}
+.btn-nursed { 
+  border-radius: 50px; 
+  padding: 10px 15px; 
+  border:0; 
+  background: #33ccff;
+  margin: 10px;
+}
+.btn-bottle { 
+  border-radius: 50px; 
+  padding: 10px 18px; 
+  border:0; 
+  background: #66cc33;
+  margin: 10px;
+}
+.btn-diaper { 
+  border-radius: 50px; 
+  padding: 10px 12px; 
+  border:0; 
+  background: #ffcc00;
+  margin: 10px;
+}
+.btn-nap { 
+  border-radius: 50px; 
+  padding: 10px 13px; 
+  border:0; 
+  background: #cc33ff;
+  margin: 10px;
+}

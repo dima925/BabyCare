@@ -5,6 +5,42 @@ angular.module('cleverbaby.controllers')
     $scope.loginData = {};
 
     // Create the login modal that we will use later
+    $ionicModal.fromTemplateUrl('templates/menu.html',function(menu){
+        $scope.menuModal = menu;
+    });
+    $scope.menu = function(){
+        $scope.menuModal.show();
+    };
+    $ionicModal.fromTemplateUrl('templates/newNursed.html',function(nursed){
+        $scope.nursedModal = nursed;
+    });
+    $scope.newNursed = function(){
+        $scope.nursedModal.show();
+    };
+    $ionicModal.fromTemplateUrl('templates/newDiapers.html',function(diaper){
+        $scope.diapersModal = diaper;
+    });
+    $scope.newDiapers = function(){
+        $scope.diapersModal.show();
+    };
+    $ionicModal.fromTemplateUrl('templates/newBottle.html',function(bottle){
+        $scope.bottleModal = bottle;
+    });
+    $scope.newBottle = function(){
+        $scope.bottleModal.show();
+    };
+    $ionicModal.fromTemplateUrl('templates/newNap.html',function(nap){
+        $scope.napModal = nap;
+    });
+    $scope.newNap = function(){
+        $scope.napModal.show();
+    };
+    $ionicModal.fromTemplateUrl('templates/newBaby.html',function(baby){
+        $scope.babyModal = baby;
+    });
+    $scope.newBaby = function(){
+        $scope.babyModal.show();
+    };
     $ionicModal.fromTemplateUrl('templates/login.html', {
         scope: $scope
     }).then(function (modal) {

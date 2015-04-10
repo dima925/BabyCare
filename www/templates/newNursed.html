@@ -1,0 +1,87 @@
+<div class="modal transparent" ng-controller="activityCtrl" ng-click="closeModal()">
+	<div class="row addnew_nurse">
+			<ion-header-bar class="bar-energized">
+		        <div class="buttons">
+		            <button class="button icon-left ion-chevron-left button-clear button-dark activated" ng-click="closeActivity()"></button>
+		        </div>
+		        <h1 class="title">ADD NURSED</h1>
+		    </ion-header-bar>
+            <div class="col padding-top">
+                <div class="row">
+                    <div class="col">
+                        <button ng-click="switchtimer(false,true)">Timer Mode</button>
+                    </div>
+                    <div class="col">
+                        <button ng-click="switchtimer(true,false)">Manual Entry</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-50">
+                        Time
+                    </div>
+                    <div class="col col-50">
+                        Today {{ timenow | date : 'HH:mm'}}
+                    </div>
+                </div>
+                <div ng-show="manual">
+                    <div class="row">
+                        <div class="col col-50">
+                            Time Left
+                        </div>
+                        <div class="col col-50">
+                            15 Minutes
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-50">
+                            Time Right
+                        </div>
+                        <div class="col col-50">
+                            5 Minutes
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-50">
+                            Time Both
+                        </div>
+                        <div class="col col-50">
+                            0 Minutes
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <ion-radio ng-model="milk.Formula">Formula</ion-radio>
+                    </div>
+                    <div class="col">
+                        <ion-radio ng-model="milk.Milk">Milk</ion-radio>
+                    </div>
+                </div>
+                <div ng-show="timer">
+                    <div class="row">
+                        <div class="col">
+                            <button class="button" ng-click="setTimer()">Start Left</button>
+                        </div>
+                        <div class="col container-center" >
+                            <p class="text-center center-block" ng-show="timerr"><timer interval="1000" autostart="false">{{minutes}}:{{seconds}}</timer></p>
+                        </div>
+                        <div class="col">
+                            <button class="button" ng-click="startTimer()">Start Right</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button class="button button-block  button-light" style="font-size:10px">Add Note</button>
+                    </div>
+                    <div class="col col-50">
+                        <button class="button button-block  button-light" ng-click="addNurse()">Save and Close</button>
+                    </div>
+                    <div class="col">
+                        <button class="button button-block  button-light" style="font-size:10px">Add Pict</button>
+                    </div>
+                </div>
+            </div>
+                
+        </div>
+</div>

@@ -28,7 +28,7 @@ angular.module('cleverbaby.services',[])
 
 .service('babiesService',['$firebase', 'firebaseConfig', '$q',
 	function($firebase,firebaseConfig,$q){
-	var refBabies = new OfflineFirebase(firebaseConfig.baseUrl);
+	var refBabies = new Firebase(firebaseConfig.baseUrl);
 	var babiesRefActivity =  refBabies.child('babies');
 
 	function getBabiesId(){
