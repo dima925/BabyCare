@@ -1,4 +1,4 @@
-angular.module('celeverbaby.data')
+angular.module('cleverbaby.data')
 .factory('ActivityService',  ['$q', '$firebase', 'firebaseConfig', function($q, $firebase, firebaseConfig){
     return function(babyId){
         var activityRef = new Firebase(firebaseConfig.baseUrl)
