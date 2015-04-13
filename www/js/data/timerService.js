@@ -1,4 +1,4 @@
-angular.module('cleverbaby.services', [])
+angular.module('cleverbaby.services')
 .service('timerService', ['$rootScope',
 	function ($rootScope) {
 		var time;

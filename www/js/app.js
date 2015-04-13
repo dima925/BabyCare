@@ -12,7 +12,8 @@ angular.module('cleverbaby', [
     'angular-svg-round-progress', 
     'cleverbaby.data',
     'cleverbaby.services',
-    'ngCordova'
+    'ngCordova',
+    'timer'
 ])
 
 .run(function ($ionicPlatform, $rootScope, AuthService, $timeout, $ionicModal, $firebase, $location, $cordovaLocalNotification) {
