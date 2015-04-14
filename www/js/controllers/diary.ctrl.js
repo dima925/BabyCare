@@ -1,8 +1,10 @@
 angular.module('cleverbaby.controllers')
-.controller('DiaryCtrl', ['$scope', '$rootScope', '$ionicModal', '$firebase', 'activityService', 'NotificationService', '$translate',
-    function ($scope, $rootScope, $ionicModal, $firebase,activityService, NotificationService, $translate) {
+.controller('DiaryCtrl', ['$scope', '$rootScope', '$ionicModal', '$firebase', 'activityService', 'NotificationService', '$translate','timerService',
+    function ($scope, $rootScope, $ionicModal, $firebase,activityService, NotificationService, $translate,timerService) {
 
-
+    $scope.stopTimer = function(){
+        timerService.stopTimer();
+    };
 
     $scope.noData = true;
 

@@ -12,6 +12,11 @@ angular.module('cleverbaby.controllers')
        timerService.setTimer();
        $scope.timerr = true;
     };
+    $scope.stopTimer = function(){
+        timerService.stopTimer();
+        $scope.timerr = false;
+        $scope.time = timerService.getTime();
+    }
     $scope.diaper = {
         wet : "",
         solid : ""

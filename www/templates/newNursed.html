@@ -61,12 +61,13 @@
                     <div class="row">
                         <div class="col">
                             <button class="button" ng-click="setTimer()">Start Left</button>
+                            <p ng-show="time">{{time}}</p>
                         </div>
                         <div class="col container-center" >
                             <p class="text-center center-block" ng-show="timerr"><timer interval="1000" autostart="false">{{minutes}}:{{seconds}}</timer></p>
                         </div>
                         <div class="col">
-                            <button class="button" ng-click="startTimer()">Start Right</button>
+                            <button class="button" ng-click="setTimer()">Start Right</button>
                         </div>
                     </div>
                 </div>
