@@ -16,7 +16,7 @@ angular.module('cleverbaby', [
     'timer'
 ])
 
-.run(function ($ionicPlatform, $rootScope, AuthService, $timeout, $ionicModal, $firebase, $location, $cordovaLocalNotification) {
+.run(function ($ionicPlatform, $rootScope, AuthService, $timeout, $ionicModal, $firebase, $location, $cordovaLocalNotification,timerService) {
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -33,7 +33,7 @@ angular.module('cleverbaby', [
             AuthService.logout();
             $rootScope.checkSession();
         };
-
+        $rootScope.timers = timerService;
         $rootScope.checkSession = function () {
             if (AuthService.isLoggedIn()) {
                 $rootScope.userEmail = AuthService.userEmail();
