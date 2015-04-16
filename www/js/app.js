@@ -13,7 +13,8 @@ angular.module('cleverbaby', [
     'cleverbaby.data',
     'cleverbaby.services',
     'ngCordova',
-    'timer'
+    'timer',
+    'chart.js'
 ])
 
 .run(function ($ionicPlatform, $rootScope, AuthService, $timeout, $ionicModal, $firebase, $location, $cordovaLocalNotification,timerService) {

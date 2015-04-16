@@ -1,0 +1,32 @@
+<ion-view>
+  <ion-content style="background:#0099cc">
+	  <div class="row">
+	  	<ion-nav-bar class="bar-positive">
+	        <ion-nav-back-button></ion-nav-back-button>
+	        <ion-nav-buttons side="left">
+	            <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+	        </ion-nav-buttons>
+	        <ion-nav-title>Chart</ion-nav-title>
+	        <ion-nav-buttons side="right">
+	            <a class="button button-icon icon ion-calendar activated" ng-click="newTask()"><span class="ion-ios-calendar-outline"></span></a>
+	        </ion-nav-buttons>
+	    </ion-nav-bar>
+	  </div>
+  	
+    <div class="box padding">
+    	<div class="card">
+    		<canvas id="line" class="chart chart-line" data="data" labels="labels" legend="true" series="series" click="onClick"></canvas> 
+    	</div>
+    </div>
+    <div class="row">
+    	<div class="col col-80">
+    		<canvas id="line" class="chart chart-bar" data="data" labels="labels" legend="true" series="series" click="onClick"></canvas> 
+    	</div>
+    	<div class="col col-20">
+    		<h3>+142</h3>
+    		<h4>From Last Month</h4>
+    	</div>
+    </div>
+  </ion-content>
+  
+</ion-view>

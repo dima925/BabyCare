@@ -4,9 +4,7 @@ angular.module('cleverbaby.controllers')
     function ($rootScope,$scope,$window,$firebase,activityService,babiesService,timerService) {
     $scope.manual = true;
     $scope.timer = false;
-    $scope.test = function(){
-            $rootScope.timers.setTimer();
-    }
+    
     $scope.switchtimer = function(manual,timer){
         $scope.manual = manual;
         $scope.timer = timer;

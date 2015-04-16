@@ -35,6 +35,15 @@ angular.module('cleverbaby')
             }
         }
     })
+    .state('app.chart', {
+        url: "/chart",
+        views: {
+            'chart': {
+                templateUrl: "templates/chart.html",
+                controller: 'ChartCtrl'
+            }
+        }
+    })
     .state('app.single', {
         url: "/playlists/:playlistId",
         views: {
