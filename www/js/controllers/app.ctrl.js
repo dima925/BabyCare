@@ -42,4 +42,10 @@ angular.module('cleverbaby.controllers')
             $scope.closeLogin();
         }, 1000);
     };
+    $ionicModal.fromTemplateUrl('templates/newBaby.html',function(baby){
+        $scope.babyModal = baby;
+    });
+    $scope.newbaby = function(){
+        $scope.babyModal.show();
+    };
 }]);

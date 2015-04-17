@@ -1,10 +1,34 @@
-<ion-modal-view ng-controller="activityCtrl">
-    <ion-header-bar class="bar-energized">
-        <div class="buttons">
-            <button class="button icon-left ion-chevron-left button-clear button-dark activated" ng-click="closeActivity()"></button>
+<div class="modal transparent" ng-click="closeModal()">
+	<div class="row addnew_baby">
+			<ion-header-bar class="bar-energized">
+		        <div class="buttons">
+		            <button class="button icon-left ion-chevron-left button-clear button-dark activated" ng-click="closeActivity()"></button>
+		        </div>
+		        <h1 class="title">ADD BABY</h1>
+		    </ion-header-bar>
+            <div class="col padding-top">
+                	<div class="row container-center">
+                        <div class="col col-20">Birthday</div>
+                        <div class="col"><input type="date" ng-model="addbaby.birthday"></div>   
+                    </div>
+                    <div class="row container-center">
+                        <div class="col col-20">Name</div>
+                        <div class="col"><input type="text" ng-model="addbaby.name"></div>   
+                    </div>
+                    <div class="row container-center">
+                        <div class="col col-20">Gender</div>
+                        <div class="col">
+                        	<ion-checkbox ng-model="addbaby.gender">Male</ion-checkbox>
+                        	<ion-checkbox ng-model="addbaby.gender">Female</ion-checkbox>
+                        </div>   
+                    </div>
+                    <div class="row">
+                        <div class="col col-50">
+                            <button class="button button-outline button-energized">Cancel</button>
+                        </div>
+                        <div class="col col-50"><button class="button button-outline button-energized">Save</button></div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <h1 class="title">Add baby</h1>
-    </ion-header-bar>
-    <ion-content>
-    </ion-content>
-</ion-modal-view>
+</div>

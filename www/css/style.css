@@ -338,6 +338,14 @@ p.time{
   background-color: #03A9F4;
   color: #fff;
 }
+.addnew_baby{
+  height: auto;
+  text-align: center;
+  background-color: #fff;
+  color: #000;
+  position: absolute;
+  bottom: 0px;
+}
 .button{
   color:#ffffff; 
   width:100%;
