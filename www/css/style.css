@@ -341,8 +341,8 @@ p.time{
 .addnew_baby{
   height: auto;
   text-align: center;
-  background-color: #fff;
-  color: #000;
+  background-color: #00ccff;
+  color: #fff;
   position: absolute;
   bottom: 0px;
 }
@@ -518,4 +518,7 @@ p.time{
   border:0; 
   background: #cc33ff;
   margin: 10px;
+}
+.no-bg{
+  background: none;
 }

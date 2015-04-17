@@ -1,4 +1,4 @@
-<div class="modal transparent" ng-click="closeModal()">
+<div class="modal transparent" ng-controller="BabyCtrl" ng-click="closeModal()">
 	<div class="row addnew_baby">
 			<ion-header-bar class="bar-energized">
 		        <div class="buttons">
@@ -8,25 +8,31 @@
 		    </ion-header-bar>
             <div class="col padding-top">
                 	<div class="row container-center">
-                        <div class="col col-20">Birthday</div>
-                        <div class="col"><input type="date" ng-model="addbaby.birthday"></div>   
+                        <div class="col col-20 center-block">Birthday</div>
+                        <div class="col"><input type="date" ng-model="addbaby.birthday" class="no-bg"></div>   
                     </div>
                     <div class="row container-center">
-                        <div class="col col-20">Name</div>
-                        <div class="col"><input type="text" ng-model="addbaby.name"></div>   
+                        <div class="col col-20 center-block">Name</div>
+                        <div class="col"><input type="text" ng-model="addbaby.name" class="no-bg"></div>   
                     </div>
                     <div class="row container-center">
-                        <div class="col col-20">Gender</div>
+                        <div class="col col-20 center-block">Gender</div>
                         <div class="col">
-                        	<ion-checkbox ng-model="addbaby.gender">Male</ion-checkbox>
-                        	<ion-checkbox ng-model="addbaby.gender">Female</ion-checkbox>
+                        <div class="row">
+                        	<div class="col">
+                        		<ion-radio ng-model="addbaby.gender" ng-value="'Male'">Male</ion-radio>
+                    		</div>
+                    		<div class="col">
+                    			<ion-radio ng-model="addbaby.gender" ng-value="'Female'">Female</ion-radio>
+                    		</div>
+                        </div>
                         </div>   
                     </div>
                     <div class="row">
                         <div class="col col-50">
-                            <button class="button button-outline button-energized">Cancel</button>
+                            <button class="button button-outline button-light" ng-click="cancel()">Cancel</button>
                         </div>
-                        <div class="col col-50"><button class="button button-outline button-energized">Save</button></div>
+                        <div class="col col-50"><button class="button button-outline button-light">Save</button></div>
                     </div>
                 </div>
             </div>
