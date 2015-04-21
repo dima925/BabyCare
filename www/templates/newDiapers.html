@@ -1,106 +1,97 @@
 <div class="modal transparent" ng-controller="activityCtrl" ng-click="closeModal()">
-	<div class="row addnew_nurse">
-			<ion-header-bar class="bar-energized">
+	<div class="row addnew_diaper">
+			<ion-header-bar class="bar-energized newDiapers">
 		        <div class="buttons">
-		            <button class="button icon-left ion-chevron-left button-clear button-dark activated" ng-click="closeActivity()"></button>
+		            <button class="button icon-left ion-close-left button-clear button-dark activated" ng-click="closeActivity()"></button>
 		        </div>
-		        <h1 class="title">ADD DIAPERS</h1>
+		        <h1 class="title"><i class="icon-diaper_noun_65306_cc"></i> ADD DIAPERS</h1>
 		    </ion-header-bar>
             <div class="col padding-top">
-                <div class="row container-center">
-                        <div class="col addnew_nurse_icon center-block">
-                            <i class="smallicon flaticon-nappy1"></i>Diaper
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <ion-checkbox ng-model="diaper.empty" name="wet">Empty</ion-checkbox>
-                        </div>
-                        <div class="col">
-                            <ion-checkbox ng-model="diaper.wet" name="wet">Wet</ion-checkbox>
-                        </div>
-                        <div class="col">
-                            <ion-checkbox ng-model="diaper.solid">Solid</ion-checkbox>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                            <div class="col">
-                                <ion-checkbox ng-model="choice.tiny" ng-value="''"  >Tiny</ion-checkbox>
-                            </div>
-                            <div class="col">
-                                <ion-checkbox ng-model="choice.medium" ng-value="''" >Medium</ion-checkbox>
-                            </div>
-                            <div class="col">
-                                <ion-checkbox ng-model="choice.xxl" ng-value="''" >XXL</ion-checkbox>
-                            </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <ion-radio ng-model="color.Yellow">Yellow</ion-radio>
-                        </div>
-                        <div class="col">
-                            <ion-radio ng-model="color.LimeGreen">LimeGreen</ion-radio>
-                        </div>
-                        <div class="col">
-                            <ion-radio ng-model="color.EverGreen">EverGreen</ion-radio>
-                        </div>
-                        <div class="col">
-                            <ion-radio ng-model="color.Red">Red</ion-radio>
-                        </div>
-                        <div class="col">
-                            <ion-radio ng-model="color.Brown">Brown</ion-radio>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <ion-radio ng-model="color.Black">Black</ion-radio>
-                        </div>
-                        <div class="col">
-                            <ion-radio ng-model="color.WhiteOrGrey">White Or Grey</ion-radio>
-                        </div>
-                        <div class="col">
-                            <ion-radio ng-model="color.Other">Other</ion-radio>
-                        </div>
-                        <div class="col">
-                            <ion-radio ng-model="color.Pink">Pink</ion-radio>
-                        </div>
-                        <div class="col">
-                            <ion-radio ng-model="color.none">?</ion-radio>
-                        </div>
-                    </div>
-                    <div class="row">
-                            <div class="col">
-                                <ion-checkbox ng-model="texture.Runny" ng-value="''"  >Runny</ion-checkbox>
-                            </div>
-                            <div class="col">
-                                <ion-checkbox ng-model="choice.Mushy" ng-value="''" >Mushy</ion-checkbox>
-                            </div>
-                            <div class="col">
-                                <ion-checkbox ng-model="choice.Hard" ng-value="''" >Hard</ion-checkbox>
-                            </div>
-                    </div>
-                    <div class="row">
-                        <div class="col col-60">
-                            Some note the user entered
-                            Click to edit
+                    <div class="row container-center bordered">
+                        <div class="col col-60 center-block">
+                            <i class="fa fa-clock-o">Time</i>
                         </div>
                         <div class="col col-40">
-                            <button class="button ion-trash-a button-clear button-dark activated"></button>
+                            <input type="date" value="2013-04-21" class="date-input">
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col titles">Content</div>
+                        </div>
+                        <div class="row">
+                            <div class="col diapers-content">
+                                <ion-radio ng-model="diaper.empty" name="wet">Empty</ion-checkbox>
+                            </div>
+                            <div class="col diapers-content">
+                                <ion-radio ng-model="diaper.wet" name="wet">Wet</ion-checkbox>
+                            </div>
+                            <div class="col diapers-content">
+                                <ion-radio ng-model="diaper.solid">Solid</ion-checkbox>
+                            </div>
+                            <div class="col diapers-content">
+                                <ion-radio ng-model="diaper.mixed">Mixed</ion-checkbox>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                            <div class="col titles">Color</div>
+                        </div>
+                    <div class="row">
+                        <div class="col center">
+                            <ion-radio ng-model="color.Yellow" class="diapers-color yellow"></ion-radio><p class="diapers-color-p">Yellow</p>
+                        </div>
+                        <div class="col center">
+                            <ion-radio ng-model="color.LimeGreen" class="diapers-color lime"></ion-radio><p class="diapers-color-p">Lime Green</p>
+                        </div>
+                        <div class="col center">
+                            <ion-radio ng-model="color.EverGreen" class="diapers-color evergreen"></ion-radio><p class="diapers-color-p">Ever Green</p>
+                        </div>
+                        <div class="col center">
+                            <ion-radio ng-model="color.Red" class="diapers-color red"></ion-radio><p class="diapers-color-p">Red</p>
+                        </div>
+                        <div class="col center">
+                            <ion-radio ng-model="color.Brown" class="diapers-color brown"></ion-radio><p class="diapers-color-p">Brown</p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col col-40 border">
-                            Pict
+                        <div class="col center">
+                            <ion-radio ng-model="color.Black" class="diapers-color black"></ion-radio><p class="diapers-color-p">Black</p>
                         </div>
-                        <div class="col col-40">
-                            <button class="button ion-trash-a button-clear button-dark activated"></button>
+                        <div class="col center">
+                            <ion-radio ng-model="color.WhiteOrGrey" class="diapers-color grey"></ion-radio><p class="diapers-color-p">Grey</p>
+                        </div>
+                        <div class="col center">
+                            <ion-radio ng-model="color.Other" class="diapers-color other"></ion-radio><p class="diapers-color-p">Other</p>
+                        </div>
+                        <div class="col center">
+                            <ion-radio ng-model="color.Pink" class="diapers-color pink"></ion-radio><p class="diapers-color-p">Pink</p>
+                        </div>
+                        <div class="col center">
+                            <ion-radio ng-model="color.none" class="diapers-color pick-color"></ion-radio><p class="diapers-color-p">Pick Color</p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col">
-                            <button class="button button-block button-outline button-light" ng-click="addDiapers()">Save</button>
+                            <div class="col titles">Consistency</div>
                         </div>
+                    <div class="row"> 
+                            <div class="col diapers-content">
+                                <ion-radio ng-model="texture.Runny" ng-value="''"  class="cons-button">Runny</ion-checkbox>
+                            </div>
+                            <div class="col diapers-content">
+                                <ion-radio ng-model="choice.Mushy" ng-value="''" class="cons-button" >Mushy</ion-checkbox>
+                            </div>
+                            <div class="col diapers-content">
+                                <ion-radio ng-model="choice.Hard" ng-value="''" class="cons-button">Hard</ion-checkbox>
+                            </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col col-30 diapers-content"><button class="button button-clear btn-small" ng-click="addDiapers()">Add Note</button></div>
+                        <div class="col col-40 diapers-content">
+                            <button class="button button-clear btn-small" ng-click="addDiapers()">Save and Close</button>
+                        </div>
+                        <div class="col col-30 diapers-content "><button class="button button-clear btn-small" ng-click="addDiapers()">Add Picture</button></div>
                     </div>
             </div>
         </div>

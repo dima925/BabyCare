@@ -1,4 +1,5 @@
 /* Empty. Add your own CSS if you like */
+* {box-sizing: border-box} 
 .bgcolor{
   background-color: #20BAEF !important;
 }
@@ -39,7 +40,7 @@
 
 }
 .center{
-  text-align: center;
+  text-align: center !important;
   color: #fff;
 }
 .left{
@@ -329,20 +330,28 @@ p.time{
 .addnew_diaper{
   height: auto;
   text-align: center;
-  background-color: #ff9900;
+  background-color: #cc3366;
   color: #fff;
+  position: absolute;
+  bottom: 0px;
 }
 .addnew_nap{
   height: auto;
   text-align: center;
   background-color: #03A9F4;
   color: #fff;
+
+  position: absolute;
+  bottom: 0px;
 }
 .addnew_baby{
   height: auto;
   text-align: center;
   background-color: #00ccff;
   color: #fff;
+  position: absolute;
+  bottom: 0px;
+
   position: absolute;
   bottom: 0px;
 }
@@ -521,4 +530,75 @@ p.time{
 }
 .no-bg{
   background: none;
+}
+.date-input{
+    color: #fff !important;
+    font-size: 100% !important;
+
+}
+input{
+  background: none;
+}
+.bordered{
+  border-top: dotted 1px;
+  border-bottom: dotted 1px;
+}
+.titles{
+  color: #fff;
+  text-align: left;
+  font-size: 10px;
+}
+.newDiapers{
+  background-color: #cc3366 !important;
+}
+.diapers-content{
+  padding:0;
+}
+.diapers-color{
+  border:solid 2px #fff;
+  border-radius: 100px;
+  height: auto;
+  max-width: 45px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.diapers-color-p{
+  font-size: 10px !important;
+  color: #fff !important;
+  text-align: center;
+}
+.yellow{
+  background-color: #ffff00;
+}
+.lime{
+  background-color: #66cc33;
+}
+.everGreen{
+  background-color: #009933;
+}
+.red{
+  background-color: #cc3333;
+}
+.brown{
+  background-color: #993300;
+}
+.black{
+  background-color: #000;
+}
+.gray{
+  background-color: #999999;
+}
+.other{
+  background-color: #00cc99;
+}
+.pink{
+  background-color: #ff6666;
+}
+.pick-color{
+  background-color: #cc3366;
+}
+.btn-small{
+  font-weight: bold;
+  font-size: 12px;
+  color: #fff;
 }
