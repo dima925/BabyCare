@@ -45,7 +45,9 @@
 }
 .left{
   text-align: left;
+  -webkit-align-self: center;    align-self: center;    width: 100%; margin:0 auto;
 }
+
 .right{
   text-align: right;
 }
@@ -307,9 +309,9 @@ p.time{
   background-color: #00ccff !important;
 }
 .addnew_nurse{
-  height: auto;
+  min-height: 50%;
   text-align: center;
-  background-color: #339966;
+  background-color: #33ccff;
   color: #fff;
   position: absolute;
   bottom: 0px;
@@ -542,6 +544,7 @@ input{
 .bordered{
   border-top: dotted 1px;
   border-bottom: dotted 1px;
+  margin-top: 10px !important;
 }
 .titles{
   color: #fff;
@@ -600,5 +603,27 @@ input{
 .btn-small{
   font-weight: bold;
   font-size: 12px;
-  color: #fff;
+  color: #fff !important;
+}
+.btn-border{
+  font-weight: bold;
+  width: 100%;
+  border: 1px solid #fff;
+  font-size: 12px;
+  color: #fff !important;
+  background: none;
+  margin:0;
+}
+.btn-border.active{
+  background-color: #fff !important;
+  color: #33ccff !important;
+}
+.line-height{
+  line-height: 34px;
+}
+.number{
+  font-size: 12px;
+  color: #fff !important;
+  text-align: right;
+  font-weight: bolder;
 }

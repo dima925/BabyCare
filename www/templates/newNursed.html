@@ -8,53 +8,57 @@
 		    </ion-header-bar>
             <div class="col padding-top">
                 <div class="row">
-                    <div class="col">
-                        <button ng-click="switchtimer(false,true)">Timer Mode</button>
+                    <div class="col zeropadding">
+                        <button ng-click="switchtimer(false,true)" class="btn-border active">Timer Mode</button>
                     </div>
-                    <div class="col">
-                        <button ng-click="switchtimer(true,false)">Manual Entry</button>
+                    <div class="col zeropadding">
+                        <button ng-click="switchtimer(true,false)" class="btn-border">Manual Entry</button>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col col-50">
-                        Time
+                <div class="row bordered">
+                    <div class="col col-50 left">
+                        <p>Time</p>
                     </div>
-                    <div class="col col-50">
-                        Today {{ timenow | date : 'HH:mm'}}
+                    <div class="col col-50 right">
+                        <input type="datetime-local" class="datetime number">
                     </div>
                 </div>
                 <div ng-show="manual">
-                    <div class="row">
-                        <div class="col col-50">
+                    <div class="row container-center">
+                        <div class="col col-50 left">
                             Time Left
                         </div>
-                        <div class="col col-50">
-                            15 Minutes
+                        <div class="col col-50 right container-center">
+                            <div class="row center-block">
+                                <div class="col"><input type="number" value="0" class="number"></div>
+                                <div class="col line-height">Minutes</div>
+                            </div>
+                            
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col col-50">
+                    <div class="row container-center">
+                        <div class="col col-50 left">
                             Time Right
                         </div>
-                        <div class="col col-50">
-                            5 Minutes
+                        <div class="col col-50 right container-center">
+                            <div class="row center-block">
+                                <div class="col"><input type="number" value="0" class="number"></div>
+                                <div class="col line-height">Minutes</div>
+                            </div>
+                            
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col col-50">
+                    <div class="row container-center">
+                        <div class="col col-50 left">
                             Time Both
                         </div>
-                        <div class="col col-50">
-                            0 Minutes
+                        <div class="col col-50 right container-center">
+                            <div class="row center-block">
+                                <div class="col"><input type="number" value="0" class="number"></div>
+                                <div class="col line-height">Minutes</div>
+                            </div>
+                            
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <ion-radio ng-model="milk.Formula">Formula</ion-radio>
-                    </div>
-                    <div class="col">
-                        <ion-radio ng-model="milk.Milk">Milk</ion-radio>
                     </div>
                 </div>
                 <div ng-show="timer">
@@ -73,13 +77,13 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <button class="button button-block  button-light" style="font-size:10px">Add Note</button>
+                        <button class="button button-clear btn-small" style="font-size:10px">Add Note</button>
                     </div>
                     <div class="col col-50">
-                        <button class="button button-block  button-light" ng-click="addNurse()">Save and Close</button>
+                        <button class="button button-clear btn-small" ng-click="addNurse()">Save and Close</button>
                     </div>
                     <div class="col">
-                        <button class="button button-block  button-light" style="font-size:10px">Add Pict</button>
+                        <button class="button button-clear btn-small" style="font-size:10px">Add Pict</button>
                     </div>
                 </div>
             </div>
