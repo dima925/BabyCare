@@ -1,5 +1,7 @@
 /* Empty. Add your own CSS if you like */
-* {box-sizing: border-box} 
+@import url(http://fonts.googleapis.com/css?family=Varela+Round);
+* {box-sizing: border-box; }
+html, body { font-family: 'Varela Round', sans-serif !important; } 
 .bgcolor{
   background-color: #20BAEF !important;
 }
@@ -332,7 +334,7 @@ p.time{
 .addnew_diaper{
   height: auto;
   text-align: center;
-  background-color: #cc3366;
+  background-color: #ff6b01;
   color: #fff;
   position: absolute;
   bottom: 0px;
@@ -397,25 +399,7 @@ p.time{
     background: #FFFFFF;
     border-color: #FFFFFF; 
 }
-.item-radio .item-content{
-  padding: 8px;
-  position: relative;
-  z-index: 2;
-  border: none;
-  background-color: rgba(255, 255, 255, 0); 
-  border: 1px solid white;
 
-}
-.item-radio input:checked ~ .item-content {
-    /* style the item content when its checked */
-    background: rgba(247, 247, 247, 1); 
-    border: 1px solid white;
-    color: #ff9900;
-}
-.item-radio input:checked ~ .radio-icon{
-  visibility: none !important;
-  color: rgba(0, 0, 0, 0);
-}
 /*END ADD NEW TASK*/
 /*START TIMER BOTTOM*/
 
@@ -491,9 +475,7 @@ p.time{
   top: 0 !important;
   left: 0 !important;
 }
-.border{
-  background: #818181;
-}
+
 .menu-bot{
   position: absolute;
   bottom: 45px;
@@ -504,28 +486,28 @@ p.time{
 }
 .btn-nursed { 
   border-radius: 50px; 
-  padding: 10px 15px; 
+  padding: 10px 18px !important; 
   border:0; 
   background: #33ccff;
   margin: 10px;
 }
 .btn-bottle { 
   border-radius: 50px; 
-  padding: 10px 18px; 
+  padding: 10px 23px !important;
   border:0; 
   background: #66cc33;
   margin: 10px;
 }
 .btn-diaper { 
   border-radius: 50px; 
-  padding: 10px 12px; 
+  padding: 10px 14px !important; 
   border:0; 
   background: #ffcc00;
   margin: 10px;
 }
 .btn-nap { 
   border-radius: 50px; 
-  padding: 10px 13px; 
+  padding: 10px 17px !important; 
   border:0; 
   background: #cc33ff;
   margin: 10px;
@@ -552,7 +534,9 @@ input{
   font-size: 10px;
 }
 .newDiapers{
-  background-color: #cc3366 !important;
+  background-color: #ff6b01 !important;
+  border-bottom: 1px dotted;
+  border-color: #fff !important;
 }
 .diapers-content{
   padding:0;
@@ -564,42 +548,15 @@ input{
   max-width: 45px;
   margin-left: auto;
   margin-right: auto;
+  overflow: hidden;
 }
 .diapers-color-p{
   font-size: 10px !important;
   color: #fff !important;
   text-align: center;
 }
-.yellow{
-  background-color: #ffff00;
-}
-.lime{
-  background-color: #66cc33;
-}
-.everGreen{
-  background-color: #009933;
-}
-.red{
-  background-color: #cc3333;
-}
-.brown{
-  background-color: #993300;
-}
-.black{
-  background-color: #000;
-}
-.gray{
-  background-color: #999999;
-}
-.other{
-  background-color: #00cc99;
-}
-.pink{
-  background-color: #ff6666;
-}
-.pick-color{
-  background-color: #cc3366;
-}
+
+
 .btn-small{
   font-weight: bold;
   font-size: 12px;
@@ -627,3 +584,97 @@ input{
   text-align: right;
   font-weight: bolder;
 }
+/*helper*/
+.pull-left { float: left; }
+.pull-right { float: right; }
+.btn { padding: 10px; display: block; color: #fff; font-size:22px; }
+.clearfix { clear: both;}
+[class*="xs-"]  { float: left; padding: 0; margin:0;}
+.xs-5 { width: 20%; }
+.xs-4 { width: 24.73%; }
+.xs-3 { width: 33.33%; }
+.xs-2 { width: 50%; }
+.xs-1 { width: 100%; }
+
+
+/* color activity */
+.diapers { background: #ff6b01; }
+.bottle { background: #66cc33; }
+.nurse { background: #3300cc; }
+.diapers .item-radio input:checked ~ .item-content { color: #ff6b01}
+.bottle .item-radio input:checked ~ .item-content { color: #66cc33}
+.nurse .item-radio input:checked ~ .item-content { color: #3300cc}
+.wrapper { font-family: 'Varela Round', sans-serif !important; 
+  padding:0 10px 0; width: 100%; display: block; position: absolute; bottom:0; left: 0;color: #fff !important;
+}
+.wrapper .kotak { height: 44px;  border-bottom:1px solid rgba(255,255,255,.4); overflow: hidden !important; position: relative;}
+.wrapper .kotak.autoheight{
+    height: auto !important;
+}
+.wrapper .kotak:last-child, .wrapper .no-border { border: none !important;}
+.padding-top{
+  padding-top: 10px;
+}
+.timer-padding{
+  margin-top: 132px;
+}
+/* FORM */
+.wrapper label.default{
+  opacity: 0.6;
+  font-size: 18px; display: inline-block; text-align: left; font-family: 'Varela Round', sans-serif !important; margin-top: 14px; position: absolute; left:0;}
+  .wrapper label.small { width: 100% !important; height:8px; margin-top: 3px; font-size: 8px; float: left; display: block; padding: 0 !important;}
+.wrapper input { font-family: 'Varela Round', sans-serif !important; display: inline-block; text-align: right !important; padding: 0 !important; margin: 0 !important; height:auto; font-size: 24px; width: auto !important; color: #fff; line-height: 2em; float: right;}
+.rumah-radio { width: 100%; float: left; border-radius: 4px; padding: 0; border: 1px solid rgba(255,255,255,.3) ;margin-top: 3px; overflow: hidden;}
+
+.item-radio { margin:1px 0;}
+.item-radio.color-selection { text-align: center; margin-bottom: 12px; position: relative;}
+.item-radio.color-selection span { position: absolute; top: 22px; font-size: 8px; width: 100%; text-align: center; left: 0;  color: rgba(255,255,255,.4); }
+.item-radio.color-selection .item-content { border-radius:100px; margin: 0 auto !important; width: 65%; display: inline-block; border:2px solid #fff; }
+
+/*color jemaker*/
+.item-radio.color-selection.yellow .item-content {  background-color: #ffff00;}
+.item-radio.color-selection.lime .item-content {background-color: #66cc33;}
+.item-radio.color-selection.evergreen .item-content {background-color: #009933;}
+.item-radio.color-selection.red .item-content { background-color: #cc3333;}
+.item-radio.color-selection.brown .item-content {background-color: #993300;}
+.item-radio.color-selection.black .item-content {background-color: #000;}
+.item-radio.color-selection.gray .item-content {background-color: #999999;}
+.item-radio.color-selection.other .item-content {background-color: #00cc99;}
+.item-radio.color-selection.pink .item-content {background-color: #ff6666;}
+.item-radio.color-selection.pick-color .item-content {background-color: #cc3366;}
+
+
+.item-radio:first-child .item-content { margin: 0 0 0 2px}
+.item-radio .item-content {
+  padding: 2px; margin: 0 0 0 4px;
+  position: relative; height:22px;
+  z-index: 2;
+  text-align: center;
+  background:0; 
+}
+.item-radio.border-right .item-content:after { position: absolute; content: ""; height: 200%; border-right: 1px solid rgba(255,255,255,.3) ; top: -2px; right: -4px;}
+.item-radio.border-right:last-child .item-content:after { border: 0; display: none}
+.item-radio.tab-style input:checked ~ .item-content {
+    /* style the item content when its checked */
+    background: #fff; 
+    border-radius: 4px; 
+}
+.item-radio.color-selection input:checked ~ .item-content span {
+    /* style the item content when its checked */
+     color: rgba(255,255,255,1); 
+}
+.item-radio input:checked ~ .radio-icon{
+  visibility: none !important;
+  color: rgba(0, 0, 0, 0);
+}
+
+
+.header { position: relative; text-align: center; width: 100%; border-bottom:2px dotted #fff; padding:10px 0; }
+.header h2 { font-size: 28px; display: inline-block; font-family: 'Varela Round', sans-serif !important; padding: 0; margin:5px 0 0;}
+
+.footer { margin-top: 22px; text-align: center; font-size: 10px}
+.footer a[class*="pull-"]{ width: 27.33%; margin-top: 5px}
+.footer a[class*="pull-"] span[class*="icon-"] { font-size: 14px; width: 100%; float: left; }
+.footer a.btn-mid { padding: 10px 14px; background: #fff;  display: inline-block; border-radius:4px 4px 0 0;}
+.diaper-foot{color: #ff6b01;}
+.bottle-foot{color: #66cc33;}

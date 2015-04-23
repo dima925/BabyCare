@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?-fpwyxg');
-	src:url('fonts/icomoon.eot?#iefix-fpwyxg') format('embedded-opentype'),
-		url('fonts/icomoon.woff?-fpwyxg') format('woff'),
-		url('fonts/icomoon.ttf?-fpwyxg') format('truetype'),
-		url('fonts/icomoon.svg?-fpwyxg#icomoon') format('svg');
+	src:url('fonts/icomoon.eot?cpozn7');
+	src:url('fonts/icomoon.eot?#iefixcpozn7') format('embedded-opentype'),
+		url('fonts/icomoon.woff?cpozn7') format('woff'),
+		url('fonts/icomoon.ttf?cpozn7') format('truetype'),
+		url('fonts/icomoon.svg?cpozn7#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -23,23 +23,63 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.icon-banana3:before {
+	content: "\e610";
+}
+
+.icon-banana:before {
+	content: "\e607";
+}
+
+.icon-breast-pumper-filled:before {
+	content: "\e608";
+}
+
+.icon-breast-pumper-line:before {
+	content: "\e609";
+}
+
+.icon-carrot:before {
+	content: "\e60a";
+}
+
+.icon-medication:before {
+	content: "\e60b";
+}
+
+.icon-baby-growth:before {
+	content: "\e60c";
+}
+
+.icon-rattle-alias-0:before {
+	content: "\e60d";
+}
+
+.icon-breast-pump-alias:before {
+	content: "\e60e";
+}
+
+.icon-rattle-alias-1:before {
+	content: "\e60f";
+}
+
 .icon-bath_noun_65309_cc:before {
 	content: "\e600";
 }
 
-.icon-bottle_noun_4313:before {
+.icon-bottle:before {
 	content: "\e601";
 }
 
-.icon-breastfeeding_noun_2735:before {
+.icon-breast-feeding:before {
 	content: "\e602";
 }
 
-.icon-diaper_noun_65306_cc:before {
+.icon-diaper:before {
 	content: "\e603";
 }
 
-.icon-play_noun_65303_cc:before {
+.icon-rattle-alias-3:before {
 	content: "\e604";
 }
 
@@ -49,5 +89,197 @@
 
 .icon-solidfood_noun_65308_cc:before {
 	content: "\e606";
+}
+
+.icon-heart:before {
+	content: "\e611";
+}
+
+.icon-cloud:before {
+	content: "\e612";
+}
+
+.icon-star:before {
+	content: "\e613";
+}
+
+.icon-tv:before {
+	content: "\e614";
+}
+
+.icon-sound:before {
+	content: "\e615";
+}
+
+.icon-video:before {
+	content: "\e616";
+}
+
+.icon-trash:before {
+	content: "\e617";
+}
+
+.icon-user:before {
+	content: "\e618";
+}
+
+.icon-key:before {
+	content: "\e619";
+}
+
+.icon-search:before {
+	content: "\e61a";
+}
+
+.icon-settings:before {
+	content: "\e61b";
+}
+
+.icon-camera:before {
+	content: "\e61c";
+}
+
+.icon-tag:before {
+	content: "\e61d";
+}
+
+.icon-lock:before {
+	content: "\e61e";
+}
+
+.icon-bulb:before {
+	content: "\e61f";
+}
+
+.icon-pen:before {
+	content: "\e620";
+}
+
+.icon-diamond:before {
+	content: "\e621";
+}
+
+.icon-display:before {
+	content: "\e622";
+}
+
+.icon-location:before {
+	content: "\e623";
+}
+
+.icon-eye:before {
+	content: "\e624";
+}
+
+.icon-bubble:before {
+	content: "\e625";
+}
+
+.icon-stack:before {
+	content: "\e626";
+}
+
+.icon-cup:before {
+	content: "\e627";
+}
+
+.icon-phone:before {
+	content: "\e628";
+}
+
+.icon-news:before {
+	content: "\e629";
+}
+
+.icon-mail:before {
+	content: "\e62a";
+}
+
+.icon-like:before {
+	content: "\e62b";
+}
+
+.icon-photo:before {
+	content: "\e62c";
+}
+
+.icon-note:before {
+	content: "\e62d";
+}
+
+.icon-clock:before {
+	content: "\e62e";
+}
+
+.icon-paperplane:before {
+	content: "\e62f";
+}
+
+.icon-params:before {
+	content: "\e630";
+}
+
+.icon-banknote:before {
+	content: "\e631";
+}
+
+.icon-data:before {
+	content: "\e632";
+}
+
+.icon-music:before {
+	content: "\e633";
+}
+
+.icon-megaphone:before {
+	content: "\e634";
+}
+
+.icon-study:before {
+	content: "\e635";
+}
+
+.icon-lab:before {
+	content: "\e636";
+}
+
+.icon-food:before {
+	content: "\e637";
+}
+
+.icon-t-shirt:before {
+	content: "\e638";
+}
+
+.icon-fire:before {
+	content: "\e639";
+}
+
+.icon-clip:before {
+	content: "\e63a";
+}
+
+.icon-shop:before {
+	content: "\e63b";
+}
+
+.icon-calendar:before {
+	content: "\e63c";
+}
+
+.icon-wallet:before {
+	content: "\e63d";
+}
+
+.icon-vynil:before {
+	content: "\e63e";
+}
+
+.icon-truck:before {
+	content: "\e63f";
+}
+
+.icon-world:before {
+	content: "\e640";
 }
 

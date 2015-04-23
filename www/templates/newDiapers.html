@@ -1,98 +1,89 @@
 <div class="modal transparent" ng-controller="activityCtrl" ng-click="closeModal()">
-	<div class="row addnew_diaper">
-			<ion-header-bar class="bar-energized newDiapers">
-		        <div class="buttons">
-		            <button class="button icon-left ion-close-left button-clear button-dark activated" ng-click="closeActivity()"></button>
-		        </div>
-		        <h1 class="title"><i class="icon-diaper_noun_65306_cc"></i> ADD DIAPERS</h1>
-		    </ion-header-bar>
-            <div class="col padding-top">
-                    <div class="row container-center bordered">
-                        <div class="col col-60 center-block">
-                            <i class="fa fa-clock-o">Time</i>
-                        </div>
-                        <div class="col col-40">
-                            <input type="datetime-local" value="2013-04-21" class="date-input">
-                        </div>
+	<div class="wrapper diapers">
+        <div class="header">
+            <h2 class="title">
+                <span class="icon-diaper"></span>
+                Diaper
+            </h2>
+            <a ng-click="closeActivity()" class="btn pull-left"><i class="fa fa-close"></i></a>
+            <a href="" class="btn pull-right"><i class="fa fa-check"></i></a>
+        </div>
+        <div class="content">
+            <div class="kotak">
+                <label class="default">
+                    <span class="icon-clock"></span> Time
+                </label>
+                <input type="text" placeholder="Today, 06:09PM" class="form-control">
+            </div>
+            <div class="kotak no-border">
+                <label class="small">Content</label>
+                <div class="clearfix"></div>
+                <div class="rumah-radio">
+                    <ion-radio ng-model="diaper.empty" name="content" class="xs-4 border-right tab-style">Empty!</ion-radio>
+                    <ion-radio ng-model="diaper.empty" name="content" class="xs-4 border-right tab-style">Wet</ion-radio>
+                    <ion-radio ng-model="diaper.empty" name="content" class="xs-4 border-right tab-style">Solid</ion-radio>
+                    <ion-radio ng-model="diaper.empty" name="content" class="xs-4 border-right tab-style">Mixed</ion-radio>
+                </div>
+            </div>
+            <div class="kotak no-border">
+                <label class="small">Content</label>
+                <div class="clearfix"></div>
+                <div class="rumah-radio">
+                    <ion-radio ng-model="diaper.empty" name="size" class="xs-3 border-right tab-style">Tiny</ion-radio>
+                    <ion-radio ng-model="diaper.empty" name="size" class="xs-3 border-right tab-style">Medium</ion-radio>
+                    <ion-radio ng-model="diaper.empty" name="size" class="xs-3 border-right tab-style">XXL</ion-radio>
+                </div>
+            </div>
+            <div class="kotak no-border autoheight">
+                <label class="small">Color</label>
+                <div class="rumah-radio no-border ">
+                    <div class="xs-5">
+                        <ion-radio ng-model="diaper.empty" name="content" class="color-selection yellow">
+                        <span>Yellow</span></ion-radio>
                     </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col titles">Content</div>
-                        </div>
-                        <div class="row">
-                            <div class="col diapers-content">
-                                <ion-radio ng-model="diaper.empty" name="wet">Empty</ion-checkbox>
-                            </div>
-                            <div class="col diapers-content">
-                                <ion-radio ng-model="diaper.wet" name="wet">Wet</ion-checkbox>
-                            </div>
-                            <div class="col diapers-content">
-                                <ion-radio ng-model="diaper.solid">Solid</ion-checkbox>
-                            </div>
-                            <div class="col diapers-content">
-                                <ion-radio ng-model="diaper.mixed">Mixed</ion-checkbox>
-                            </div>
-                        </div>
-                        
+                    <div class="xs-5">
+                        <ion-radio ng-model="diaper.empty" name="content" class="color-selection lime"><span>Lime</span></ion-radio>
                     </div>
-                    <div class="row">
-                            <div class="col titles">Color</div>
-                        </div>
-                    <div class="row">
-                        <div class="col center">
-                            <ion-radio ng-model="color.Yellow" class="diapers-color yellow"></ion-radio><p class="diapers-color-p">Yellow</p>
-                        </div>
-                        <div class="col center">
-                            <ion-radio ng-model="color.LimeGreen" class="diapers-color lime"></ion-radio><p class="diapers-color-p">Lime Green</p>
-                        </div>
-                        <div class="col center">
-                            <ion-radio ng-model="color.EverGreen" class="diapers-color evergreen"></ion-radio><p class="diapers-color-p">Ever Green</p>
-                        </div>
-                        <div class="col center">
-                            <ion-radio ng-model="color.Red" class="diapers-color red"></ion-radio><p class="diapers-color-p">Red</p>
-                        </div>
-                        <div class="col center">
-                            <ion-radio ng-model="color.Brown" class="diapers-color brown"></ion-radio><p class="diapers-color-p">Brown</p>
-                        </div>
+                    <div class="xs-5">
+                        <ion-radio ng-model="diaper.empty" name="content" class="color-selection evergreen"><span>Evergreen</span></ion-radio>
                     </div>
-                    <div class="row">
-                        <div class="col center">
-                            <ion-radio ng-model="color.Black" class="diapers-color black"></ion-radio><p class="diapers-color-p">Black</p>
-                        </div>
-                        <div class="col center">
-                            <ion-radio ng-model="color.WhiteOrGrey" class="diapers-color grey"></ion-radio><p class="diapers-color-p">Grey</p>
-                        </div>
-                        <div class="col center">
-                            <ion-radio ng-model="color.Other" class="diapers-color other"></ion-radio><p class="diapers-color-p">Other</p>
-                        </div>
-                        <div class="col center">
-                            <ion-radio ng-model="color.Pink" class="diapers-color pink"></ion-radio><p class="diapers-color-p">Pink</p>
-                        </div>
-                        <div class="col center">
-                            <ion-radio ng-model="color.none" class="diapers-color pick-color"></ion-radio><p class="diapers-color-p">Pick Color</p>
-                        </div>
+                    <div class="xs-5">
+                        <ion-radio ng-model="diaper.empty" name="content" class="color-selection red"><span>Red</span></ion-radio>
                     </div>
-                    <div class="row">
-                            <div class="col titles">Consistency</div>
-                        </div>
-                    <div class="row"> 
-                            <div class="col diapers-content">
-                                <ion-radio ng-model="texture.Runny" ng-value="''"  class="cons-button">Runny</ion-checkbox>
-                            </div>
-                            <div class="col diapers-content">
-                                <ion-radio ng-model="choice.Mushy" ng-value="''" class="cons-button" >Mushy</ion-checkbox>
-                            </div>
-                            <div class="col diapers-content">
-                                <ion-radio ng-model="choice.Hard" ng-value="''" class="cons-button">Hard</ion-checkbox>
-                            </div>
+                    <div class="xs-5">
+                        <ion-radio ng-model="diaper.empty" name="content" class="color-selection brown"><span>Brown</span></ion-radio>
                     </div>
-                    <div class="row ">
-                        <div class="col col-30 diapers-content"><button class="button button-clear btn-small" ng-click="addDiapers()">Add Note</button></div>
-                        <div class="col col-40 diapers-content">
-                            <button class="button button-clear btn-small" ng-click="addDiapers()">Save and Close</button>
-                        </div>
-                        <div class="col col-30 diapers-content "><button class="button button-clear btn-small" ng-click="addDiapers()">Add Picture</button></div>
+                    <div class="xs-5">
+                        <ion-radio ng-model="diaper.empty" name="content" class="color-selection black"><span>Black</span></ion-radio>
                     </div>
+                    <div class="xs-5">
+                        <ion-radio ng-model="diaper.empty" name="content" class="color-selection gray"><span>Gray</span></ion-radio>
+                    </div>
+                    <div class="xs-5">
+                        <ion-radio ng-model="diaper.empty" name="content" class="color-selection other"><span>Other</span></ion-radio>
+                    </div>
+                    <div class="xs-5">
+                        <ion-radio ng-model="diaper.empty" name="content" class="color-selection pink"><span>Pink</span></ion-radio>
+                    </div>
+                    <div class="xs-5">
+                        <ion-radio ng-model="diaper.empty" name="content" class="color-selection diapers"></ion-radio>
+                    </div>
+                </div>
+            </div>
+            <div class="kotak no-border">
+                <label class="small">Concistency</label>
+                <div class="clearfix"></div>
+                <div class="rumah-radio">
+                    <ion-radio ng-model="diaper.empty" name="consistency" class="xs-3 border-right tab-style">Runny</ion-radio>
+                    <ion-radio ng-model="diaper.empty" name="consistency" class="xs-3 border-right tab-style">Mushy</ion-radio>
+                    <ion-radio ng-model="diaper.empty" name="consistency" class="xs-3 border-right tab-style">Hard</ion-radio>
+                </div>
             </div>
         </div>
+        <div class="footer">
+            <a class="pull-left"><span class="icon-book-open"></span>Add Note</a>
+            <a class="btn-mid diaper-foot"><span class="icon-check"></span> &nbsp;Save and Close</a>
+            <a class="pull-right"><span class="icon-camera"></span>Add Photo</a>
+        </div>
+    </div>
 </div>

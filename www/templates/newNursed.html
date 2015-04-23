@@ -1,92 +1,55 @@
 <div class="modal transparent" ng-controller="activityCtrl" ng-click="closeModal()">
-	<div class="row addnew_nurse">
-			<ion-header-bar class="bar-energized">
-		        <div class="buttons">
-		            <button class="button icon-left ion-chevron-left button-clear button-dark activated" ng-click="closeActivity()"></button>
-		        </div>
-		        <h1 class="title">ADD NURSED</h1>
-		    </ion-header-bar>
-            <div class="col padding-top">
-                <div class="row">
-                    <div class="col zeropadding">
-                        <button ng-click="switchtimer(false,true)" class="btn-border active">Timer Mode</button>
-                    </div>
-                    <div class="col zeropadding">
-                        <button ng-click="switchtimer(true,false)" class="btn-border">Manual Entry</button>
-                    </div>
-                </div>
-                <div class="row bordered">
-                    <div class="col col-50 left">
-                        <p>Time</p>
-                    </div>
-                    <div class="col col-50 right">
-                        <input type="datetime-local" class="datetime number">
-                    </div>
-                </div>
-                <div ng-show="manual">
-                    <div class="row container-center">
-                        <div class="col col-50 left">
-                            Time Left
-                        </div>
-                        <div class="col col-50 right container-center">
-                            <div class="row center-block">
-                                <div class="col"><input type="number" value="0" class="number"></div>
-                                <div class="col line-height">Minutes</div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                    <div class="row container-center">
-                        <div class="col col-50 left">
-                            Time Right
-                        </div>
-                        <div class="col col-50 right container-center">
-                            <div class="row center-block">
-                                <div class="col"><input type="number" value="0" class="number"></div>
-                                <div class="col line-height">Minutes</div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                    <div class="row container-center">
-                        <div class="col col-50 left">
-                            Time Both
-                        </div>
-                        <div class="col col-50 right container-center">
-                            <div class="row center-block">
-                                <div class="col"><input type="number" value="0" class="number"></div>
-                                <div class="col line-height">Minutes</div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div ng-show="timer">
-                    <div class="row">
-                        <div class="col">
-                            <button class="button" ng-click="$root.timers.setTimer()">Start Left</button>
-                            <p ng-show="time">{{time}}</p>
-                        </div>
-                        <div class="col container-center" >
-                            <p class="text-center center-block"><timer interval="1000" autostart="false">{{minutes}}:{{seconds}}</timer></p>
-                        </div>
-                        <div class="col">
-                            <button class="button" ng-click="$root.timers.setTimer()">Start Right</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <button class="button button-clear btn-small" style="font-size:10px">Add Note</button>
-                    </div>
-                    <div class="col col-50">
-                        <button class="button button-clear btn-small" ng-click="addNurse()">Save and Close</button>
-                    </div>
-                    <div class="col">
-                        <button class="button button-clear btn-small" style="font-size:10px">Add Pict</button>
-                    </div>
+    <div class="wrapper nurse">
+        <div class="header">
+            <h2 class="title">
+                <span class="icon-breast-feeding"></span>
+                Nurse
+            </h2>
+            <a ng-click="closeActivity()" class="btn pull-left"><i class="fa fa-close"></i></a>
+            <a href="" class="btn pull-right"><i class="fa fa-check"></i></a>
+        </div>
+        <div class="content">
+            <div class="kotak no-border padding-top">
+                <div class="rumah-radio">
+                    <ion-radio ng-click="switchtimer(false,true)" name="content" class="xs-2 border-right tab-style">Timer Mode</ion-radio>
+                    <ion-radio ng-click="switchtimer(true,false)" name="content" class="xs-2 border-right tab-style">Manual Mode</ion-radio>
                 </div>
             </div>
-                
+            <div class="kotak">
+                <label class="default">
+                    <span class="icon-clock"></span> Time
+                </label>
+                <input type="text" placeholder="Today, 06:09PM" class="form-control">
+            </div>
+            <div class="kotak" ng-show="manual">
+                <label class="default">
+                    Time Left
+                </label>
+                <input type="text" placeholder="15 Min" class="form-control">
+            </div>
+            <div class="kotak" ng-show="manual">
+                <label class="default">
+                    Time Right
+                </label>
+                <input type="text" class="form-control" placeholder="0 Min">
+            </div>
+            <div class="kotak" ng-show="manual">
+                <label class="default">
+                    Time Both
+                </label>
+                <input type="text" placeholder="15 Min" class="form-control">
+            </div>
+            <div class="kotak timer-padding" ng-show="timer">
+                <div class="rumah-radio">
+                    <ion-radio ng-click="$root.timers.setTimer()" name="timer" class="xs-2 border-right tab-style">Start Left</ion-radio>
+                    <ion-radio ng-click="$root.timers.setTimer()" name="timer" class="xs-2 border-right tab-style">Start Right</ion-radio>
+                </div>
+            </div>
         </div>
+        <div class="footer">
+            <a class="pull-left"><span class="icon-book-open"></span>Add Note</a>
+            <a class="btn-mid diaper-foot"><span class="icon-check"></span> &nbsp;Save and Close</a>
+            <a class="pull-right"><span class="icon-camera"></span>Add Photo</a>
+        </div>
+    </div>
 </div>
