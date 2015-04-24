@@ -86,9 +86,6 @@
                             <h5 data-translate>celeverbaby.app.diary.bar.play</h5>
                         </div>
                         <div class="col col-20">
-                            <div class="plus-button" ng-click="newActivity()">
-                                
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -104,110 +101,75 @@
                 </div>
             </ion-slide>
         </ion-slide-box>
-        <div class="card">
-          <div class="item item-text-wrap">
+        <div class="card kartu">
+          <div class="item item-text-wrap no-padding">
             <div class="row">
                 <div class="col col-80"><h2 data-translate>celeverbaby.app.diary.box1.title</h2></div>
                 <div class="col col-20" style="text-align:right;">
-                    <a ng-click="hide()" data-translate>celeverbaby.app.diary.box1.hide</a>
+                    <a ng-click="hide()" class="black-color">Hide</a>
                 </div>
             </div>
             
             <p class="justify padding" data-translate>celeverbaby.app.diary.box1.text</p>
           </div>
         </div>
-        <ion-list class="padding">
-            <p class="padding">TODAY</p>
-            <ion-item class="timeline" ng-repeat="item in list" id="{{item.key}}" ng-switch on="item.type" href="#/app/playlists/{{playlist.id}}">
-                <div ng-switch-when='nurse'>
-                    <div class="row">
-                        <div class="col col-20">
-                            <p class="time">{{item.time | date : 'shortTime'}}</p>
-                        </div>
-                        <div class="col col-10 container-center">
-                            <div class="center-block nursed-logo"></div>
-                        </div>
-                        <div class="col col-60">
-                            <p class="nursed">{{item.type}}</p>
-                            <div class="row">
-                                <div class="col-50">
-                                    <p>LEFT {{item.length}}min</p>
-                                </div>
-                                <div class="col-50">
-                                    <p>RIGHT 0min</p>
-                                </div>
-                            </div>
-                        </div>
+        <div class="kotak timeline">
+            <h3 class="pd">Today</h3>
+            <div class="item">
+                <div class="datetime-tl">2h 38m</div>
+                <div class="activity-icon">
+                    <div class="item-activity diapers">
+                        <span class="icon-diaper"></span>
                     </div>
                 </div>
-                <div ng-switch-when='bottle'>
-                    <div class="row">
-                        <div class="col col-20">
-                            <p class="time">{{item.created | date : 'shortTime'}}</p>
-                        </div>
-                        <div class="col col-10 container-center">
-                            <div class="center-block played-logo"></div>
-                        </div>
-                        <div class="col col-60">
-                            <p class="nursed">{{item.type}}</p>
-                            <p>{{item.amount}}oz of FORMULA</p>
-                            
-                        </div>
-                    </div>
+                <div class="desc">
+                    <h3 class="diaper-foot">Changed</h3>
+                    <p>Wet and Solid</p>
                 </div>
-                <div ng-switch-when='sleep'>
-                    <div class="row">
-                        <div class="col col-20">
-                            <p class="time">{{item.created | date : 'shortTime'}}</p>
-                        </div>
-                        <div class="col col-10 container-center">
-                            <div class="center-block napped-logo"></div>
-                        </div>
-                        <div class="col col-60">
-                            <p class="nursed">{{item.type}}</p>
-                            <p>SLEPT FOR 2 HOURS</p>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div ng-switch-when='diaper'>
-                    <div class="row">
-                        <div class="col col-20">
-                            <p class="time">{{item.time | date : 'shortTime'}}</p>
-                        </div>
-                        <div class="col col-10 container-center">
-                            <div class="center-block changed-logo"></div>
-                        </div>
-                        <div class="col col-60">
-                            <p class="nursed">{{item.type}}</p>
-                            <p>{{item.consistency}}</p>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div ng-switch-default>
-                    <div class="row">
-                        <div class="col col-20">
-                            <p class="time">{{item.time | date : 'shortTime'}}</p>
-                        </div>
-                        <div class="col col-10 container-center">
-                            <div class="center-block default-logo"></div>
-                        </div>
-                        <div class="col col-70">
-                            <p class="nursed">{{item.item}}</p>
-                            <p>LOREM IPSUM</p>
-                        </div>
-                    </div>
-                </div>
-            </ion-item>
-        </ion-list>
-        <div class="card">
-            <div class="item item-text-wrap" ng-show="noData">
-                <span data-translate ng-click="openNewModal()">
-                  celeverbaby.app.diary.box2.text
-                </span>
             </div>
         </div>
+        <div class="kotak timeline">
+            <div class="item">
+                <div class="datetime-tl">4h 12m</div>
+                <div class="activity-icon">
+                    <div class="item-activity nurse">
+                        <span class="icon-breast-feeding"></span>
+                    </div>
+                </div>
+                <div class="desc">
+                    <h3 class="nurse-foot">Nursed</h3>
+                    <p>Left 15min Right 0min</p>
+                </div>
+            </div>
+        </div> 
+        <div class="kotak timeline">
+            <div class="item">
+                <div class="datetime-tl">4h 31m</div>
+                <div class="activity-icon">
+                    <div class="item-activity activity">
+                        <span class="icon-rattle-alias-1"></span>
+                    </div>
+                </div>
+                <div class="desc">
+                    <h3 class="activity-foot">Played</h3>
+                    <p>TUMMYTIME!</p>
+                </div>
+            </div>
+        </div>
+        <div class="kotak timeline">
+            <div class="item">
+                <div class="datetime-tl">4h 50m</div>
+                <div class="activity-icon">
+                    <div class="item-activity sleep">
+                        <span class="icon-sleepcc"></span>
+                    </div>
+                </div>
+                <div class="desc">
+                    <h3 class="sleep-foot">NAPPER</h3>
+                    <p>SLEEP FOR 2 Hours</p>
+                </div>
+            </div>
+        </div> 
         
     </ion-content>
     <div class="fixed-outside" ng-show="timerRunning">

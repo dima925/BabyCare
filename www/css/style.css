@@ -100,7 +100,9 @@ h4, h5{
 }
 
 .circular {
-  width: 100%;
+  width: 65px;
+  height: 65px;
+  margin: 0 auto;
   border-radius: 150px;
   -webkit-border-radius: 150px;
   -moz-border-radius: 150px;
@@ -110,6 +112,7 @@ h4, h5{
   .circular img { width: 101%; margin: -2px 0 0 -2px }
   .justify{
     text-align: justify;
+    padding:0 10px;
   }
 
 /*timeline*/
@@ -526,7 +529,7 @@ input{
 .xs-4 { width: 24.73%; }
 .xs-3 { width: 33.33%; }
 .xs-2 { width: 50%; }
-.xs-1 { width: 100%; }
+.xs-1 { width: 100%; } 
 
 
 /* color activity */
@@ -663,3 +666,19 @@ input{
 .home-icon { color: #fff; font-size: 42px; }
 .botol { -webkit-transform: rotate(45deg) !important;}
 .di-home div:nth-child(4) { padding-left: 12px !important; float: right;}
+
+/*TIMELINE */
+.pd{padding:0 10px;}
+.kartu{background: #fafafa;}
+.no-padding{padding:0 !important;}
+.black-color{color: #336666;}
+.timeline { width: 100%; position: relative; }
+.timeline .item { width: 100%; position: relative; padding:0 10px; margin:0; padding-bottom: 20px; display: inline-block;}
+.timeline .item .datetime-tl { width: 25%; color: #000; display: inline-block;}
+.timeline .item .activity-icon { width: 15%; color: #000; display: inline-block; height: 100%; position: relative;}
+                .item-activity { width: 35px; height:35px; border-radius: 100px; display: block; color: #fff; display: -webkit-flex;  display: flex; }
+                .item-activity span { -webkit-align-self: center;    align-self: center;    width: 100%; margin:0 auto; text-align:center; font-size: 16px;}
+                .activity-icon:after { position: absolute; content: ""; border: 1px solid #000; height: 120%; left: 17px; z-index: -1;}
+.timeline .item .desc { width: 60%; color: #000; display: inline-block; }
+.timeline .item .desc h3 {margin: 0; padding: 10px 0 0 ; width: 100%;  }
+.timeline .item .desc p { float: left; width: 100%; }
