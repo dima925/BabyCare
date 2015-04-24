@@ -1,9 +1,9 @@
 <div class="modal transparent" ng-controller="activityCtrl" ng-click="closeModal()">
-    <div class="wrapper bottle">
+    <div class="wrapper activity">
         <div class="header">
             <h2 class="title">
                 <span class="icon-bottle"></span>
-                Bottle
+                Activity
             </h2>
             <a ng-click="closeActivity()" class="btn pull-left"><i class="fa fa-close"></i></a>
             <a href="" class="btn pull-right"><i class="fa fa-check"></i></a>
@@ -13,30 +13,18 @@
                 <label class="default">
                     <span class="icon-clock"></span> Time
                 </label>
-                <input type="text" placeholder="Today, 06:09PM" class="form-control">
+                <input type="datetime" value="2004-08-31" class="form-control">
             </div>
             <div class="kotak">
                 <label class="default">
-                    Formula
+                    Activity
                 </label>
-                <input type="text" placeholder="Burped" class="form-control">
-            </div>
-            <div class="kotak">
-                <label class="default">
-                    Amount
-                </label>
-                <input type="number" class="form-control" step="10" min="10" max="120" value="10"><span>ml</span>
-            </div>
-            <div class="kotak">
-                <label class="default">
-                    Other
-                </label>
-                <input type="text" placeholder="Burped" class="form-control">
+                <input type="text" placeholder="Outside Stroll" class="form-control">
             </div>
         </div>
         <div class="footer">
             <a class="pull-left"><span class="icon-book-open"></span>Add Note</a>
-            <a class="btn-mid bottle-foot"><span class="icon-check"></span> &nbsp;Save and Close</a>
+            <a class="btn-mid activity-foot"><span class="icon-check"></span> &nbsp;Save and Close</a>
             <a class="pull-right"><span class="icon-camera"></span>Add Photo</a>
         </div>
     </div>

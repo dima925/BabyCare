@@ -39,7 +39,9 @@
                 </label>
                 <input type="text" placeholder="15 Min" class="form-control">
             </div>
-            <div class="kotak timer-padding" ng-show="timer">
+            <div class="kotak no-border" ng-show="timer"></div>
+            <div class="kotak no-border" ng-show="timer"></div>
+            <div class="kotak" ng-show="timer">
                 <div class="rumah-radio">
                     <ion-radio ng-click="$root.timers.setTimer()" name="timer" class="xs-2 border-right tab-style">Start Left</ion-radio>
                     <ion-radio ng-click="$root.timers.setTimer()" name="timer" class="xs-2 border-right tab-style">Start Right</ion-radio>
@@ -48,7 +50,7 @@
         </div>
         <div class="footer">
             <a class="pull-left"><span class="icon-book-open"></span>Add Note</a>
-            <a class="btn-mid diaper-foot"><span class="icon-check"></span> &nbsp;Save and Close</a>
+            <a class="btn-mid nurse-foot"><span class="icon-check"></span> &nbsp;Save and Close</a>
             <a class="pull-right"><span class="icon-camera"></span>Add Photo</a>
         </div>
     </div>

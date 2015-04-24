@@ -98,7 +98,12 @@ angular.module('cleverbaby', [
         'prefix': 'languages/',
         'suffix': '.json'
     });
- }]);
+ }])
+.directive('banner', function() {
+    return function (scope, element, attrs) {
+        element.height($(window).height() - $('.circular').outerHeight());
+    }
+});;
 
 function escapeEmailAddress(email) {
     if (!email) return false;

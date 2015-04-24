@@ -1,6 +1,16 @@
 angular.module('cleverbaby.controllers')
 .controller('MenuCtrl', ['$scope','$ionicModal', function ($scope,$ionicModal) {
-	$ionicModal.fromTemplateUrl('templates/newNursed.html',function(nursed){
+	$scope.closeModal=function(){
+        $scope.modal.hide();
+    }
+    $ionicModal.fromTemplateUrl('templates/addMore.html',function(addmore){
+        $scope.addMoreModal = addmore;
+    });
+    $scope.addMore = function(){
+        $scope.modal.hide();
+        $scope.addMoreModal.show();
+    };
+    $ionicModal.fromTemplateUrl('templates/newNursed.html',function(nursed){
         $scope.nursedModal = nursed;
     });
 	$scope.newNursed = function(){

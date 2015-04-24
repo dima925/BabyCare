@@ -1,9 +1,9 @@
 <div class="modal transparent" ng-controller="activityCtrl" ng-click="closeModal()">
-    <div class="wrapper bottle">
+    <div class="wrapper diary">
         <div class="header">
             <h2 class="title">
-                <span class="icon-bottle"></span>
-                Bottle
+                <span class="icon-book-open"></span>
+                Diary
             </h2>
             <a ng-click="closeActivity()" class="btn pull-left"><i class="fa fa-close"></i></a>
             <a href="" class="btn pull-right"><i class="fa fa-check"></i></a>
@@ -13,30 +13,20 @@
                 <label class="default">
                     <span class="icon-clock"></span> Time
                 </label>
-                <input type="text" placeholder="Today, 06:09PM" class="form-control">
+                <input type="datetime-local" value="2004-08-31" class="form-control">
             </div>
             <div class="kotak">
+                <label class="small">Content</label>
+                <div class="clearfix"></div>
                 <label class="default">
-                    Formula
+                    Add Note
                 </label>
-                <input type="text" placeholder="Burped" class="form-control">
-            </div>
-            <div class="kotak">
-                <label class="default">
-                    Amount
-                </label>
-                <input type="number" class="form-control" step="10" min="10" max="120" value="10"><span>ml</span>
-            </div>
-            <div class="kotak">
-                <label class="default">
-                    Other
-                </label>
-                <input type="text" placeholder="Burped" class="form-control">
+                <textarea name="addnote"></textarea>
             </div>
         </div>
         <div class="footer">
             <a class="pull-left"><span class="icon-book-open"></span>Add Note</a>
-            <a class="btn-mid bottle-foot"><span class="icon-check"></span> &nbsp;Save and Close</a>
+            <a class="btn-mid diary-foot"><span class="icon-check"></span> &nbsp;Save and Close</a>
             <a class="pull-right"><span class="icon-camera"></span>Add Photo</a>
         </div>
     </div>
