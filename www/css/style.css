@@ -552,6 +552,7 @@ input{
 .btn-drvisit{background: #0099cc;}
 .btn-vaccinations{background: #cccc33;}
 .btn-growth{background: #6633cc;}
+.btn-more{background: #323232;}
 
 .diapers { background: #ff6b01; }
 .bottle { background: #66cc33; }
@@ -571,6 +572,7 @@ input{
 .temp { background: #ff0000; }
 .vaccination { background: #cc3366; }
 .sleep { background: #cc3366; }
+.solid{background: #ffcc00;}
 .diapers .item-radio input:checked ~ .item-content { color: #ff6b01}
 .bottle .item-radio input:checked ~ .item-content { color: #66cc33}
 .nurse .item-radio input:checked ~ .item-content { color: #3300cc}
@@ -642,6 +644,8 @@ input{
 .header { position: relative; text-align: center; width: 100%; border-bottom:2px dotted #fff; padding:10px 0; }
 .header h2 { font-size: 28px; display: inline-block; font-family: 'Varela Round', sans-serif !important; padding: 0; margin:5px 0 0;}
 
+span.satuan { float:right;font-size: 24px; margin-top: 14px}
+
 .footer { margin-top: 22px; text-align: center; font-size: 10px}
 .footer a[class*="pull-"]{ width: 27.33%; margin-top: 5px}
 .footer a[class*="pull-"] span[class*="icon-"] { font-size: 14px; width: 100%; float: left; }
@@ -682,3 +686,10 @@ input{
 .timeline .item .desc { width: 60%; color: #000; display: inline-block; }
 .timeline .item .desc h3 {margin: 0; padding: 10px 0 0 ; width: 100%;  }
 .timeline .item .desc p { float: left; width: 100%; }
+.bot{margin-bottom: 66px;}
+.modal-backdrop.active{background: rgba(0,0,0,.8);}
+
+/* ADD MORE */
+.more-section { text-align: center;}
+.more-section div span { width: 100%; text-align: center; float: left}
+.btn-more-items { display: inline-block; }

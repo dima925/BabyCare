@@ -1,126 +1,114 @@
 <div class="modal transparent" ng-controller="AddMoreCtrl" ng-click="closeModal()">
-    <div class="wrapper">
+    <div class="wrapper bot">
         <div class="kotak no-border autoheight">
-                <div class="rumah-radio no-border ">
+                <div class="rumah-radio no-border more-section ">
                     <div class="xs-4">
-                        <button class="btn btn-general btn-diaper" ng-click="newDiapers()">
-                            <i class="icon-breast-feeding"></i>
+                        <button class="btn btn-general btn-more-items diapers" ng-click="newDiapers()">
+                            <i class="icon-diaper"></i>
                         </button>
                         <span>Diapers</span>
                     </div>
                     <div class="xs-4">
-                        <button class="btn btn-general btn-bottle" ng-click="newBottle()">
-                            <i class="icon-breast-feeding"></i>
+                        <button class="btn btn-general btn-more-items btn-bottle" ng-click="newBottle()">
+                            <i class="icon-bottle"></i>
                         </button>
                         <span class="small">Bottle</span>
                     </div>
                     <div class="xs-4">
-                        <button class="btn btn-general btn-nursed" ng-click="newNursed()">
+                        <button class="btn btn-general btn-more-items btn-nursed" ng-click="newNursed()">
                             <i class="icon-breast-feeding"></i>
                         </button>
                         <span>Nurse</span>
                     </div>
                     <div class="xs-4">
-                        <button class="btn btn-general btn-solid" ng-click="newSolid()">
-                            <i class="icon-breast-feeding"></i>
+                        <button class="btn btn-general btn-more-items btn-solid" ng-click="newSolid()">
+                            <i class="icon-banana-3"></i>
                         </button>
                         <span>Solid</span>
                     </div>
                     <div class="xs-4">
-                        <button class="btn btn-general btn-pumping" ng-click="newPumping()">
-                            <i class="icon-breast-feeding"></i>
+                        <button class="btn btn-general btn-more-items btn-pumping" ng-click="newPumping()">
+                            <i class="icon-breast-pumper-line"></i>
                         </button>
                         <span>Pumping</span>
                     </div>
                     <div class="xs-4">
-                        <button class="btn btn-general btn-todo" ng-click="newDiary()">
-                            <i class="icon-breast-feeding"></i>
+                        <button class="btn btn-general btn-more-items btn-todo" ng-click="newDiary()">
+                            <i class="icon-book-open"></i>
                         </button>
                         <span>Todo</span>
                     </div>
                     <div class="xs-4">
-                        <button class="btn btn-general btn-activity" ng-click="newActivity()">
-                            <i class="icon-breast-feeding"></i>
+                        <button class="btn btn-general btn-more-items btn-activity" ng-click="newActivity()">
+                            <i class="icon-rattle-alias-1"></i>
                         </button>
                         <span>Activity</span>
                     </div>
                     <div class="xs-4">
-                        <button class="btn btn-general btn-mood" ng-click="newMood()">
-                            <i class="icon-breast-feeding"></i>
+                        <button class="btn btn-general btn-more-items btn-mood" ng-click="newMood()">
+                            <i class="icon-mood-ok"></i>
                         </button>
                         <span>Mood</span>
                     </div>
                     <div class="xs-4">
-                        <button class="btn btn-general btn-play" ng-click="newPlay()">
-                            <i class="icon-breast-feeding"></i>
+                        <button class="btn btn-general btn-more-items btn-play" ng-click="newPlay()">
+                            <i class="icon-rattle-alias-3"></i>
                         </button>
                         <span>Play</span>
                     </div>
                     <div class="xs-4">
-                        <button class="btn btn-general btn-bath" ng-click="newBaths()">
-                            <i class="icon-breast-feeding"></i>
+                        <button class="btn btn-general btn-more-items btn-bath" ng-click="newBaths()">
+                            <i class="icon-bath"></i>
                         </button>
                         <span>Baths</span>
                     </div>
                     <div class="xs-4">
-                        <button class="btn btn-general btn-medications" ng-click="newMedication()">
-                            <i class="icon-breast-feeding"></i>
+                        <button class="btn btn-general btn-more-items btn-medications" ng-click="newMedication()">
+                            <i class="icon-medication"></i>
                         </button>
                         <span>Medications</span>
                     </div>
                     <div class="xs-4">
-                        <button class="btn btn-general btn-temp" ng-click="newTemp()">
-                            <i class="icon-breast-feeding"></i>
+                        <button class="btn btn-general btn-more-items btn-temp" ng-click="newTemp()">
+                            <i class="icon-temperature"></i>
                         </button>
                         <span>Temp</span>
                     </div>
                     <div class="xs-4">
-                        <button class="btn btn-general btn-diary" ng-click="newDiary()">
-                            <i class="icon-breast-feeding"></i>
+                        <button class="btn btn-general btn-more-items btn-diary" ng-click="newDiary()">
+                            <i class="icon-diary"></i>
                         </button>
                         <span>Diary</span>
                     </div>
                     <div class="xs-4">
-                        <button class="btn btn-general btn-milestone" ng-click="newMilestone()">
-                            <i class="icon-breast-feeding"></i>
+                        <button class="btn btn-general btn-more-items btn-milestone" ng-click="newMilestone()">
+                            <i class="icon-milestones"></i>
                         </button>
                         <span>Milestone</span>
                     </div>
                     <div class="xs-4">
-                        <button class="btn btn-general btn-sickness" ng-click="newSickness()">
-                            <i class="icon-breast-feeding"></i>
+                        <button class="btn btn-general btn-more-items btn-sickness" ng-click="newSickness()">
+                            <i class="icon-mood-sad"></i>
                         </button>
                         <span>Sickness</span>
                     </div>
                     <div class="xs-4">
-                        <button class="btn btn-general btn-drvisit" ng-click="newDoctor()">
-                            <i class="icon-breast-feeding"></i>
+                        <button class="btn btn-general btn-more-items btn-drvisit" ng-click="newDoctor()">
+                            <i class="icon-doctor"></i>
                         </button>
                         <span>Dr. Visits</span>
                     </div>
                     <div class="xs-4">
-                        <button class="btn btn-general btn-vaccinations" ng-click="newVaccinations()">
-                            <i class="icon-breast-feeding"></i>
+                        <button class="btn btn-general btn-more-items btn-vaccinations" ng-click="newVaccinations()">
+                            <i class="icon-injection"></i>
                         </button>
                         <span>Vaccinations</span>
                     </div>
                     <div class="xs-4">
-                        <button class="btn btn-general btn-growth" ng-click="newGrowth()">
-                            <i class="icon-breast-feeding"></i>
+                        <button class="btn btn-general btn-more-items btn-growth" ng-click="newGrowth()">
+                            <i class="icon-baby-growth"></i>
                         </button>
                         <span>Growth</span>
-                    </div>
-                    <div class="xs-4">
-                        <button class="btn btn-general btn-bottle" ng-click="newNursed()">
-                            <i class="icon-breast-feeding"></i>
-                        </button>
-                        <span>Bottle</span>
-                    </div>
-                    <div class="xs-4">
-                        <button class="btn btn-general btn-bottle" ng-click="newNursed()">
-                            <i class="icon-breast-feeding"></i>
-                        </button>
-                        <span>Bottle</span>
                     </div>
                 </div>
 

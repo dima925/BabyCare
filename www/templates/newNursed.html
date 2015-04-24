@@ -19,25 +19,28 @@
                 <label class="default">
                     <span class="icon-clock"></span> Time
                 </label>
-                <input type="text" placeholder="Today, 06:09PM" class="form-control">
+                <input type="datetime-local" class="form-control">
             </div>
             <div class="kotak" ng-show="manual">
                 <label class="default">
                     Time Left
                 </label>
-                <input type="text" placeholder="15 Min" class="form-control">
+                <span class="satuan">min</span>
+                <input type="text" placeholder="15" class="form-control">
             </div>
             <div class="kotak" ng-show="manual">
                 <label class="default">
                     Time Right
                 </label>
-                <input type="text" class="form-control" placeholder="0 Min">
+                <span class="satuan">min</span>
+                <input type="text" class="form-control" placeholder="0">
             </div>
             <div class="kotak" ng-show="manual">
                 <label class="default">
                     Time Both
                 </label>
-                <input type="text" placeholder="15 Min" class="form-control">
+                <span class="satuan">min</span>
+                <input type="text" placeholder="15" class="form-control">
             </div>
             <div class="kotak no-border" ng-show="timer"></div>
             <div class="kotak no-border" ng-show="timer"></div>
