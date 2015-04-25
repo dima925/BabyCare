@@ -26,7 +26,7 @@ html, body { font-family: 'Varela Round', sans-serif !important; }
     padding-top: 50px;
 }
 .positive{
-  background-color: #0099cc !important;
+  background-color: #02b5ef !important;
   height: auto;
 }
 .balanced{
@@ -54,7 +54,7 @@ html, body { font-family: 'Varela Round', sans-serif !important; }
   text-align: right;
 }
 .dayli-checklist{
-  background-color: #006699;
+  background-color: rgba(0, 0, 0, 0.24);
 }
 h4, h5{
   color: #fff;
@@ -659,7 +659,7 @@ span.satuan { float:right;font-size: 24px; margin-top: 14px}
 
 
 
-.home-icon { color: #fff; font-size: 28px; width: 10%; display: inline-block; }
+.home-icon { color: #fff; font-size: 40px; width: 10%; display: inline-block; }
 .graph-circle-home {display: inline-block; }
 .thumbnail-baby {  display: inline-block; }
   .progress { margin:5px 0 0 7px;}
@@ -680,18 +680,19 @@ span.satuan { float:right;font-size: 24px; margin-top: 14px}
 .baby-summary span { width: 100%; display: inline-block;}
 
 /*TIMELINE */
-.pd{padding:0 10px;}
-.kartu{background: #fafafa;}
+.pd{padding:0 10px; font-size: 17px;}
+.kartu{background: #fafafa; margin: 5px;}
 .no-padding{padding:0 !important;}
+.no-padding-top{padding-top: 0!important; padding-bottom: 0 !important;}
 .black-color{color: #336666;}
 .timeline { width: 100%; position: relative; }
 .timeline .item { width: 100%; position: relative; padding:0 10px; margin:0; padding-bottom: 20px; display: inline-block;}
-.timeline .item .datetime-tl { width: 25%; color: #000; display: inline-block;}
+.timeline .item .datetime-tl { width: 15%; color: #000; display: inline-block;}
 .timeline .item .activity-icon { width: 15%; color: #000; display: inline-block; height: 100%; position: relative;}
                 .item-activity { width: 35px; height:35px; border-radius: 100px; display: block; color: #fff; display: -webkit-flex;  display: flex; }
                 .item-activity span { -webkit-align-self: center;    align-self: center;    width: 100%; margin:0 auto; text-align:center; font-size: 16px;}
                 .activity-icon:after { position: absolute; content: ""; border: 1px solid #000; height: 120%; left: 17px; z-index: -1;}
-.timeline .item .desc { width: 60%; color: #000; display: inline-block; }
+.timeline .item .desc { width: 70%; color: #000; display: inline-block; }
 .timeline .item .desc h3 {margin: 0; padding: 10px 0 0 ; width: 100%;  }
 .timeline .item .desc p { float: left; width: 100%; }
 .bot{margin-bottom: 66px;}
