@@ -2,8 +2,6 @@ angular.module('cleverbaby.controllers')
 .controller('activityCtrl', ['$rootScope', '$scope', '$window', 'ActivityService', 'NotificationService',
     function ($rootScope, $scope, $window, ActivityService, NotificationService) {
 
-        /*DIAPERS ACTIVITY*/
-
         $scope.diaper = {
             time : new Date(),
             diaper_type : "Empty",
@@ -12,21 +10,56 @@ angular.module('cleverbaby.controllers')
             texture : "Runny"
         };
 
-        $scope.addDiapers = function(){
-            ActivityService.addActivity({
-                babies: $rootScope.babyId,
-                time: parseInt($scope.diaper.time.getTime()/1000),
-                diaper_type: $scope.diaper.diaper_type,
-                amount_size: $scope.diaper.amount_size,
-                color: $scope.diaper.color,
-                texture: $scope.diaper.texture,
-                type: "change"
-            }).then(function(){
+        $scope.pump = {
+            time: new Date(),
+            side: "",
+            amount: null,
+            start_side: ""
+        };
+
+        $scope.play = {
+            time: new Date(),
+            notes: null
+        };
+
+        $scope.addActivity = function(type){
+            var data;
+            if(type == "change"){
+                data = {
+                    babies: $rootScope.babyId,
+                    time: parseInt($scope.diaper.time.getTime()/1000),
+                    diaper_type: $scope.diaper.diaper_type,
+                    amount_size: $scope.diaper.amount_size,
+                    color: $scope.diaper.color,
+                    texture: $scope.diaper.texture,
+                    type: "change"
+                };
+            }
+            if(type == "pump"){
+                data = {
+                    babies: $rootScope.babyId,
+                    time: parseInt($scope.pump.time.getTime()/1000),
+                    side: $scope.pump.side,
+                    amount: $scope.pump.amount,
+                    start_side: $scope.pump.start_side,
+                    type: "pump"
+                }
+            }
+            if(type == "play"){
+                data = {
+                    babies: $rootScope.babyId,
+                    time: parseInt($scope.play.time.getTime()/1000),
+                    notes: $scope.play.notes,
+                    type: "play"
+                }
+            }
+
+            ActivityService.addActivity(data).then(function(){
                 $scope.modal.hide();
+            }, function(err){
+                NotificationService.notify(err.data.message)
             });
         };
-        /*END DIAPER ACTIVITY*/
-
 
         /*BOTTLE ACTIVITY*/
         $scope.bottle = {
@@ -52,35 +85,6 @@ angular.module('cleverbaby.controllers')
                 activityService.save(babies,bottle);
             });
         };
-        /*END BOTTLE ACTIVITY*/
-
-        /*
-        ADD PUMPING
-         */
-         $scope.pump = {
-             time: new Date(),
-             side: "",
-             amount: null,
-             start_side: ""
-         };
-
-        $scope.addPump = function(){
-            ActivityService.addActivity({
-                babies: $rootScope.babyId,
-                time: parseInt($scope.pump.time.getTime()/1000),
-                side: $scope.pump.side,
-                amount: $scope.pump.amount,
-                start_side: $scope.pump.start_side,
-                type: "pump"
-            }).then(function(){
-                $scope.modal.hide();
-            }, function(err){
-                NotificationService.notify(err.data.message)
-            });
-        };
-        /*
-        END PUMPING
-         */
 
     $scope.manual = true;
     $scope.timer = false;
