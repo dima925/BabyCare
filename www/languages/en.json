@@ -1,7 +1,7 @@
 {
     "celeverbaby.auth.signin": "Sign In",
     "celeverbaby.auth.signup": "Sign Up",
-    
+
     "celeverbaby.auth.signin.title": "Sign In",
     "celeverbaby.auth.signin.email": "Email",
     "celeverbaby.auth.signin.password": "Password",
@@ -84,5 +84,38 @@
     "celeverbaby.app.activity.add.nursing": "Tiny",
     "celeverbaby.app.activity.add.start": "Start",
     "celeverbaby.app.activity.add.nap": "Nap",
-    "celeverbaby.app.activity.add.message": "Please wait... Creating new"
+    "celeverbaby.app.activity.add.message": "Please wait... Creating new",
+
+    "celeverbaby.app.activity.diaper.change.time": "Time",
+    "celeverbaby.app.activity.diaper.change.title": "Diaper",
+    "celeverbaby.app.activity.diaper.change.content": "Diaper",
+    "celeverbaby.app.activity.diaper.change.content.empty": "Empty",
+    "celeverbaby.app.activity.diaper.change.content.wet": "Wet",
+    "celeverbaby.app.activity.diaper.change.content.solid": "Solid",
+    "celeverbaby.app.activity.diaper.change.content.mixed": "Mixed",
+
+    "celeverbaby.app.activity.diaper.change.size": "Size",
+    "celeverbaby.app.activity.diaper.change.size.tiny": "Tiny",
+    "celeverbaby.app.activity.diaper.change.size.medium": "Medium",
+    "celeverbaby.app.activity.diaper.change.size.xxl": "XXL",
+
+    "celeverbaby.app.activity.diaper.change.color": "Color",
+    "celeverbaby.app.activity.diaper.change.color.yellow": "Yellow",
+    "celeverbaby.app.activity.diaper.change.color.lime": "Lime",
+    "celeverbaby.app.activity.diaper.change.color.evergreen": "Evergreen",
+    "celeverbaby.app.activity.diaper.change.color.red": "Red",
+    "celeverbaby.app.activity.diaper.change.color.brown": "Brown",
+    "celeverbaby.app.activity.diaper.change.color.black": "Black",
+    "celeverbaby.app.activity.diaper.change.color.gray": "Gray",
+    "celeverbaby.app.activity.diaper.change.color.other": "Other",
+    "celeverbaby.app.activity.diaper.change.color.pink": "Pink",
+    "celeverbaby.app.activity.diaper.change.color.custom": "Pick",
+    "celeverbaby.app.activity.diaper.change.consistency": "Pick",
+    "celeverbaby.app.activity.diaper.change.consistency.runny": "Runny",
+    "celeverbaby.app.activity.diaper.change.consistency.mushy": "Mushy",
+    "celeverbaby.app.activity.diaper.change.consistency.hard": "Hard",
+    "celeverbaby.app.activity.add_note": "Add Note",
+    "celeverbaby.app.activity.save_close": "Save and Close",
+    "celeverbaby.app.activity.photo": "Add Photo"
+
 }

@@ -1,23 +1,67 @@
 angular.module('cleverbaby.controllers')
-/*ACTIVITY CONTROLLER*/
-.controller('activityCtrl', ['$rootScope','$scope','$window','$firebase','activityService','babiesService','timerService',
-    function ($rootScope,$scope,$window,$firebase,activityService,babiesService,timerService) {
+.controller('activityCtrl', ['$rootScope', '$scope', '$window', 'ActivityService',
+    function ($rootScope, $scope, $window, ActivityService) {
+
+        /*DIAPERS ACTIVITY*/
+
+        $scope.diaper = {
+            time : new Date(),
+            diaper_type : "Empty",
+            amount_size : "Tiny",
+            color : "Yellow",
+            texture : "Runny"
+        };
+
+        $scope.addDiapers = function(){
+            console.log($scope.diaper);
+            ActivityService.addActivity({
+                babies: $rootScope.babyId,
+                time: parseInt($scope.diaper.time.getTime()/1000),
+                diaper_type: $scope.diaper.diaper_type,
+                amount_size: $scope.diaper.amount_size,
+                color: $scope.diaper.color,
+                texture: $scope.diaper.texture,
+                type: "change"
+            }).then(function(x){
+                $scope.modal.hide();
+            });
+        };
+        /*END DIAPER ACTIVITY*/
+
+
+        /*BOTTLE ACTIVITY*/
+        $scope.bottle = {
+            min:"1",
+            max:"12",
+            value:"1"
+        };
+
+        $scope.addBottle = function(time){
+            $scope.modal.hide();
+            var amount = this.bottle.value;
+            var bottle = {
+                type : "bottle",
+                amount : amount,
+                created : time == undefined ? Date.now() : time,
+                updated : time == undefined ? Date.now() : time,
+                created_by : escapeEmailAddress($rootScope.userEmail),
+                updated_by : escapeEmailAddress($rootScope.userEmail),
+                deleted : false
+            };
+            babiesService.getbabiesId().then(function(data){
+                var babies = data;
+                activityService.save(babies,bottle);
+            });
+        };
+        /*END BOTTLE ACTIVITY*/
+
     $scope.manual = true;
     $scope.timer = false;
-    
+
     $scope.switchtimer = function(manual,timer){
         $scope.manual = manual;
         $scope.timer = timer;
     };
-    $scope.diaper = {
-        wet : "",
-        solid : ""
-    };
-    $scope.bottle = {
-        min:"1",
-        max:"12",
-        value:"1"
-    }
     $scope.closeActivity = function(){
         $scope.modal.hide();
     }
@@ -40,60 +84,10 @@ angular.module('cleverbaby.controllers')
             var babies = data;
             activityService.save(babies,nurse);
         })
-        
+
     };
     /*END NURSE ACTIVITY*/
 
-    /*DIAPERS ACTIVITY*/
-        $scope.addDiapers = function(size,time){
-            $scope.modal.hide();
-            var wet = this.diaper.wet;
-            var solid = this.diaper.solid;
-            var cons = ""
-            if(wet == true && solid == true){
-                cons = "wet and solid";
-            }else if(wet==true && solid == false){
-                cons = "wet";
-            }else if(wet == false && solid == true){
-                cons = "solid";
-            }
-            var diapers = {
-                type : 'diaper',
-                consistency : cons,
-                size : size,
-                created: Date.now(),
-                updated: Date.now(),
-                time: time == undefined ? Date.now() : time,
-                created_by : escapeEmailAddress($rootScope.userEmail),
-                updated_by : escapeEmailAddress($rootScope.userEmail)
-            };
-            babiesService.getbabiesId().then(function(data){
-                var babies = data;
-                activityService.save(babies,diapers);
-            })
-            
-            
-        }
-    /*END DIAPER ACTIVITY*/
-    /*BOTTLE ACTIVITY*/
-    $scope.addBottle = function(time){
-        $scope.modal.hide();
-        var amount = this.bottle.value;
-        var bottle = {
-            type : "bottle",
-            amount : amount,
-            created : time == undefined ? Date.now() : time,
-            updated : time == undefined ? Date.now() : time,
-            created_by : escapeEmailAddress($rootScope.userEmail),
-            updated_by : escapeEmailAddress($rootScope.userEmail),
-            deleted : false
-        }
-        babiesService.getbabiesId().then(function(data){
-            var babies = data;
-            activityService.save(babies,bottle);
-        })
-    }
-    /*END BOTTLE ACTIVITY*/
     /*NAP ACTIVITY*/
         $scope.addNap = function(time){
             $scope.modal.hide();
@@ -113,5 +107,5 @@ angular.module('cleverbaby.controllers')
             })
         }
     /*END NAP ACTIVITY*/
-    
+
 }]);

@@ -17,7 +17,7 @@ angular.module('cleverbaby', [
     'chart.js'
 ])
 
-.run(function ($ionicPlatform, $rootScope, AuthService, $timeout, $ionicModal, $firebase, $location, $cordovaLocalNotification,timerService) {
+.run(function ($ionicPlatform, $rootScope, AuthService, $timeout, $ionicModal, $location, $cordovaLocalNotification,timerService, AuthService) {
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -48,22 +48,7 @@ angular.module('cleverbaby', [
             }
         };
 
-        /*get babies data
-        babies = new Firebase('https://cleverbaby.firebaseio.com/babies/');
-        
-        function addToIndex(id) {
-            $rootScope.babyId = babies.child(id).set(true);
-        }
-        console.log($rootScope.babyId);
-        /*babies.on('value',function(snap){
-            snap.forEach(function(item){
-                $rootScope.bab = item.key();
-                console.log($rootScope.bab);
-            })
-        });
-        /*end get babies data*/
-
-        $ionicModal.fromTemplateUrl('templates/newChoose.html', {
+        $ionicModal.fromTemplateUrl('templates/activities/choose.html', {
             scope: $rootScope,
             animation: 'slide-in-up'
         }).then(function (modal) {
@@ -77,7 +62,6 @@ angular.module('cleverbaby', [
             $rootScope.newmodal.hide();
         };
 
-        //Cleanup the modal when we're done with it!
         $rootScope.$on('$destroy', function () {
             $rootScope.newmodal.remove();
         });

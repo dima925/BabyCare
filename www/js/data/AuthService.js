@@ -24,7 +24,7 @@ angular.module('cleverbaby.data')
                     url: '/auth',
                     data: credentials
                 }).success(function(data){
-                    network.access_token = data.token;
+                    network.setAuth(data.token);
                     currentUser = data.user;
                     return data;
                 });
@@ -45,17 +45,14 @@ angular.module('cleverbaby.data')
                 });
             };
             authService.signUp = function(credentials){
-                return $q(function(resolve, reject){
-                    network.post({
+                return  network.post({
                         url: '/users',
                         data: credentials
                     }).success(function(data){
-                        network.access_token = data.token;
+                        network.setAuth(data.token);
                         currentUser = data.user;
-                        resolve(data);
-                    }).error(reject);
-                });
-
+                        return data;
+                    });
             };
 
             return {
@@ -82,22 +79,19 @@ angular.module('cleverbaby.data')
                     });
                 },
                 signInViaOAuth: function(type){
-                    var deferred = $q.defer();
                     if(type=='facebook'){
-                        $cordovaOauth.facebook(dataConfig.facebookId, ['public_profile']).then(function(result){
-                            authService
-                                .signInViaOAuth('facebook', result.access_token)
-                                .then(deferred.resolve, deferred.reject);
-                        }, deferred.reject);
+                        return $cordovaOauth
+                            .facebook(dataConfig.facebookId, ['public_profile'])
+                            .then(function(result){
+                             return authService.signInViaOAuth('facebook', result.access_token);
+                        });
                     } else if(type == 'google'){
-                        $cordovaOauth.google(dataConfig.googleId, ['profile']).then(function(result){
-                            authService
-                                .signInViaOAuth('google', result.access_token)
-                                .then(deferred.resolve, deferred.reject);
-                            deferred.resolve(result);
-                        }, deferred.reject);
+                        return $cordovaOauth
+                            .google(dataConfig.googleId, ['profile'])
+                            .then(function(result){
+                             return authService.signInViaOAuth('google', result.access_token);
+                        });
                     }
-                    return deferred.promise
                 },
                 signInAnonymously: function () {
                     return authService.signInAnonymously();

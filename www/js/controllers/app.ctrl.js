@@ -8,9 +8,11 @@ angular.module('cleverbaby.controllers')
     $ionicModal.fromTemplateUrl('templates/menu.html',function(menu){
         $scope.menuModal = menu;
     });
+
     $scope.menu = function(){
         $scope.menuModal.show();
     };
+
     $ionicModal.fromTemplateUrl('templates/login.html', {
         scope: $scope
     }).then(function (modal) {
@@ -42,9 +44,10 @@ angular.module('cleverbaby.controllers')
             $scope.closeLogin();
         }, 1000);
     };
-    $ionicModal.fromTemplateUrl('templates/newBaby.html',function(baby){
+    $ionicModal.fromTemplateUrl('templates/modals/baby.html',function(baby){
         $scope.babyModal = baby;
     });
+
     $scope.newbaby = function(){
         $scope.babyModal.show();
     };
