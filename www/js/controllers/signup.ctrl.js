@@ -1,57 +1,38 @@
 angular.module('cleverbaby.controllers')
 
-.controller('SignUpCtrl', [
-    '$scope', '$rootScope', '$firebaseAuth', '$location', 'NotificationService', 'AuthService',
-    function ($scope, $rootScope, $firebaseAuth, $location, NotificationService, AuthService) {
-        $scope.user = {
-            email: "",
-            password: ""
-        };
+    .controller('SignUpCtrl', [
+        '$scope', '$rootScope', '$firebaseAuth', '$location', 'NotificationService', 'AuthService',
+        function ($scope, $rootScope, $firebaseAuth, $location, NotificationService, AuthService) {
+            $scope.user = {
+                email: "",
+                password: ""
+            };
 
-        $scope.createWithOAuth = function(type){
-            AuthService.authWithOAuthPopup(type).then(function(authData){
-                $location.path('app/diary');
-            });
-        };
-        $scope.createUser = function () {
-            var email = this.user.email;
-            var password = this.user.password;
+            $scope.createWithOAuth = function(type){
+                AuthService.signInViaOAuth(type).then(function(data){
+                    $location.path('app/diary');
+                });
+            };
+            $scope.createUser = function () {
 
-            if (!email || !password) {
-                NotificationService.notify("Please enter valid credentials");
-                return false;
-            }
+                var email = this.user.email;
+                var password = this.user.password;
+                var name = this.user.name;
 
-            NotificationService.show('Please wait.. Registering');
-            return AuthService.createUser(email, password)
-                .then(function () {
-                    NotificationService.hide();
-
-                    return AuthService.authWithPassword({
-                        "email": email,
-                        "password": password
-                    }).then(function (authData) {
-                        console.log("Logged in as:", authData.uid);
-                        $rootScope.userEmail = authData.uid;
-                        $location.path('/app/diary');
-                    }).catch(function (error) {
-                        console.error("Authentication failed:", error);
-                    });
-
-                })
-
-            .catch(function (error) {
-                // createUser failed
-                console.error("Error: ", error);
-                NotificationService.hide();
-                if (error.code == 'INVALID_EMAIL') {
-                    NotificationService.notify('Invalid Email Address');
-                } else if (error.code == 'EMAIL_TAKEN') {
-                    NotificationService.notify('Email Address already taken');
-                } else {
-                    NotificationService.notify('Oops something went wrong. Please try again later');
+                if (!email || !password || !name) {
+                    NotificationService.notify("Please enter valid credentials");
+                    return false;
                 }
-            });
-        };
-    }
-  ]);
+
+                NotificationService.show('Please wait.. Registering');
+                return AuthService.createUser(name, email, password)
+                    .then(function (data) {
+                        NotificationService.hide();
+                        $location.path('/app/diary');
+                    }).catch(function(error){
+                        NotificationService.hide();
+                        NotificationService.notify(error.message);
+                    });
+            };
+        }
+    ]);
