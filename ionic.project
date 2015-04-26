@@ -1,4 +1,11 @@
 {
   "name": "CleverBaby",
-  "app_id": ""
+  "app_id": "b92b66b4",
+  "browsers": [
+    {
+      "platform": "android",
+      "browser": "crosswalk",
+      "version": "12.41.296.5"
+    }
+  ]
 }
