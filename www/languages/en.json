@@ -159,10 +159,18 @@
     "celeverbaby.app.activity.doctor.visit_type": "Type",
     "celeverbaby.app.activity.doctor.visit_type.placeholder": "Checkup",
 
-  "celeverbaby.app.activity.bath.title": "Bath",
-  "celeverbaby.app.activity.bath.time": "Time",
-  "celeverbaby.app.activity.bath.temp": "Temp",
-  "celeverbaby.app.activity.bath.notes": "Specifics",
-  "celeverbaby.app.activity.bath.notes.placeholder": "Bubble Bath"
+    "celeverbaby.app.activity.bath.title": "Bath",
+    "celeverbaby.app.activity.bath.time": "Time",
+    "celeverbaby.app.activity.bath.temp": "Temp",
+    "celeverbaby.app.activity.bath.notes": "Specifics",
+    "celeverbaby.app.activity.bath.notes.placeholder": "Bubble Bath",
+
+    "celeverbaby.app.activity.medication.title": "Medication",
+    "celeverbaby.app.activity.medication.time": "Time",
+    "celeverbaby.app.activity.medication.drug": "Name",
+    "celeverbaby.app.activity.medication.drug.placeholder": "Penadol",
+    "celeverbaby.app.activity.medication.amount_given": "Amount per time",
+    "celeverbaby.app.activity.medication.prescription_interval": "Amount per time",
+    "celeverbaby.app.activity.medication.prescription_interval.metric": "Hours"
 
 }
