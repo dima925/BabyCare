@@ -133,10 +133,11 @@
     "celeverbaby.app.activity.diary.title": "Diary",
     "celeverbaby.app.activity.diary.time": "Time",
     "celeverbaby.app.activity.diary.notes": "Notes",
-    "celeverbaby.app.activity.pump.start_side.placeholder": "Left",
-    "celeverbaby.app.activity.pump.start_side.placeholder": "Left",
-    "celeverbaby.app.activity.pump.start_side.placeholder": "Left",
-    "celeverbaby.app.activity.pump.start_side.placeholder": "Left",
+
+    "celeverbaby.app.activity.vaccination.title": "Vaccination",
+    "celeverbaby.app.activity.vaccination.time": "Time",
+    "celeverbaby.app.activity.vaccination.vaccination_type": "Name",
+    "celeverbaby.app.activity.vaccination.vaccination_type.placeholder": "Hep B",
     "celeverbaby.app.activity.pump.start_side.placeholder": "Left"
 
 }

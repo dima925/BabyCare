@@ -27,6 +27,11 @@ angular.module('cleverbaby.controllers')
             notes: null
         };
 
+        $scope.vaccination = {
+            time: new Date(),
+            vaccination_type: null
+        };
+
         $scope.addActivity = function(type){
             var data;
             if(type == "change"){
@@ -64,6 +69,14 @@ angular.module('cleverbaby.controllers')
                     time: parseInt($scope.diary.time.getTime()/1000),
                     notes: $scope.diary.notes,
                     type: "diary"
+                }
+            }
+            if(type == "vaccination"){
+                data = {
+                    babies: $rootScope.babyId,
+                    time: parseInt($scope.vaccination.time.getTime()/1000),
+                    vaccination_type: $scope.vaccination.vaccination_type,
+                    type: "vaccination"
                 }
             }
 
