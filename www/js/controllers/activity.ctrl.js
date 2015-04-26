@@ -54,6 +54,12 @@ angular.module('cleverbaby.controllers')
             doctor: null
         };
 
+        $scope.bath = {
+            time: new Date(),
+            notes: null,
+            temp: null
+        };
+
         $scope.addActivity = function(type){
             var data;
             if(type == "change"){
@@ -134,6 +140,15 @@ angular.module('cleverbaby.controllers')
                     doctor: $scope.doctor.doctor || "No Doctor",
                     visit_type: $scope.doctor.visit_type,
                     type: "doctor"
+                }
+            }
+            if(type == "bath"){
+                data = {
+                    babies: $rootScope.babyId,
+                    time: parseInt($scope.bath.time.getTime()/1000),
+                    temp: $scope.bath.temp,
+                    notes: $scope.bath.notes,
+                    type: "bath"
                 }
             }
 

@@ -3,7 +3,7 @@
         <div class="header">
             <h2 class="title">
                 <span class="icon-bath"></span>
-                Bath
+                <span data-translate>celeverbaby.app.activity.bath.title</span>
             </h2>
             <a ng-click="closeActivity()" class="btn pull-left"><i class="fa fa-close"></i></a>
             <a href="" class="btn pull-right"><i class="fa fa-check"></i></a>
@@ -11,28 +11,28 @@
         <div class="content">
             <div class="kotak">
                 <label class="default">
-                    <span class="icon-clock"></span> Time
+                    <span class="icon-clock"></span> <span data-translate>celeverbaby.app.activity.bath.time</span>
                 </label>
-                <input type="datetime-local" value="2004-08-31" class="form-control">
+                <input ng-model="bath.time" type="datetime-local" value="2004-08-31" class="form-control">
             </div>
             <div class="kotak">
                 <label class="default">
-                    Temp
+                    <span data-translate>celeverbaby.app.activity.bath.temp</span>
                 </label>
                 <span class="satuan">c</span>
-                <input type="text" placeholder="40" class="form-control">
+                <input ng-model="bath.temp" type="text" placeholder="40" class="form-control">
             </div>
             <div class="kotak">
                 <label class="default">
-                    Specifics
+                    <span data-translate>celeverbaby.app.activity.bath.notes</span>
                 </label>
-                <input type="text" placeholder="Bubble Bath" class="form-control">
+                <input ng-model="bath.notes" type="text" placeholder="{{ 'celeverbaby.app.activity.bath.notes.placeholder' | translate }}" class="form-control">
             </div>
         </div>
         <div class="footer">
-            <a class="pull-left"><span class="icon-book-open"></span>Add Note</a>
-            <a class="btn-mid bath-foot"><span class="icon-check"></span> &nbsp;Save and Close</a>
-            <a class="pull-right"><span class="icon-camera"></span>Add Photo</a>
+            <a class="pull-left"><span class="icon-book-open"></span><span data-translate>celeverbaby.app.activity.add_note</span></a>
+            <a class="btn-mid bath-foot" ng-click="addActivity('bath')"><span class="icon-check"></span> &nbsp;<span data-translate>celeverbaby.app.activity.save_close</span></a>
+            <a class="pull-right"><span class="icon-camera"></span><span data-translate>celeverbaby.app.activity.photo</span></a>
         </div>
     </div>
 </div>

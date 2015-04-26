@@ -157,6 +157,12 @@
     "celeverbaby.app.activity.doctor.title": "Title",
     "celeverbaby.app.activity.doctor.time": "Time",
     "celeverbaby.app.activity.doctor.visit_type": "Type",
-    "celeverbaby.app.activity.doctor.visit_type.placeholder": "Checkup"
+    "celeverbaby.app.activity.doctor.visit_type.placeholder": "Checkup",
+
+  "celeverbaby.app.activity.bath.title": "Bath",
+  "celeverbaby.app.activity.bath.time": "Time",
+  "celeverbaby.app.activity.bath.temp": "Temp",
+  "celeverbaby.app.activity.bath.notes": "Specifics",
+  "celeverbaby.app.activity.bath.notes.placeholder": "Bubble Bath"
 
 }
