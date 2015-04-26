@@ -3,7 +3,7 @@
         <div class="header">
             <h2 class="title">
                 <span class="icon-doctor"></span>
-                Dr. Visit
+                <span data-translate>celeverbaby.app.activity.doctor.title</span>
             </h2>
             <a ng-click="closeActivity()" class="btn pull-left"><i class="fa fa-close"></i></a>
             <a href="" class="btn pull-right"><i class="fa fa-check"></i></a>
@@ -11,21 +11,21 @@
         <div class="content">
             <div class="kotak">
                 <label class="default">
-                    <span class="icon-clock"></span> Time
+                    <span class="icon-clock"></span> <span data-translate>celeverbaby.app.activity.doctor.time</span>
                 </label>
-                <input type="datetime-local" value="2004-08-31" class="form-control">
+                <input ng-model="doctor.time" type="datetime-local" value="2004-08-31" class="form-control">
             </div>
             <div class="kotak">
-                <label class="default">
-                    Type
+                <label class="default" data-translate>
+                    celeverbaby.app.activity.doctor.visit_type
                 </label>
-                <input type="text" placeholder="Checkup" class="form-control">
+                <input ng-model="doctor.visit_type" type="text" placeholder="{{ 'celeverbaby.app.activity.doctor.visit_type.placeholder' | translate }}" class="form-control">
             </div>
         </div>
         <div class="footer">
-            <a class="pull-left"><span class="icon-book-open"></span>Add Note</a>
-            <a class="btn-mid doctor-foot"><span class="icon-check"></span> &nbsp;Save and Close</a>
-            <a class="pull-right"><span class="icon-camera"></span>Add Photo</a>
+            <a class="pull-left"><span class="icon-book-open"></span><span data-translate>celeverbaby.app.activity.add_note</span></a>
+            <a class="btn-mid doctor-foot" ng-click="addActivity('doctor')"><span class="icon-check"></span> &nbsp;<span data-translate>celeverbaby.app.activity.save_close</span></a>
+            <a class="pull-right"><span class="icon-camera"></span><span data-translate>celeverbaby.app.activity.photo</span></a>
         </div>
     </div>
 </div>

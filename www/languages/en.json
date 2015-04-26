@@ -147,6 +147,16 @@
     "celeverbaby.app.activity.milestone.title": "Milestone",
     "celeverbaby.app.activity.milestone.time": "Time",
     "celeverbaby.app.activity.milestone.milestone_type": "Milestone",
-    "celeverbaby.app.activity.milestone.milestone_type.placeholder": "First Smile"
+    "celeverbaby.app.activity.milestone.milestone_type.placeholder": "First Smile",
+
+    "celeverbaby.app.activity.sickness.title": "Sickness",
+    "celeverbaby.app.activity.sickness.time": "Time",
+    "celeverbaby.app.activity.sickness.symptom": "Symptom",
+    "celeverbaby.app.activity.sickness.symptom.placeholder": "Fever",
+
+    "celeverbaby.app.activity.doctor.title": "Title",
+    "celeverbaby.app.activity.doctor.time": "Time",
+    "celeverbaby.app.activity.doctor.visit_type": "Type",
+    "celeverbaby.app.activity.doctor.visit_type.placeholder": "Checkup"
 
 }
