@@ -142,6 +142,11 @@
     "celeverbaby.app.activity.growth.title": "Title",
     "celeverbaby.app.activity.growth.weight": "Weight",
     "celeverbaby.app.activity.growth.height": "Height",
-    "celeverbaby.app.activity.growth.head_size": "Head"
+    "celeverbaby.app.activity.growth.head_size": "Head",
+
+    "celeverbaby.app.activity.milestone.title": "Milestone",
+    "celeverbaby.app.activity.milestone.time": "Time",
+    "celeverbaby.app.activity.milestone.milestone_type": "Milestone",
+    "celeverbaby.app.activity.milestone.milestone_type.placeholder": "First Smile"
 
 }

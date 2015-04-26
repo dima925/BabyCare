@@ -2,6 +2,10 @@ angular.module('cleverbaby.controllers')
 .controller('activityCtrl', ['$rootScope', '$scope', '$window', 'ActivityService', 'NotificationService',
     function ($rootScope, $scope, $window, ActivityService, NotificationService) {
 
+        $scope.closeModal=function(){
+            $scope.modal.hide();
+        };
+
         $scope.diaper = {
             time : new Date(),
             diaper_type : "Empty",
@@ -37,6 +41,11 @@ angular.module('cleverbaby.controllers')
             weight: null,
             height: null,
             head: null
+        };
+
+        $scope.milestone = {
+            time: new Date(),
+            milestone_type: null
         };
 
         $scope.addActivity = function(type){
@@ -94,6 +103,14 @@ angular.module('cleverbaby.controllers')
                     weight: $scope.growth.weight,
                     head_size: $scope.growth.head_size,
                     type: "growth"
+                }
+            }
+            if(type == "milestone"){
+                data = {
+                    babies: $rootScope.babyId,
+                    time: parseInt($scope.milestone.time.getTime()),
+                    milestone_type: $scope.milestone.milestone_type,
+                    type: "milestone"
                 }
             }
 
