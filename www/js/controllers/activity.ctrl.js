@@ -22,6 +22,11 @@ angular.module('cleverbaby.controllers')
             notes: null
         };
 
+        $scope.diary = {
+            time: new Date(),
+            notes: null
+        };
+
         $scope.addActivity = function(type){
             var data;
             if(type == "change"){
@@ -53,11 +58,19 @@ angular.module('cleverbaby.controllers')
                     type: "play"
                 }
             }
+            if(type == "diary"){
+                data = {
+                    babies: $rootScope.babyId,
+                    time: parseInt($scope.diary.time.getTime()/1000),
+                    notes: $scope.diary.notes,
+                    type: "diary"
+                }
+            }
 
             ActivityService.addActivity(data).then(function(){
                 $scope.modal.hide();
             }, function(err){
-                NotificationService.notify(err.data.message)
+                NotificationService.notify(err.data.message || "Network error");
             });
         };
 
