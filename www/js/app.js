@@ -91,8 +91,10 @@ angular.module('cleverbaby', [
         });
     });
 })
-.config(["$translateProvider",
-    function($translateProvider){
+.config(["$translateProvider", "$ionicConfigProvider",
+    function($translateProvider, $ionicConfigProvider){
+    $ionicConfigProvider.tabs.style('standard');
+    $ionicConfigProvider.tabs.position('bottom');
     $translateProvider.preferredLanguage('en');
     $translateProvider.useStaticFilesLoader({
         'prefix': 'languages/',
