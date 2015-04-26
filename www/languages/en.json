@@ -138,6 +138,10 @@
     "celeverbaby.app.activity.vaccination.time": "Time",
     "celeverbaby.app.activity.vaccination.vaccination_type": "Name",
     "celeverbaby.app.activity.vaccination.vaccination_type.placeholder": "Hep B",
-    "celeverbaby.app.activity.pump.start_side.placeholder": "Left"
+    "celeverbaby.app.activity.growth.time": "Time",
+    "celeverbaby.app.activity.growth.title": "Title",
+    "celeverbaby.app.activity.growth.weight": "Weight",
+    "celeverbaby.app.activity.growth.height": "Height",
+    "celeverbaby.app.activity.growth.head_size": "Head"
 
 }
