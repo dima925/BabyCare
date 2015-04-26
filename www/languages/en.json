@@ -116,6 +116,13 @@
     "celeverbaby.app.activity.diaper.change.consistency.hard": "Hard",
     "celeverbaby.app.activity.add_note": "Add Note",
     "celeverbaby.app.activity.save_close": "Save and Close",
-    "celeverbaby.app.activity.photo": "Add Photo"
+    "celeverbaby.app.activity.photo": "Add Photo",
+    "celeverbaby.app.activity.pump.time": "Time",
+    "celeverbaby.app.activity.pump.title": "Pumping",
+    "celeverbaby.app.activity.pump.side": "Side",
+    "celeverbaby.app.activity.pump.side.placeholder": "Left",
+    "celeverbaby.app.activity.pump.amount": "Amount",
+    "celeverbaby.app.activity.pump.start_side": "Start Side",
+    "celeverbaby.app.activity.pump.start_side.placeholder": "Left"
 
 }

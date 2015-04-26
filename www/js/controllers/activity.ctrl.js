@@ -1,6 +1,6 @@
 angular.module('cleverbaby.controllers')
-.controller('activityCtrl', ['$rootScope', '$scope', '$window', 'ActivityService',
-    function ($rootScope, $scope, $window, ActivityService) {
+.controller('activityCtrl', ['$rootScope', '$scope', '$window', 'ActivityService', 'NotificationService',
+    function ($rootScope, $scope, $window, ActivityService, NotificationService) {
 
         /*DIAPERS ACTIVITY*/
 
@@ -13,7 +13,6 @@ angular.module('cleverbaby.controllers')
         };
 
         $scope.addDiapers = function(){
-            console.log($scope.diaper);
             ActivityService.addActivity({
                 babies: $rootScope.babyId,
                 time: parseInt($scope.diaper.time.getTime()/1000),
@@ -22,7 +21,7 @@ angular.module('cleverbaby.controllers')
                 color: $scope.diaper.color,
                 texture: $scope.diaper.texture,
                 type: "change"
-            }).then(function(x){
+            }).then(function(){
                 $scope.modal.hide();
             });
         };
@@ -31,7 +30,7 @@ angular.module('cleverbaby.controllers')
 
         /*BOTTLE ACTIVITY*/
         $scope.bottle = {
-            min:"1",
+            time:"1",
             max:"12",
             value:"1"
         };
@@ -54,6 +53,34 @@ angular.module('cleverbaby.controllers')
             });
         };
         /*END BOTTLE ACTIVITY*/
+
+        /*
+        ADD PUMPING
+         */
+         $scope.pump = {
+             time: new Date(),
+             side: "",
+             amount: null,
+             start_side: ""
+         };
+
+        $scope.addPump = function(){
+            ActivityService.addActivity({
+                babies: $rootScope.babyId,
+                time: parseInt($scope.pump.time.getTime()/1000),
+                side: $scope.pump.side,
+                amount: $scope.pump.amount,
+                start_side: $scope.pump.start_side,
+                type: "pump"
+            }).then(function(){
+                $scope.modal.hide();
+            }, function(err){
+                NotificationService.notify(err.data.message)
+            });
+        };
+        /*
+        END PUMPING
+         */
 
     $scope.manual = true;
     $scope.timer = false;

@@ -20,6 +20,13 @@ angular.module('cleverbaby.controllers')
             $scope.bottleModal.show();
         };
 
+        $ionicModal.fromTemplateUrl('templates/activities/pumping.html',function(pump){
+            $scope.pumpModal = pump;
+        });
+        $scope.newPumping = function(){
+            $scope.modal.hide();
+            $scope.pumpModal.show();
+        };
     $ionicModal.fromTemplateUrl('templates/activities/activity.html',function(activity){
         $scope.addActivityModal = activity;
     });
@@ -97,13 +104,6 @@ angular.module('cleverbaby.controllers')
     $scope.newPlay = function(){
         $scope.modal.hide();
         $scope.playModal.show();
-    };
-    $ionicModal.fromTemplateUrl('templates/activities/pumping.html',function(pump){
-        $scope.pumpModal = pump;
-    });
-    $scope.newPumping = function(){
-        $scope.modal.hide();
-        $scope.pumpModal.show();
     };
     $ionicModal.fromTemplateUrl('templates/activities/sickness.html',function(sick){
         $scope.sickModal = sick;

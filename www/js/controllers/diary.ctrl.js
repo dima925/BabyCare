@@ -6,9 +6,7 @@ angular.module('cleverbaby.controllers')
     $rootScope.babyId = 1;
     AuthService.signInViaEmail('narekx6@gmail.com', 'asdasd').then(function(){
         BabyService.getAllBabies().then(function(babies){
-            ActivityService.getAllActivitiesByBabyId(babies[0].id).then(function(x){
-                console.log(x[0]);
-            });
+            console.log(babies);
         });
     });
 
