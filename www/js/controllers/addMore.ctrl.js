@@ -149,6 +149,7 @@ angular.module('cleverbaby.controllers')
         $scope.modal.hide();
         $scope.vacmodal.show();
     };
+        /*
     $ionicModal.fromTemplateUrl('templates/modals/baby.html',function(baby){
         $scope.babyModal = baby;
     });
@@ -156,4 +157,5 @@ angular.module('cleverbaby.controllers')
         $scope.modal.hide();
         $scope.babyModal.show();
     };
+    */
 }]);

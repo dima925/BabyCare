@@ -3,7 +3,7 @@ angular.module('cleverbaby.controllers')
     function ($scope, $ionicModal, $timeout, AuthService, $location) {
     // Form data for the login modal
     $scope.loginData = {};
-    
+
     // Create the login modal that we will use later
     $ionicModal.fromTemplateUrl('templates/menu.html',function(menu){
         $scope.menuModal = menu;
@@ -44,11 +44,12 @@ angular.module('cleverbaby.controllers')
             $scope.closeLogin();
         }, 1000);
     };
+        /*
     $ionicModal.fromTemplateUrl('templates/modals/baby.html',function(baby){
         $scope.babyModal = baby;
     });
 
     $scope.newbaby = function(){
         $scope.babyModal.show();
-    };
+    }; */
 }]);

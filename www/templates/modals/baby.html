@@ -2,7 +2,7 @@
     <div class="wrapper add-edit-baby">
         <div class="header no-border">
             <a class="btn" ng-click="cancel()"><i class="fa fa-angle-left"></i></a>
-            <h2>Oli's Baby Log</h2>
+            <h2>{{ modal.baby.name }}</h2>
         </div>
         <div class="cover-img" style="background-image:url(/img/baby.png)">
             <div class="edit circular"><img src="/img/baby.png"></div>
@@ -10,27 +10,33 @@
         </div>
         <div class="content">
             <div class="kotak">
-                <input type="text" value="Oli Bensin" class="form-control-text">
+                <input ng-model="baby.name" type="text" value="Oli Bensin" class="form-control-text">
             </div>
             <div class="kotak">
                 <label class="default">
                     Birthdate
                 </label>
-                <input type="datetime" value="2004-08-31" class="form-control">
+                <input ng-model="baby.born" type="datetime-local" value="2004-08-31" class="form-control">
             </div>
             <div class="kotak">
                 <label class="default">
                     Gender
                 </label>
-                <input type="text" placeholder="Boy" class="form-control">
+                <input ng-model="baby.gender" type="text" placeholder="" class="form-control">
             </div>
         </div>
         <div class="to-bottom">
-            <div class="kotak no-border">
+            <div class="kotak no-border" ng-if="edit">
                 <button class="btn">Share Baby Data with others</button>
             </div>
-            <div class="kotak">
-                <button class="btn">Delete</button>
+            <div class="kotak" ng-if="modal.edit">
+                <button class="btn" ng-click="delete()">Delete</button>
+            </div>
+            <div class="kotak" ng-click="update()" ng-if="modal.edit">
+                <button class="btn">Done</button>
+            </div>
+            <div class="kotak" ng-click="save()" ng-if="!modal.edit">
+                <button class="btn">Add</button>
             </div>
         </div>
     </div>

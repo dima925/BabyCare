@@ -27,7 +27,7 @@ angular.module('cleverbaby.controllers')
                     NotificationService.hide();
                     $location.path ('app/diary');
                 }, function(error){
-                    NotificationService.show(JSON.stringify(error));
+                    NotificationService.notify(error.data.message);
                 });
             };
         }

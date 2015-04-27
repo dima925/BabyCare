@@ -1,17 +1,8 @@
 angular.module('cleverbaby.controllers')
-.controller('DiaryCtrl', ['$scope', '$rootScope', '$ionicModal', 'ActivityService', 'NotificationService', '$translate', 'BabyService', 'AuthService',
-    function ($scope, $rootScope, $ionicModal, ActivityService, NotificationService, $translate, BabyService, AuthService) {
-
-
-    $rootScope.babyId = 11;
-    AuthService.signInViaEmail('narekx6@gmail.com', 'asdasd').then(function(){
-        BabyService.getAllBabies().then(function(babies){
-            console.log(babies);
-        });
-    });
+.controller('DiaryCtrl', ['$scope', '$rootScope', '$ionicModal',
+    function ($scope, $rootScope, $ionicModal) {
 
     $scope.noData = true;
-
     $ionicModal.fromTemplateUrl('templates/activities/item.html', function (modal) {
         $scope.newTemplate = modal;
     });

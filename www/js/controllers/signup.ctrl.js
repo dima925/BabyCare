@@ -1,8 +1,8 @@
 angular.module('cleverbaby.controllers')
 
     .controller('SignUpCtrl', [
-        '$scope', '$rootScope', '$firebaseAuth', '$location', 'NotificationService', 'AuthService',
-        function ($scope, $rootScope, $firebaseAuth, $location, NotificationService, AuthService) {
+        '$scope', '$rootScope', '$location', 'NotificationService', 'AuthService',
+        function ($scope, $rootScope, $location, NotificationService, AuthService) {
             $scope.user = {
                 email: "",
                 password: ""

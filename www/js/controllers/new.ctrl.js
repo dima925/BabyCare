@@ -1,6 +1,6 @@
 angular.module('cleverbaby.controllers')
-.controller('newCtrl', ['$rootScope', '$scope', '$window', '$firebase', 'NotificationService', '$translate',
-    function ($rootScope, $scope, $window, $firebase, NotificationService, $translate) {
+.controller('newCtrl', ['$rootScope', '$scope', '$window', 'NotificationService', '$translate',
+    function ($rootScope, $scope, $window, NotificationService, $translate) {
     $scope.data = {
         item: ""
     };

@@ -7,15 +7,10 @@
             <a ng-click="cancel()" class="btn"><i class="fa fa-close"></i></a>
         </div>
         <div class="kotak">
-            <div class="item">
-                <div class="thumb-baby circular"><img src="/img/baby.png"></div>
-                <h2>Baby 1</h2>
-                <a class="edit" ng-click="newBaby()"><span class="icon-note"></span> Edit</a>
-            </div>
-            <div class="item">
-                <div class="thumb-baby circular"><img src="/img/baby.png"></div>
-                <h2>Baby 2</h2>
-                <a class="edit" ng-click="newBaby()"><span class="icon-note"></span> Edit</a>
+            <div class="item" ng-repeat="baby in babies">
+                <div class="thumb-baby circular" ng-click="select(baby)"><img src="/img/baby.png"></div>
+                <h2>{{ baby.name }}</h2>
+                <a class="edit" ng-click="newBaby(baby)"><span class="icon-note"></span> Edit</a>
             </div>
             <div class="item">
                 <a class="btn-add circular" ng-click="newBaby()"><i class="fa fa-plus"></i> </a>

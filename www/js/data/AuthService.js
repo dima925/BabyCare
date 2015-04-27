@@ -2,18 +2,21 @@
  * Created by narek on 3/25/15.
  */
 angular.module('cleverbaby.data')
-    .factory('AuthService', ['$q', '$cordovaOauth', 'dataConfig', 'network',
-        function ($q, $cordovaOauth, dataConfig, network){
+    .factory('AuthService', ['$q', '$cordovaOauth', 'dataConfig', 'network', '$localStorage', '$rootScope',
+        function ($q, $cordovaOauth, dataConfig, network, $localStorage, $rootScope){
 
             var currentUser = null;
             var authService = {};
 
-            authService.getUser = function () {
-                var deferred = $q.defer();
-                network.get('/auth').then(deferred.resolve, function(error){
-                });
+            authService.setup = function(){
+                network.setAuth($localStorage.token);
+                return network.get({
+                    url: '/auth'
+                }).success(function(data){
+                    setAuth(data);
+                    return data;
+                })
             };
-
             authService.signOut = function(){
                 currentUser = null;
                 return network.delete('/auth');
@@ -24,8 +27,7 @@ angular.module('cleverbaby.data')
                     url: '/auth',
                     data: credentials
                 }).success(function(data){
-                    network.setAuth(data.token);
-                    currentUser = data.user;
+                    setAuth(data);
                     return data;
                 });
             };
@@ -49,11 +51,18 @@ angular.module('cleverbaby.data')
                         url: '/users',
                         data: credentials
                     }).success(function(data){
-                        network.setAuth(data.token);
-                        currentUser = data.user;
+                        setAuth(data);
                         return data;
                     });
             };
+
+            function setAuth(data){
+                console.log('broadcasting');
+                $rootScope.$broadcast('auth', data);
+                $localStorage.token = data.token;
+                network.setAuth(data.token);
+                currentUser = data.user;
+            }
 
             return {
                 signOut: function(){
@@ -67,9 +76,6 @@ angular.module('cleverbaby.data')
                 },
                 isLoggedIn: function(){
                     return currentUser != null;
-                },
-                getUser: function(){
-                    return authService.getUser();
                 },
                 createUser: function(name, email, password){
                     return authService.signUp({
@@ -95,6 +101,9 @@ angular.module('cleverbaby.data')
                 },
                 signInAnonymously: function () {
                     return authService.signInAnonymously();
+                },
+                setup: function(){
+                    return authService.setup();
                 }
             };
         }

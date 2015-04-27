@@ -5,19 +5,19 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('cleverbaby', [
-    'ionic', 
+    'ionic',
     'pascalprecht.translate',
-    'firebase', 
     'cleverbaby.controllers',
-    'angular-svg-round-progress', 
+    'angular-svg-round-progress',
     'cleverbaby.data',
     'cleverbaby.services',
     'ngCordova',
     'timer',
-    'chart.js'
+    'chart.js',
+    'ngStorage'
 ])
 
-.run(function ($ionicPlatform, $rootScope, AuthService, $timeout, $ionicModal, $location, $cordovaLocalNotification,timerService, AuthService) {
+.run(function ($ionicPlatform, $rootScope, AuthService, $timeout, $ionicModal, $location, $cordovaLocalNotification,timerService) {
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -28,25 +28,14 @@ angular.module('cleverbaby', [
             // org.apache.cordova.statusbar required
             StatusBar.styleDefault();
         }
+        AuthService.setup().then(function(){
+        });
 
         $rootScope.userEmail = null;
         $rootScope.logout = function () {
             AuthService.logout();
-            $rootScope.checkSession();
         };
         $rootScope.timers = timerService;
-        $rootScope.checkSession = function () {
-            if (AuthService.isLoggedIn()) {
-                $rootScope.userEmail = AuthService.userEmail();
-                //OfflineFirebase.restore();
-                var bucketListRef = $firebase(new Firebase('https://cleverbaby.firebaseio.com/' + escapeEmailAddress($rootScope.userEmail)));
-                $rootScope.fbData = bucketListRef.$asArray();
-                $location.path('app/diary');
-            } else{
-                $location.path ('app/signin');
-                $rootScope.userEmail = null;
-            }
-        };
 
         $ionicModal.fromTemplateUrl('templates/activities/choose.html', {
             scope: $rootScope,
@@ -84,7 +73,25 @@ angular.module('cleverbaby', [
         'prefix': 'languages/',
         'suffix': '.json'
     });
- }]);
+}]).config(["$httpProvider", function ($httpProvider) {
+    $httpProvider.defaults.transformResponse.push(function(responseData){
+        convertDates(responseData);
+        return responseData;
+    });
+}]);
+var convertDates = function(input) {
+    for(var key in input) {
+        if (!input.hasOwnProperty(key)) continue;
+
+        if (typeof input[key] === "object") {
+            convertDates(input[key]);
+        } else {
+            if (typeof input[key] === "string" &&  /^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$/.test(input[key])) {
+                input[key] = new Date(input[key]);
+            }
+        }
+    }
+};
 
 function escapeEmailAddress(email) {
     if (!email) return false;

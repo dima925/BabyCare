@@ -1,4 +1,4 @@
-angular.module('cleverbaby.services')
+angular.module('cleverbaby.services', [])
 .service('timerService', ['$rootScope',
 	function ($rootScope) {
 	    function start(){
@@ -10,7 +10,7 @@ angular.module('cleverbaby.services')
        		$rootScope.timerRunning = false;
 	    }
 	    function alarm(){
-	    	
+
 	    }
 	    function getTime(){
 	    	var time = "";
@@ -20,7 +20,7 @@ angular.module('cleverbaby.services')
             return time;
 	    }
 	    return{
-	    	
+
 	    	setTimer  : start,
 	    	stopTimer : stopTimer,
 	    	getTime : getTime

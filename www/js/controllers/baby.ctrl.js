@@ -1,19 +1,46 @@
 angular.module('cleverbaby.controllers')
-.controller('BabyCtrl', ['$scope','$ionicModal', function ($scope,$ionicModal) {
-	
+.controller('BabyCtrl', ['$scope','$ionicModal', '$rootScope', 'NotificationService', function ($scope, $ionicModal, $rootScope, NotificationService) {
 
-	$scope.cancel = function(){
-		$scope.modal.hide();
-	}
-	$scope.saveBaby = function(){
-		var birtday = this.addbaby.birtday;
-		var name = this.addbaby.name;
-		var gender = this.addbaby.gender;
-		var baby = {
-			birtday : birtday,
-			name : name,
-			gender: gender
-		};
-		console.log(baby);
-	}
-}])
+        $scope.cancel = function(){
+            $scope.modal.hide();
+        };
+
+        $scope.$watch('modal.baby', function(newValue){
+            newValue = newValue || {};
+            $scope.baby = {
+                name: newValue.name || "",
+                born: newValue.born || new Date(),
+                gender: newValue.gender || "m"
+            };
+        });
+
+        $scope.save = function(){
+            $scope.modal.baby.name = $scope.baby.name;
+            $scope.modal.baby.born = $scope.baby.born;
+            $scope.modal.baby.gender = $scope.baby.gender;
+            $scope.modal.baby.$save().then(function(baby){
+                $rootScope.$broadcast('babyAdd', baby);
+                $scope.modal.hide();
+            }, function(err){
+                NotificationService.notify(err.data.message)
+            });
+        };
+
+        $scope.update = function(){
+            $scope.modal.baby.name = $scope.baby.name;
+            $scope.modal.baby.born = $scope.baby.born;
+            $scope.modal.baby.gender = $scope.baby.gender;
+            $scope.modal.baby.$update().then(function(){
+                $scope.modal.hide();
+            }, function(err){
+                NotificationService.notify(err.data.message)
+            });
+        };
+
+        $scope.delete = function(){
+            $scope.modal.baby.$delete().then(function(){
+                $rootScope.$broadcast('babyRemoved', $scope.modal.baby);
+                $scope.modal.hide();
+            });
+        };
+}]);
