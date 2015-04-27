@@ -5,12 +5,12 @@
             <ion-nav-buttons side="left">
                 <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
             </ion-nav-buttons>
-            <ion-nav-title data-translate>celeverbaby.app.diary.title</ion-nav-title>
+            <ion-nav-title ng-click='dropdown()' data-translate>celeverbaby.app.diary.title</ion-nav-title>
             <ion-nav-buttons side="right">
                 <a class="button button-icon icon ion-calendar activated" ng-click="newTask()"><span class="ion-ios-calendar-outline"></span></a>
             </ion-nav-buttons>
         </ion-nav-bar>
-        <ion-slide-box on-slide-changed="slideChanged(index)">
+        <ion-slide-box>
             <ion-slide>
                 <div class="box positive">
                 <div class="kotak di-block-center di-home">
@@ -33,7 +33,7 @@
                                 </div>
                         </div>
                     </div>
-                    <div class="thumbnail-baby" ng-click="newBaby()"><div class="circular"><img src="/img/baby.png"></div></div>
+                    <div class="thumbnail-baby"><div class="circular"><img src="/img/baby.png"></div></div>
                     <div class="graph-circle-home">
                         <div class="progress-wrapper">
                             <div class="progress">14Mins<br>ETA</div>

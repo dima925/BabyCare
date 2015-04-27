@@ -1,0 +1,27 @@
+<div class="modal transparent-super" ng-controller="DropdownCtrl" ng-click="closeModal()">
+    <div class="wrapper-dropdown">
+        <div class="header">
+            <h2 class="title">
+                Select Baby
+            </h2>
+            <a ng-click="closeActivity()" class="btn"><i class="fa fa-close"></i></a>
+        </div>
+        <div class="kotak">
+            <div class="item">
+                <div class="thumb-baby circular"><img src="/img/baby.png"></div>
+                <h2>Baby 1</h2>
+                <a class="edit" ng-click="newBaby()"><span class="icon-note"></span> Edit</a>
+            </div>
+            <div class="item">
+                <div class="thumb-baby circular"><img src="/img/baby.png"></div>
+                <h2>Baby 2</h2>
+                <a class="edit" ng-click="newBaby()"><span class="icon-note"></span> Edit</a>
+            </div>
+            <div class="item">
+                <a class="btn-add circular" ng-click="newBaby()"><i class="fa fa-plus"></i> </a>
+                <h2>Add Another Baby</h2>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
