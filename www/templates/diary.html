@@ -33,7 +33,7 @@
                                 </div>
                         </div>
                     </div>
-                    <div class="thumbnail-baby"><div class="circular"><img src="/img/baby.png"></div></div>
+                    <div class="thumbnail-baby" ng-click="newBaby()"><div class="circular"><img src="/img/baby.png"></div></div>
                     <div class="graph-circle-home">
                         <div class="progress-wrapper">
                             <div class="progress">14Mins<br>ETA</div>
@@ -59,26 +59,30 @@
                     <span class="text-center">5.4 Kg 59 Cm</span>
                 </div>
                        
-                    <div class="row dayli-checklist">
-                        <div class="col col-20 center">
+                <div class="dayli-checklist">
+                    <div class="kotak autoheight">
+                        <h3 class="text-left">DAILY CHECKLIST</h3>
+                        <div class="xs-5">
                             <h5>5</h5>
                             <h5 data-translate>celeverbaby.app.diary.bar.nurses</h5>
                         </div>
-                        <div class="col col-20 center">
+                        <div class="xs-5">
                             <h5>3</h5>
                             <h5 data-translate>celeverbaby.app.diary.bar.change</h5>
                         </div>
-                        <div class="col col-20 center">
-                            <h5><input type="checkbox"></h5>
+                        <div class="xs-5 center">
+                            <input type="checkbox" id="bath">
+                            <label class="checkbox" for="bath"></label>
                             <h5 data-translate>celeverbaby.app.diary.bar.bath</h5>
                         </div>
-                        <div class="col col-20 center">
-                            <h5><input type="checkbox"></h5>
+                        <div class="xs-5 center">
+                            <input type="checkbox" id="play">
+                            <label class="checkbox" for="play"></label>
                             <h5 data-translate>celeverbaby.app.diary.bar.play</h5>
                         </div>
-                        <div class="col col-20">
-                        </div>
                     </div>
+                    <div class="clearfix"></div>
+                </div>
                 </div>
             </ion-slide>
             <ion-slide>
@@ -107,7 +111,7 @@
         <div class="kotak timeline">
             <h3 class="pd">Today</h3>
             <div class="item">
-                <div class="datetime-tl">2h 38m</div>
+                <div class="datetime-tl"><p>2h 38m ago</p></div>
                 <div class="activity-icon">
                     <div class="item-activity diapers">
                         <span class="icon-diaper"></span>
@@ -121,7 +125,7 @@
         </div>
         <div class="kotak timeline">
             <div class="item">
-                <div class="datetime-tl">4h 12m</div>
+                <div class="datetime-tl"><p>4h 12m ago</p></div>
                 <div class="activity-icon">
                     <div class="item-activity nurse">
                         <span class="icon-breast-feeding"></span>
@@ -129,13 +133,13 @@
                 </div>
                 <div class="desc">
                     <h3 class="nurse-foot">Nursed</h3>
-                    <p>Left 15min Right 0min</p>
+                    <p>Left <span>15min</span> Right <span>0min</span></p>
                 </div>
             </div>
         </div> 
         <div class="kotak timeline">
             <div class="item">
-                <div class="datetime-tl">4h 31m</div>
+                <div class="datetime-tl"><p>4h 31m ago</p></div>
                 <div class="activity-icon">
                     <div class="item-activity activity">
                         <span class="icon-rattle-alias-1"></span>
@@ -149,7 +153,7 @@
         </div>
         <div class="kotak timeline">
             <div class="item">
-                <div class="datetime-tl">4h 50m</div>
+                <div class="datetime-tl"><p>4h 50m ago</p></div>
                 <div class="activity-icon">
                     <div class="item-activity sleep">
                         <span class="icon-sleepcc"></span>

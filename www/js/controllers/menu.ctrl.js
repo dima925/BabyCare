@@ -44,12 +44,4 @@ angular.module('cleverbaby.controllers')
     	$scope.modal.hide();
         $scope.napModal.show();
     };
-
-    $ionicModal.fromTemplateUrl('templates/modals/baby.html',function(baby){
-        $scope.babyModal = baby;
-    });
-    $scope.newBaby = function(){
-    	$scope.modal.hide();
-        $scope.babyModal.show();
-    };
 }]);

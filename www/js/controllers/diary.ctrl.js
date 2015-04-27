@@ -25,4 +25,11 @@ angular.module('cleverbaby.controllers')
     $scope.newTask = function () {
         $scope.newTemplate.show();
     };
+     $ionicModal.fromTemplateUrl('templates/modals/baby.html',function(baby){
+        $scope.babyModal = baby;
+    });
+    $scope.newBaby = function(){
+        $scope.modal.hide();
+        $scope.babyModal.show();
+    };
 }]);

@@ -1,55 +1,42 @@
-<div class="modal transparent" ng-controller="activityCtrl" ng-click="closeModal()">
+<div class="modal transparent" ng-controller="BabyCtrl" ng-click="closeModal()">
     <div class="wrapper nurse">
         <div class="header">
             <h2 class="title">
-                <span class="icon-breast-feeding"></span>
-                Nurse
+                Oli's Record
             </h2>
             <a ng-click="closeActivity()" class="btn pull-left"><i class="fa fa-close"></i></a>
             <a href="" class="btn pull-right"><i class="fa fa-check"></i></a>
         </div>
         <div class="content">
-            <div class="kotak no-border padding-top">
-                <div class="rumah-radio">
-                    <ion-radio ng-click="switchtimer(false,true)" name="content" class="xs-2 border-right tab-style">Timer Mode</ion-radio>
-                    <ion-radio ng-click="switchtimer(true,false)" name="content" class="xs-2 border-right tab-style">Manual Mode</ion-radio>
-                </div>
+            <div class="kotak no-border">
+                //disini foto
             </div>
             <div class="kotak">
                 <label class="default">
-                    <span class="icon-clock"></span> Time
+                    Oli
                 </label>
-                <input type="text" placeholder="Today, 06:09PM" class="form-control">
             </div>
-            <div class="kotak" ng-show="manual">
+            <div class="kotak">
                 <label class="default">
-                    Time Left
+                    <span class="icon-clock"></span> Birthday
                 </label>
-                <input type="text" placeholder="15 Min" class="form-control">
+                <input type="datetime-local" placeholder="Today, 06:09PM" class="form-control">
             </div>
-            <div class="kotak" ng-show="manual">
+            <div class="kotak">
                 <label class="default">
-                    Time Right
+                    Gender
                 </label>
-                <input type="text" class="form-control" placeholder="0 Min">
+                <select>
+                    <option>Boy</option>
+                    <option>Girl</option>
+                </select>
             </div>
-            <div class="kotak" ng-show="manual">
-                <label class="default">
-                    Time Both
-                </label>
-                <input type="text" placeholder="15 Min" class="form-control">
+            <div class="kotak">
+                <button class="btn btn-clear">Share with others</button>
             </div>
-            <div class="kotak timer-padding" ng-show="timer">
-                <div class="rumah-radio">
-                    <ion-radio ng-click="$root.timers.setTimer()" name="timer" class="xs-2 border-right tab-style">Start Left</ion-radio>
-                    <ion-radio ng-click="$root.timers.setTimer()" name="timer" class="xs-2 border-right tab-style">Start Right</ion-radio>
-                </div>
+            <div class="kotak timer-padding">
+                <button class="btn btn-clear">Save</button>
             </div>
-        </div>
-        <div class="footer">
-            <a class="pull-left"><span class="icon-book-open"></span>Add Note</a>
-            <a class="btn-mid diaper-foot"><span class="icon-check"></span> &nbsp;Save and Close</a>
-            <a class="pull-right"><span class="icon-camera"></span>Add Photo</a>
         </div>
     </div>
 </div>
