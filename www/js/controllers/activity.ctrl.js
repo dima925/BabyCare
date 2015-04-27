@@ -233,13 +233,13 @@ angular.module('cleverbaby.controllers')
                     type: "todo"
                 }
             }
-            if(type == "nure"){
+            if(type == "nurse"){
                 data = {
                     babies: $rootScope.babyId,
-                    time_start: parseInt($scope.todo.time.getTime()/1000),
-                    time_left: $scope.todo.time_left,
-                    time_right: $scope.todo.time_right,
-                    time_both: $scope.todo.time_both,
+                    time_start: parseInt($scope.nurse.time_start.getTime()/1000),
+                    time_left: $scope.nurse.time_left,
+                    time_right: $scope.nurse.time_right,
+                    time_both: $scope.nurse.time_both,
                     type: "nurse"
                 };
             }
