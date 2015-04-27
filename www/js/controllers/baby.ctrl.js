@@ -1,5 +1,5 @@
 angular.module('cleverbaby.controllers')
-.controller('BabyCtrl', ['$scope', function ($scope) {
+.controller('BabyCtrl', ['$scope','$ionicModal', function ($scope,$ionicModal) {
 	
 
 	$scope.cancel = function(){

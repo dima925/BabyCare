@@ -7,4 +7,7 @@ angular.module('cleverbaby.controllers')
         $scope.modal.hide();
         $scope.babyModal.show();
     };
+    $scope.cancel = function(){
+		$scope.modal.hide();
+	}
 }])
