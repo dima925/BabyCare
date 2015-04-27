@@ -78,6 +78,13 @@ angular.module('cleverbaby.controllers')
             mood_type: null
         };
 
+        $scope.bottle = {
+            time: new Date(),
+            bottle_type: null,
+            amount: null,
+            notes: null
+        };
+
         $scope.addActivity = function(type){
             var data;
             if(type == "change"){
@@ -99,7 +106,7 @@ angular.module('cleverbaby.controllers')
                     amount: $scope.pump.amount,
                     start_side: $scope.pump.start_side,
                     type: "pump"
-                }
+                };
             }
             if(type == "play"){
                 data = {
@@ -107,7 +114,7 @@ angular.module('cleverbaby.controllers')
                     time: parseInt($scope.play.time.getTime()/1000),
                     notes: $scope.play.notes,
                     type: "play"
-                }
+                };
             }
             if(type == "diary"){
                 data = {
@@ -115,7 +122,7 @@ angular.module('cleverbaby.controllers')
                     time: parseInt($scope.diary.time.getTime()/1000),
                     notes: $scope.diary.notes,
                     type: "diary"
-                }
+                };
             }
             if(type == "vaccination"){
                 data = {
@@ -123,7 +130,7 @@ angular.module('cleverbaby.controllers')
                     time: parseInt($scope.vaccination.time.getTime()/1000),
                     vaccination_type: $scope.vaccination.vaccination_type,
                     type: "vaccination"
-                }
+                };
             }
             if(type == "growth"){
                 data = {
@@ -133,7 +140,7 @@ angular.module('cleverbaby.controllers')
                     weight: $scope.growth.weight,
                     head_size: $scope.growth.head_size,
                     type: "growth"
-                }
+                };
             }
             if(type == "milestone"){
                 data = {
@@ -141,7 +148,7 @@ angular.module('cleverbaby.controllers')
                     time: parseInt($scope.milestone.time.getTime()),
                     milestone_type: $scope.milestone.milestone_type,
                     type: "milestone"
-                }
+                };
             }
             if(type == "sick"){
                 data = {
@@ -149,7 +156,7 @@ angular.module('cleverbaby.controllers')
                     time: parseInt($scope.sickness.time.getTime()/1000),
                     symptom: $scope.sickness.symptom,
                     type: "sick"
-                }
+                };
             }
             if(type == "doctor"){
                 data = {
@@ -158,7 +165,7 @@ angular.module('cleverbaby.controllers')
                     doctor: $scope.doctor.doctor || "No Doctor",
                     visit_type: $scope.doctor.visit_type,
                     type: "doctor"
-                }
+                };
             }
             if(type == "bath"){
                 data = {
@@ -167,7 +174,7 @@ angular.module('cleverbaby.controllers')
                     temp: $scope.bath.temp,
                     notes: $scope.bath.notes,
                     type: "bath"
-                }
+                };
             }
             if(type == "medication"){
                 data = {
@@ -177,7 +184,7 @@ angular.module('cleverbaby.controllers')
                     amount_given: $scope.medication.amount_given,
                     prescription_interval: $scope.medication.prescription_interval,
                     type: "medication"
-                }
+                };
             }
             if(type == "temperature"){
                 data = {
@@ -186,7 +193,7 @@ angular.module('cleverbaby.controllers')
                     temp: $scope.temperature.temp,
                     reminder: $scope.temperature.reminder,
                     type: "temperature"
-                }
+                };
             }
             if(type == "mood"){
                 data = {
@@ -194,38 +201,24 @@ angular.module('cleverbaby.controllers')
                     time: parseInt($scope.mood.time.getTime()/1000),
                     mood_type: $scope.mood.mood_type,
                     type: "mood"
-                }
+                };
+            }
+            if(type == "bottle"){
+                console.log()
+                data = {
+                    babies: $rootScope.babyId,
+                    time: parseInt($scope.bottle.time.getTime()/1000),
+                    bottle_type: $scope.bottle.bottle_type,
+                    amount: $scope.bottle.amount,
+                    notes: $scope.bottle.notes,
+                    type: "bottle"
+                };
             }
 
             ActivityService.addActivity(data).then(function(){
                 $scope.modal.hide();
             }, function(err){
                 NotificationService.notify(err.data.message || "Network error");
-            });
-        };
-
-        /*BOTTLE ACTIVITY*/
-        $scope.bottle = {
-            time:"1",
-            max:"12",
-            value:"1"
-        };
-
-        $scope.addBottle = function(time){
-            $scope.modal.hide();
-            var amount = this.bottle.value;
-            var bottle = {
-                type : "bottle",
-                amount : amount,
-                created : time == undefined ? Date.now() : time,
-                updated : time == undefined ? Date.now() : time,
-                created_by : escapeEmailAddress($rootScope.userEmail),
-                updated_by : escapeEmailAddress($rootScope.userEmail),
-                deleted : false
-            };
-            babiesService.getbabiesId().then(function(data){
-                var babies = data;
-                activityService.save(babies,bottle);
             });
         };
 

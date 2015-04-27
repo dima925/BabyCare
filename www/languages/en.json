@@ -181,6 +181,14 @@
     "celeverbaby.app.activity.mood.title": "Mood",
     "celeverbaby.app.activity.mood.time": "Time",
     "celeverbaby.app.activity.mood.mood_type": "Type",
-    "celeverbaby.app.activity.mood.mood_type.placeholder": "Happy"
+    "celeverbaby.app.activity.mood.mood_type.placeholder": "Happy",
+
+    "celeverbaby.app.activity.bottle.title": "Bottle",
+    "celeverbaby.app.activity.bottle.time": "Time",
+    "celeverbaby.app.activity.bottle.bottle_type": "Formula",
+    "celeverbaby.app.activity.bottle.bottle_type.placeholder": "Formula",
+    "celeverbaby.app.activity.bottle.amount": "Amount",
+    "celeverbaby.app.activity.bottle.notes": "Other",
+    "celeverbaby.app.activity.bottle.notes.placeholder": "Burped"
 
 }
