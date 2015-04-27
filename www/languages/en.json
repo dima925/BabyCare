@@ -193,6 +193,14 @@
 
     "celeverbaby.app.activity.todo.title": "notes",
     "celeverbaby.app.activity.todo.time": "Time",
-    "celeverbaby.app.activity.todo.notes": "Description"
+    "celeverbaby.app.activity.todo.notes": "Description",
+
+    "celeverbaby.app.activity.nurse.title": "Nursing",
+    "celeverbaby.app.activity.nurse.mode.manual": "Manual Mode",
+    "celeverbaby.app.activity.nurse.mode.timer": "Timer Mode",
+    "celeverbaby.app.activity.nurse.time": "Time",
+    "celeverbaby.app.activity.nurse.time_left": "Time Left",
+    "celeverbaby.app.activity.nurse.time_right": "Time Right",
+    "celeverbaby.app.activity.nurse.time_both": "Time Both"
 
 }

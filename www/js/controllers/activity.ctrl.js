@@ -90,6 +90,13 @@ angular.module('cleverbaby.controllers')
             notes: null
         };
 
+        $scope.nurse = {
+            time_start: new Date(),
+            time_left: null,
+            time_right: null,
+            time_both: null
+        };
+
         $scope.addActivity = function(type){
             var data;
             if(type == "change"){
@@ -226,6 +233,16 @@ angular.module('cleverbaby.controllers')
                     type: "todo"
                 }
             }
+            if(type == "nure"){
+                data = {
+                    babies: $rootScope.babyId,
+                    time_start: parseInt($scope.todo.time.getTime()/1000),
+                    time_left: $scope.todo.time_left,
+                    time_right: $scope.todo.time_right,
+                    time_both: $scope.todo.time_both,
+                    type: "nurse"
+                };
+            }
 
             ActivityService.addActivity(data).then(function(){
                 $scope.modal.hide();
@@ -234,57 +251,16 @@ angular.module('cleverbaby.controllers')
             });
         };
 
-    $scope.manual = true;
-    $scope.timer = false;
+        $scope.manual = true;
+        $scope.timer = false;
 
-    $scope.switchtimer = function(manual,timer){
-        $scope.manual = manual;
-        $scope.timer = timer;
-    };
-    $scope.closeActivity = function(){
-        $scope.modal.hide();
-    }
-    /*NURSE ACTVITY*/
-    $scope.addNurse = function(breast, length, time) {
-        $scope.modal.hide();
-        var nurse = {
-            type: 'nurse',
-            breast: breast == undefined ? 'both' : breast,
-            length: length == undefined ? 0 : length,
-            time: time == undefined ? Date.now() : time,
-            created: Date.now(),
-            updated: Date.now(),
-            created_by : escapeEmailAddress($rootScope.userEmail),
-            updated_by : escapeEmailAddress($rootScope.userEmail),
-            timeit : true
-
+        $scope.switchtimer = function(){
+            $scope.manual = !$scope.manual;
+            $scope.timer = !$scope.timer;
         };
-        babiesService.getbabiesId().then(function(data){
-            var babies = data;
-            activityService.save(babies,nurse);
-        })
 
-    };
-    /*END NURSE ACTIVITY*/
-
-    /*NAP ACTIVITY*/
-        $scope.addNap = function(time){
+        $scope.closeActivity = function(){
             $scope.modal.hide();
-            var nap = {
-                type : 'sleep',
-                start : time == undefined ? Date.now() : time,
-                end : time == undefined ? Date.now() : time,
-                created : time == undefined ? Date.now() : time,
-                updated : time == undefined ? Date.now() : time,
-                created_by : escapeEmailAddress($rootScope.userEmail),
-                updated_by : escapeEmailAddress($rootScope.userEmail),
-                deleted : false
-            }
-            babiesService.getbabiesId().then(function(data){
-                var babies = data;
-                activityService.save(babies,nap);
-            })
-        }
-    /*END NAP ACTIVITY*/
-
-}]);
+        };
+    }
+]);
