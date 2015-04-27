@@ -67,6 +67,12 @@ angular.module('cleverbaby.controllers')
             prescription_interval: null
         };
 
+        $scope.temperature = {
+            time: new Date(),
+            temp: null,
+            reminder: null
+        };
+
         $scope.addActivity = function(type){
             var data;
             if(type == "change"){
@@ -166,6 +172,15 @@ angular.module('cleverbaby.controllers')
                     amount_given: $scope.medication.amount_given,
                     prescription_interval: $scope.medication.prescription_interval,
                     type: "medication"
+                }
+            }
+            if(type == "temperature"){
+                data = {
+                    babies: $rootScope.babyId,
+                    time: parseInt($scope.temperature.time.getTime()/1000),
+                    temp: $scope.temperature.temp,
+                    reminder: $scope.temperature.reminder,
+                    type: "temperature"
                 }
             }
 

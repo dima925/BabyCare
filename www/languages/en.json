@@ -171,6 +171,12 @@
     "celeverbaby.app.activity.medication.drug.placeholder": "Penadol",
     "celeverbaby.app.activity.medication.amount_given": "Amount per time",
     "celeverbaby.app.activity.medication.prescription_interval": "Amount per time",
-    "celeverbaby.app.activity.medication.prescription_interval.metric": "Hours"
+    "celeverbaby.app.activity.medication.prescription_interval.metric": "Hours",
+
+    "celeverbaby.app.activity.temperature.title": "Temperature",
+    "celeverbaby.app.activity.temperature.time": "Time",
+    "celeverbaby.app.activity.temperature.temp": "Temperature",
+    "celeverbaby.app.activity.temperature.reminder": "Reminder",
+    "celeverbaby.app.activity.temperature.title": "Temperature"
 
 }
