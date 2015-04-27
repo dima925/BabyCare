@@ -73,6 +73,11 @@ angular.module('cleverbaby.controllers')
             reminder: null
         };
 
+        $scope.mood = {
+            time: new Date(),
+            mood_type: null
+        };
+
         $scope.addActivity = function(type){
             var data;
             if(type == "change"){
@@ -181,6 +186,14 @@ angular.module('cleverbaby.controllers')
                     temp: $scope.temperature.temp,
                     reminder: $scope.temperature.reminder,
                     type: "temperature"
+                }
+            }
+            if(type == "mood"){
+                data = {
+                    babies: $rootScope.babyId,
+                    time: parseInt($scope.mood.time.getTime()/1000),
+                    mood_type: $scope.mood.mood_type,
+                    type: "mood"
                 }
             }
 

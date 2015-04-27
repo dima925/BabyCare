@@ -177,6 +177,10 @@
     "celeverbaby.app.activity.temperature.time": "Time",
     "celeverbaby.app.activity.temperature.temp": "Temperature",
     "celeverbaby.app.activity.temperature.reminder": "Reminder",
-    "celeverbaby.app.activity.temperature.title": "Temperature"
+
+    "celeverbaby.app.activity.mood.title": "Mood",
+    "celeverbaby.app.activity.mood.time": "Time",
+    "celeverbaby.app.activity.mood.mood_type": "Type",
+    "celeverbaby.app.activity.mood.mood_type.placeholder": "Happy"
 
 }
