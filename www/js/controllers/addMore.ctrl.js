@@ -49,13 +49,22 @@ angular.module('cleverbaby.controllers')
         $scope.addBathModal.show();
     };
 
-    $ionicModal.fromTemplateUrl('templates/activities/diary.html',function(diary){
-        $scope.diaryModal = diary;
-    });
-    $scope.newDiary = function(){
-        $scope.modal.hide();
-        $scope.diaryModal.show();
-    };
+        $ionicModal.fromTemplateUrl('templates/activities/diary.html',function(diary){
+            $scope.diaryModal = diary;
+        });
+        $scope.newDiary = function(){
+            $scope.modal.hide();
+            $scope.diaryModal.show();
+        };
+
+        $ionicModal.fromTemplateUrl('templates/activities/todo.html',function(diary){
+            $scope.todoModal = diary;
+        });
+        $scope.newTodo = function(){
+            $scope.modal.hide();
+            $scope.todoModal.show();
+        };
+
     $ionicModal.fromTemplateUrl('templates/activities/doctor.html',function(doctor){
         $scope.doctorModal = doctor;
     });

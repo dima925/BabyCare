@@ -85,6 +85,11 @@ angular.module('cleverbaby.controllers')
             notes: null
         };
 
+        $scope.todo = {
+            time: new Date(),
+            notes: null
+        };
+
         $scope.addActivity = function(type){
             var data;
             if(type == "change"){
@@ -204,7 +209,6 @@ angular.module('cleverbaby.controllers')
                 };
             }
             if(type == "bottle"){
-                console.log()
                 data = {
                     babies: $rootScope.babyId,
                     time: parseInt($scope.bottle.time.getTime()/1000),
@@ -213,6 +217,14 @@ angular.module('cleverbaby.controllers')
                     notes: $scope.bottle.notes,
                     type: "bottle"
                 };
+            }
+            if(type == "todo"){
+                data = {
+                    babies: $rootScope.babyId,
+                    time: parseInt($scope.todo.time.getTime()/1000),
+                    notes: $scope.todo.notes,
+                    type: "todo"
+                }
             }
 
             ActivityService.addActivity(data).then(function(){

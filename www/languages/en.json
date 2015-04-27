@@ -189,6 +189,10 @@
     "celeverbaby.app.activity.bottle.bottle_type.placeholder": "Formula",
     "celeverbaby.app.activity.bottle.amount": "Amount",
     "celeverbaby.app.activity.bottle.notes": "Other",
-    "celeverbaby.app.activity.bottle.notes.placeholder": "Burped"
+    "celeverbaby.app.activity.bottle.notes.placeholder": "Burped",
+
+    "celeverbaby.app.activity.todo.title": "notes",
+    "celeverbaby.app.activity.todo.time": "Time",
+    "celeverbaby.app.activity.todo.notes": "Description"
 
 }
