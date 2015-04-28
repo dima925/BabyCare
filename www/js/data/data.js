@@ -4,7 +4,7 @@ angular
         baseUrl: 'https://cleverbaby.firebaseio.com/'
     })
     .constant('dataConfig', {
-        baseUrl: 'http://localhost:3000',
+        baseUrl: 'https://arcane-anchorage-7139.herokuapp.com',
         apiVersion: 'v1',
         googleId: '692197579389-1tr4luact0pjjce4r47egob64bgoac51.apps.googleusercontent.com',
         facebookId: '1575754259375108'
