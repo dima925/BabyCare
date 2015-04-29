@@ -61,7 +61,7 @@ angular.module('cleverbaby', [
         // Execute action on remove modal
         $rootScope.$on('modal.removed', function (modal) {
             // Execute action
-        });
+        });okay
     });
 })
 .config(["$translateProvider", "$ionicConfigProvider",
