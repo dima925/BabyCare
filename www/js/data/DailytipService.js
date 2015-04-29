@@ -4,8 +4,6 @@
 
 angular.module('cleverbaby.data')
     .factory('DailytipService', ['$http', '$localStorage', '$q', '$translate', function($http, $localStorage, $q, $translate) {
-
-        moment.locale('en');
         /**
          * Returns the json file
          * This is also used for the dynamic changing of the language used
