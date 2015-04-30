@@ -11,7 +11,7 @@ angular.module('cleverbaby.data')
          * @returns {*|Object|promise} the json data of translated word(s)
          */
         function getTranslatedDataDailyTip(language) {
-            return $http.get('../languages/dailytip/' + language + '.json', {
+            return $http.get('languages/dailytip/' + language + '.json', {
                 cache: true
             });
         }
