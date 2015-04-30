@@ -3,7 +3,7 @@
  */
 
 angular.module('cleverbaby.data')
-    .factory('DailytipService', ['$http', '$localStorage', '$q', '$translate', function($http, $localStorage, $q, $translate) {
+    .factory('DailytipService', ['$filter', '$http', '$localStorage', '$q', '$translate', function($filter, $http, $localStorage, $q, $translate) {
         /**
          * Returns the json file
          * This is also used for the dynamic changing of the language used
@@ -11,23 +11,43 @@ angular.module('cleverbaby.data')
          * @returns {*|Object|promise} the json data of translated word(s)
          */
         function getTranslatedDataDailyTip(language) {
-            return $http.get('languages/dailytip/' + language + '.json', {
+            return $http.get('languages/dailytips/' + language + '.json', {
                 cache: true
             });
         }
 
         /**
-         * Returns a random picked from the dailytip json file basing on the current childs age and gender
+         * Returns a random picked from the dailytips json file basing on the current childs age and gender
          * not the same from the last daily tip
          */
         function getTranslatedDailyTip(activeBaby) {
             var deferred = $q.defer();
-            var dailyTips = [];
-
             getTranslatedDataDailyTip(getActiveLanguage())
                 .then(function(result) {
-                    dailyTips = result.data;
-                    //getLastDailyTip();
+                    var dailyTips = $filter('filter')(result.data, function(value, index){
+                        var matchGender = value.gender == activeBaby.gender || value.gender == 'a';
+                        var babyAgeDays = moment(new Date()).diff(moment(activeBaby.birthday), 'days');
+                        if(value.fromAge <= babyAgeDays && value.toAge >= babyAgeDays){
+                          return matchGender;
+                        }
+                    });
+
+                    var validDailyTip;
+                    var lastDailyTip = getLastDailyTip();
+                    if(!lastDailyTip) {
+                        validDailyTip = dailyTips[0];
+                    }else{
+                        var x = true;
+                        while(x){
+                            var randomnumber = Math.floor(Math.random() * ((dailyTips.length - 1) - 0 + 1)) + 0;
+                            if (dailyTips[randomnumber] != lastDailyTip){
+                                validDailyTip = dailyTips[randomnumber];
+                                x = false;
+                            }
+                        }
+                    }
+                    saveCurrentDailyTip(validDailyTip);
+                    deferred.resolve(validDailyTip)
                 }).
                 catch(function (error) {
                    deferred.reject(error);
@@ -59,7 +79,7 @@ angular.module('cleverbaby.data')
         }
 
         /**
-         * Computes the last time the daily tip was hidden, if more than 0 the dailytip is to be shown again
+         * Computes the last time the daily tip was hidden, if more than 0 the dailytips is to be shown again
          * @returns {boolean}
          */
         function showDailtyTip() {
