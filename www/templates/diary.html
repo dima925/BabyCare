@@ -5,7 +5,7 @@
             <ion-nav-buttons side="left">
                 <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
             </ion-nav-buttons>
-            <ion-nav-title ng-click='dropdown()'><span data-translate>cleverbaby.app.diary.title</span><a class='btn-head-dropdown'><i class='fa fa-angle-down'></i></a></ion-nav-title>
+            <ion-nav-title ng-click='dropdown()' data-translate>celeverbaby.app.diary.title</ion-nav-title>
             <ion-nav-buttons side="right">
                 <a class="button button-icon icon ion-calendar activated" ng-click="newTask()"><span class="ion-ios-calendar-outline"></span></a>
             </ion-nav-buttons>
@@ -17,7 +17,7 @@
                     <div class="home-icon botol"><i class="icon-bottle"></i></div>
                     <div class="graph-circle-home">
                         <div class="progress-wrapper">
-                            <div class="progress">14Mins<br>ETA</div>
+                            <div class="progress">14min <span>ETA</span></div>
                             <div
                                     round-progress
                                     max="100"
@@ -25,7 +25,7 @@
                                     color="#ffcc66"
                                     bgcolor="rgba(255,255,255,.5)"
                                     radius="28"
-                                    stroke="5"
+                                    stroke="3"
                                     semi="false"
                                     rounded="true"
                                     iterations="50"
@@ -33,10 +33,10 @@
                                 </div>
                         </div>
                     </div>
-                    <div class="thumbnail-baby"><div class="circular"><img src="img/baby.png"></div></div>
+                    <div class="thumbnail-baby"><div class="circular"><img src="/img/baby.png"></div></div>
                     <div class="graph-circle-home">
                         <div class="progress-wrapper">
-                            <div class="progress">14Mins<br>ETA</div>
+                            <div class="progress">14min <span>ETA</span></div>
                             <div
                                     round-progress
                                     max="100"
@@ -44,7 +44,7 @@
                                     color="#66cc00"
                                     bgcolor="rgba(255,255,255,.5)"
                                     radius="28"
-                                    stroke="5"
+                                    stroke="3"
                                     semi="false"
                                     rounded="true"
                                     iterations="50"
@@ -64,21 +64,21 @@
                         <h3 class="text-left">DAILY CHECKLIST</h3>
                         <div class="xs-5">
                             <h5>5</h5>
-                            <h5 data-translate>cleverbaby.app.diary.bar.nurses</h5>
+                            <h5 data-translate>celeverbaby.app.diary.bar.nurses</h5>
                         </div>
                         <div class="xs-5">
                             <h5>3</h5>
-                            <h5 data-translate>cleverbaby.app.diary.bar.change</h5>
+                            <h5 data-translate>celeverbaby.app.diary.bar.change</h5>
                         </div>
                         <div class="xs-5 center">
                             <input type="checkbox" id="bath">
-                            <label class="checkbox" for="bath"></label>
-                            <h5 data-translate>cleverbaby.app.diary.bar.bath</h5>
+                            <label class="checkbox" for="bath"></label><br />
+                            <label data-translate for="bath">celeverbaby.app.diary.bar.bath</label>
                         </div>
                         <div class="xs-5 center">
                             <input type="checkbox" id="play">
-                            <label class="checkbox" for="play"></label>
-                            <h5 data-translate>cleverbaby.app.diary.bar.play</h5>
+                            <label class="checkbox" for="play"></label><br />
+                            <label data-translate for="play">celeverbaby.app.diary.bar.play</label>
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -96,16 +96,16 @@
                 </div>
             </ion-slide>
         </ion-slide-box>
-        <div class="card kartu" ng-show="showTip">
+        <div class="card kartu">
           <div class="item item-text-wrap no-padding">
             <div class="row no-padding-top">
-                <div class="col col-80 no-padding-top"><h2 data-translate>cleverbaby.app.diary.box1.title</h2></div>
+                <div class="col col-80 no-padding-top"><h2 data-translate>celeverbaby.app.diary.box1.title</h2></div>
                 <div class="col col-20 no-padding-top" style="text-align:right;">
-                    <a ng-click="hideDailyTip()" class="black-color">Hide</a>
+                    <a ng-click="hide()" class="black-color">HIDE</a>
                 </div>
             </div>
             
-            <p class="justify padding">{{dailyTip}}</p>
+            <p class="justify padding" data-translate>celeverbaby.app.diary.box1.text</p>
           </div>
         </div>
         <div class="kotak timeline">
@@ -119,7 +119,7 @@
                 </div>
                 <div class="desc">
                     <h3 class="diaper-foot">Changed</h3>
-                    <p>Wet and Solid</p>
+                    <p><span>WET</span> and <span>SOLID</span></p>
                 </div>
             </div>
         </div>
@@ -133,7 +133,7 @@
                 </div>
                 <div class="desc">
                     <h3 class="nurse-foot">Nursed</h3>
-                    <p>Left <span>15min</span> Right <span>0min</span></p>
+                    <p>LEFT <span class="space">15min</span> RIGHT <span>0min</span></p>
                 </div>
             </div>
         </div> 
@@ -147,7 +147,7 @@
                 </div>
                 <div class="desc">
                     <h3 class="activity-foot">Played</h3>
-                    <p>TUMMYTIME!</p>
+                    <p><i>TUMMYTIME!</i></p>
                 </div>
             </div>
         </div>
