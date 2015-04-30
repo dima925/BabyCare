@@ -3952,8 +3952,8 @@ ion-tabs.tabs-color-active-dark .tab-item {
  * Modals are independent windows that slide in from off-screen.
  */
 .modal-backdrop {
-  -webkit-transition: background-color 300ms ease-in-out;
-  transition: background-color 300ms ease-in-out;
+  -webkit-transition: background-color 150ms ease-in-out;
+  transition: background-color 150ms ease-in-out;
   position: fixed;
   top: 0;
   left: 0;
@@ -6895,16 +6895,16 @@ a.button {
   transform: translate3d(0, 100%, 0); }
 
 .slide-in-up.ng-enter, .slide-in-up > .ng-enter {
-  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
-  transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms; }
+  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 250ms;
+  transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 250ms; }
 
 .slide-in-up.ng-enter-active, .slide-in-up > .ng-enter-active {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0); }
 
 .slide-in-up.ng-leave, .slide-in-up > .ng-leave {
-  -webkit-transition: all ease-in-out 250ms;
-  transition: all ease-in-out 250ms; }
+  -webkit-transition: all ease-in-out 200ms;
+  transition: all ease-in-out 200ms; }
 
 @-webkit-keyframes scaleOut {
   from {
