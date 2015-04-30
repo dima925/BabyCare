@@ -1,6 +1,6 @@
 angular.module('cleverbaby.controllers')
-.controller('DiaryCtrl', ['$scope', '$rootScope', '$ionicModal', 'DailytipService', '$ionicSlideBoxDelegate',
-    function ($scope, $rootScope, $ionicModal, DailytipService, $ionicSlideBoxDelegate) {
+.controller('DiaryCtrl', ['$location', '$scope', '$rootScope', '$ionicModal', 'DailytipService', '$ionicSlideBoxDelegate',
+    function ($location, $scope, $rootScope, $ionicModal, DailytipService, $ionicSlideBoxDelegate) {
 
     $scope.noData = true;
     $ionicModal.fromTemplateUrl('templates/activities/item.html', function (modal) {
@@ -27,6 +27,17 @@ angular.module('cleverbaby.controllers')
 
     $scope.showTip = DailytipService.showDailtyTip();
 
+    if($scope.showTip) {
+        //todo temporary activeBaby
+        var activeBaby = {'gender':'m', 'birthday': 1429682270000 };
+        DailytipService.getTranslatedDailyTip(activeBaby).then(function(dailyTip){
+            $scope.dailyTip = dailyTip.text;
+            $scope.clickTip = function() {
+                $location.path(dailyTip.route);
+            };
+        });
+    }
+
     /**
      * This function hides the daily tip
      */
@@ -34,19 +45,6 @@ angular.module('cleverbaby.controllers')
         $scope.showTip = false;
         DailytipService.saveLastHideDailyTip();
     };
-
-    /*
-    $scope.$watch('dailyTip', function(newTip){
-        $scope.dailyTip = newTip;
-    });
-    */
-
-    //todo temporary activeBaby
-    var activeBaby = {'gender':'m', 'birthday': 1390608000};
-
-    DailytipService.getTranslatedDailyTip(activeBaby).then(function(dailyTip){
-        $scope.dailyTip = dailyTip;
-    });
 
     $scope.$on('$ionicView.enter', function(){
         $ionicSlideBoxDelegate.update();
