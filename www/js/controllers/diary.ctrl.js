@@ -1,6 +1,6 @@
 angular.module('cleverbaby.controllers')
-.controller('DiaryCtrl', ['$scope', '$rootScope', '$ionicModal', 'DailytipService',
-    function ($scope, $rootScope, $ionicModal, DailytipService) {
+.controller('DiaryCtrl', ['$scope', '$rootScope', '$ionicModal', 'DailytipService', '$ionicSlideBoxDelegate',
+    function ($scope, $rootScope, $ionicModal, DailytipService, $ionicSlideBoxDelegate) {
 
     $scope.noData = true;
     $ionicModal.fromTemplateUrl('templates/activities/item.html', function (modal) {
@@ -47,4 +47,8 @@ angular.module('cleverbaby.controllers')
     DailytipService.getTranslatedDailyTip(activeBaby).then(function(dailyTip){
         $scope.dailyTip = dailyTip;
     });
+
+    $scope.$on('$ionicView.enter', function(){
+        $ionicSlideBoxDelegate.update();
+    })
 }]);
