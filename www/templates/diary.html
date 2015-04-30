@@ -96,12 +96,12 @@
                 </div>
             </ion-slide>
         </ion-slide-box>
-        <div class="card kartu">
+        <div class="card kartu" ng-show="showTip">
           <div class="item item-text-wrap no-padding">
             <div class="row no-padding-top">
                 <div class="col col-80 no-padding-top"><h2 data-translate>cleverbaby.app.diary.box1.title</h2></div>
                 <div class="col col-20 no-padding-top" style="text-align:right;">
-                    <a ng-click="hide()" class="black-color">HIDE</a>
+                    <a ng-click="hideDailyTip()" class="black-color">Hide</a>
                 </div>
             </div>
             <p class="justify padding" ng-click="clickTip()">{{dailyTip}}</p>
