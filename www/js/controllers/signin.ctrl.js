@@ -15,11 +15,11 @@ angular.module('cleverbaby.controllers')
             };
 
             $scope.validateUser = function () {
-                NotificationService.show($translate('celeverbaby.auth.signin.message'));
+                NotificationService.show($translate('cleverbaby.auth.signin.message'));
                 var email = this.user.email;
                 var password = this.user.password;
                 if (!email || !password) {
-                    NotificationService.notify($translate('celeverbaby.auth.signin.error1'));
+                    NotificationService.notify($translate('cleverbaby.auth.signin.error1'));
                     return false;
                 }
                 AuthService.signInViaEmail(this.user.email, this.user.password).then(function(user){

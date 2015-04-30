@@ -16,7 +16,7 @@ angular.module('cleverbaby.controllers')
 
         $scope.modal.hide();
 
-        NotificationService.show($translate('celeverbaby.app.activity.add.message'));
+        NotificationService.show($translate('cleverbaby.app.activity.add.message'));
 
         var form = {
             item: item,
