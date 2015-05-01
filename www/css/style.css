@@ -763,3 +763,19 @@ span.satuan { float:right;font-size: 24px; margin-top: 14px}
 input.form-control-text {  text-align: left !important; float: left !important;}
 .add-edit-baby .kotak .btn { margin: 10px 0 0 0; border-radius: 4px; border:1px solid #000; color: #000; background: none; font-size: 16px; padding: 4px 10px; width: 100%;}
 .to-bottom { position: absolute; bottom: 0; width: 100%; padding-bottom: 20px;}
+
+/*ionic override css */
+.modal-backdrop {
+    -webkit-transition: background-color 150ms ease-in-out !important;
+    transition: background-color 150ms ease-in-out !important;
+}
+
+.slide-in-up.ng-enter, .slide-in-up > .ng-enter {
+    -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 250ms !important;
+    transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 250ms !important;
+}
+
+.slide-in-up.ng-leave, .slide-in-up > .ng-leave {
+    -webkit-transition: all ease-in-out 200ms !important;
+    transition: all ease-in-out 200ms !important;
+}
