@@ -57,7 +57,6 @@ angular.module('cleverbaby.data')
             };
 
             function setAuth(data){
-                console.log('broadcasting');
                 $rootScope.$broadcast('auth', data);
                 $localStorage.token = data.token;
                 network.setAuth(data.token);

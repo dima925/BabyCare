@@ -1,6 +1,14 @@
 angular.module('cleverbaby.controllers')
-.controller('DiaryCtrl', ['$location', '$scope', '$rootScope', '$ionicModal', 'DailytipService', '$ionicSlideBoxDelegate',
-    function ($location, $scope, $rootScope, $ionicModal, DailytipService, $ionicSlideBoxDelegate) {
+.controller('DiaryCtrl', ['$location', '$scope', '$ionicModal', 'DailytipService', '$ionicSlideBoxDelegate', 'ActivityService',
+    function ($location, $scope, $ionicModal, DailytipService, $ionicSlideBoxDelegate, ActivityService) {
+
+    $scope.$on('babySelected', function(event, baby){
+        ActivityService
+            .getAllActivitiesByBabyId(baby.id)
+            .then(function(activities){
+                $scope.activities = activities;
+            });
+    });
 
     $scope.noData = true;
     $ionicModal.fromTemplateUrl('templates/activities/item.html', function (modal) {

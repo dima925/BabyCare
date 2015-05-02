@@ -1,22 +1,6 @@
 angular.module('cleverbaby.controllers')
-.controller('DropdownCtrl', ['$scope', '$ionicModal', 'BabyService', '$rootScope',
-        function ($scope, $ionicModal, BabyService, $rootScope) {
-
-        $scope.$on('auth', function(){
-            BabyService.getAllBabies().then(function(babies){
-                $scope.babies = babies;
-            });
-        });
-
-        $scope.$on('babyAdd', function(e, baby){
-            $scope.babies.push(baby);
-        });
-
-        $scope.$on('babyRemoved', function(e, baby){
-            $scope.babies.filter(function(x){
-                return x.id != baby.id;
-            });
-        });
+.controller('DropdownCtrl', ['$scope', '$ionicModal', 'BabyService', '$rootScope', '$localStorage',
+        function ($scope, $ionicModal, BabyService, $rootScope, $localStorage) {
 
         $ionicModal.fromTemplateUrl('templates/modals/baby.html', function(babyModal){
             $scope.babyModal = babyModal;
@@ -30,7 +14,7 @@ angular.module('cleverbaby.controllers')
         };
 
         $scope.select = function(baby){
-            $rootScope.babyId = baby.id;
+            $rootScope.setBaby(baby);
             $scope.modal.hide();
         };
         $scope.cancel = function(){

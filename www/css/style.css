@@ -571,6 +571,7 @@ input{
 .pumping { background: #00cc33; }
 .sickness { background: #3366ff; }
 .temp { background: #ff0000; }
+.todo{background: #66cc00;}
 .vaccination { background: #cc3366; }
 .sleep { background: #cc3366; }
 .solid{background: #ffcc00;}
@@ -653,6 +654,7 @@ span.satuan { float:right;font-size: 24px; margin-top: 14px}
 .footer a[class*="pull-"] span[class*="icon-"] { font-size: 14px; width: 100%; float: left; }
 .footer a.btn-mid { padding: 10px 14px; background: #fff;  display: inline-block; border-radius:4px 4px 0 0;}
 .diaper-foot{color: #ff6b01;}
+.doctor-foot{color: #cc33ff;}
 .bottle-foot{color: #66cc33;}
 .nurse-foot{color: #3300cc;}
 .activity-foot{color: #336699;}
@@ -666,7 +668,10 @@ span.satuan { float:right;font-size: 24px; margin-top: 14px}
 .play-foot { color: #9933ff; }
 .pumping-foot { color: #00cc33; }
 .sickness-foot { color: #3366ff; }
+.solid-foot { color: #ffcc00; }
+.sleep-foot { color: #cc3366; }
 .temp-foot { color: #ff0000; }
+.todo-foot { color: #66cc00; }
 .vaccination-foot { color: #cc3366; }
 
 
