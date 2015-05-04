@@ -1,18 +1,10 @@
 angular.module('cleverbaby.controllers')
-.controller('DropdownCtrl', ['$scope', '$ionicModal', 'BabyService', '$rootScope', '$localStorage',
-        function ($scope, $ionicModal, BabyService, $rootScope, $localStorage) {
-
-        $ionicModal.fromTemplateUrl('templates/modals/baby.html', function(babyModal){
-            $scope.babyModal = babyModal;
-        });
+.controller('DropdownCtrl', ['$scope', '$ionicModal', 'BabyModal', '$rootScope',
+        function ($scope, $ionicModal, BabyModal, $rootScope ) {
 
         $scope.newBaby = function(baby){
-            $scope.modal.hide();
-            $scope.babyModal.edit = baby?true:false;
-            $scope.babyModal.baby = baby || BabyService.newBaby();
-            $scope.babyModal.show();
+            BabyModal.showModal(baby);
         };
-
         $scope.select = function(baby){
             $rootScope.setBaby(baby);
             $scope.modal.hide();
