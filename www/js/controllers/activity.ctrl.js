@@ -97,6 +97,13 @@ angular.module('cleverbaby.controllers')
             time_both: null
         };
 
+        $scope.sleep = {
+            time_start: new Date(),
+            time_slept: null,
+            time_end: new Date(),
+            location: null
+        };
+
         $scope.addActivity = function(type){
             var data;
             if(type == "change"){
@@ -242,6 +249,14 @@ angular.module('cleverbaby.controllers')
                     time_both: $scope.nurse.time_both,
                     type: "nurse"
                 };
+            }
+            if(type == "sleep"){
+                data = {
+                    time_start: $scope.time_start,
+                    time_end: $scope.time_end,
+                    location: $scope.location,
+                    type: "sleep"
+                }
             }
 
             ActivityService.addActivity(data).then(function(){
