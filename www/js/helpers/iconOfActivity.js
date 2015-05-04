@@ -7,7 +7,7 @@ angular
             'pump': 'icon-breast-pumper-line',
             'solid': 'icon-banana-3',
             'change': 'icon-diaper',
-            'sleep': 'sleep',
+            'sleep': 'icon-sleepcc',
             'milestone': 'icon-milestones',
             'growth': 'icon-baby-growth',
             'bath': 'icon-bath',

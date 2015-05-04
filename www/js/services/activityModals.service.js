@@ -1,10 +1,14 @@
 angular
     .module('cleverbaby')
-    .service('activityModal', ["$ionicModal", function($ionicModal){
+    .service('activityModals', ["$ionicModal", function($ionicModal){
 
         var exports = {
             modals: {}
         };
+
+        $ionicModal.fromTemplateUrl('templates/activities/nap.html', function(nap){
+            exports.modals.napModal = nap;
+        });
 
         $ionicModal.fromTemplateUrl('templates/activities/diapers.html',function(diaper){
             exports.modals.diapersModal = diaper;
@@ -81,10 +85,6 @@ angular
         $ionicModal.fromTemplateUrl('templates/activities/nap.html',function(nap){
             exports.modals.napModal = nap;
         });
-        $scope.newNap = function(){
-            $scope.modal.hide();
-            $scope.napModal.show();
-        };
 
         $ionicModal.fromTemplateUrl('templates/activities/solid.html',function(solid){
             exports.modals.solidModal = solid;
@@ -129,6 +129,10 @@ angular
                 exports.modals.napModal.show();
             } else if(type == "solid") {
                 exports.modals.solidModal.show()
+            } else if(type == "sleep") {
+                exports.modals.napModal.show();
+            } else if(type == "activity") {
+                exports.modals.addActivityModal.show();
             }
         };
 

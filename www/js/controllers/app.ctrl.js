@@ -5,7 +5,7 @@ angular.module('cleverbaby.controllers')
     $scope.loginData = {};
 
     // Create the login modal that we will use later
-    $ionicModal.fromTemplateUrl('templates/menu.html',function(menu){
+    $ionicModal.fromTemplateUrl('templates/modals/menu.html', function(menu){
         $scope.menuModal = menu;
     });
 
