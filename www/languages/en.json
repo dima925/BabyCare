@@ -230,7 +230,10 @@
     "cleverbaby.app.activity.bottle.notes.placeholder": "Burped",
 
 	"cleverbaby.app.activity.solid.title": "Solids",
-	
+	"cleverbaby.app.activity.solid.time": "Time",
+	"cleverbaby.app.activity.solid.food_type": "Type",
+    "cleverbaby.app.activity.solid.food_type.placeholder": "Cereal",
+
     "cleverbaby.app.activity.todo.title": "notes",
     "cleverbaby.app.activity.todo.time": "Time",
     "cleverbaby.app.activity.todo.notes": "Description",

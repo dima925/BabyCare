@@ -104,6 +104,11 @@ angular.module('cleverbaby.controllers')
             location: null
         };
 
+        $scope.solid = {
+            time: new Date(),
+            food_type: null
+        };
+
         $scope.addActivity = function(type){
             var data;
             if(type == "change"){
@@ -252,10 +257,19 @@ angular.module('cleverbaby.controllers')
             }
             if(type == "sleep"){
                 data = {
-                    time_start: $scope.time_start,
-                    time_end: $scope.time_end,
-                    location: $scope.location,
+                    babies: $rootScope.babyId,
+                    time_start: parseInt($scope.sleep.time_start.getTime()/1000),
+                    time_end: parseInt($scope.sleep.time_start.getTime()/1000),
+                    location: $scope.sleep.location,
                     type: "sleep"
+                }
+            }
+            if(type == "solid") {
+                data = {
+                    babies: $rootScope.babyId,
+                    time: parseInt($scope.solid.time.getTime()/1000),
+                    food_type: $scope.solid.food_type,
+                    type: "solid"
                 }
             }
 
