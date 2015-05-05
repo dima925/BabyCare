@@ -38,7 +38,7 @@ angular.module('cleverbaby.controllers')
         $scope.dropdownModal.show();
     };
 
-    $scope.showTip = true;//DailytipService.showDailtyTip();
+    $scope.showTip = DailytipService.showDailtyTip();
 
     if($scope.showTip) {
         //todo temporary activeBaby
