@@ -91,6 +91,7 @@ angular.module('cleverbaby', [
         $rootScope.$on('modal.hidden', function (modal) {
             // Execute action
         });
+
         // Execute action on remove modal
         $rootScope.$on('modal.removed', function (modal) {
             // Execute action

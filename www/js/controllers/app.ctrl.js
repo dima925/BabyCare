@@ -1,6 +1,6 @@
 angular.module('cleverbaby.controllers')
-.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout',  'AuthService', '$location',
-    function ($scope, $ionicModal, $timeout, AuthService, $location) {
+.controller('AppCtrl', ['$scope', '$ionicModal', '$timeout',  'AuthService', '$location', '$rootScope',
+    function ($scope, $ionicModal, $timeout, AuthService, $location, $rootScope) {
     // Form data for the login modal
     $scope.loginData = {};
 
@@ -9,11 +9,13 @@ angular.module('cleverbaby.controllers')
         $scope.menuModal = menu;
     });
 
+
     $scope.menu = function(){
         $scope.menuModal.show();
     };
 	
 	$scope.$on("showMenu", function (event, args) {
+        $rootScope.activatePlus = true;
 		$scope.menuModal.show();
 	});
 

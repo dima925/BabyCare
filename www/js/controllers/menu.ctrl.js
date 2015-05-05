@@ -1,15 +1,22 @@
 angular.module('cleverbaby.controllers')
-.controller('MenuCtrl', ['$scope','$ionicModal', 'activityModals', function ($scope, $ionicModal, activityModals) {
+.controller('MenuCtrl', ['$scope', '$rootScope', '$ionicModal', 'activityModals', function ($scope, $rootScope, $ionicModal, activityModals) {
 
 	$scope.closeModal=function(){
         $scope.modal.hide();
+
+        if ($scope.addMoreModal.isShown()){
+            $rootScope.activatePlus = true;
+        }else{
+            $rootScope.activatePlus = false;
+        }
     };
 
     $ionicModal.fromTemplateUrl('templates/modals/addMore.html',function(addmore){
         $scope.addMoreModal = addmore;
     });
     $scope.addMore = function(){
-        $scope.modal.hide();
+        //$rootScope.activatePlus = true;
+        //$scope.modal.hide();
         $scope.addMoreModal.show();
     };
 	$scope.newNursed = function(){
@@ -27,7 +34,8 @@ angular.module('cleverbaby.controllers')
     };
 
     $scope.openModal = function(type){
-        $scope.closeModal();
+        $rootScope.hidePlusBtn = true;
+        //$scope.closeModal();
         activityModals.showModal(type);
     };
 }]);

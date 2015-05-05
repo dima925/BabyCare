@@ -850,3 +850,8 @@ visibility:visible; width: 70px; height: 70px;
     -webkit-transform: rotate(-20deg); /* Safari */
     transform: rotate(-20deg);
 }
+
+.hide-plus-btn{
+    display: none;
+}
+
