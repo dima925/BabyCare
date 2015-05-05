@@ -36,19 +36,19 @@
   </ion-side-menu>
 </ion-side-menus>
 
-<ion-tabs class="tabs-stable">
-    <ion-tab icon="icon-home" ui-sref="app.diary">
+<ion-tabs class="tabs-icon-top tabs-stable">
+    <ion-tab title="Home" icon="icon-home" ui-sref="app.diary">
         <ion-nav-view name="home"></ion-nav-view>
     </ion-tab>
-    <ion-tab icon="icon-calendar" ui-sref="app.search">
+    <ion-tab title="Calendar" icon="icon-calendar" ui-sref="app.search">
         <ion-nav-view name="search"></ion-nav-view>
     </ion-tab>
     <ion-tab icon="ion-plus-round" ng-click="menu()">
     </ion-tab>
-    <ion-tab icon="icon-bar-chart" ui-sref="app.chart">
+    <ion-tab title="Trends" icon="icon-bar-chart" ui-sref="app.chart">
         <ion-nav-view name="chart"></ion-nav-view>
     </ion-tab>
-    <ion-tab icon="ion-ios7-more-outline" ui-sref="app.settings">
+    <ion-tab title="More" icon="ion-ios7-more-outline" ui-sref="app.settings">
         <ion-nav-view name="help"></ion-nav-view>
     </ion-tab>
 </ion-tabs>

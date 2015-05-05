@@ -822,8 +822,11 @@ ul.timeline-data li.data-activity{ float: left; border-radius: 2px; height: 35px
 
 .floating-plus-button {
 position: absolute;
-bottom: 1px;
+bottom: 0px;
 z-index:9999;
+left: 50%;	
+margin-left: -25px;	
+height: 49px;
 }
 
 .floating-plus-button .tab-item .ion-plus-round  {
