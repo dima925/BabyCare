@@ -38,12 +38,12 @@ angular.module('cleverbaby.controllers')
         $scope.dropdownModal.show();
     };
 
-    $scope.showTip = DailytipService.showDailtyTip();
+    $scope.showTip = true;//DailytipService.showDailtyTip();
 
     if($scope.showTip) {
         //todo temporary activeBaby
         var activeBaby = {'gender':'m', 'birthday': 1429682270000 };
-        DailytipService.getTranslatedDailyTip(activeBaby).then(function(dailyTip){
+        DailytipService.getTranslatedTip(activeBaby).then(function(dailyTip){
             $scope.dailyTip = dailyTip.text;
             $scope.clickTip = function() {
                 $location.path(dailyTip.route);
