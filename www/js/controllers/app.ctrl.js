@@ -12,6 +12,10 @@ angular.module('cleverbaby.controllers')
     $scope.menu = function(){
         $scope.menuModal.show();
     };
+	
+	$scope.$on("showMenu", function (event, args) {
+		$scope.menuModal.show();
+	});
 
     $ionicModal.fromTemplateUrl('templates/login.html', {
         scope: $scope

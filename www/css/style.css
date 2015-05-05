@@ -789,10 +789,12 @@ input.form-control-text {  text-align: left !important; float: left !important;}
     transition: all ease-in-out 200ms !important;
 }
 
+
+
 /*tab-view-style override*/
 .tabs-stable > .tabs { border:0; padding:0 !important;}
 .tab-item .icon { font-size: 28px !important; padding-top: 12px; color: #fff; line-height: 1em;}
-.tab-item .ion-plus-round { position: relative; width: 50px; height: 50px; }
+.tab-item .ion-plus-round { position: relative; width: 50px; height: 50px; visibility:hidden}
 .tab-item .ion-plus-round:before { width: 100%; position: absolute; z-index: +10;left: 0;}
 .tab-item .ion-plus-round:after { content: ""; position: absolute; width: 60px; height: 60px; border-radius: 50px; background: rgba(0,0,0,.4); top: -6px; left:-5.33px;  }
 
@@ -817,3 +819,20 @@ ul.timeline-grid li:after { height: 44px; content: ""; position: absolute;top: 1
 ul.timeline-grid li:before { width: 100%; height: 44px; content: " "; position: absolute;top: 17px;right: 0;border-bottom: 1px solid rgba(0,0,0,.6); border-top: 1px solid rgba(0,0,0,.6); }
 
 ul.timeline-data li.data-activity{ float: left; border-radius: 2px; height: 35px; margin: 2px 0}
+
+.floating-plus-button {
+position: absolute;
+bottom: 1px;
+z-index:9999;
+}
+
+.floating-plus-button .tab-item .ion-plus-round  {
+visibility:visible;
+}
+
+.animatePlus  .ion-plus-round {
+transform: rotate(45deg);
+}
+
+.floating-plus-button .ion-plus-round:after { content: ""; position: absolute; width: 60px; height: 60px; border-radius: 50px; background: linear-gradient( rgba(0, 0, 0, .4), rgba(0, 0, 0, .4) ), rgba(66,165,245,1); top: -6px; left:-5.33px; }
+

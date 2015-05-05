@@ -95,6 +95,10 @@ angular.module('cleverbaby', [
         $rootScope.$on('modal.removed', function (modal) {
             // Execute action
         });
+		
+		$rootScope.showmenu = function(){
+			$rootScope.$broadcast("showMenu", {});
+		};
     });
 })
 .config(["$translateProvider", "$ionicConfigProvider",

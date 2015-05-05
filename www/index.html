@@ -75,6 +75,12 @@
 
 <body ng-app="cleverbaby">
     <ion-nav-view></ion-nav-view>
+	<div class="floating-plus-button tabs" style="background-color: transparent;"> 
+		<a class="tab-item" ng-click="toggle = !toggle;showmenu()" ng-class="{'animatePlus' : toggle}" icon="ion-plus-round">
+			<i class="icon ion-plus-round"></i>
+		<span class="tab-title ng-binding" ng-bind-html="title"></span>
+	</a>
+	</div>
 </body>
 
 </html>
