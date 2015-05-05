@@ -702,7 +702,7 @@ span.satuan { float:right;font-size: 24px; margin-top: 14px}
 .baby-summary span { width: 100%; display: inline-block;}
 
 /*TIMELINE */
-.pd{padding:14px 10px 0; font-size: 17px;}
+.pd{padding: 10px 10px 0; font-size: 17px; margin-top: 0px;}
 .kartu{background: #fafafa; margin: 5px;}
 .kartu h2 { color: #5a5a5a;}
 .no-padding{padding:0 !important;}
