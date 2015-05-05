@@ -1,15 +1,15 @@
 <div class="modal transparent" ng-controller="MenuCtrl" ng-click="closeModal()">
     <div class="row menu-bot">
-    	<button class="btn btn-general btn-nursed" ng-click="newNursed()">
+    	<button class="btn btn-general btn-nursed" ng-click="openModal('nurse')">
     		<i class="icon-breast-feeding"></i>
     	</button>
-    	<button class="btn btn-general btn-bottle" ng-click="newBottle()">
+    	<button class="btn btn-general btn-bottle" ng-click="openModal('bottle')">
     		<i class="icon-bottle"></i>
     	</button>
-    	<button class="btn btn-general btn-diaper" ng-click="newDiapers()">
+    	<button class="btn btn-general btn-diaper" ng-click="openModal('change')">
     		<i class="icon-diaper"></i>
     	</button>
-    	<button class="btn btn-general btn-nap" ng-click="newNap()">
+    	<button class="btn btn-general btn-nap" ng-click="openModal('sleep')">
     		<i class="icon-sleepcc"></i>
     	</button>
         <button class="btn btn-general btn-more" ng-click="addMore()">

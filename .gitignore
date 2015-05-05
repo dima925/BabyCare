@@ -10,3 +10,4 @@ plugins/
 cleverbaby.iml
 www/lib
 platforms
+www/templates/activities/activity.html

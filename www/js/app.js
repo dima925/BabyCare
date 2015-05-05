@@ -11,13 +11,14 @@ angular.module('cleverbaby', [
     'angular-svg-round-progress',
     'cleverbaby.data',
     'cleverbaby.services',
+    'cleverbaby.helpers',
     'ngCordova',
     'timer',
     'chart.js',
     'ngStorage'
 ])
 
-.run(function ($ionicPlatform, $rootScope, AuthService, $timeout, $ionicModal, $location, $cordovaLocalNotification,timerService) {
+.run(function ($ionicPlatform, $rootScope, AuthService, $timeout, $ionicModal, $location, $cordovaLocalNotification, timerService, BabyService, $localStorage) {
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -28,7 +29,39 @@ angular.module('cleverbaby', [
             // org.apache.cordova.statusbar required
             StatusBar.styleDefault();
         }
+
+        $rootScope.setBaby = function (baby){
+            $rootScope.baby = baby;
+            $rootScope.babyId = baby.id;
+            $localStorage.babyId = baby.id;
+            $rootScope.$broadcast('babySelected', baby);
+        };
+
         AuthService.setup().then(function(){
+            BabyService.getAllBabies().then(function(babies){
+                $rootScope.babies = babies;
+
+                $rootScope.$on('babyAdd', function(e, baby){
+                    $rootScope.babies.push(baby);
+                });
+
+                $rootScope.$on('babyRemoved', function(e, baby){
+                    $rootScope.babies.filter(function(x){
+                        return x.id != baby.id;
+                    });
+                });
+
+                if($localStorage.babyId){
+                    $rootScope.babies.forEach(function(baby) {
+                        if (baby.id == $localStorage.babyId) {
+                            $rootScope.setBaby(baby);
+                        }
+                    });
+                }
+                if(!$rootScope.baby){
+                    $rootScope.setBaby(babies[0]);
+                }
+            });
         });
 
         $rootScope.userEmail = null;
@@ -62,6 +95,10 @@ angular.module('cleverbaby', [
         $rootScope.$on('modal.removed', function (modal) {
             // Execute action
         });
+		
+		$rootScope.showmenu = function(){
+			$rootScope.$broadcast("showMenu", {});
+		};
     });
 })
 .config(["$translateProvider", "$ionicConfigProvider",

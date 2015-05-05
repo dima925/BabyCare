@@ -1,6 +1,7 @@
 /* Empty. Add your own CSS if you like */
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 * {box-sizing: border-box;   white-space: normal !important;  }
+::-webkit-scrollbar {   display: block; }
 html, body { font-family: 'Roboto', sans-serif !important;  } 
 .bgcolor{
   background-color: #20BAEF !important;
@@ -524,6 +525,8 @@ input{
 .text-center { text-align: center !important;}
 .text-justify { text-align: justify !important;}
 .btn { padding: 10px; display: block; color: #fff; font-size:22px; }
+.header a.btn.left { position: absolute;top: 15px; left: 0;}
+.header a.btn.right { position: absolute;top: 15px; right: 0;}
 .clearfix { clear: both;}
 [class*="xs-"]  { float: left; padding: 0; margin:0;}
 .xs-5 { width: 20%; }
@@ -571,10 +574,12 @@ input{
 .pumping { background: #00cc33; }
 .sickness { background: #3366ff; }
 .temp { background: #ff0000; }
+.todo { background: #66cc00;}
 .vaccination { background: #cc3366; }
-.sleep { background: #cc3366; }
+.sleep { background: #0099cc; }
 .solid{background: #ffcc00;}
 .dropdown{background: #fff;}
+.allergy { background: #5c6bc0; }
 .diapers .item-radio input:checked ~ .item-content { color: #ff6b01}
 .bottle .item-radio input:checked ~ .item-content { color: #66cc33}
 .nurse .item-radio input:checked ~ .item-content { color: #3300cc}
@@ -653,6 +658,7 @@ span.satuan { float:right;font-size: 24px; margin-top: 14px}
 .footer a[class*="pull-"] span[class*="icon-"] { font-size: 14px; width: 100%; float: left; }
 .footer a.btn-mid { padding: 10px 14px; background: #fff;  display: inline-block; border-radius:4px 4px 0 0;}
 .diaper-foot{color: #ff6b01;}
+.doctor-foot { color: #cc33ff; }
 .bottle-foot{color: #66cc33;}
 .nurse-foot{color: #3300cc;}
 .activity-foot{color: #336699;}
@@ -666,7 +672,10 @@ span.satuan { float:right;font-size: 24px; margin-top: 14px}
 .play-foot { color: #9933ff; }
 .pumping-foot { color: #00cc33; }
 .sickness-foot { color: #3366ff; }
+.solid-foot { color: #ffcc00; }
+.sleep-foot { color: #cc3366; }
 .temp-foot { color: #ff0000; }
+.todo-foot { color: #66cc00; }
 .vaccination-foot { color: #cc3366; }
 
 
@@ -778,6 +787,58 @@ input.form-control-text {  text-align: left !important; float: left !important;}
 .slide-in-up.ng-leave, .slide-in-up > .ng-leave {
     -webkit-transition: all ease-in-out 200ms !important;
     transition: all ease-in-out 200ms !important;
+}
+
+
+
+/*tab-view-style override*/
+.tabs-stable > .tabs { border:0; padding:0 !important;}
+.tab-item .icon { font-size: 28px !important; padding-top: 12px; color: #fff; line-height: 1em;}
+.tab-item .ion-plus-round { position: relative; width: 50px; height: 50px; visibility:hidden}
+.tab-item .ion-plus-round:before { width: 100%; position: absolute; z-index: +10;left: 0;}
+.tab-item .ion-plus-round:after { content: ""; position: absolute; width: 60px; height: 60px; border-radius: 50px; background: rgba(0,0,0,.4); top: -6px; left:-5.33px;  }
+
+/*timeline*/
+.timeline { height: 100%; background: #fff; color: #000; margin: 0; padding: 0;}
+.timeline .header { height: 59px; background: #02b5ef; text-align: center; padding: 20px 0 0 0;}
+.timeline .header h2 { color:#fff; font-size: 22px; display: inline-block;}
+ul.items-activity { text-align: center; padding: 20px 0}
+ul.items-activity li { display: inline-block; text-align: center;  margin-right: 10px; }
+ul.items-activity li .icon { width: 30px; height: 30px; border-radius: 50px; display: inline-block; }
+ul.items-activity li:last-child { margin: 0 !important}
+ul.items-activity li span[class*="icon-"] { margin: 8px auto 10px; display: inline-block; font-size: 16px;}
+ul.items-activity li span.text { color: rgba(0,0,0,.6); font-size: 11px; }
+.timeline-wrapper { width: 100%; }
+.kotak.timeline-item { height: 88px;  max-width: 100%; margin: 10px 0 18px; position: relative;}
+.kotak.timeline-item:after { content: "\f061"; font-family: 'FontAwesome'; position: absolute; top: 44px; right: 0; color: rgba(0,0,0,.6) }
+.kotak.timeline-item h3 { font-size: 18px; padding: 0 5px;margin: 0; color: rgba(0,0,0,.6);}
+.data { position: relative; height: 88px; margin-top: 16px; width: auto;}
+ul.timeline-grid, ul.timeline-data { width:148.8%; }
+ul.timeline-grid li { position: relative; width: 13.55%; font-size: 14px; color: rgba(0,0,0,.6); float: left; padding-left: 12px; margin-left: -6px;}
+ul.timeline-grid li:after { height: 44px; content: ""; position: absolute;top: 17px;right: 0; border-right: 1px dotted #000 }
+ul.timeline-grid li:before { width: 100%; height: 44px; content: " "; position: absolute;top: 17px;right: 0;border-bottom: 1px solid rgba(0,0,0,.6); border-top: 1px solid rgba(0,0,0,.6); }
+
+ul.timeline-data li.data-activity{ float: left; border-radius: 2px; height: 35px; margin: 2px 0}
+
+.floating-plus-button {
+position: absolute;
+bottom: 0px;
+z-index:9999;
+left: 50%;	
+margin-left: -25px;	
+height: 49px;
+}
+
+.floating-plus-button .tab-item .ion-plus-round  {
+visibility:visible;
+}
+
+.animatePlus  .ion-plus-round {
+transform: rotate(45deg);
+}
+
+.floating-plus-button .ion-plus-round:after { content: ""; position: absolute; width: 60px; height: 60px; border-radius: 50px; background: linear-gradient( rgba(0, 0, 0, .4), rgba(0, 0, 0, .4) ), rgba(66,165,245,1); top: -6px; left:-5.33px; }
+
 }
 
 /********************************************/

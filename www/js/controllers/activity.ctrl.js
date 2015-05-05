@@ -97,6 +97,18 @@ angular.module('cleverbaby.controllers')
             time_both: null
         };
 
+        $scope.sleep = {
+            time_start: new Date(),
+            time_slept: null,
+            time_end: new Date(),
+            location: null
+        };
+
+        $scope.solid = {
+            time: new Date(),
+            food_type: null
+        };
+
         $scope.addActivity = function(type){
             var data;
             if(type == "change"){
@@ -242,6 +254,23 @@ angular.module('cleverbaby.controllers')
                     time_both: $scope.nurse.time_both,
                     type: "nurse"
                 };
+            }
+            if(type == "sleep"){
+                data = {
+                    babies: $rootScope.babyId,
+                    time_start: parseInt($scope.sleep.time_start.getTime()/1000),
+                    time_end: parseInt($scope.sleep.time_start.getTime()/1000),
+                    location: $scope.sleep.location,
+                    type: "sleep"
+                }
+            }
+            if(type == "solid") {
+                data = {
+                    babies: $rootScope.babyId,
+                    time: parseInt($scope.solid.time.getTime()/1000),
+                    food_type: $scope.solid.food_type,
+                    type: "solid"
+                }
             }
 
             ActivityService.addActivity(data).then(function(){

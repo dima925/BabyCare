@@ -5,7 +5,7 @@
             <ion-nav-buttons side="left">
                 <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
             </ion-nav-buttons>
-            <ion-nav-title ng-click='dropdown()' data-translate>cleverbaby.app.diary.title</ion-nav-title>
+            <ion-nav-title ng-click='dropdown()'>{{$root.baby.name}}</ion-nav-title>
             <ion-nav-buttons side="right">
                 <a class="button button-icon icon ion-calendar activated" ng-click="newTask()"><span class="ion-ios-calendar-outline"></span></a>
             </ion-nav-buttons>
@@ -33,7 +33,7 @@
                                 </div>
                         </div>
                     </div>
-                    <div class="thumbnail-baby"><div class="circular"><img src="/img/baby.png"></div></div>
+                    <div class="thumbnail-baby" ng-click="editBaby()"><div class="circular"><img src="/img/baby.png"></div></div>
                     <div class="graph-circle-home">
                         <div class="progress-wrapper">
                             <div class="progress">14min <span>ETA</span></div>
@@ -107,64 +107,23 @@
             <p class="justify padding" ng-click="clickTip()">{{dailyTip}}</p>
           </div>
         </div>
-        <div class="kotak timeline">
-            <h3 class="pd">Today</h3>
-            <div class="item">
-                <div class="datetime-tl"><p>2h 38m ago</p></div>
-                <div class="activity-icon">
-                    <div class="item-activity diapers">
-                        <span class="icon-diaper"></span>
+        <h3 class="pd" ion-affix data-affix-within-parent-with-class="timeline">Today</h3>
+        <ion-list>
+            <div class="kotak timeline" collection-repeat="activity in activities" collection-item-height="77">
+                <div class="item">
+                    <div class="datetime-tl"><p timeline-date="{{ activity.createdAt }}"></p></div>
+                    <div class="activity-icon">
+                        <div class="item-activity" ng-class="activity.type | classOfActivity">
+                            <span ng-class="activity.type | iconOfActivity"></span>
+                        </div>
+                    </div>
+                    <div class="desc">
+                        <h3 class="{{ activity.type | footOfActivity }}">{{ activity.type }}</h3>
+                        <p>{{ activity | showActivity }}</p>
                     </div>
                 </div>
-                <div class="desc">
-                    <h3 class="diaper-foot">Changed</h3>
-                    <p><span>WET</span> and <span>SOLID</span></p>
-                </div>
             </div>
-        </div>
-        <div class="kotak timeline">
-            <div class="item">
-                <div class="datetime-tl"><p>4h 12m ago</p></div>
-                <div class="activity-icon">
-                    <div class="item-activity nurse">
-                        <span class="icon-breast-feeding"></span>
-                    </div>
-                </div>
-                <div class="desc">
-                    <h3 class="nurse-foot">Nursed</h3>
-                    <p>LEFT <span class="space">15min</span> RIGHT <span>0min</span></p>
-                </div>
-            </div>
-        </div> 
-        <div class="kotak timeline">
-            <div class="item">
-                <div class="datetime-tl"><p>4h 31m ago</p></div>
-                <div class="activity-icon">
-                    <div class="item-activity activity">
-                        <span class="icon-rattle-alias-1"></span>
-                    </div>
-                </div>
-                <div class="desc">
-                    <h3 class="activity-foot">Played</h3>
-                    <p><i>TUMMYTIME!</i></p>
-                </div>
-            </div>
-        </div>
-        <div class="kotak timeline">
-            <div class="item">
-                <div class="datetime-tl"><p>4h 50m ago</p></div>
-                <div class="activity-icon">
-                    <div class="item-activity sleep">
-                        <span class="icon-sleepcc"></span>
-                    </div>
-                </div>
-                <div class="desc">
-                    <h3 class="sleep-foot">NAPPER</h3>
-                    <p>SLEEP FOR 2 Hours</p>
-                </div>
-            </div>
-        </div> 
-        
+        </ion-list>
     </ion-content>
     <div class="fixed-outside" ng-show="timerRunning">
         <div class="row">
