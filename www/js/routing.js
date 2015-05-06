@@ -9,11 +9,11 @@ angular.module('cleverbaby')
         controller: 'AppCtrl'
     })
 
-    .state('app.search', {
-        url: "/search",
+    .state('app.calendar', {
+        url: "/calendar",
         views: {
-            'search': {
-                templateUrl: "templates/search.html"
+            'calendar': {
+                templateUrl: "templates/calendar.html"
             }
         }
     })

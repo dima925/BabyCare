@@ -16,7 +16,7 @@ angular.module('cleverbaby.controllers')
     $scope.editBaby = function(){};
 
     $scope.noData = true;
-    $ionicModal.fromTemplateUrl('templates/activities/item.html', function (modal) {
+    $ionicModal.fromTemplateUrl('templates/timeline.html', function (modal) {
         $scope.newTemplate = modal;
     });
 
