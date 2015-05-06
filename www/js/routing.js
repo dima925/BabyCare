@@ -54,6 +54,14 @@ angular.module('cleverbaby')
             }
         }
     })
+    .state('app.more', {
+       url: "/more",
+       views: {
+           'more': {
+               templateUrl: "templates/more.html"
+           }
+       }
+    })
     .state('auth', {
         url: "/auth",
         abstract: true,
