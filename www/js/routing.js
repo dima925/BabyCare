@@ -13,7 +13,8 @@ angular.module('cleverbaby')
         url: "/calendar",
         views: {
             'calendar': {
-                templateUrl: "templates/calendar.html"
+                templateUrl: "templates/calendar.html",
+                controller: 'CalendarCtrl'
             }
         }
     })
