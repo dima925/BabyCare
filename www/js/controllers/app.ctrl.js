@@ -9,7 +9,6 @@ angular.module('cleverbaby.controllers')
         $scope.menuModal = menu;
     });
 
-
     $scope.menu = function(){
         $scope.menuModal.show();
     };

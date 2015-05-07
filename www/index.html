@@ -84,7 +84,7 @@
 
 <body ng-app="cleverbaby">
     <ion-nav-view></ion-nav-view>
-	<div class="floating-plus-button" style="background-color: transparent;" ng-class="{'hide-plus-btn' : hidePlusBtn}">
+	<div class="floating-plus-button" style="background-color: transparent;" ng-class="{'hide-plus-btn' : hidePlusBtn}" ng-show="showFloatingPlusBtn">
 		<a class="tab-item" ng-click="toggle = !toggle;showmenu()" ng-class="{'animatePlus' : activatePlus}" icon="ion-plus-round">
 			<i class="icon ion-plus-round"></i>
 		<span class="tab-title ng-binding" ng-bind-html="title"></span>
