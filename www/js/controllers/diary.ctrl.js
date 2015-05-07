@@ -16,6 +16,7 @@ angular.module('cleverbaby.controllers')
     $scope.editBaby = function(){};
 
     $scope.noData = true;
+
     $ionicModal.fromTemplateUrl('templates/timeline.html', function (modal) {
         $scope.newTemplate = modal;
     });
@@ -26,6 +27,7 @@ angular.module('cleverbaby.controllers')
     $scope.newActivity = function(){
         $scope.activityModal.show();
     };
+
     $scope.newTask = function () {
         $scope.newTemplate.show();
     };
@@ -33,6 +35,7 @@ angular.module('cleverbaby.controllers')
     $ionicModal.fromTemplateUrl('templates/modals/dropdown.html',function(dropdown){
         $scope.dropdownModal = dropdown;
     });
+
     $scope.dropdown = function(){
         $scope.modal.hide();
         $scope.dropdownModal.show();
