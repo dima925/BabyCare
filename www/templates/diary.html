@@ -55,25 +55,25 @@
                     <span class="text-center">7 Weeks 2 Days</span>
                     <span class="text-center">5.4 Kg 59 Cm</span>
                 </div>
-                       
+
                 <div class="dayli-checklist">
                     <div class="kotak autoheight">
                         <h3 class="text-left">DAILY CHECKLIST</h3>
                         <div class="xs-5">
-                            <h5>5</h5>
+                            <h5>{{ nurseCount() }}</h5>
                             <h5 data-translate>cleverbaby.app.diary.bar.nurses</h5>
                         </div>
                         <div class="xs-5">
-                            <h5>3</h5>
+                            <h5>{{ changeCount() }}</h5>
                             <h5 data-translate>cleverbaby.app.diary.bar.change</h5>
                         </div>
                         <div class="xs-5 center">
-                            <input type="checkbox" id="bath">
+                            <input type="checkbox" id="bath" ng-disabled="todayBath()" ng-checked="todayBath()" ng-model="today_bath" ng-change="addBath()">
                             <label class="checkbox" for="bath"></label><br />
                             <label data-translate for="bath">cleverbaby.app.diary.bar.bath</label>
                         </div>
                         <div class="xs-5 center">
-                            <input type="checkbox" id="play">
+                            <input type="checkbox" id="play" ng-disabled="todayPlay()" ng-checked="todayPlay()" ng-model="today_play" ng-change="addPlay()">
                             <label class="checkbox" for="play"></label><br />
                             <label data-translate for="play">cleverbaby.app.diary.bar.play</label>
                         </div>
@@ -106,19 +106,8 @@
         </div>
         <h3 class="pd" ion-affix data-affix-within-parent-with-class="timeline">Today</h3>
         <ion-list>
-            <div class="kotak timeline" collection-repeat="activity in activities" collection-item-height="77">
-                <div class="item">
-                    <div class="datetime-tl"><p timeline-date="{{ activity.createdAt }}"></p></div>
-                    <div class="activity-icon">
-                        <div class="item-activity" ng-class="activity.type | classOfActivity">
-                            <span ng-class="activity.type | iconOfActivity"></span>
-                        </div>
-                    </div>
-                    <div class="desc">
-                        <h3 class="{{ activity.type | footOfActivity }}">{{ activity.type }}</h3>
-                        <p>{{ activity | showActivity }}</p>
-                    </div>
-                </div>
+            <div ng-repeat="activity in activities">
+                <timeline-item activity="activity"></timeline-item>
             </div>
         </ion-list>
     </ion-content>

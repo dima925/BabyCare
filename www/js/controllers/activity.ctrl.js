@@ -1,114 +1,117 @@
 angular.module('cleverbaby.controllers')
 .controller('activityCtrl', ['$rootScope', '$scope', '$window', 'ActivityService', 'NotificationService',
     function ($rootScope, $scope, $window, ActivityService, NotificationService) {
-        $scope.diaper = {
-            time : new Date(),
-            diaper_type : "Empty",
-            amount_size : "Tiny",
-            color : "Yellow",
-            texture : "Runny"
-        };
+        function init() {
 
-        $scope.pump = {
-            time: new Date(),
-            side: "",
-            amount: null,
-            start_side: ""
-        };
+            $scope.diaper = {
+                time: new Date(),
+                diaper_type: "Empty",
+                amount_size: "Tiny",
+                color: "Yellow",
+                texture: "Runny"
+            };
 
-        $scope.play = {
-            time: new Date(),
-            notes: null
-        };
+            $scope.pump = {
+                time: new Date(),
+                side: "",
+                amount: null,
+                start_side: ""
+            };
 
-        $scope.diary = {
-            time: new Date(),
-            notes: null
-        };
+            $scope.play = {
+                time: new Date(),
+                notes: null
+            };
 
-        $scope.vaccination = {
-            time: new Date(),
-            vaccination_type: null
-        };
+            $scope.diary = {
+                time: new Date(),
+                notes: null
+            };
 
-        $scope.growth = {
-            time: new Date(),
-            weight: null,
-            height: null,
-            head: null
-        };
+            $scope.vaccination = {
+                time: new Date(),
+                vaccination_type: null
+            };
 
-        $scope.milestone = {
-            time: new Date(),
-            milestone_type: null
-        };
+            $scope.growth = {
+                time: new Date(),
+                weight: null,
+                height: null,
+                head: null
+            };
 
-        $scope.sickness = {
-            time: new Date(),
-            symptom: null
-        };
+            $scope.milestone = {
+                time: new Date(),
+                milestone_type: null
+            };
 
-        $scope.doctor = {
-            time: new Date(),
-            visit_type: null,
-            doctor: null
-        };
+            $scope.sickness = {
+                time: new Date(),
+                symptom: null
+            };
 
-        $scope.bath = {
-            time: new Date(),
-            notes: null,
-            temp: null
-        };
+            $scope.doctor = {
+                time: new Date(),
+                visit_type: null,
+                doctor: null
+            };
 
-        $scope.medication = {
-            time: new Date(),
-            drug: null,
-            amount_given: null,
-            prescription_interval: null
-        };
+            $scope.bath = {
+                time: new Date(),
+                notes: null,
+                temp: null
+            };
 
-        $scope.temperature = {
-            time: new Date(),
-            temp: null,
-            reminder: null
-        };
+            $scope.medication = {
+                time: new Date(),
+                drug: null,
+                amount_given: null,
+                prescription_interval: null
+            };
 
-        $scope.mood = {
-            time: new Date(),
-            mood_type: null
-        };
+            $scope.temperature = {
+                time: new Date(),
+                temp: null,
+                reminder: null
+            };
 
-        $scope.bottle = {
-            time: new Date(),
-            bottle_type: null,
-            amount: null,
-            notes: null
-        };
+            $scope.mood = {
+                time: new Date(),
+                mood_type: null
+            };
 
-        $scope.todo = {
-            time: new Date(),
-            notes: null
-        };
+            $scope.bottle = {
+                time: new Date(),
+                bottle_type: null,
+                amount: null,
+                notes: null
+            };
 
-        $scope.nurse = {
-            time_start: new Date(),
-            time_left: null,
-            time_right: null,
-            time_both: null
-        };
+            $scope.todo = {
+                time: new Date(),
+                notes: null
+            };
 
-        $scope.sleep = {
-            time_start: new Date(),
-            time_slept: null,
-            time_end: new Date(),
-            location: null
-        };
+            $scope.nurse = {
+                time_start: new Date(),
+                time_left: null,
+                time_right: null,
+                time_both: null
+            };
 
-        $scope.solid = {
-            time: new Date(),
-            food_type: null
-        };
+            $scope.sleep = {
+                time_start: new Date(),
+                time_slept: null,
+                time_end: new Date(),
+                location: null
+            };
 
+            $scope.solid = {
+                time: new Date(),
+                food_type: null
+            };
+        }
+        init();
         $scope.addActivity = function(type){
             var data;
             if(type == "change"){
@@ -256,6 +259,7 @@ angular.module('cleverbaby.controllers')
                 };
             }
             if(type == "sleep"){
+                console.log($scope.sleep.time_slept);s
                 data = {
                     babies: $rootScope.babyId,
                     time_start: parseInt($scope.sleep.time_start.getTime()/1000),
@@ -273,7 +277,8 @@ angular.module('cleverbaby.controllers')
                 }
             }
 
-            ActivityService.addActivity(data).then(function(){
+            ActivityService.addActivity(data).then(function(activity){
+                $rootScope.$broadcast('activityAdd', activity);
                 $scope.modal.hide();
             }, function(err){
                 NotificationService.notify(err.data.message || "Network error");
@@ -293,5 +298,9 @@ angular.module('cleverbaby.controllers')
             $rootScope.hidePlusBtn = false;
             $scope.modal.hide();
         };
+
+        $scope.$on('modal.hidden', function() {
+            init();
+        });
     }
 ]);

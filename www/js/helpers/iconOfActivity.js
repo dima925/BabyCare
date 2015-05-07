@@ -17,7 +17,7 @@ angular
             'temperature': 'icon-temperature',
             'medication': 'icon-medication',
             'vaccination': 'icon-injection',
-            'allergy': 'alergy',
+            'allergy': 'icon-allergy',
             'mood': 'icon-mood-ok',
             'moment': 'icon-rattle-alias-1',
             'diary': 'icon-diary',
