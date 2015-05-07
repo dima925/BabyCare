@@ -19,7 +19,7 @@ angular.module('cleverbaby', [
     'ui.calendar'
 ])
 
-.run(function ($ionicPlatform, $rootScope, AuthService, $timeout, $ionicModal, $location, $cordovaLocalNotification, timerService, BabyService, $localStorage) {
+.run(function ($ionicPlatform, $rootScope, AuthService, $timeout, $ionicModal, $location, $cordovaLocalNotification, timerService, BabyService, $localStorage, $cordovaSplashscreen) {
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -101,7 +101,11 @@ angular.module('cleverbaby', [
 		$rootScope.showmenu = function(){
 			$rootScope.$broadcast("showMenu", {});
 		};
-    });
+		
+		// hide the splashscreen
+		$cordovaSplashscreen.hide();
+	
+	});
 })
 .config(["$translateProvider", "$ionicConfigProvider",
     function($translateProvider, $ionicConfigProvider){
