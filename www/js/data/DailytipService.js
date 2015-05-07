@@ -94,7 +94,7 @@ angular.module('cleverbaby.data')
             var deferred = $q.defer();
             var translatedDailyTips;
 
-            getTranslatedTipFile('dailyTips',getActiveLanguage())
+            getTranslatedTipFile('dailytips',getActiveLanguage())
                 .then(function(dailyTip){
                     translatedDailyTips = dailyTip;
                     return processTranslatedAppTip();
