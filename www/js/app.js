@@ -103,7 +103,8 @@ angular.module('cleverbaby', [
 		};
 		
 		// hide the splashscreen
-		$cordovaSplashscreen.hide();
+		// only call .hide() if we are running inside cordova (webview), otherwise desktop chrome throws an error
+		if (ionic.Platform.isWebView()) $cordovaSplashscreen.hide();
 	
 	});
 })
