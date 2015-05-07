@@ -102,27 +102,34 @@ angular.module('cleverbaby', [
 			$rootScope.$broadcast("showMenu", {});
 		};
 
-		// hide the splashscreen
-		// only call .hide() if we are running inside cordova (webview), otherwise desktop chrome throws an error
-		if (ionic.Platform.isWebView()) $cordovaSplashscreen.hide();
-
         /**
          * Function for hiding plusbtn
          */
         function hideFloatingPlusBtn(){
-            var homeMainTab = angular.element('.cleverbaby-main-tab');
-            if(homeMainTab.length == 0){
+            var homeMainTabNavView = angular.element('.cleverbaby-main-tab').parent('.pane').attr('nav-view');
+            if(angular.isUndefined(homeMainTabNavView) || homeMainTabNavView == 'cached'){
                 $rootScope.showFloatingPlusBtn = false;
             }else{
                 $rootScope.showFloatingPlusBtn = true;
             }
         };
-        hideFloatingPlusBtn();
 
-        $rootScope.$on('$locationChangeSuccess',
-            function(event, toState, toParams, fromState, fromParams){
+        //todo maybe theres a better method.
+        $timeout(function(){
+            hideFloatingPlusBtn();
+        });
+
+
+        $rootScope.$on('$locationChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+            $timeout(function(){
                 hideFloatingPlusBtn();
-            });
+            }, 100);
+        });
+
+		// hide the splashscreen
+		// only call .hide() if we are running inside cordova (webview), otherwise desktop chrome throws an error
+		if (ionic.Platform.isWebView()) $cordovaSplashscreen.hide();
+
 	});
 })
 .config(["$translateProvider", "$ionicConfigProvider",
