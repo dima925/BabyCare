@@ -19,6 +19,16 @@ angular.module('cleverbaby')
         }
     })
 
+    .state('app.timeline', {
+        url: "/timeline",
+        views: {
+            'home': {
+                templateUrl: "templates/timeline.html",
+                controller: 'TimelineCtrl'
+            }
+        }
+    })
+
     .state('app.browse', {
         url: "/browse",
         views: {
