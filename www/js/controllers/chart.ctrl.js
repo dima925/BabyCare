@@ -13,4 +13,7 @@ angular.module('cleverbaby.controllers')
 	$scope.onClick = function (points, evt) {
 	console.log(points, evt);
 	};
+
+
+    $scope.trendTemplate = 'templates/trends/growth.html';
 }]);

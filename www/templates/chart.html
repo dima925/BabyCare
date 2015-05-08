@@ -9,21 +9,18 @@
 	        </ion-nav-buttons>
 	    </ion-nav-bar>
 	  </div>
-  	
-    <div class="box padding">
-    	<div class="card">
-    		<canvas id="line" class="chart chart-line" data="data" labels="labels" legend="true" series="series" click="onClick"></canvas> 
-    	</div>
-    </div>
-    <div class="row">
-    	<div class="col col-80">
-    		<canvas id="line" class="chart chart-bar" data="data" labels="labels" legend="true" series="series" click="onClick"></canvas> 
-    	</div>
-    	<div class="col col-20">
-    		<h3>+142</h3>
-    		<h4>From Last Month</h4>
-    	</div>
-    </div>
+
+      <div class="box padding">
+          <select ng-model="trendTemplate">
+              <option value="templates/trends/growth.html" selected>Growth</option>
+              <option value="templates/trends/feeding.html">Feeding</option>
+              <option value="templates/trends/diaper.html">Diaper</option>
+              <option value="templates/trends/sleep.html">Sleep</option>
+              <option value="templates/trends/pumping.html">Pumping</option>
+          </select>
+      </div>
+
+      <div class="row responsive-sm" ng-include="trendTemplate"></div>
+
   </ion-content>
-  
 </ion-view>
