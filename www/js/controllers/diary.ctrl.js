@@ -2,17 +2,43 @@ angular.module('cleverbaby.controllers')
     .controller('DiaryCtrl', ['$location', '$scope', '$ionicModal', 'DailytipService', '$ionicSlideBoxDelegate', 'ActivityService', 'BabyModal',
         function ($location, $scope, $ionicModal, DailytipService, $ionicSlideBoxDelegate, ActivityService, BabyModal) {
 
-            $scope.$on('babySelected', function(event, baby){
-                ActivityService
-                    .getAllActivitiesByBabyId(baby.id)
+            var start;
+            var limit;
+
+            $scope.getNextActivities = function(babyId){
+                return ActivityService
+                    .getAllActivitiesByBabyId(babyId, start, limit)
                     .then(function(activities){
-                        $scope.activities = activities;
+                        start+=limit;
+                        return activities;
                     });
+            };
+            $scope.$on('babySelected', function(event, baby){
+                $scope.canBeloadedMore = true;
+                start = 0;
+                limit = 20;
+                $scope.getNextActivities(baby.id).then(function(activities){
+                    $scope.activities = activities;
+                    $scope.NurseCount = $scope.nurseCount();
+                    $scope.ChangeCount = $scope.changeCount();
+                    $scope.TodayBath = $scope.todayBath();
+                    $scope.TodayPlay = $scope.todayPlay();
+                });
+                $scope.loadMore = function(){
+                    $scope.getNextActivities($scope.baby.id).then(function(activities){
+                        if(activities.length == 0){
+                            $scope.canBeloadedMore = false;
+                        }
+                        Array.prototype.push.apply($scope.activities, activities);
+                        $scope.$broadcast('scroll.infiniteScrollComplete');
+                    });
+                };
                 $scope.editBaby = function(){
                     BabyModal.showModal(baby);
                 };
 
                 $scope.addPlay = function(){
+                    $scope.TodayPlay = true;
                     ActivityService.addActivity({
                         babies: baby.id,
                         time: parseInt(new Date().getTime()/1000),
@@ -23,6 +49,7 @@ angular.module('cleverbaby.controllers')
                 };
 
                 $scope.addBath = function(){
+                    $scope.TodayBath = true;
                     ActivityService.addActivity({
                         babies: baby.id,
                         time: parseInt(new Date().getTime()/1000),
@@ -36,13 +63,13 @@ angular.module('cleverbaby.controllers')
             $scope.nurseCount = function(){
                 return $scope.activities ? $scope.activities.filter(function(activity){
                     return activity.createdAt.setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0) && activity.type == 'nurse';
-                }).length : '';
+                }).length : 0;
             };
 
             $scope.changeCount = function(){
                 return $scope.activities ? $scope.activities.filter(function(activity){
                     return activity.createdAt.setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0) && activity.type == 'change';
-                }).length : '';
+                }).length : 0;
             };
 
             $scope.todayPlay = function(){
@@ -58,6 +85,13 @@ angular.module('cleverbaby.controllers')
             };
 
             $scope.$on('activityAdd', function(event, activity){
+                ++start;
+                if(activity.type == 'change'){
+                    ++$scope.ChangeCount;
+                }
+                if(activity.type == 'nurse'){
+                    ++$scope.NurseCount;
+                }
                 $scope.activities.unshift(activity);
             });
 

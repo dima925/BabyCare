@@ -132,6 +132,20 @@
     "cleverbaby.app.activity.nap.time_slept.select.5hour": "5hour",
     "cleverbaby.app.activity.nap.time_slept.select.6hour": "6hour",
 
+    "cleverbaby.app.activity.allergy.title": "Allergy",
+    "cleverbaby.app.activity.allergy.time": "Time",
+    "cleverbaby.app.activity.allergy.source": "Source",
+    "cleverbaby.app.activity.allergy.source.placeholder": "Egg",
+    "cleverbaby.app.activity.allergy.reaction": "Reaction",
+    "cleverbaby.app.activity.allergy.reaction.placeholder": "Reaction",
+    "cleverbaby.app.activity.allergy.severity": "Severity",
+    "cleverbaby.app.activity.allergy.severity.placeholder": "Severe",
+
+    "cleverbaby.app.activity.moment.title": "Activity",
+    "cleverbaby.app.activity.moment.time": "Time",
+    "cleverbaby.app.activity.moment.notes": "Activity",
+    "cleverbaby.app.activity.moment.notes.placeholder": "Outside Stroll",
+
     "cleverbaby.app.activity.diaper.change.size": "Size",
     "cleverbaby.app.activity.diaper.change.size.tiny": "Tiny",
     "cleverbaby.app.activity.diaper.change.size.medium": "Medium",

@@ -60,20 +60,20 @@
                     <div class="kotak autoheight">
                         <h3 class="text-left">DAILY CHECKLIST</h3>
                         <div class="xs-5">
-                            <h5>{{ nurseCount() }}</h5>
+                            <h5>{{ NurseCount }}</h5>
                             <h5 data-translate>cleverbaby.app.diary.bar.nurses</h5>
                         </div>
                         <div class="xs-5">
-                            <h5>{{ changeCount() }}</h5>
+                            <h5>{{ ChangeCount }}</h5>
                             <h5 data-translate>cleverbaby.app.diary.bar.change</h5>
                         </div>
                         <div class="xs-5 center">
-                            <input type="checkbox" id="bath" ng-disabled="todayBath()" ng-checked="todayBath()" ng-model="today_bath" ng-change="addBath()">
+                            <input type="checkbox" id="bath" ng-disabled="TodayBath" ng-checked="TodayBath" ng-model="today_bath" ng-change="addBath()">
                             <label class="checkbox" for="bath"></label><br />
                             <label data-translate for="bath">cleverbaby.app.diary.bar.bath</label>
                         </div>
                         <div class="xs-5 center">
-                            <input type="checkbox" id="play" ng-disabled="todayPlay()" ng-checked="todayPlay()" ng-model="today_play" ng-change="addPlay()">
+                            <input type="checkbox" id="play" ng-disabled="TodayPlay" ng-checked="TodayPlay" ng-model="today_play" ng-change="addPlay()">
                             <label class="checkbox" for="play"></label><br />
                             <label data-translate for="play">cleverbaby.app.diary.bar.play</label>
                         </div>
@@ -110,6 +110,11 @@
                 <timeline-item activity="activity"></timeline-item>
             </div>
         </ion-list>
+        <ion-infinite-scroll
+                on-infinite="loadMore()"
+                distance="1%"
+                ng-if="canBeloadedMore">
+        </ion-infinite-scroll>
     </ion-content>
     <div class="fixed-outside" ng-show="timerRunning">
         <div class="row">

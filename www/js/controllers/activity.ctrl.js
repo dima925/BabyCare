@@ -110,6 +110,19 @@ angular.module('cleverbaby.controllers')
                 time: new Date(),
                 food_type: null
             };
+
+            $scope.allergy = {
+                time: new Date(),
+                source: null,
+                reaction: null,
+                severity: null
+            };
+
+            $scope.moment = {
+                time: new Date(),
+                notes: null
+
+            }
         }
         init();
         $scope.addActivity = function(type){
@@ -259,11 +272,10 @@ angular.module('cleverbaby.controllers')
                 };
             }
             if(type == "sleep"){
-                console.log($scope.sleep.time_slept);s
                 data = {
                     babies: $rootScope.babyId,
                     time_start: parseInt($scope.sleep.time_start.getTime()/1000),
-                    time_end: parseInt($scope.sleep.time_start.getTime()/1000),
+                    time_end: parseInt($scope.sleep.time_end.getTime()/1000),
                     location: $scope.sleep.location,
                     type: "sleep"
                 }
@@ -274,6 +286,24 @@ angular.module('cleverbaby.controllers')
                     time: parseInt($scope.solid.time.getTime()/1000),
                     food_type: $scope.solid.food_type,
                     type: "solid"
+                }
+            }
+            if(type == "allergy"){
+                data = {
+                    babies: $rootScope.babyId,
+                    time: parseInt($scope.allergy.time.getTime()/1000),
+                    source: $scope.allergy.source,
+                    reaction: $scope.allergy.reaction,
+                    severity: $scope.allergy.severity,
+                    type: "allergy"
+                }
+            }
+            if(type == "moment"){
+                data = {
+                    babies: $rootScope.babyId,
+                    time: parseInt($scope.moment.time.getTime()/1000),
+                    notes: $scope.moment.notes,
+                    type: "moment"
                 }
             }
 

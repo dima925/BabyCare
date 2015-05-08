@@ -121,7 +121,7 @@ angular
                 exports.modals.bottleModal.show();
             } else if(type == "todo") {
                 exports.modals.todoModal.show();
-            } else if(type == "alergy") {
+            } else if(type == "allergy") {
                 exports.modals.addAllergyModal.show();
             } else if(type == "nurse") {
                 exports.modals.nursedModal.show();
