@@ -2,6 +2,11 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 * {box-sizing: border-box;   white-space: normal !important;  }
 ::-webkit-scrollbar {   display: block; }
+::-webkit-input-placeholder {   color: #fff !important; opacity: .6 !important }
+:-moz-placeholder {   color: #fff !important; opacity: .6 !important  }
+::-moz-placeholder {    color: #fff !important; opacity: .6 !important  }
+:-ms-input-placeholder { color: #fff !important; opacity: .6 !important }
+
 html, body { font-family: 'Roboto', sans-serif !important;  } 
 .bgcolor{
   background-color: #20BAEF !important;
@@ -281,16 +286,6 @@ p.time{
   border-color: #003366;
   background-color: #003366;
   border-radius: 50px;
-}
-.button.button-square{
-  border-color: #003366;
-  background-color: #003366;
-  color: #fff;
-  font-weight: bold;
-}
-.signup{
-  text-align: center;
-  padding-top: 70px;
 }
 .tabs{
   background-color: #20BAEF;
@@ -860,6 +855,27 @@ visibility:visible; width: 70px; height: 70px;
 .more-page ul.list li.item-divider span { margin: 0 20px 0 0}
 .more-page ul.list li:not(.item-divider):after { content: "\f105"; font-family: 'FontAwesome'; position: absolute; right: 10px; top: 12px; color: #b2b2b2; font-size: 16px;}
 
+/*SIGN IN SIGN UP*/
+.item.item-input { padding: 8px 0; }
+.item.with-input { border-bottom: 1px solid #fff !important; margin-bottom: 20px; }
+.item.with-input input { color: #fff;}
+.item.with-input.password { position: relative; }
+.item.with-input.password .lost-password { content: " ? "; border-radius: 50px; padding: 3px 8px 1px; font-size: 14px; border: 1px solid #fff; position: absolute; right: 5px; margin-top: 5px}
+.loginbg { padding: 0 20px; }
+.loginbg .item.space { margin-top: 10px;}
+.loginbg .item-divider {color: #fff !important;} 
+.loginbg .button { width: auto !important; padding: 0 50px; text-align: center; display: inline-block; margin: 5px auto }
+.loginbg .button.social-media { width: 80% !important;  position: relative;}
+.loginbg .button.social-media.social-google{ background: #dd4c39 !important;border-color: #dd4c39 !important;}
+.loginbg .button.social-media.social-facebook{ background: #3c5c97 !important;border-color: #3c5c97 !important;}
+.loginbg .button.social-media:before { position: absolute; font-family: 'FontAwesome'; left: 20px;}
+.loginbg .button.social-google:before { content: "\f0d5"; }
+.loginbg .button.social-facebook:before { content: "\f09a"; }
+.button.button-square{
+  border-color: #003366;
+  background-color: #003366;
+  color: #fff; width: 100% !important; padding: 5px !important;
+}
 /********************************************/
 .rotate-to-cross{    -ms-transform: rotate(-20deg); /* IE 9 */    -webkit-transform: rotate(-20deg); /* Safari */    transform: rotate(-20deg);}
 .hide-plus-btn{    display: none;}

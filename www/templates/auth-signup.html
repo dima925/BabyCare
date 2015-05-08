@@ -6,17 +6,17 @@
       <img src="img/loginlogo.png" class="logo">
     </div>
     <div class="list loginbg">
-        <label class="item item-input">
-            <span class="input-label" data-translate>cleverbaby.auth.signup.name</span>
-            <input type="text" ng-model="user.name">
+        <label class="item item-input with-input">
+            <!-- <span class="input-label" data-translate>cleverbaby.auth.signup.name</span> -->
+            <input type="text" ng-model="user.name" placeholder="Name">
         </label>
-        <label class="item item-input">
-            <span class="input-label" data-translate>cleverbaby.auth.signup.email</span>
-            <input type="text" ng-model="user.email">
+        <label class="item item-input with-input">
+            <!-- <span class="input-label" data-translate>cleverbaby.auth.signup.email</span> -->
+            <input type="text" ng-model="user.email" placeholder="Email">
         </label>
-        <label class="item item-input">
-            <span class="input-label" data-translate>cleverbaby.auth.signup.password</span>
-            <input type="password" ng-model="user.password">
+        <label class="item item-input with-input">
+            <!-- <span class="input-label" data-translate>cleverbaby.auth.signup.password</span> -->
+            <input type="password" ng-model="user.password" placeholder="Password">
         </label>
         <label class="item item-input">
             <button class="button button-block button-positive"
@@ -24,15 +24,16 @@
                 cleverbaby.auth.signup.submit
             </button>
         </label>
+        <div class="item item-divider text-center">or</div>
         <label class="item item-input">
-            <button class="button button-block button-positive"
+            <button class="button button-block button-positive social-media social-facebook"
                     ng-click="createWithOAuth('facebook')"
                     data-translate>
                 cleverbaby.auth.signup.facebook
             </button>
         </label>
         <label class="item item-input">
-            <button class="button button-block button-positive" 
+            <button class="button button-block button-positive social-media social-google" 
                     ng-click="createWithOAuth('google')"
                     data-translate>
                 cleverbaby.auth.signup.google
