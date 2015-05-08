@@ -6,15 +6,15 @@
     <img src="img/logo.png" class="logo">
   </div>
   <div class="list loginbg">
-    <label class="item item-input with-input">
+    <div class="item item-input with-input">
       <!-- <span class="input-label" data-translate>cleverbaby.auth.signin.email</span> -->
       <input type="text" ng-model="user.email" placeholder="Username">
-    </label>
-    <label class="item item-input with-input password">
+    </div>
+    <div class="item item-input with-input password">
       <!-- <span class="input-label" data-translate>cleverbaby.auth.signin.password</span> -->
       <a class="lost-password">?</a>
       <input type="password" ng-model="user.password" placeholder="Password">
-    </label>
+    </div>
     <div class="item item-input space">
       <button class="button button-block button-positive" 
               ng-click="validateUser()"
