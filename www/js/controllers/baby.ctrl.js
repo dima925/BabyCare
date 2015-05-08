@@ -1,8 +1,21 @@
 angular.module('cleverbaby.controllers')
-.controller('BabyCtrl', ['$scope','$ionicModal', '$rootScope', 'NotificationService', function ($scope, $ionicModal, $rootScope, NotificationService) {
+.controller('BabyCtrl', ['$scope','$ionicModal', '$rootScope', 'Image', 'NotificationService', function ($scope, $ionicModal, $rootScope, Image, NotificationService) {
 
         $scope.cancel = function(){
             $scope.modal.hide();
+        };
+
+        $scope.captureImage = function(){
+            Image.captureImage().then(function(imageURI) {
+                //var image = document.getElementById('myImage');
+                //image.src = "data:image/jpeg;base64," + imageData;
+                alert(imageURI);
+                $scope.baby.displayImage = imageURI;
+                $scope.$apply();
+            }, function(err) {
+                alert(err);
+                // error
+            });
         };
 
         $scope.$watch('modal.baby', function(newValue){
@@ -10,7 +23,8 @@ angular.module('cleverbaby.controllers')
             $scope.baby = {
                 name: newValue.name || "",
                 born: newValue.born || new Date(),
-                gender: newValue.gender || "m"
+                gender: newValue.gender || "m",
+                displayImage: "img/baby.png"
             };
         });
 
