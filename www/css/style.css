@@ -677,7 +677,10 @@ span.satuan { float:right;font-size: 24px; margin-top: 14px}
 .vaccination-foot { color: #cc3366; }
 
 
-
+.bar .title { top: 4px;}
+.bar .title .nav-bar-title:after { margin-left: 10px; font-family: "FontAwesome"; content: "\f107";  }
+span.fa.timeline { position: relative; border-left:1px solid; padding: 2px 0 0 4px; font-size: 18px;  }
+span.fa.timeline:after { font-family: "FontAwesome"; content: "\f03a"; ; position: absolute; left: -2px; }
 .home-icon { color: #fff; font-size: 40px; width: 10%; display: inline-block; }
 .graph-circle-home {display: inline-block; }
 .thumbnail-baby {  display: inline-block; }
@@ -860,9 +863,10 @@ visibility:visible; width: 70px; height: 70px;
 .item.with-input { border-bottom: 1px solid #fff !important; margin-bottom: 20px; }
 .item.with-input input { color: #fff;}
 .item.with-input.password { position: relative; }
-.item.with-input.password .lost-password { content: " ? "; border-radius: 50px; padding: 3px 8px 1px; font-size: 14px; border: 1px solid #fff; position: absolute; right: 5px; margin-top: 5px}
+.item.with-input.password .lost-password { content: " ? "; border-radius: 50px; padding: 3px 8px 1px; font-size: 14px; border: 1px solid #fff; position: absolute; right: 5px; margin-top: 5px; z-index: +100}
 .loginbg { padding: 0 20px; }
 .loginbg .item.space { margin-top: 10px;}
+.loginbg .item.last-item { padding-bottom: 80px;}
 .loginbg .item-divider {color: #fff !important;} 
 .loginbg .button { width: auto !important; padding: 0 50px; text-align: center; display: inline-block; margin: 5px auto }
 .loginbg .button.social-media { width: 80% !important;  position: relative;}
@@ -874,8 +878,11 @@ visibility:visible; width: 70px; height: 70px;
 .button.button-square{
   border-color: #003366;
   background-color: #003366;
-  color: #fff; width: 100% !important; padding: 5px !important;
+  color: #fff; width: 100% !important; padding: 5px !important; margin-bottom: 60px;
 }
+
+/*OVERIDE CALENDAR CSS*/
+
 /********************************************/
 .rotate-to-cross{    -ms-transform: rotate(-20deg); /* IE 9 */    -webkit-transform: rotate(-20deg); /* Safari */    transform: rotate(-20deg);}
 .hide-plus-btn{    display: none;}
