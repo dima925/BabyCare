@@ -13,9 +13,9 @@ angular.module('cleverbaby.controllers')
                     height: 450,
                     editable: true,
                     header:{
-                        left: 'month basicWeek basicDay agendaWeek agendaDay',
+                        left: 'prev',
                         center: 'title',
-                        right: 'today prev,next'
+                        right: 'next'
                     },
                     dayClick: $scope.alertEventOnClick,
                     eventDrop: $scope.alertOnDrop,
