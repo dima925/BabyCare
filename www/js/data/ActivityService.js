@@ -7,9 +7,11 @@ angular.module('cleverbaby.data')
         addActivity: function(data){
             return activityResource.save(data).$promise;
         },
-        getAllActivitiesByBabyId: function(babyId){
+        getAllActivitiesByBabyId: function(babyId, start, limit){
             return activityResource.query({
-                babyId: babyId
+                babyId: babyId,
+                start: start,
+                limit: limit
             }).$promise;
         }
     };
