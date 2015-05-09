@@ -882,6 +882,27 @@ visibility:visible; width: 70px; height: 70px;
 }
 
 /*OVERIDE CALENDAR CSS*/
+.fc-button { background: none !important; box-shadow: 0 !important; border:0 !important; height: auto !important; margin: 18px 5px 5px !important; font-size: 22px; color: #c5c5c5 !important; }
+.fc-button:before { font-family: "Simple-Line-Icons" !important;}
+.fc-button .fc-text-arrow { display: none;}
+.fc-button-prev:before { content: "\e07a" !important;}
+.fc-button-next:before { content: "\e079" !important;}
+/*.fc-header-title h2 { width: 10px; font-size: 11px; margin-top: 8px !important; word-wrap:normal; text-align: center; position: relative; color: #eaeaea}
+.fc-header-title h2:first-line { color: #02b6ef; font-size: 22px !important;margin-left: -20%; }
+*/.fc-header-title h2 { margin-top:30px !important; color: #02b6ef; font-size: 18px; }
+table.fc-border-separate thead tr { background: #e5f8fd !important; text-transform:uppercase;}
+table.fc-border-separate tr:nth-child(even) { background: #e5f8fd }
+table.fc-border-separate tr:nth-child(odd) { background: #dbf5fd }
+table.fc-border-separate tr td, table.fc-border-separate tr th  { border: 0 !important; padding: 13px 0 8px  !important; text-align: center !important; margin: 0 !important; height: 44px !important; }
+td.fc-day { margin: 0 !important;padding:0 !important; margin: 0 !important; }
+.fc-day-number { float: none !important; text-align: center !important;}
+.fc-state-highlight { font-size: 1.4em; font-weight: 400; background: 0 !important; color: #02b6ef;  }
+.fc-state-highlight .fc-day-number { margin-top: -1px;}
+.content-calendar { padding: 15px 10px 10px;} 
+.content-calendar span.icon-calendar { position: relative; padding:8px 0 0 40px;}
+.content-calendar span.icon-calendar:before { font-size:30px; left: 0; top: 0; position: absolute;}
+.content-calendar span.icon-calendar:after { position: absolute; content: attr(title); background: #fff; width: 20px; height: 16px; font-size: 12px; top: 11px; left: 5px; text-align: center;}
+.content-calendar h2 { font-size: 18px ;}
 
 /********************************************/
 .rotate-to-cross{    -ms-transform: rotate(-20deg); /* IE 9 */    -webkit-transform: rotate(-20deg); /* Safari */    transform: rotate(-20deg);}
