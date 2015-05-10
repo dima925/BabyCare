@@ -21,7 +21,8 @@
   "cordovaPlugins": [
     "org.apache.cordova.device",
     "de.appplant.cordova.plugin.local-notification",
-    "org.apache.cordova.camera"
+    "org.apache.cordova.camera",
+    "cordova-plugin-whitelist"
   ],
   "cordovaPlatforms": [
     {
