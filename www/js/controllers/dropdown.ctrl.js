@@ -1,6 +1,8 @@
 angular.module('cleverbaby.controllers')
-.controller('DropdownCtrl', ['$scope', '$ionicModal', 'BabyModal', '$rootScope',
-        function ($scope, $ionicModal, BabyModal, $rootScope ) {
+.controller('DropdownCtrl', ['$scope', '$ionicModal', 'BabyModal', '$rootScope', '$localStorage',
+        function ($scope, $ionicModal, BabyModal, $rootScope, $localStorage) {
+
+        $scope.storage = $localStorage;
 
         $scope.newBaby = function(baby){
             BabyModal.showModal(baby);

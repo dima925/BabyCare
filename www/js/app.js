@@ -19,11 +19,13 @@ angular.module('cleverbaby', [
     'ui.calendar'
 ])
 
-.run(function ($ionicPlatform, $rootScope, AuthService, $timeout, $ionicModal, $location, $cordovaLocalNotification, timerService, BabyService, $localStorage, $cordovaSplashscreen) {
+.run(function ($ionicPlatform, $rootScope, AuthService, $timeout, $ionicModal, $location, $cordovaLocalNotification, timerService, BabyService, $localStorage, $cordovaSplashscreen, $http) {
+
     $ionicPlatform.ready(function () {
+
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
-        if (window.cordova && window.cordova.plugins.Keyboard) {
+        if (window.cordova && window.cordova.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }
         if (window.StatusBar) {
@@ -33,42 +35,30 @@ angular.module('cleverbaby', [
 
         $rootScope.setBaby = function (baby){
             $rootScope.baby = baby;
-            $rootScope.babyId = baby.id;
-            $localStorage.babyId = baby.id;
+            $rootScope.babyId = baby.uuid;
+            $localStorage.babyId = baby.uuid;
             $rootScope.$broadcast('babySelected', baby);
         };
 
-        AuthService.setup().then(function(){
-            BabyService.getAllBabies().then(function(babies){
-                $rootScope.babies = babies;
-
-                $rootScope.$on('babyAdd', function(e, baby){
-                    $rootScope.babies.push(baby);
-                });
-
-                $rootScope.$on('babyRemoved', function(e, baby){
-                    $rootScope.babies.filter(function(x){
-                        return x.id != baby.id;
-                    });
-                });
-
-                if($localStorage.babyId){
-                    $rootScope.babies.forEach(function(baby) {
-                        if (baby.id == $localStorage.babyId) {
-                            $rootScope.setBaby(baby);
+        AuthService.setup().then(function(babies){
+            if($localStorage.babyId){
+                for (var i in babies){
+                    if(babies.hasOwnProperty(i)){
+                        if(babies[i].uuid == $localStorage.babyId){
+                            $rootScope.setBaby(babies[i]);
+                            break;
                         }
-                    });
+                    }
                 }
-                if(!$rootScope.baby){
-                    $rootScope.setBaby(babies[0]);
-                }
-            });
+            }
+
+            if(!$rootScope.babyId){
+                $rootScope.setBaby(babies[0])
+            }
+
+            $rootScope.$broadcast('auth');
         });
 
-        $rootScope.userEmail = null;
-        $rootScope.logout = function () {
-            AuthService.logout();
-        };
         $rootScope.timers = timerService;
 
         $ionicModal.fromTemplateUrl('templates/activities/choose.html', {
@@ -97,7 +87,7 @@ angular.module('cleverbaby', [
         $rootScope.$on('modal.removed', function (modal) {
             // Execute action
         });
-		
+
 		$rootScope.showmenu = function(){
 			$rootScope.$broadcast("showMenu", {});
 		};
@@ -131,6 +121,7 @@ angular.module('cleverbaby', [
 		if (ionic.Platform.isWebView()) $cordovaSplashscreen.hide();
 
 	});
+
 })
 .config(["$translateProvider", "$ionicConfigProvider",
     function($translateProvider, $ionicConfigProvider){
@@ -141,29 +132,10 @@ angular.module('cleverbaby', [
         'prefix': 'languages/',
         'suffix': '.json'
     });
-}]).config(["$httpProvider", function ($httpProvider) {
-    $httpProvider.defaults.transformResponse.push(function(responseData){
-        convertDates(responseData);
-        return responseData;
-    });
 }]);
-var convertDates = function(input) {
-    for(var key in input) {
-        if (!input.hasOwnProperty(key)) continue;
-
-        if (typeof input[key] === "object") {
-            convertDates(input[key]);
-        } else {
-            if (typeof input[key] === "string" &&  /^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$/.test(input[key])) {
-                input[key] = new Date(input[key]);
-            }
-        }
-    }
-};
-
 function escapeEmailAddress(email) {
     if (!email) return false;
-        // Replace '.' (not allowed in a Firebase key) with ','
+    // Replace '.' (not allowed in a Firebase key) with ','
     email = email.toLowerCase();
     email = email.replace(/\./g, ',');
     return email.trim();

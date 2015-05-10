@@ -121,7 +121,6 @@ angular.module('cleverbaby.controllers')
             $scope.moment = {
                 time: new Date(),
                 notes: null
-
             }
         }
         init();
@@ -307,12 +306,11 @@ angular.module('cleverbaby.controllers')
                 }
             }
 
-            ActivityService.addActivity(data).then(function(activity){
+            ActivityService.addActivity(data);
+            (function(activity){
                 $rootScope.$broadcast('activityAdd', activity);
                 $scope.modal.hide();
-            }, function(err){
-                NotificationService.notify(err.data.message || "Network error");
-            });
+            })(data);
         };
 
         $scope.manual = true;

@@ -1,91 +1,78 @@
 angular.module('cleverbaby.controllers')
-    .controller('DiaryCtrl', ['$location', '$scope', '$ionicModal', 'DailytipService', '$ionicSlideBoxDelegate', 'ActivityService', 'BabyModal',
-        function ($location, $scope, $ionicModal, DailytipService, $ionicSlideBoxDelegate, ActivityService, BabyModal) {
+    .controller('DiaryCtrl', ['$location', '$scope', '$ionicModal', 'DailytipService', '$ionicSlideBoxDelegate', 'ActivityService', 'BabyModal', '$rootScope', 'network',
+        function ($location, $scope, $ionicModal, DailytipService, $ionicSlideBoxDelegate, ActivityService, BabyModal, $rootScope, network) {
 
-            var start;
-            var limit;
-
-            $scope.getNextActivities = function(babyId){
-                return ActivityService
-                    .getAllActivitiesByBabyId(babyId, start, limit)
-                    .then(function(activities){
-                        start+=limit;
-                        return activities;
-                    });
+            $scope.editBaby = function(){
+                BabyModal.showModal($rootScope.baby);
             };
-            $scope.$on('babySelected', function(event, baby){
+
+            var start, limit;
+            function load(baby){
                 $scope.canBeloadedMore = true;
                 start = 0;
-                limit = 20;
-                $scope.getNextActivities(baby.id).then(function(activities){
+                limit = 10;
+                ActivityService.getAllActivitiesByBabyId(baby.uuid, start, limit).then(function(activities){
                     $scope.activities = activities;
-                    $scope.NurseCount = $scope.nurseCount();
-                    $scope.ChangeCount = $scope.changeCount();
-                    $scope.TodayBath = $scope.todayBath();
-                    $scope.TodayPlay = $scope.todayPlay();
                 });
-                $scope.loadMore = function(){
-                    $scope.getNextActivities($scope.baby.id).then(function(activities){
-                        if(activities.length == 0){
-                            $scope.canBeloadedMore = false;
-                        }
-                        Array.prototype.push.apply($scope.activities, activities);
-                        $scope.$broadcast('scroll.infiniteScrollComplete');
-                    });
-                };
-                $scope.editBaby = function(){
-                    BabyModal.showModal(baby);
-                };
-
-                $scope.addPlay = function(){
-                    $scope.TodayPlay = true;
-                    ActivityService.addActivity({
-                        babies: baby.id,
-                        time: parseInt(new Date().getTime()/1000),
-                        type: "play"
-                    }).then(function(activity){
-                        $scope.$broadcast('activityAdd', activity)
-                    });
-                };
-
-                $scope.addBath = function(){
-                    $scope.TodayBath = true;
-                    ActivityService.addActivity({
-                        babies: baby.id,
-                        time: parseInt(new Date().getTime()/1000),
-                        type: "bath"
-                    }).then(function(activity){
-                        $scope.$broadcast('activityAdd', activity);
-                    });
-                };
+                ActivityService.getTodayCount(baby.uuid).then(function(counts) {
+                    $scope.TodayPlay = counts.playCount > 0;
+                    $scope.TodayBath = counts.bathCount > 0;
+                    $scope.ChangeCount = counts.changeCount;
+                    $scope.NurseCount = counts.nurseCount;
+                });
+            }
+            if($rootScope.babyId){
+                load($rootScope.baby);
+            }
+            $rootScope.$on('babySelected', function(event, baby){
+                load(baby);
             });
 
-            $scope.nurseCount = function(){
-                return $scope.activities ? $scope.activities.filter(function(activity){
-                    return activity.createdAt.setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0) && activity.type == 'nurse';
-                }).length : 0;
+            $scope.loadMore = function(){
+                start+=limit;
+                ActivityService.getAllActivitiesByBabyId($rootScope.baby.uuid, start, limit).then(function(activities){
+                    if(activities.length == 0){
+                        $scope.canBeloadedMore = false;
+                    }
+                    Array.prototype.push.apply($scope.activities, activities);
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                });
             };
 
-            $scope.changeCount = function(){
-                return $scope.activities ? $scope.activities.filter(function(activity){
-                    return activity.createdAt.setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0) && activity.type == 'change';
-                }).length : 0;
+            $scope.addPlay = function(){
+
+                $scope.TodayPlay = true;
+                var data = {
+                    babies: $rootScope.baby.uuid,
+                    time: parseInt(new Date().getTime()/1000),
+                    type: "play"
+                };
+                ActivityService.addActivity(data);
+
+                (function(activity){
+                    $scope.$broadcast('activityAdd', activity)
+                })(data);
+
             };
 
-            $scope.todayPlay = function(){
-                return $scope.activities ? $scope.activities.filter(function(activity){
-                    return activity.createdAt.setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0) && activity.type == 'play';
-                }).length > 0 : false;
-            };
+            $scope.addBath = function(){
 
-            $scope.todayBath = function(){
-                return $scope.activities ? $scope.activities.filter(function(activity){
-                    return activity.createdAt.setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0) && activity.type == 'bath';
-                }).length > 0 : false;
+                $scope.TodayBath = true;
+
+                var activity = {
+                    babies: $rootScope.baby.uuid,
+                    time: parseInt(new Date().getTime()/1000),
+                    type: "bath"
+                };
+
+                ActivityService.addActivity(activity);
+
+                (function(activity){
+                    $scope.$broadcast('activityAdd', activity);
+                })(activity);
             };
 
             $scope.$on('activityAdd', function(event, activity){
-                ++start;
                 if(activity.type == 'change'){
                     ++$scope.ChangeCount;
                 }
@@ -95,7 +82,9 @@ angular.module('cleverbaby.controllers')
                 $scope.activities.unshift(activity);
             });
 
-            $scope.editBaby = function(){};
+            $scope.editBaby = function(){
+                BabyModal.showModal($rootScope.baby);
+            };
 
             $scope.noData = true;
 
@@ -106,6 +95,7 @@ angular.module('cleverbaby.controllers')
             $ionicModal.fromTemplateUrl('templates/activities/choose.html',function(activity){
                 $scope.activityModal = activity;
             });
+
             $scope.newActivity = function(){
                 $scope.activityModal.show();
             };
