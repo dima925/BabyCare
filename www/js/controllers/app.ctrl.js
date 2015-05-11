@@ -9,14 +9,21 @@ angular.module('cleverbaby.controllers')
         $scope.menuModal = menu;
     });
 
-    $scope.menu = function(){
+    /**
+     * Show the addActivity Modal
+     */
+    $scope.showAddActivityModal = function(){
+        $rootScope.activatePlus = true;
         $scope.menuModal.show();
     };
-	
+
+
+    /*
 	$scope.$on("showMenu", function (event, args) {
         $rootScope.activatePlus = true;
 		$scope.menuModal.show();
 	});
+	*/
 
     $ionicModal.fromTemplateUrl('templates/login.html', {
         scope: $scope

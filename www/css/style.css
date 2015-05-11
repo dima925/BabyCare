@@ -804,7 +804,7 @@ input.form-control-text {  text-align: left !important; float: left !important;}
 .tab-item .icon { font-size: 28px !important; padding-top: 12px; color: #fff; line-height: 1em;}
 .tab-item .icon:not(.ion-plus-round) { font-size: 18px !important}
 .tab-item span.tab-title { font-size: 9px; color: #fff; margin-top: 2px}
-.tab-item .ion-plus-round { position: relative; width: 50px; height: 50px; visibility: hidden;}
+.tab-item .ion-plus-round { position: relative; width: 50px; height: 50px;}
 .tab-item .ion-plus-round:before { width: 100%; position: absolute; z-index: +2 !important; left: 0}
 .tab-item .ion-plus-round:after { content: ""; position: absolute; width: 60px; height: 60px; border-radius: 50px; background: rgba(0,0,0,.4); top: -6px; left:-5.33px; z-index: +1 !important }
 
@@ -831,7 +831,7 @@ ul.timeline-data li.data-activity{ float: left; border-radius: 2px; height: 35px
 .floating-plus-button {
 position: absolute;
 bottom: 0px;
-z-index:3;
+z-index:9999;
 left: 50%;
 margin-left: -30px;
 height: 49px;
@@ -848,10 +848,6 @@ visibility:visible; width: 70px; height: 70px;
 
 }
 .floating-plus-button .ion-plus-round:after { content: ""; position: absolute; width: 62px; height: 62px; border-radius: 50px; background: linear-gradient( rgba(0, 0, 0, .4), rgba(0, 0, 0, .4) ), rgba(66,165,245,1); top: -6px; left:0px; }
-
-.floating-plus-btn-zindex{
-    z-index: 99999;
-}
 
 /*more page*/
 .more-page ul.list li:not(.item-divider) { border-bottom: 1px solid #eaeaea}
