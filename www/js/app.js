@@ -87,34 +87,7 @@ angular.module('cleverbaby', [
         $rootScope.$on('modal.removed', function (modal) {
             // Execute action
         });
-
-		$rootScope.showmenu = function(){
-			$rootScope.$broadcast("showMenu", {});
-		};
-
-        /**
-         * Function for hiding plusbtn
-         */
-        function hideFloatingPlusBtn(){
-            var homeMainTabNavView = angular.element('.cleverbaby-main-tab').parent('.pane').attr('nav-view');
-            if(angular.isUndefined(homeMainTabNavView) || homeMainTabNavView == 'cached'){
-                $rootScope.showFloatingPlusBtn = false;
-            }else{
-                $rootScope.showFloatingPlusBtn = true;
-            }
-        };
-
-        //todo maybe theres a better method.
-        $timeout(function(){
-            hideFloatingPlusBtn();
-        });
-
-
-        $rootScope.$on('$locationChangeSuccess', function(event, toState, toParams, fromState, fromParams){
-            $timeout(function(){
-                hideFloatingPlusBtn();
-            }, 100);
-        });
+        
 
 		// hide the splashscreen
 		// only call .hide() if we are running inside cordova (webview), otherwise desktop chrome throws an error
