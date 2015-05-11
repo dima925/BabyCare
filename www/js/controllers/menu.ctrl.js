@@ -3,7 +3,6 @@ angular.module('cleverbaby.controllers')
 
 	$scope.closeModal=function(){
         $scope.modal.hide();
-
         if ($scope.addMoreModal.isShown()){
             $rootScope.activatePlus = true;
         }else{

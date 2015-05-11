@@ -6,7 +6,6 @@ angular.module('cleverbaby.controllers')
         $scope.modal.hide();
     };
     $scope.openModal = function(type){
-        $rootScope.hidePlusBtn = true;
         $scope.closeModal();
         activityModals.showModal(type);
     };
