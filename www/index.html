@@ -43,7 +43,6 @@
 
     <script src="js/data/data.js"></script>
     <script src="js/data/AuthService.js"></script>
-    <script src="js/data/GroupService.js"></script>
     <script src="js/data/ActivityService.js"></script>
     <script src="js/data/BabyService.js"></script>
     <script src="js/data/timerService.js"></script>
@@ -83,7 +82,7 @@
     <script src="js/controllers/timeline.ctrl.js"></script>
 </head>
 
-<body ng-app="cleverbaby">
+<body>
     <ion-nav-view></ion-nav-view>
 	<div class="floating-plus-button" style="background-color: transparent;" ng-class="{'hide-plus-btn' : hidePlusBtn}" ng-show="showFloatingPlusBtn">
 		<a class="tab-item" ng-click="toggle = !toggle;showmenu()" ng-class="{'animatePlus' : activatePlus}" icon="ion-plus-round">
@@ -91,6 +90,18 @@
 		<span class="tab-title ng-binding" ng-bind-html="title"></span>
 	    </a>
 	</div>
+    <script>
+        angular.element(document).ready(function() {
+            if (window.cordova) {
+                document.addEventListener('deviceready', function() {
+                    angular.bootstrap(document.body, ['cleverbaby']);
+                }, false);
+            } else {
+                angular.bootstrap(document.body, ['cleverbaby']);
+            }
+        });
+
+    </script>
 </body>
 
 </html>

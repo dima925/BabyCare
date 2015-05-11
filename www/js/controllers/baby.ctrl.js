@@ -1,5 +1,6 @@
 angular.module('cleverbaby.controllers')
-.controller('BabyCtrl', ['$scope','$ionicModal', '$rootScope', 'Image', 'NotificationService', function ($scope, $ionicModal, $rootScope, Image, NotificationService) {
+.controller('BabyCtrl', ['$scope','$ionicModal', '$rootScope', 'Image', 'NotificationService', 'BabyService',
+        function ($scope, $ionicModal, $rootScope, Image, NotificationService, BabyService) {
 
         $scope.cancel = function(){
             $scope.modal.hide();
@@ -44,7 +45,7 @@ angular.module('cleverbaby.controllers')
             newValue = newValue || {};
             $scope.baby = {
                 name: newValue.name || "",
-                born: newValue.born || new Date(),
+                born: newValue.born ? new Date(newValue.born) : new Date(),
                 gender: newValue.gender || "m",
                 displayImage: "img/baby.png"
             };
@@ -54,7 +55,7 @@ angular.module('cleverbaby.controllers')
             $scope.modal.baby.name = $scope.baby.name;
             $scope.modal.baby.born = $scope.baby.born;
             $scope.modal.baby.gender = $scope.baby.gender;
-            $scope.modal.baby.$save().then(function(baby){
+            BabyService.add($scope.modal.baby).then(function(baby){
                 $rootScope.$broadcast('babyAdd', baby);
                 $scope.modal.hide();
             }, function(err){
@@ -66,8 +67,13 @@ angular.module('cleverbaby.controllers')
             $scope.modal.baby.name = $scope.baby.name;
             $scope.modal.baby.born = $scope.baby.born;
             $scope.modal.baby.gender = $scope.baby.gender;
+<<<<<<< HEAD
             $scope.modal.baby.$update().then(function(){
             $scope.modal.hide();
+=======
+            BabyService.edit($scope.modal.baby).then(function(){
+                $scope.modal.hide();
+>>>>>>> 5f0405f6db50f41ee4c23176b9246e20825dc600
             }, function(err){
                 NotificationService.notify(err.data.message)
             });
