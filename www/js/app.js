@@ -16,7 +16,9 @@ angular.module('cleverbaby', [
     'timer',
     'chart.js',
     'ngStorage',
-    'ui.calendar'
+    'ui.calendar',
+    'nvd3',
+    'googlechart'
 ])
 
 .run(function ($ionicPlatform, $rootScope, AuthService, $timeout, $ionicModal, $location, $cordovaLocalNotification, timerService, BabyService, $localStorage, $cordovaSplashscreen, $http) {
