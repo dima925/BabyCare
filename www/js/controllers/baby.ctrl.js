@@ -6,10 +6,6 @@ angular.module('cleverbaby.controllers')
             $scope.modal.hide();
         };
 
-        /**
-         * Function for the ng-click that calls the captureImage service of the cordova plugin
-         * @param sourceType - source of image to take
-         */
         $scope.selectCaptureImage = function(sourceType){
             $scope.selectCaptureImageModal.hide();
             Image.captureImage(sourceType).then(function(imageURI) {
@@ -20,16 +16,11 @@ angular.module('cleverbaby.controllers')
             });
         };
 
-        /**
-         * shows the modal containing the option for selecting an image or take new image in baby edit page
-         */
         $scope.showSelectCaptureImageModal = function(){
             $scope.selectCaptureImageModal.show();
         };
 
-        /**
-         * hides the modal
-         */
+
         $scope.hideSelectCaptureImageModal = function(){
             $scope.selectCaptureImageModal.hide();
         };
@@ -67,13 +58,8 @@ angular.module('cleverbaby.controllers')
             $scope.modal.baby.name = $scope.baby.name;
             $scope.modal.baby.born = $scope.baby.born;
             $scope.modal.baby.gender = $scope.baby.gender;
-<<<<<<< HEAD
-            $scope.modal.baby.$update().then(function(){
-            $scope.modal.hide();
-=======
             BabyService.edit($scope.modal.baby).then(function(){
                 $scope.modal.hide();
->>>>>>> 5f0405f6db50f41ee4c23176b9246e20825dc600
             }, function(err){
                 NotificationService.notify(err.data.message)
             });
