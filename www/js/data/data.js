@@ -4,12 +4,14 @@ angular
         baseUrl: 'https://cleverbaby.firebaseio.com/'
     })
     .constant('dataConfig', {
+        //baseUrl: 'http://192.168.56.1:3000',
         //baseUrl: 'http://localhost:3000',
         baseUrl: 'https://arcane-anchorage-7139.herokuapp.com',
         apiVersion: 'v1',
         googleId: '692197579389-1tr4luact0pjjce4r47egob64bgoac51.apps.googleusercontent.com',
         facebookId: '1575754259375108'
-    }).factory('network', ['$http', 'dataConfig', '$localStorage', '$interval', function($http, dataConfig, $localStorage, $interval){
+    }).factory('network', ['$http', 'dataConfig', '$localStorage', '$interval', '$cordovaFileTransfer',
+    function($http, dataConfig, $localStorage, $interval, $cordovaFileTransfer){
 
         if(!$localStorage.queue) $localStorage.queue = [];
 
@@ -38,7 +40,18 @@ angular
                 isSync = false;
                 return;
             }
-            return $http(options).then(function(response){
+            var promise;
+            if(options.type == 'upload'){
+
+                alert('uploadSync');
+                promise = $cordovaFileTransfer.upload(options.url, options.fileUrl, {
+                    fileKey: 'media',
+                    headers: options.headers
+                })
+            } else {
+                promise = $http(options);
+            }
+            return promise.then(function(response){
                 $localStorage.queue.shift();
                 return sync(true);
             }, function(err){
@@ -72,6 +85,14 @@ angular
             remove: function(options, now){
                 options.method = 'DELETE';
                 return request(options, now);
+            },
+            upload: function(url, fileUrl){
+                alert('upload');
+                return request({
+                    url: url,
+                    fileUrl: fileUrl,
+                    type: 'upload'
+                })
             },
             sync: sync
         };

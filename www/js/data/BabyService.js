@@ -1,5 +1,6 @@
 angular.module('cleverbaby.data')
-    .factory('BabyService', ['network', '$q', 'ActivityService', '$localStorage', function(network, $q, ActivityService, $localStorage) {
+    .factory('BabyService', ['network', '$q', 'ActivityService', '$localStorage', '$window', '$cordovaFile',
+        function(network, $q, ActivityService, $localStorage, $window, $cordovaFile) {
 
         function generetaeUniqueKey(){
             var text = "";
@@ -15,6 +16,37 @@ angular.module('cleverbaby.data')
             return id + '-' + new Date().getTime() + '-' + generetaeUniqueKey();
         }
 
+        function handleFile(baby){
+            return $q(function(resolve, reject){
+
+                alert('file');
+                if(baby.displayImage){
+                    $window.resolveLocalFileSystemURL(baby.displayImage, function(fileEntry){
+                        $window.resolveLocalFileSystemURL(cordova.file.dataDirectory+'/babies', function(dirEntry){
+                            fileEntry.moveTo(dirEntry, baby.uuid, function(newFileEntry){
+                                baby.displayImage = newFileEntry.nativeURL;
+                                try{
+                                    network.upload('/babies/'+ baby.uuid + '/media', newFileEntry.nativeURL);   
+                                } catch(e){
+                                    alert(e);
+                                }
+                                resolve();
+                            }, function(err){
+                                reject(err);
+                            });
+
+                        }, function(err){
+                            reject(err);
+                        });
+                    }, function(err){
+                        reject(err);
+                    });
+                } else{
+                    resolve();
+                }
+            });
+        }
+
         return {
             getAllBabiesFromServer: function(include){
                 return network.get({
@@ -28,14 +60,21 @@ angular.module('cleverbaby.data')
             },
             fetchBabies: function(){
                 return this.getAllBabiesFromServer('activities').then(function(babies){
+
                     $localStorage.babies = {};
-                    return $q.all(babies.map(function(baby){
+
+                    var promises = babies.map(function(baby){
                         return ActivityService.setActivities(baby.uuid, baby.activities).then(function(){
                             delete baby.activities;
                             $localStorage.babies[baby.uuid] = baby;
                             return baby;
                         });
-                    }));
+                    });
+
+                    promises.unshift($cordovaFile.createDir(cordova.file.dataDirectory, "babies", false));
+                    promises.unshift($cordovaFile.createDir(cordova.file.dataDirectory, "activities", false));
+
+                    return $q.all(promises);
                 });
             },
             getAllBabies: function () {
@@ -53,14 +92,18 @@ angular.module('cleverbaby.data')
                         url: '/babies',
                         data: data
                     });
-                    $localStorage.babies[data.uuid] = data;
-                    ActivityService.setActivities(data.uuid, []).then(function(){
+                    $q.all([
+                        handleFile(data),
+                        ActivityService.setActivities(data.uuid, [])
+                    ]).then(function(){
+                        $localStorage.babies[data.uuid] = data;
                         resolve(data);
+                    }, function(){
+                        reject();
                     });
                 });
             },
             edit: function(data){
-
                 return $q(function(resolve, reject){
                     network.put({
                         url: '/babies/' + data.uuid,

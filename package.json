@@ -20,14 +20,16 @@
   },
   "cordovaPlugins": [
     "org.apache.cordova.device",
-    "de.appplant.cordova.plugin.local-notification",
     "org.apache.cordova.camera",
-    "cordova-plugin-whitelist"
+    "cordova-plugin-whitelist",
+    "org.apache.cordova.file",
+    "org.apache.cordova.file-transfer"
   ],
   "cordovaPlatforms": [
     {
       "platform": "android",
       "locator": "./engine/cordova-android-c0.6.1/"
-    }
+    },
+    "android"
   ]
 }

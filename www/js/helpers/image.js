@@ -1,6 +1,7 @@
 angular
     .module('cleverbaby.helpers')
-    .factory("Image", ["$ionicModal", '$cordovaCamera', function($ionicModal, $cordovaCamera){
+    .factory("Image", ["$ionicModal", '$cordovaCamera', '$cordovaFile', '$q', '$http', '$window',
+        function($ionicModal, $cordovaCamera, $cordovaFile, $q, $http, $window){
 
         /**
          * Handles taking an image from the camera or picking an image from the gallery

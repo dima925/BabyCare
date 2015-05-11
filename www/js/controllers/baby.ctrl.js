@@ -1,5 +1,5 @@
 angular.module('cleverbaby.controllers')
-.controller('BabyCtrl', ['$scope','$ionicModal', '$rootScope', 'Image', 'NotificationService', 'BabyService',
+.controller('BabyCtrl', ['$scope','$ionicModal', '$rootScope', 'Image', 'NotificationService', 'BabyService', 
         function ($scope, $ionicModal, $rootScope, Image, NotificationService, BabyService) {
 
         $scope.cancel = function(){
@@ -37,8 +37,7 @@ angular.module('cleverbaby.controllers')
             $scope.baby = {
                 name: newValue.name || "",
                 born: newValue.born ? new Date(newValue.born) : new Date(),
-                gender: newValue.gender || "m",
-                displayImage: "img/baby.png"
+                gender: newValue.gender || "m"
             };
         });
 
@@ -46,11 +45,12 @@ angular.module('cleverbaby.controllers')
             $scope.modal.baby.name = $scope.baby.name;
             $scope.modal.baby.born = $scope.baby.born;
             $scope.modal.baby.gender = $scope.baby.gender;
+            $scope.modal.baby.displayImage = $scope.baby.displayImage;
             BabyService.add($scope.modal.baby).then(function(baby){
                 $rootScope.$broadcast('babyAdd', baby);
                 $scope.modal.hide();
             }, function(err){
-                NotificationService.notify(err.data.message)
+                NotificationService.notify(err.data.message);
             });
         };
 
@@ -61,7 +61,7 @@ angular.module('cleverbaby.controllers')
             BabyService.edit($scope.modal.baby).then(function(){
                 $scope.modal.hide();
             }, function(err){
-                NotificationService.notify(err.data.message)
+                NotificationService.notify(err.data.message);
             });
         };
 
