@@ -1,23 +1,15 @@
 <div class="modal transparent" ng-controller="activityCtrl" ng-click="closeAddPhotoModal()">
-	<div class="wrapper diapers" ng-click="$event.stopPropagation()">
-        <div class="header">
-            <h2 class="title">
-                <span class="icon-diaper"></span>
-                <span data-translate>Add Photo</span>
-            </h2>
-            <a ng-click="closeAddPhotoModal()" class="btn pull-left"><i class="fa fa-close"></i></a>
-            <a href="" class="btn pull-right"><i class="fa fa-check"></i></a>
+	<div class="wrapper add" ng-click="$event.stopPropagation()">
+        <div class="kotak no-border" ng-click="">
+            <button class="btn">Photo Library</button>
         </div>
-        <div class="content">
-            <div class="kotak">
-                <label class="default">
-                    <span class="icon-clock"></span> <span data-translate>some buttons here</span>
-                </label>
-                
-            </div>
-            
-
+        <div class="kotak no-border" ng-click="">
+            <button class="btn">Take Photo</button>
         </div>
-
+        <div class="kotak no-border" ng-click="closeAddPhotoModal()">
+            <button class="btn">Cancel</button>
+        </div>
+        <div class="kotak no-border">
+        </div>
     </div>
 </div>
