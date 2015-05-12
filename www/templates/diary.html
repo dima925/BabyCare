@@ -1,8 +1,7 @@
 <ion-view>
     <ion-content class="fixheight">
         <ion-nav-bar class="bar-positive">
-            <ion-nav-back-button></ion-nav-back-button>
-            <ion-nav-title ng-click='dropdown()'>{{$root.baby.name}}</ion-nav-title>
+            <ion-nav-title cb-baby-drop-down></ion-nav-title>
             <ion-nav-buttons side="right">
                 <a class="btn" ui-sref="app.timeline"><span class="fa fa-align-left timeline"></span></a>
             </ion-nav-buttons>
@@ -16,18 +15,18 @@
                         <div class="progress-wrapper">
                             <div class="progress">14min <span>ETA</span></div>
                             <div
-                                    round-progress
-                                    max="100"
-                                    current="75"
-                                    color="#ffcc66"
-                                    bgcolor="rgba(255,255,255,.5)"
-                                    radius="28"
-                                    stroke="3"
-                                    semi="false"
-                                    rounded="true"
-                                    iterations="50"
-                                    animation="easeInOutQuart">
-                                </div>
+                                round-progress
+                                max="100"
+                                current="75"
+                                color="#ffcc66"
+                                bgcolor="rgba(255,255,255,.5)"
+                                radius="28"
+                                stroke="3"
+                                semi="false"
+                                rounded="true"
+                                iterations="50"
+                                animation="easeInOutQuart">
+                            </div>
                         </div>
                     </div>
                     <div class="thumbnail-baby" ng-click="editBaby()"><div class="circular"><img src="img/baby.png"></div></div>

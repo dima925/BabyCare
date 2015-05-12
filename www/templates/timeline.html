@@ -1,12 +1,25 @@
-<ion-view view-title="{{'cleverbaby.app.search.title' | translate}}">
+<ion-view>
   <ion-content>
     <!-- <h1 data-translate>cleverbaby.app.search.title</h1> -->
     <div class="wrapper-tab timeline">
+        <!--
         <div class="header no-border">
             <a class="btn left" ui-sref="app.diary"><i class="fa fa-angle-left"></i></a>
             <h2>CleverBaby <i class="fa fa-angle-down"></i></h2>
             <a class="btn right" ui-sref="app.diary"><i class="fa fa-dashboard"></i></a>
         </div>
+        -->
+        <ion-nav-bar class="bar-positive">
+            <div class="header no-border">
+                <ion-nav-title cb-baby-drop-down></ion-nav-title>
+                <h2>CleverBaby <i class="fa fa-angle-down"></i></h2>
+                <ion-nav-buttons side="right">
+                    <a class="btn right" ui-sref="app.diary"><i class="fa fa-dashboard"></i></a>
+                </ion-nav-buttons>
+            </div>
+        </ion-nav-bar>
+
+
         <ul class="items-activity">
         	<li>
         		<div class="icon diapers"><span class="icon-diaper"></span></div><div class="clearfix"></div>

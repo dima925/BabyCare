@@ -8,6 +8,7 @@ angular.module('cleverbaby', [
     'ionic',
     'pascalprecht.translate',
     'cleverbaby.controllers',
+    'cleverbaby.directives',
     'angular-svg-round-progress',
     'cleverbaby.data',
     'cleverbaby.services',

@@ -104,15 +104,6 @@ angular.module('cleverbaby.controllers')
                 $scope.newTemplate.show();
             };
 
-            $ionicModal.fromTemplateUrl('templates/modals/dropdown.html',function(dropdown){
-                $scope.dropdownModal = dropdown;
-            });
-
-            $scope.dropdown = function(){
-                $scope.modal.hide();
-                $scope.dropdownModal.show();
-            };
-
             var showTip = DailytipService.showDailtyTip();
 
             if(showTip) {
