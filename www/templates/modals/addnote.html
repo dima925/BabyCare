@@ -1,5 +1,5 @@
 <div class="modal transparent" ng-controller="activityCtrl" ng-click="closeAddNoteModal()">
-	<div class="wrapper diapers">
+	<div class="wrapper diapers" ng-click="$event.stopPropagation()">
         <div class="header">
             <h2 class="title">
                 <span class="icon-diaper"></span>

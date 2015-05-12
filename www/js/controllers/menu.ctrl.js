@@ -6,7 +6,7 @@ angular.module('cleverbaby.controllers')
        	
 		$scope.modal.hide().then(function(){
 			// this would be the better way to hide the plus button, but its bit slower, so i prefer the hardcoded way below
-			$rootScope.showPlusButton = false
+			// $rootScope.showPlusButton = false
 		});
 		
 		if ($scope.addMoreModal.isShown()){
