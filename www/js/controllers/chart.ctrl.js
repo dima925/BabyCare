@@ -1,6 +1,8 @@
 angular.module('cleverbaby.controllers')
 
 .controller('ChartCtrl', ['$scope','$timeout', function ($scope, $timeout) {
+
+    /*
 	$scope.labels = ["0 Month", "1 Month", "2 Month", "3 Month", "4 Month", "5 Month", "6 Month"];
 	$scope.series = ['3%', '15%', '50%', '85%', '97%'];
 	$scope.data = [
@@ -13,6 +15,9 @@ angular.module('cleverbaby.controllers')
 	$scope.onClick = function (points, evt) {
 	console.log(points, evt);
 	};
+
+    $scope.trendTemplate = 'templates/trends/growth.html';
+    */
 
     $scope.trendTemplate = 'templates/trends/growth.html';
 
