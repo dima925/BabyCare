@@ -27,6 +27,14 @@ html, body { font-family: 'Roboto', sans-serif !important;  }
     /* background-image: linear-gradient(0deg, #0c63ee, #0c63ee 50%, transparent 50%); */
     color: #fff; }
 /*end transparent header bar*/
+
+/*hide 1px bottom border of standard ionic-header-bar*/
+.bar {
+    background-size: 100% 0px;
+}
+/*end hide bottom border*/
+
+
 /*SLIDER*/
 .box {
     padding-top: 50px;
