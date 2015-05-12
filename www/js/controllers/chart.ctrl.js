@@ -19,6 +19,91 @@ angular.module('cleverbaby.controllers')
     $scope.trendTemplate = 'templates/trends/growth.html';
     */
 
+    $scope.options = {
+        chart: {
+            type: 'lineChart',
+            height: 200,
+            margin : {
+                top: 20,
+                right: 20,
+                bottom: 40,
+                left: 55
+            },
+            x: function(d){ return d.x; },
+            y: function(d){ return d.y; },
+            useInteractiveGuideline: true,
+            dispatch: {
+                stateChange: function(e){ console.log("stateChange"); },
+                changeState: function(e){ console.log("changeState"); },
+                tooltipShow: function(e){ console.log("tooltipShow"); },
+                tooltipHide: function(e){ console.log("tooltipHide"); }
+            },
+            xAxis: {
+                axisLabel: 'Month'
+            },
+            yAxis: {
+                axisLabel: 'Quantity',
+                tickFormat: function(d){
+                    return d3.format('.0f')(d);
+                },
+                axisLabelDistance: 50
+            },
+            callback: function(chart){
+                console.log("!!! lineChart callback !!!");
+            }
+        }
+    };
+
+    $scope.data = [
+                    {
+                        "key" : "A" ,
+                        "values" : [{x: 0, y: 5}, {x: 1, y: 5}, {x: 2, y: 4}, {x: 3, y: 6}, {x: 4, y: 8}]
+                    } ,
+                    {
+                        "key" : "B" ,
+                        "values" : [{x: 0, y: 3}, {x: 1, y: 3}, {x: 2, y: 7}, {x: 3, y: 9}, {x: 4, y: 0}]
+                    } ,
+                    {
+                        "key" : "C" ,
+                        "values" : [{x: 0, y: 2}, {x: 1, y: 2}, {x: 2, y: 8}, {x: 3, y: 3}, {x: 4, y: 1}]
+                    } ,
+                    {
+                        "key" : "D" ,
+                        "values" : [{x: 0, y: 1}, {x: 1, y: 4}, {x: 2, y: 6}, {x: 3, y: 7}, {x: 4, y: 5}]
+                    }
+                ];
+
+    /*
+    function sinAndCos() {
+        var sin = [],sin2 = [],
+            cos = [];
+
+        //Data is represented as an array of {x,y} pairs.
+        for (var i = 0; i < 100; i++) {
+            sin.push({x: i, y: Math.sin(i/10)});
+            sin2.push({x: i, y: i % 10 == 5 ? null : Math.sin(i/10) *0.25 + 0.5});
+            cos.push({x: i, y: .5 * Math.cos(i/10+ 2) + Math.random() / 10});
+        }
+
+        //Line chart data should be sent as an array of series objects.
+        return [
+            {
+                values: sin,      //values - represents the array of {x,y} data points
+                key: 'Sine Wave' //key  - the name of the series.
+            },
+            {
+                values: cos,
+                key: 'Cosine Wave'
+            },
+            {
+                values: sin2,
+                key: 'Another sine wave',
+     //area - set to true if you want this line to turn into a filled area chart.
+            }
+        ];
+    };
+    */
+
     $scope.trendTemplate = 'templates/trends/growth.html';
 
 }]).controller('SleepCtrl', ['$scope', function ($scope) {
@@ -100,56 +185,6 @@ angular.module('cleverbaby.controllers')
 
 }]).controller('PumpingCtrl', ['$scope', function ($scope) {
 
-        var chart1 = {};
-        chart1.type = "ColumnChart";
-        chart1.cssStyle = "height:200px; width:300px;";
-        chart1.data = {"cols": [
-            {id: "month", label: "Month", type: "string"},
-            {id: "laptop-id", label: "Laptop", type: "number"},
-            {id: "desktop-id", label: "Desktop", type: "number"},
-            {id: "server-id", label: "Server", type: "number"},
-            {id: "cost-id", label: "Shipping", type: "number"}
-        ], "rows": [
-            {c: [
-                {v: "January"},
-                {v: 19, f: "42 items"},
-                {v: 12, f: "Ony 12 items"},
-                {v: 7, f: "7 servers"},
-                {v: 4}
-            ]},
-            {c: [
-                {v: "February"},
-                {v: 13},
-                {v: 1, f: "1 unit (Out of stock this month)"},
-                {v: 12},
-                {v: 2}
-            ]},
-            {c: [
-                {v: "March"},
-                {v: -10},
-                {v: 0},
-                {v: 11},
-                {v: 6}
-
-            ]}
-        ]};
-
-        chart1.options = {
-            "title": "Sales per month",
-            "isStacked": "true",
-            "fill": 20,
-            "displayExactValues": true,
-            "vAxis": {
-                "title": "Sales unit", "gridlines": {"count": 6}
-            },
-            "hAxis": {
-                "title": "Date"
-            }
-        };
-
-        chart1.formatters = {};
-
-        $scope.chart = chart1;
 
 
     }]);
