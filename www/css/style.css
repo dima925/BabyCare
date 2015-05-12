@@ -604,6 +604,8 @@ input{
   .wrapper label.small { width: 100% !important; height:8px; margin-top: 3px; font-size: 8px; float: left; display: block; padding: 0 !important;}
 .wrapper input { font-family: 'Roboto', sans-serif !important; display: inline-block; text-align: right !important; padding: 0 !important; margin: 0 !important; height:auto; font-size: 24px; width: auto !important; color: #fff; line-height: 2em; float: right;}
 .rumah-radio { width: 100%; float: left; border-radius: 4px; padding: 0; border: 1px solid rgba(255,255,255,.3) ;margin-top: 3px; overflow: hidden;}
+.rumah-radio.on-white {  border: 1px solid rgba(0,0,0,.3); color: #000 !important; }
+.rumah-radio.on-white .item-content span { color: rgba(0,0,0,.6);}
 
 .item-radio { margin:1px 0;}
 .item-radio.color-selection { text-align: center; margin-bottom: 12px; position: relative;}
@@ -632,12 +634,20 @@ input{
   background:0;
 }
 .item-radio.border-right .item-content:after { position: absolute; content: ""; height: 200%; border-right: 1px solid rgba(255,255,255,.3) ; top: -2px; right: -4px;}
+.rumah-radio.on-white .item-radio.border-right .item-content:after {
+  border-right: 1px solid rgba(0,0,0,.3) ;
+}
 .item-radio.border-right:last-child .item-content:after { border: 0; display: none}
 .item-radio.tab-style input:checked ~ .item-content {
     /* style the item content when its checked */
     background: #fff;
     border-radius: 4px;
 }
+.rumah-radio.on-white .item-radio.tab-style input:checked ~ .item-content {
+  background: #000; 
+}
+.rumah-radio.on-white .item-radio.tab-style input:checked ~ .item-content span { color: #fff;}
+
 .item-radio.color-selection input:checked ~ .item-content span {
     /* style the item content when its checked */
      color: rgba(255,255,255,1);
@@ -905,6 +915,9 @@ td.fc-day { margin: 0 !important;padding:0 !important; margin: 0 !important; }
 .content-calendar span.icon-calendar:before { font-size:30px; left: 0; top: 0; position: absolute;}
 .content-calendar span.icon-calendar:after { position: absolute; content: attr(title); background: #fff; width: 20px; height: 16px; font-size: 12px; top: 11px; left: 5px; text-align: center;}
 .content-calendar h2 { font-size: 18px ;}
+
+/*trends page*/
+.combo-box select { width: 100%; padding: 8px 10px;}
 
 /********************************************/
 .rotate-to-cross{    -ms-transform: rotate(-20deg); /* IE 9 */    -webkit-transform: rotate(-20deg); /* Safari */    transform: rotate(-20deg);}
