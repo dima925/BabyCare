@@ -1,6 +1,6 @@
 angular.module('cleverbaby.controllers')
-.controller('activityCtrl', ['$rootScope', '$scope', '$window', 'ActivityService', 'NotificationService',
-    function ($rootScope, $scope, $window, ActivityService, NotificationService) {
+.controller('activityCtrl', ['$rootScope', '$scope', '$window', 'ActivityService', 'NotificationService', '$ionicModal',
+    function ($rootScope, $scope, $window, ActivityService, NotificationService, $ionicModal) {
         function init() {
 
             $scope.diaper = {
@@ -320,6 +320,34 @@ angular.module('cleverbaby.controllers')
             $scope.manual = !$scope.manual;
             $scope.timer = !$scope.timer;
         };
+		
+		$scope.addPhoto = function(){
+			$ionicModal.fromTemplateUrl('templates/modals/addphoto.html', {
+				scope: $scope,
+				animation: 'slide-in-up'
+			  }).then(function(modal) {
+				$scope.modalAddPhoto = modal;
+				$scope.modalAddPhoto.show();
+			});
+		};
+		
+		$scope.closeAddPhotoModal = function(){
+			 $scope.modalAddPhoto.hide();
+		};
+
+		$scope.addNote = function(){
+			$ionicModal.fromTemplateUrl('templates/modals/addnote.html', {
+				scope: $scope,
+				animation: 'slide-in-up'
+			  }).then(function(modal) {
+				$scope.modalAddNote = modal;
+				$scope.modalAddNote.show();
+			});
+		};
+		
+		$scope.closeAddNoteModal = function(){
+			 $scope.modalAddNote.hide();
+		};
 
         $scope.closeActivity = function(){
             $scope.modal.hide();
