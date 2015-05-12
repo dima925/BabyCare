@@ -1,10 +1,12 @@
 angular.module('cleverbaby.controllers')
-.controller('AddMoreCtrl', ['$scope','activityModals', '$rootScope', function ($scope, activityModals, $rootScope) {
+.controller('AddMoreCtrl', ['$scope','activityModals', '$rootScope', '$timeout', function ($scope, activityModals, $rootScope, $timeout) {
 
 	$scope.closeModal=function(){
-        $rootScope.activatePlus = false;
         $scope.modal.hide();
+		$rootScope.animatePlusButton = false;
+		$timeout(function(){ $rootScope.showPlusButton = false }, 200);
     };
+	
     $scope.openModal = function(type){
         $scope.closeModal();
         activityModals.showModal(type);

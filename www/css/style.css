@@ -853,13 +853,18 @@ opacity:1;
 visibility:visible; width: 70px; height: 70px;
 }
 .floating-plus-button .tab-item .ion-plus-round:before { left: -3.66px}
-.ion-plus-round:before { -webkit-transition: all 0.2s ease-in-out;-moz-transition: all 0.2s ease-in-out;-o-transition: all 0.2s ease-in-out;transition:all 0.2s ease-in-out; transition-duration: 0.1s; transition-delay: 0s; }
+.ion-plus-round:before { -webkit-transition: all 0.2s ease-in-out;-moz-transition: all 0.2s ease-in-out;-o-transition: all 0.2s ease-in-out;transition:all 0.2s ease-in-out; transition-duration: 0.2s; transition-delay: 0s; 
+ -ms-transform: rotate(0deg); /* IE 9 */
+    -webkit-transform: rotate(0deg); /* Safari */
+    transform: rotate(0deg);
+}
 .animatePlus .ion-plus-round:before {
  -ms-transform: rotate(-45deg); /* IE 9 */
     -webkit-transform: rotate(-45deg); /* Safari */
     transform: rotate(-45deg);
 
 }
+
 .floating-plus-button .ion-plus-round:after { content: ""; position: absolute; width: 62px; height: 62px; border-radius: 50px; background: linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) ), rgba(47,119,177,1); top: -6px; left:0px; }
 
 /*more page*/

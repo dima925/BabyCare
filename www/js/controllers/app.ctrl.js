@@ -13,18 +13,12 @@ angular.module('cleverbaby.controllers')
      * Show the addActivity Modal
      */
     $scope.showAddActivityModal = function(){
-        $rootScope.activatePlus = true;
+		// make the floating-plus-button in index.html visible
+        $rootScope.showPlusButton = true;
+		// add the animatePlus class to ion-plus-round in floating-plus-button to animate + to x
+		$rootScope.animatePlusButton = true;
         $scope.menuModal.show();
     };
-
-
-
-    /*
-	$scope.$on("showMenu", function (event, args) {
-        $rootScope.activatePlus = true;
-		$scope.menuModal.show();
-	});
-	*/
 
     $ionicModal.fromTemplateUrl('templates/login.html', {
         scope: $scope

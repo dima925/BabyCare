@@ -322,7 +322,6 @@ angular.module('cleverbaby.controllers')
         };
 
         $scope.closeActivity = function(){
-            $rootScope.activatePlus = false;
             $scope.modal.hide();
         };
 
