@@ -34,6 +34,8 @@ angular.module('cleverbaby', [
             StatusBar.styleDefault();
         }
 
+        $rootScope.showPlusButton = false;
+
         $rootScope.setBaby = function (baby){
             $rootScope.baby = baby;
             $rootScope.babyId = baby.uuid;
