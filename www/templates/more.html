@@ -1,9 +1,14 @@
 <ion-view view-title="{{'cleverbaby.app.search.title' | translate}}">
   <ion-content>
     <div class="wrapper-tab more-page">
-        <div class="header no-border">
-            <h2>CleverBaby <i class="fa fa-angle-down"></i></h2>
-        </div>
+        <ion-nav-bar class="bar-positive">
+            <div class="header no-border">
+                <ion-nav-title cb-baby-drop-down></ion-nav-title>
+                <ion-nav-buttons side="right">
+                    <a class="btn right" ui-sref="app.diary"><i class="fa fa-dashboard"></i></a>
+                </ion-nav-buttons>
+            </div>
+        </ion-nav-bar>
         <ul class="list">
             <li class="item"><a href="#"><span class="icon icon-user-female user-add"></span> Invite Others</a></li>
             <li class="item"><a href="#"><span class="icon icon-drawer"></span> Send Daily Report to Email</a></li>
