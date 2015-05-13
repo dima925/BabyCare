@@ -72,29 +72,38 @@ angular.module('cleverbaby')
            }
        }
     })
+    .state('app.youraccount', {
+        url: "/more/youraccount",
+        views: {
+            'more': {
+                templateUrl: "templates/more/youraccount.html",
+                controller: 'YourAccountCtrl'
+            }
+        }
+    })
     .state('auth', {
         url: "/auth",
         abstract: true,
         templateUrl: "templates/auth.html"
     })
-        .state('auth.signin', {
-            url: '/signin',
-            views: {
-                'auth-signin': {
-                    templateUrl: 'templates/auth-signin.html',
-                    controller: 'SignInCtrl'
-                }
+    .state('auth.signin', {
+        url: '/signin',
+        views: {
+            'auth-signin': {
+                templateUrl: 'templates/auth-signin.html',
+                controller: 'SignInCtrl'
             }
-        })
-        .state('auth.signup', {
-            url: '/signup',
-            views: {
-                'auth-signup': {
-                    templateUrl: 'templates/auth-signup.html',
-                    controller: 'SignUpCtrl'
-                }
+        }
+    })
+    .state('auth.signup', {
+        url: '/signup',
+        views: {
+            'auth-signup': {
+                templateUrl: 'templates/auth-signup.html',
+                controller: 'SignUpCtrl'
             }
-        });
+        }
+    });
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/diary');
 });

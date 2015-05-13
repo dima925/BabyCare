@@ -1,9 +1,17 @@
 <ion-view>
     <ion-content>
-        <div ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
-        <div class="content-calendar">
-        	<h2><span class="icon-calendar" title="09"></span>  May, 2015</h2>
-        	<p>Development Milestones</p>
+        <div class="wrapper-tab timeline">
+            <ion-nav-bar class="bar-positive">
+                <div class="header no-border">
+                    <ion-nav-title cb-baby-drop-down></ion-nav-title>
+                </div>
+            </ion-nav-bar>
+
+            <div ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
+            <div class="content-calendar">
+                <h2><span class="icon-calendar" title="09"></span>  May, 2015</h2>
+                <p>Development Milestones</p>
+            </div>
         </div>
     </ion-content>
 </ion-view>

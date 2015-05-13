@@ -1,0 +1,31 @@
+<ion-view view-title="{{'cleverbaby.app.search.title' | translate}}">
+    <ion-content>
+        <div class="wrapper-tab more-page">
+            <div class="header no-border">
+                <h2>CleverBaby <i class="fa fa-angle-down"></i></h2>
+            </div>
+            <div class="row responsive-sm">
+               <div class="loggedin-info col">You are logged in with your Facebook Account:
+               <br> "myfacebook@monkey.com"
+               </div>
+                <div class="col">
+                    <div class="sub-head-text">Your Profile Information</div>
+                    <button class="button button-positive" ng-click="activateEdit()">
+                        Edit
+                    </button>
+                </div>
+                <div class="col">
+                    <form>
+                        <div class="sub-head-text">Your Name</div>
+                        <div class="input-row">
+                            <label for="name" class="form-label-short">
+                                This is the name the other person will see
+                            </label>
+                            <input id="name" type="text" value="Roger" ng-disabled="inputDisabled">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

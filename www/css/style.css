@@ -947,3 +947,37 @@ td.fc-day { margin: 0 !important;padding:0 !important; margin: 0 !important; }
 .rotate-to-cross{    -ms-transform: rotate(-20deg); /* IE 9 */    -webkit-transform: rotate(-20deg); /* Safari */    transform: rotate(-20deg);}
 .hide-plus-btn{    display: none;}
 
+/*Your account page*/
+
+.form-label-short{
+    display: block;
+    width: 175px;
+    float: left;
+}
+
+.sub-head-text {
+    display: inline;
+}
+
+.input-row input{
+    float: right;
+    display: block;
+    width: 160px;
+    text-align: right;
+    border: 1px solid lightblue;
+}
+
+.input-row input[disabled]{
+    background-color: white;
+    border: none;
+}
+
+.more-page button{
+    float: right;
+    width: 95px;
+    display: inline-table;
+}
+
+.more-page .col{
+    margin-bottom: 5px;
+}
