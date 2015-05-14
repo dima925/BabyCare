@@ -18,8 +18,6 @@ angular.module('cleverbaby.data')
 
         function handleFile(baby){
             return $q(function(resolve, reject){
-
-                alert('file');
                 if(baby.displayImage){
                     $window.resolveLocalFileSystemURL(baby.displayImage, function(fileEntry){
                         $window.resolveLocalFileSystemURL(cordova.file.dataDirectory+'/babies', function(dirEntry){
@@ -28,7 +26,6 @@ angular.module('cleverbaby.data')
                                 try{
                                     network.upload('/babies/'+ baby.uuid + '/media', newFileEntry.nativeURL);   
                                 } catch(e){
-                                    alert(e);
                                 }
                                 resolve();
                             }, function(err){
@@ -71,10 +68,13 @@ angular.module('cleverbaby.data')
                         });
                     });
 
-                    promises.unshift($cordovaFile.createDir(cordova.file.dataDirectory, "babies", false));
-                    promises.unshift($cordovaFile.createDir(cordova.file.dataDirectory, "activities", false));
-
-                    return $q.all(promises);
+                    if(typeof cordova != "undefined"){
+                        promises.unshift($cordovaFile.createDir(cordova.file.dataDirectory, "babies", true));
+                        promises.unshift($cordovaFile.createDir(cordova.file.dataDirectory, "activities", true));
+                    }
+                    return $q.all(promises).then(function(){
+                        return babies;
+                    });
                 });
             },
             getAllBabies: function () {
