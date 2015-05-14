@@ -2,7 +2,7 @@ angular
     .module('cleverbaby.helpers')
     .directive('background', function(){
         return function(scope, element, attrs){
-            $scope.$watch(attrs.background, function(url){
+            scope.$watch(attrs.background, function(url){
                 element.css({
                     'background-image': 'url(' + url +')'
                 });
