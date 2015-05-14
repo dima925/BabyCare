@@ -703,7 +703,7 @@ span.satuan { float:right;font-size: 24px; margin-top: 14px}
 .vaccination-foot { color: #cc3366; }
 
 
-.bar .title { top: 6px;  font-size: 22px;}
+.bar .title {top: 8px; font-size: 18px;}
 .bar .title .nav-bar-title:after { margin-left: 10px; font-family: "FontAwesome"; content: "\f107";  }
 span.fa.timeline { position: relative; border-left:1px solid; padding: 2px 0 0 4px; font-size: 18px;  }
 span.fa.timeline:after { font-family: "FontAwesome"; content: "\f03a"; ; position: absolute; left: -2px; }
