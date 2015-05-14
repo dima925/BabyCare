@@ -29,13 +29,13 @@
             <div class="kotak no-border" ng-if="edit">
                 <button class="btn">Share Baby Data with others</button>
             </div>
-            <div class="kotak" ng-if="modal.edit">
+            <div class="kotak no-border" ng-if="modal.edit">
                 <button class="btn" ng-click="delete()">Delete</button>
             </div>
-            <div class="kotak" ng-click="update()" ng-if="modal.edit">
+            <div class="kotak no-border" ng-click="update()" ng-if="modal.edit">
                 <button class="btn">Done</button>
             </div>
-            <div class="kotak" ng-click="save()" ng-if="!modal.edit">
+            <div class="kotak no-border" ng-click="save()" ng-if="!modal.edit">
                 <button class="btn">Add</button>
             </div>
         </div>

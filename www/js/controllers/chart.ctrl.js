@@ -39,6 +39,7 @@ angular.module('cleverbaby.controllers')
                 tooltipHide: function(e){ console.log("tooltipHide"); }
             },
             xAxis: {
+                tickValues: [0, 1, 2, 3, 4],
                 axisLabel: 'Month'
             },
             yAxis: {

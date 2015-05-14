@@ -1,33 +1,35 @@
-<div class="kotak no-border">
-    <div class="clearfix"></div>
-    <div class="rumah-radio on-white">
-        <ion-radio value="Weight" name="type-view" class="xs-4 border-right tab-style"><span>Weight</span></ion-radio>
-        <ion-radio value="Height" name="type-view" class="xs-4 border-right tab-style" ><span>Height</span></ion-radio>
-        <ion-radio value="Head Circumference" name="type-view" class="xs-4 border-right tab-style" ><span>Head Circumference</span></ion-radio>
-        <ion-radio value="BMI" name="type-view" class="xs-4 border-right tab-style"><span>BMI</span></ion-radio>
+<div class="wrapper relative">
+    <div class="kotak no-border">
+        <div class="clearfix"></div>
+        <div class="rumah-radio on-white">
+            <ion-radio value="Weight" name="type-view" class="xs-4 border-right tab-style"><span>Weight</span></ion-radio>
+            <ion-radio value="Height" name="type-view" class="xs-4 border-right tab-style" ><span>Height</span></ion-radio>
+            <ion-radio value="Head Circumference" name="type-view" class="xs-4 border-right tab-style" ><span>Head Circumference</span></ion-radio>
+            <ion-radio value="BMI" name="type-view" class="xs-4 border-right tab-style"><span>BMI</span></ion-radio>
+        </div>
     </div>
-</div>
-<div class="kotak no-border">
-    <div class="clearfix"></div>
-    <div class="rumah-radio on-white">
-        <ion-radio value="Week" name="time-view" class="xs-4 border-right tab-style"><span>Week</span></ion-radio>
-        <ion-radio value="Month" name="time-view" class="xs-4 border-right tab-style" ><span>Month</span></ion-radio>
-        <ion-radio value="3 Month" name="time-view" class="xs-4 border-right tab-style" ><span>3 Month</span></ion-radio>
-        <ion-radio value="All" name="time-view" class="xs-4 border-right tab-style"><span>All</span></ion-radio>
+    <div class="kotak no-border">
+        <div class="clearfix"></div>
+        <div class="rumah-radio on-white">
+            <ion-radio value="Week" name="time-view" class="xs-4 border-right tab-style"><span>Week</span></ion-radio>
+            <ion-radio value="Month" name="time-view" class="xs-4 border-right tab-style" ><span>Month</span></ion-radio>
+            <ion-radio value="3 Month" name="time-view" class="xs-4 border-right tab-style" ><span>3 Month</span></ion-radio>
+            <ion-radio value="All" name="time-view" class="xs-4 border-right tab-style"><span>All</span></ion-radio>
+        </div>
     </div>
-</div>
-<div class="padding">
-    <div class="card">
-        <!-- <canvas id="line" class="chart chart-line" data="data" labels="labels" legend="true" series="series" click="onClick"></canvas> -->
-        <nvd3 options="options" data="data" class="with-3d
+    <div class="padding">
+        <div class="card">
+            <!-- <canvas id="line" class="chart chart-line" data="data" labels="labels" legend="true" series="series" click="onClick"></canvas> -->
+            <nvd3 options="options" data="data" class="with-3d"></nvd3>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col col-80">
-        <canvas id="line" class="chart chart-bar" data="data" labels="labels" legend="true" series="series" click="onClick"></canvas>
-    </div>
-    <div class="col col-20">
-        <h3>+142</h3>
-        <h4>From Last Month</h4>
+    <div class="row">
+        <div class="col col-80">
+            <canvas id="line" class="chart chart-bar" data="data" labels="labels" legend="true" series="series" click="onClick"></canvas>
+        </div>
+        <div class="col col-20">
+            <h3>+142</h3>
+            <h4>From Last Month</h4>
+        </div>
     </div>
 </div>
