@@ -567,7 +567,7 @@ input{
 .btn-drvisit{background: #0099cc;}
 .btn-vaccinations{background: #cccc33;}
 .btn-growth{background: #6633cc;}
-.btn-more{background: #323232;}
+.btn-more{background: #232323;}
 
 .diapers { background: #ff6b01; }
 .bottle { background: #66cc33; }
@@ -606,7 +606,7 @@ input{
 }
 .kotak.di-block-center { display: -webkit-flex;  display: flex; }
 .kotak.di-block-center > div{  -webkit-align-self: center;    align-self: center;    width: ; margin:0 auto; text-align:center }
-.wrapper .kotak:last-child, .wrapper .no-border { border: none !important;}
+.wrapper .kotak:last-child, .wrapper .no-border, .kotak.no-border { border: none !important;}
 .padding-top{
   padding-top: 10px;
 }
@@ -754,7 +754,8 @@ span.fa.timeline:after { font-family: "FontAwesome"; content: "\f03a"; ; positio
 .bot{margin-bottom: 66px;}
 .modal-backdrop.active{background: rgba(0,0,0,.8);}
 .modal-backdrop .menu-bot button { -webkit-transition: all 0.6s ease-out-in;-moz-transition: all 0.6s ease-out-in;-o-transition: all 0.6s ease-out-in;transition:all 0.6s ease-out-in; transition-duration: 0.3s; transition-delay:0s; margin-top: 0; }
-.kotak.menus { overflow: auto !important; height:300px !important; padding-top: 180px;}
+.kotak.menus { overflow: auto !important; height:320px !important; padding-top: 180px;}
+.kotak.menus span { font-size:9px; }
 .modal-backdrop .menus .xs-5:nth-child(1) button, .modal-backdrop .menus .xs-5:nth-child(5) button { margin-top: 75px !important }
 .modal-backdrop .menus .xs-5:nth-child(2) button, .modal-backdrop .menus .xs-5:nth-child(4) button { margin-top: 45px !important }
 .modal-backdrop .menus .xs-5:nth-child(3) button { margin-top: 15px !important }
@@ -842,6 +843,7 @@ ul.items-activity li .icon { width: 30px; height: 30px; border-radius: 50px; dis
 ul.items-activity li:last-child { margin: 0 !important}
 ul.items-activity li span[class*="icon-"] { margin: 8px auto 10px; display: inline-block; font-size: 16px; color: #fff;}
 ul.items-activity li span.text { color: rgba(0,0,0,.6); font-size: 9px; }
+.has-header { top: 0;}
 .timeline-wrapper { width: 100%; }
 .kotak.timeline-item { height: 88px;  max-width: 100%; margin: 10px 0 18px; position: relative;}
 .kotak.timeline-item:after { content: "\f061"; font-family: 'FontAwesome'; position: absolute; top: 44px; right: 0; color: rgba(0,0,0,.6) }
