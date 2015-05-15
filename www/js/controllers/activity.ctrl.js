@@ -350,5 +350,16 @@ angular.module('cleverbaby.controllers')
                 $scope.comment = ($scope.modalAddNote.comment);
             }
         });
+
+        /**
+         * Hides the keyboard when tapping go.
+         * @param input
+         */
+        $scope.hideKeyboard = function(){
+            alert(1);
+            $(document.activeElement).blur();
+            return false;
+        };
+
     }
 ]);
