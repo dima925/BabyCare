@@ -258,6 +258,47 @@
     "cleverbaby.app.activity.nurse.time": "Time",
     "cleverbaby.app.activity.nurse.time_left": "Time Left",
     "cleverbaby.app.activity.nurse.time_right": "Time Right",
-    "cleverbaby.app.activity.nurse.time_both": "Time Both"
+    "cleverbaby.app.activity.nurse.time_both": "Time Both",
 
+    "cleverbaby.app.more.title": "Settings",
+    "cleverbaby.app.more.button.invite": "Invite Others",
+    "cleverbaby.app.more.button.changemeasureunit": "Change Measurement Units",
+    "cleverbaby.app.more.button.help": "Help",
+    "cleverbaby.app.more.button.about": "About Clever Baby",
+    "cleverbaby.app.more.button.youraccount": "Your Account",
+    "cleverbaby.app.more.button.share": "SHARE",
+    "cleverbaby.app.more.button.tellafriend": "Tell a friend",
+    "cleverbaby.app.more.button.likeus": "Like Us",
+    "cleverbaby.app.more.button.followus": "Follow Us",
+    "cleverbaby.app.more.button.rateus": "Rate Us",
+    "cleverbaby.app.more.button.feedback": "Submit Feedback",
+
+    "cleverbaby.app.more.measures.title": "Change Measurement Units",
+
+    "cleverbaby.app.more.about.title": "About Clever Baby",
+    "cleverbaby.app.more.about.text": "Clever Baby was launched in 2015 by passionate parents on a mission to create the best way to track your baby's growth and development.",
+    
+    "cleverbaby.app.more.help.title": "Help",
+    "cleverbaby.app.more.help.text": "Here are the top questions and answers.",
+    "cleverbaby.app.more.help.contact": "Don't find what you are looking for? Contact us at ",
+
+    "cleverbaby.app.more.youraccount.title": "Your Account",
+
+    "cleverbaby.app.more.followus.title": "Follow Us",
+    "cleverbaby.app.more.followus.twitter": "Follow Us on Twitter",
+    "cleverbaby.app.more.followus.facebook": "Follow Us on Facebook",
+    "cleverbaby.app.more.followus.googlep": "Foolow Us on Google+",
+
+    "cleverbaby.app.more.feedback.title": "Send Us Feedback",
+    "cleverbaby.app.more.feedback.text": "Your feedback is highly appreciated. If you wish to receive a response please provide your e-mail (optional).",
+
+    "cleverbaby.app.more.rateus.like.question": "Do you like this App?",
+    "cleverbaby.app.more.rateus.like.yes": "Yes",
+    "cleverbaby.app.more.rateus.like.no": "No",
+    "cleverbaby.app.more.rateus.rate.question": "Do you mind rating us? We love 5 Star ratings!",
+    "cleverbaby.app.more.rateus.rate.yes": "Yes, take me to Appstore to Rate",
+    "cleverbaby.app.more.rateus.rate.no": "Not now",
+    "cleverbaby.app.more.rateus.feedback.question": "Please leave some feedback",
+    "cleverbaby.app.more.rateus.feedback.submit": "Submit",
+    "cleverbaby.app.more.rateus.feedback.cancel": "Cancel"
 }

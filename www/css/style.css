@@ -888,7 +888,7 @@ visibility:visible; width: 60px; height: 60px;
 
 /*more page*/
 .more-page ul.list li:not(.item-divider) { border-bottom: 1px solid #eaeaea}
-.more-page ul.list li a { color: #000; text-decoration: none; font-size: 18px; font-weight: lighter !important;}
+.more-page ul.list li { color: #000; text-decoration: none; font-size: 18px; font-weight: lighter !important;}
 .more-page ul.list li span { margin: 0px 15px 0 0; float: left;}
 .more-page ul.list li span[class*="icon-"] { font-size: 14.6px; margin-top: 1.6px}
 .more-page ul.list li.item-divider span { margin: 0 20px 0 0}
@@ -995,6 +995,26 @@ td.fc-day { margin: 0 !important;padding:0 !important; margin: 0 !important; }
     display: inline-table;
 }
 
+.more-page button.button-block {
+  width: 100%;
+}
+
 .more-page .col{
     margin-bottom: 5px;
+}
+
+.more-rateus.wrapper {
+  background-color: #222222;
+}
+
+.more-rateus.wrapper .feedbackMessage {
+  min-height: 120px;
+}
+
+.more-page ul.list li input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.more-page ul.list li span.item-note {
+  float: right;
 }

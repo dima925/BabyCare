@@ -1,0 +1,38 @@
+<ion-view view-title="{{'cleverbaby.app.more.feedback.title' | translate}}">
+    <ion-content>
+        <div class="wrapper-tab more-page">
+            <ion-nav-bar class="bar-positive">
+                <div class="header no-border">
+                    <ion-nav-title cb-baby-drop-down></ion-nav-title>
+                    <ion-nav-buttons side="right">
+                        <a class="btn right" ui-sref="app.diary"><i class="fa fa-dashboard"></i></a>
+                    </ion-nav-buttons>
+                </div>
+            </ion-nav-bar>
+            
+            <form novalidate name="myForm">
+                <div class="padding">
+                    {{'cleverbaby.app.more.feedback.text' | translate}}
+                </div>
+                <div class="list">
+                    <div role="alert" class="assertive">
+                        <span class="error" ng-show="!myForm.feedbacktext.$pristine && myForm.feedbacktext.$error.required">Required!</span>
+                    </div>
+                    <label class="item item-input">
+                        <textarea placeholder="Type your feedback here" required="required" class="feedback" name="feedbacktext" ng-model="feedbacktext"></textarea>
+                    </label>
+                    <div role="alert" class="assertive">
+                        <span class="error" ng-show="!myForm.emailtext.$pristine && myForm.emailtext.$error.email">Should be email address</span>
+                    </div>
+                    <label class="item item-input">
+                        <input type="email" placeholder="Type your email here if you would like a response" name="emailtext" ng-model="emailtext">
+                    </label>
+                </div>
+                <div class="row">
+                    <button class="col col-50 button" ng-click="submit()">Submit</button>
+                    <button class="col col-50 button" ng-click="cancel()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </ion-content>
+</ion-view>
