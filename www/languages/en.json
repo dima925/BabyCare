@@ -301,4 +301,7 @@
     "cleverbaby.app.more.rateus.feedback.question": "Please leave some feedback",
     "cleverbaby.app.more.rateus.feedback.submit": "Submit",
     "cleverbaby.app.more.rateus.feedback.cancel": "Cancel"
+    "cleverbaby.app.activity.comment.click": "Click to edit",
+    "cleverbaby.app.activity.comment.add": "Add Note",
+    "cleverbaby.app.activity.comment.placeholder": "Some Note Here"
 }

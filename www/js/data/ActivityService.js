@@ -25,7 +25,24 @@ angular.module('cleverbaby.data')
                     data: data,
                     url: '/activities'
                 });
-                resolve();
+                resolve(data);
+            });
+        },
+        editActivity: function(uuid, data){
+            return $q(function(resolve, reject){
+                network.put({
+                    data: data,
+                    url: '/activities/'+uuid
+                });
+
+                for(var i in $localStorage.activities[data.babies]){
+                    if($localStorage.activities[data.babies].hasOwnProperty(i)){
+                        if($localStorage.activities[data.babies][i].uuid == data.uuid){
+                            $localStorage.activities[data.babies][i] = data;
+                        }
+                    }
+                }
+                resolve(data);
             });
         },
         getTodayCount: function(babyId){

@@ -19,8 +19,12 @@ angular
             scope: {
                 activity: '='
             },
-            controller: function ($scope, $element, $attrs, $transclude) {
+            controller: function ($scope, $element, $attrs, $transclude, activityModals) {
+                $scope.openModal = function(data){
+                    activityModals.showModal(data.type, data);
+                }
             }
+
         }
     })
     .directive('timelineDate', function($interval) {
