@@ -258,6 +258,9 @@
     "cleverbaby.app.activity.nurse.time": "Time",
     "cleverbaby.app.activity.nurse.time_left": "Time Left",
     "cleverbaby.app.activity.nurse.time_right": "Time Right",
-    "cleverbaby.app.activity.nurse.time_both": "Time Both"
+    "cleverbaby.app.activity.nurse.time_both": "Time Both",
 
+    "cleverbaby.app.activity.comment.click": "Click to edit",
+    "cleverbaby.app.activity.comment.add": "Add Note",
+    "cleverbaby.app.activity.comment.placeholder": "Some Note Here"
 }
