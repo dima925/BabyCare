@@ -260,6 +260,9 @@
     "cleverbaby.app.activity.nurse.time_right": "Time Right",
     "cleverbaby.app.activity.nurse.time_both": "Time Both",
 
+    "cleverbaby.app.activity.comment.click": "Click to edit",
+    "cleverbaby.app.activity.comment.add": "Add Note",
+    "cleverbaby.app.activity.comment.placeholder": "Some Note Here"
     "cleverbaby.app.more.title": "Settings",
     "cleverbaby.app.more.button.invite": "Invite Others",
     "cleverbaby.app.more.button.changemeasureunit": "Change Measurement Units",
