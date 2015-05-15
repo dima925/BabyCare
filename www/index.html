@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 	<!-- required by cordova-whitelist-plugin, Enable all requests, inline styles, and eval() -->
-	<meta http-equiv="Content-Security-Policy" content="default-src * &apos;unsafe-inline&apos; &apos;unsafe-eval&apos;">
+	<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval'">
     <title></title>
 
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -85,6 +85,15 @@
     <script src="js/controllers/calendar.ctrl.js"></script>
     <script src="js/controllers/timeline.ctrl.js"></script>
     <script src="js/controllers/more.ctrl.js"></script>
+    <script src="js/controllers/more.measures.ctrl.js"></script>
+    <script src="js/controllers/more.help.ctrl.js"></script>
+    <script src="js/controllers/more.about.ctrl.js"></script>
+    <script src="js/controllers/more.youraccount.ctrl.js"></script>
+    <script src="js/controllers/more.followus.ctrl.js"></script>
+    <script src="js/controllers/more.rateus.like.ctrl.js"></script>
+    <script src="js/controllers/more.rateus.rate.ctrl.js"></script>
+    <script src="js/controllers/more.rateus.feedback.ctrl.js"></script>
+    <script src="js/controllers/more.feedback.ctrl.js"></script>
 
     <!-- Controllers -->
     <script src="js/directives/directives.js"></script>
@@ -94,7 +103,7 @@
 <body>
     <ion-nav-view></ion-nav-view>
 	<div class="floating-plus-button" style="background-color: transparent;" ng-show="showPlusButton">
-		<a class="tab-item" ng-class="{&apos;animatePlus&apos; : animatePlusButton}" icon="ion-plus-round">
+		<a class="tab-item" ng-class="{'animatePlus' : animatePlusButton}" icon="ion-plus-round">
 			<i class="icon ion-plus-round"></i>
 		<span class="tab-title ng-binding" ng-bind-html="title"></span>
 	    </a>

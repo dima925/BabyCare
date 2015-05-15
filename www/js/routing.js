@@ -68,16 +68,62 @@ angular.module('cleverbaby')
        url: "/more",
        views: {
            'more': {
-               templateUrl: "templates/more.html"
+               templateUrl: "templates/more.html",
+               controller: "MoreCtrl"
            }
        }
     })
+    .state('app.measures', {
+        url: "/measures",
+        views: {
+            'more': {
+                templateUrl: "templates/more/measures.html",
+                controller: 'MoreMeasuresCtrl'
+            }
+        }
+    })
+    .state('app.help', {
+        url: "/help/:helpId",
+        views: {
+            'more': {
+                templateUrl: "templates/more/help.html",
+                controller: 'MoreHelpCtrl'
+            }
+        }
+    })
+    .state('app.about', {
+        url: "/about",
+        views: {
+            'more': {
+                templateUrl: "templates/more/about.html",
+                controller: 'MoreAboutCtrl'
+            }
+        }
+    })
     .state('app.youraccount', {
-        url: "/more/youraccount",
+        url: "/youraccount",
         views: {
             'more': {
                 templateUrl: "templates/more/youraccount.html",
-                controller: 'YourAccountCtrl'
+                controller: 'MoreYourAccountCtrl'
+            }
+        }
+    })
+    .state('app.feedback', {
+        url: "/feedback",
+        views: {
+            'more': {
+                templateUrl: "templates/more/feedback.html",
+                controller: 'MoreFeedbackCtrl'
+            }
+        }
+    })
+    .state('app.followus', {
+        url: "/followus",
+        views: {
+            'more': {
+                templateUrl: "templates/more/followus.html",
+                controller: 'MoreFollowusCtrl'
             }
         }
     })

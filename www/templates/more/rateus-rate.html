@@ -1,0 +1,15 @@
+<div class="modal transparent" ng-controller="MoreRateusRateCtrl" ng-click="">
+    <div class="wrapper more-rateus" ng-click="$event.stopPropagation()">
+        <div class="header">
+            <h2 class="title">
+                <span data-translate>cleverbaby.app.more.rateus.rate.question</span>
+            </h2>
+        </div>
+        <div class="content">
+            <div class="row">
+                <div class="col col-50 text-center" ng-click="yes()">{{'cleverbaby.app.more.rateus.rate.yes' | translate}}</div>
+                <div class="col col-50 text-center" ng-click="no()">{{'cleverbaby.app.more.rateus.rate.no' | translate}}</div>
+            </div>
+        </div>
+    </div>
+</div>
