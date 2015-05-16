@@ -55,15 +55,6 @@ angular.module('cleverbaby')
             }
         }
     })
-    .state('app.single', {
-        url: "/playlists/:playlistId",
-        views: {
-            'playlist': {
-                templateUrl: "templates/playlist.html",
-                controller: 'PlaylistCtrl'
-            }
-        }
-    })
     .state('app.more', {
        url: "/more",
        views: {
