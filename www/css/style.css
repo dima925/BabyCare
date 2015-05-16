@@ -1031,6 +1031,7 @@ td.fc-day { margin: 0 !important;padding:0 !important; margin: 0 !important; }
 
 .more-rateus.wrapper .feedbackMessage {
   min-height: 120px;
+  width: 100%;
 }
 
 .more-page ul.list li input[type="checkbox"] {

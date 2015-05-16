@@ -20,7 +20,7 @@ angular.module('cleverbaby', [
     'nvd3',
 ])
 
-.run(function ($ionicPlatform, $rootScope, AuthService, $timeout, $ionicModal, $location, $cordovaLocalNotification, timerService, BabyService, $localStorage, $cordovaSplashscreen, $http) {
+.run(function ($ionicPlatform, $rootScope, AuthService, $timeout, $ionicModal, $location, $cordovaLocalNotification, timerService, BabyService, $localStorage, $cordovaSplashscreen, $http, $cordovaStatusbar, $ionicScrollDelegate) {
 
     $ionicPlatform.ready(function () {
 
@@ -29,10 +29,32 @@ angular.module('cleverbaby', [
         if (window.cordova && window.cordova.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }
+        
         if (window.StatusBar) {
+            $cordovaStatusbar.overlaysWebView(true);
+            $cordovaStatusbar.style(1); //light
+            if (ionic.Platform.isAndroid()) {
+                $cordovaStatusbar.styleHex('#2f77b1');
+            }
             // org.apache.cordova.statusbar required
-            StatusBar.styleDefault();
+            /*StatusBar.styleDefault();
+            if (ionic.Platform.isAndroid()) {
+                StatusBar.backgroundColorByHexString("#2f77b1");
+            }*/
         }
+
+        $rootScope.dynamicStatusBar = function () {
+            var pos = $ionicScrollDelegate.$getByHandle('mainScroll').getScrollPosition();
+            if(window.StatusBar) {
+                if(pos.top > 50) {
+                    if($cordovaStatusbar.isVisible())
+                        $cordovaStatusbar.hide();
+                } else {
+                    if(!$cordovaStatusbar.isVisible())
+                        $cordovaStatusbar.show();
+                }
+            }
+        };
 
         $rootScope.showPlusButton = false;
 
@@ -95,7 +117,6 @@ angular.module('cleverbaby', [
 		// hide the splashscreen
 		// only call .hide() if we are running inside cordova (webview), otherwise desktop chrome throws an error
 		if (ionic.Platform.isWebView()) $cordovaSplashscreen.hide();
-
 	});
 
 })

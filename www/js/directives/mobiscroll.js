@@ -8,7 +8,8 @@ angular.module('cleverbaby.directives')
                 var usrClasses = angular.isDefined(attrs['class-child']) ? attrs['class-child'] : '';
                 var usrStyles = angular.isDefined(attrs['style-child']) ? attrs['style-child'] : '';
 
-                var isApple = ionic.Platform.isIPad() || ionic.Platform.isIOS();
+                // WebView for in browser testing
+                var isApple = ionic.Platform.isWebView() && (ionic.Platform.isIPad() || ionic.Platform.isIOS());
 
                 if (isApple)
                     return '<input type="datetime-local" ng-model="' + attrs['ngModel'] + '" class="mobiscroll-input ' + usrClasses + '" style="' + usrStyles + '" />';
@@ -20,7 +21,7 @@ angular.module('cleverbaby.directives')
             link: function(scope, element, attrs, ngModel) {
 
             	// APPLE 
-                var isApple = ionic.Platform.isIPad() || ionic.Platform.isIOS();
+                var isApple = ionic.Platform.isWebView() && (ionic.Platform.isIPad() || ionic.Platform.isIOS());
                 if (isApple) {
                     return;
                 }

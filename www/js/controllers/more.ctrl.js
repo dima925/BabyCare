@@ -1,6 +1,6 @@
 angular.module('cleverbaby.controllers')
-    .controller('MoreCtrl', ['$scope', '$timeout', '$state', '$cordovaSocialSharing', '$cordovaFacebook', '$ionicModal',
-        function($scope, $timeout, $state, $cordovaSocialSharing, $cordovaFacebook, $ionicModal) {
+    .controller('MoreCtrl', ['$scope', '$timeout', '$state', '$cordovaSocialSharing', '$cordovaFacebook', '$ionicModal', '$ionicScrollDelegate', '$cordovaStatusbar',
+        function($scope, $timeout, $state, $cordovaSocialSharing, $cordovaFacebook, $ionicModal, $ionicScrollDelegate, $cordovaStatusbar) {
 
             $scope.go = function(state, params) {
                 $state.go(state, params);
@@ -52,21 +52,21 @@ angular.module('cleverbaby.controllers')
                     });
             };
 
-            $ionicModal.fromTemplateUrl('/templates/more/rateus-like.html', {
+            $ionicModal.fromTemplateUrl('templates/more/rateus.like.html', {
                 scope: $scope,
                 animation: 'slide-in-up'
             }).then(function(modal) {
                 $scope.modalRateusLike = modal;
             });
 
-            $ionicModal.fromTemplateUrl('/templates/more/rateus-rate.html', {
+            $ionicModal.fromTemplateUrl('templates/more/rateus.rate.html', {
                 scope: $scope,
                 animation: 'slide-in-up'
             }).then(function(modal) {
                 $scope.modalRateusRate = modal;
             });
 
-            $ionicModal.fromTemplateUrl('/templates/more/rateus-feedback.html', {
+            $ionicModal.fromTemplateUrl('templates/more/rateus.feedback.html', {
                 scope: $scope,
                 animation: 'slide-in-up'
             }).then(function(modal) {
