@@ -1,5 +1,6 @@
 <div class="modal transparent" ng-controller="activityCtrl" ng-click="closeActivity()">
     <div class="wrapper mood" ng-click="$event.stopPropagation()">
+        <form ng-submit="hideKeyboard()">
         <div class="header">
             <h2 class="title">
                 <span class="icon-mood-ok"></span>
@@ -27,5 +28,7 @@
             <a class="btn-mid mood-foot" ng-click="addActivity('mood')"><span class="icon-check"></span> &nbsp;<span data-translate>cleverbaby.app.activity.save_close</span></a>
             <a class="pull-right"><span class="icon-camera"></span><span data-translate>cleverbaby.app.activity.photo</span></a>
         </div>
+            <input type="submit" value="submit" class="hidden-submit">
+        </form>
     </div>
 </div>

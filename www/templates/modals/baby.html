@@ -1,9 +1,9 @@
 <div class="modal transparent" ng-controller="BabyCtrl" ng-click="closeModal()">
-    <div class="wrapper add-edit-baby">
-        <div class="header no-border">
-            <a class="btn" ng-click="cancel()"><i class="fa fa-angle-left"></i></a>
-            <h2>{{ modal.baby.name }}</h2>
-        </div>
+	<div class="wrapper add-edit-baby">
+		<div class="bar bar-header">
+			<button class="button button-icon fa fa-angle-left" ng-click="cancel()"></button>
+			<div class="h1 title">{{ modal.baby.name }}</div>
+		</div>
         <div class="cover-img" background="{{ baby.displayImage | babyImage }}">
             <div class="edit circular"><img ng-src="{{ baby.displayImage | babyImage }}"></div>
             <a class="edit-btn" ng-click="showSelectCaptureImageModal()"><span class="icon-note"></span></a>

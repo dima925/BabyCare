@@ -31,16 +31,29 @@ html, body { font-family: 'Roboto', sans-serif !important;  }
 /*hide 1px bottom border of standard ionic-header-bar*/
 .bar {
     background-size: 100% 0px;
+	height: 49px; /* override ionic default height of 44px */
 }
 /*end hide bottom border*/
 
+.bar .title {
+	height: 49px; /* override ionic default height of 44px */
+	line-height: 49px; /* requied to vertical center align title inside header bar */
+	/* top: 7px; */
+	font-size: 16px;
+}
+.bar .title .nav-bar-title:after { margin-left: 10px; font-family: "FontAwesome"; content: "\f0d7";  }
+
+/* override ionic ios default top margin to accomodate ios status bar */
+.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) > * {
+margin-top: 10px !important;  
+}
 
 /*SLIDER*/
 .box {
     padding-top: 50px;
 }
 .positive{
-  background-color: #02b5ef !important;
+  background-color: #02b6ef !important;
   height: auto;
 }
 .balanced{
@@ -296,7 +309,7 @@ p.time{
   border-radius: 50px;
 }
 .tabs{
-  background-color: #20BAEF;
+  background-color: #02b6ef !important;
 }
 /*LOGIN PAGE END*/
 /*ADD NEW TASK*/
@@ -308,7 +321,7 @@ p.time{
 }
 .button{
   color:#ffffff;
-  width:100%;
+  /* width:100%; */ /* its not ok to override ALL buttons in the app to 100% */
   line-height: 35px !important;
 }
 .range .icon {
@@ -442,7 +455,7 @@ p.time{
   border-radius: 50px;
   padding: 0 !important;
   border:0;
-  margin: 10px 10px 5px 10px;
+  margin: 10px 0 5px;
   width: 45px;
   height: 45px;
   font-size: 20px !important;
@@ -600,7 +613,7 @@ input{
 }
 .wrapper.relative { position: relative;}
 .wrapper.on-white * { color: #000 }
-.wrapper .kotak , .kotak{ height: 44px;  border-bottom:1px solid rgba(255,255,255,.4); overflow: hidden !important; position: relative; width: 100%;}
+.wrapper .kotak , .kotak{ height: 49px;  border-bottom:1px solid rgba(255,255,255,.4); overflow: hidden !important; position: relative; width: 100%;}
 .wrapper .kotak.autoheight, .kotak.autoheight{
     height: auto !important;
 }
@@ -625,7 +638,7 @@ input{
 
 .item-radio.color-selection { text-align: center; margin-bottom: 12px; position: relative;}
 .item-radio.color-selection span { position: absolute; top: 22px; font-size: 8px; width: 100%; text-align: center; left: 0;  color: rgba(255,255,255,.4); }
-.item-radio.color-selection .item-content { border-radius:100px !important; margin: 0 auto !important; width: 65%; display: inline-block; border:2px solid #fff; }
+.item-radio.color-selection .item-content { border-radius:100px !important; margin: 0 auto !important; width: 65%; display: inline-block; border:2px solid #fff !important; }
 
 /*color jemaker*/
 .item-radio.color-selection.yellow .item-content {  background-color: #ffff00;}
@@ -673,7 +686,7 @@ input{
   color: rgba(0, 0, 0, 0);
 }
 .header { position: relative; text-align: center; width: 100%; border-bottom:2px dotted #fff; padding:10px 0; }
-.header h2 { font-size: 28px; display: inline-block; font-family: 'Roboto', sans-serif !important; padding: 0; margin:5px 0 0;}
+.header h2 { font-size: 22px; display: inline-block; font-family: 'Roboto', sans-serif !important; padding: 0; margin:5px 0 0;}
 
 span.satuan { float:right;font-size: 24px; margin-top: 14px}
 
@@ -703,11 +716,11 @@ span.satuan { float:right;font-size: 24px; margin-top: 14px}
 .vaccination-foot { color: #cc3366; }
 
 
-.bar .title {top: 8px; font-size: 18px;}
-.bar .title .nav-bar-title:after { margin-left: 10px; font-family: "FontAwesome"; content: "\f107";  }
-span.fa.timeline { position: relative; border-left:1px solid; padding: 2px 0 0 4px; font-size: 18px;  }
-span.fa.timeline:after { font-family: "FontAwesome"; content: "\f03a"; ; position: absolute; left: -2px; }
-.home-icon { color: #fff; font-size: 40px; width: 10%; display: inline-block; }
+span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px;  }
+.home-icon { color: #fff; font-size: 30px; width: 10%; display: inline-block; }
+.home-icon .icon-diaper { font-size: 24px;}
+.di-home > div:nth-child(2) { margin-left: -10px;}
+.di-home > div:nth-child(4) { margin-right: -10px;}
 .graph-circle-home {display: inline-block; }
 .thumbnail-baby {  display: inline-block; }
   .progress { margin:7px 0 0 7px; width: 100%; font-size: 11px; line-height: 1.1em; }
@@ -725,25 +738,25 @@ span.fa.timeline:after { font-family: "FontAwesome"; content: "\f03a"; ; positio
   .circular img { width: 105%; margin: -2px 0 0 -2px }
 .botol { -webkit-transform: rotate(35deg) !important;}
 
-.baby-summary { width: 100%; color: #fff; padding: 0 0 10px;}
+.baby-summary { width: 100%; color: #fff; padding: 8px 0 10px;}
 .baby-summary span { width: 100%; display: inline-block;}
 
 /*TIMELINE */
 .pd{padding: 8px 10px 0; font-size: 17px; margin-top: 0px;}
-.kartu{background: #fafafa; margin: 5px;}
+.kartu{background: #fafafa; margin: 15px 10px;}
 .kartu h2 { color: #5a5a5a;}
 .no-padding{padding:0 !important;}
 .no-padding-top{padding-top: 0!important; padding-bottom: 0 !important;}
 .black-color{color: #336666;}
-.timeline { width: 100%; position: relative; }
+.timeline { width: 100%; position: relative; height: auto !important; }
 .timeline h3.pd { color: #0a3656; font-size: 20px;}
-.timeline .item { width: 100%; position: relative; padding:0 10px; margin:0; padding-bottom: 10px; display: inline-block;}
-.timeline .item .datetime-tl { width: 18%; color: #000; float: left; word-wrap: break-word; text-align: center;  }
-.timeline .item .activity-icon { width: 12%; color: #000; height: 100%; position: relative; float: left;}
+.timeline .item { width: 100%; position: relative; padding:0 10px; margin:-1px 0 0; padding-bottom: 10px; float: left; z-index: 2}
+.timeline .item .datetime-tl { width: 22%; color: #000; float: left; word-wrap: break-word; text-align: center; font-size: .8em !important;  }
+.timeline .item .activity-icon { width: 14%; color: #000; height: 100%; position: relative; float: left; background: 0;}
                 .item-activity { width: 35px; height:35px; border-radius: 100px; display: block; color: #fff; display: -webkit-flex;  display: flex; }
-                .item-activity span { -webkit-align-self: center;    align-self: center;    width: 100%; margin:0 auto; text-align:center; font-size: 16px;}
-                .activity-icon:after { position: absolute; content: ""; border: 1px solid #9dafbb; height: 120%; left: 17px; z-index: -1;}
-.timeline .item .desc { width: 70%; color: #0a3656; float: left;  }
+                .item-activity span { -webkit-align-self: center;    align-self: center; width: 100%; margin:0 auto; text-align:center; font-size: 16px;}
+                .activity-icon:after { position: absolute; content: ""; border: 1px solid #c9c9c9; height: 150%; left:16.6px; z-index: -1;}
+.timeline .item .desc { width: 64%; color: #0a3656; float: left;  }
 .timeline .item .desc h3 {margin: 0; padding: 2px 0 0 ; width: 100%;  }
 .timeline .item .desc p { float: left; width: 100%; color: #0a3656 }
 .timeline .item .desc p span {font-size: 17px;}
@@ -753,12 +766,11 @@ span.fa.timeline:after { font-family: "FontAwesome"; content: "\f03a"; ; positio
 /* ADD MORE */
 .bot{margin-bottom: 66px;}
 .modal-backdrop.active{background: rgba(0,0,0,.8);}
-.modal-backdrop .menu-bot button { -webkit-transition: all 0.6s ease-out-in;-moz-transition: all 0.6s ease-out-in;-o-transition: all 0.6s ease-out-in;transition:all 0.6s ease-out-in; transition-duration: 0.3s; transition-delay:0s; margin-top: 0; }
-.kotak.menus { overflow: auto !important; height:320px !important; padding-top: 180px;}
-.kotak.menus span { font-size:9px; }
-.modal-backdrop .menus .xs-5:nth-child(1) button, .modal-backdrop .menus .xs-5:nth-child(5) button { margin-top: 75px !important }
-.modal-backdrop .menus .xs-5:nth-child(2) button, .modal-backdrop .menus .xs-5:nth-child(4) button { margin-top: 45px !important }
-.modal-backdrop .menus .xs-5:nth-child(3) button { margin-top: 15px !important }
+.kotak.menus { overflow: auto !important; height:150px !important; max-width: 355px; margin: 0 auto }
+.kotak.menus span { font-size:9px; float: left; width: 100%; text-align: center; }
+.modal-backdrop .menus .xs-5:nth-child(1), .modal-backdrop .menus .xs-5:nth-child(5) { margin-top: 65px !important }
+.modal-backdrop .menus .xs-5:nth-child(2), .modal-backdrop .menus .xs-5:nth-child(4) { margin-top: 20px !important }
+.modal-backdrop .menus .xs-5:nth-child(3) { margin-top: 0px !important }
 
 .more-section { text-align: center;}
 .more-section div { margin-bottom: 10px;}
@@ -768,7 +780,7 @@ span.fa.timeline:after { font-family: "FontAwesome"; content: "\f03a"; ; positio
 /*dayli-checklist*/
 .dayli-checklist { font-weight: normal; padding-bottom: 10px}
 .dayli-checklist h5 { margin: 0 0 5px 0 ; font-weight: normal !important; }
-.dayli-checklist h3 { color: rgba(255,255,255,.5); font-size: 16px; margin: 0;padding:7px 10px 10px; text-align: center;}
+.dayli-checklist h3 { color: rgba(255,255,255,.5); font-size: 16px; margin: 0;padding:11px 10px 10px; text-align: center;}
 .dayli-checklist input[type="checkbox"] { display: none;}
 .dayli-checklist label.checkbox {position: relative; width: 20px; height: 22px; overflow: hidden; display: inline-block; margin: -10px 0 0 0;  }
 .dayli-checklist label.checkbox:before { content: "\f096"; font-family: 'FontAwesome'; position: absolute; top: 0; left: 0; color: rgba(255,255,255,.5); font-size: 20px;}
@@ -794,9 +806,12 @@ span.fa.timeline:after { font-family: "FontAwesome"; content: "\f03a"; ; positio
 
 /*add edit baby*/
 .add-edit-baby { height: 100%; background: #fff; color: #000; margin: 0; padding: 0;}
-.add-edit-baby .header { height: 59px; background: #02b5ef; text-align: center; padding: 20px 0 0 0;}
+.add-edit-baby .bar-header {background: #02b6ef; height: 49px;}
+.add-edit-baby .bar-header .button { color:#fff;}
+.add-edit-baby .bar-header .h1 {color:#fff; font-size: 22px; display: inline-block; font-family: 'Roboto', sans-serif !important;}
+/*
 .add-edit-baby .header a.btn { position: absolute; top: 15px; }
-.add-edit-baby .header h2 { color:#fff; font-size: 22px; display: inline-block;}
+.add-edit-baby .header h2 { color:#fff; font-size: 22px; display: inline-block;} */
 .add-edit-baby .cover-img { height: 176px; background-position: center; background-repeat: no-repeat; background-size: cover; position: relative;}
 .add-edit-baby .cover-img .edit.circular { position: absolute; bottom:20px; right: 20px; z-index: +4; width: 75px; height: 75px; }
 .add-edit-baby .cover-img .edit-btn { position: absolute; bottom:37px; right: 85px; padding: 8px 18px 8px 15px; border-radius: 4px 0 0 4px; background: #fff; color: #000; z-index: +3; font-size: 12px; }
@@ -806,7 +821,7 @@ input.form-control-text {  text-align: left !important; float: left !important;}
 .add-edit-baby .kotak .btn, .wrapper.add button.btn { margin: 10px 0 0 0; border-radius: 4px; border:1px solid #000; color: #000; background: #fff; font-size: 16px; padding: 4px 10px; width: 100%; }
 .to-bottom { position: absolute; bottom: 0; width: 100%; padding-bottom: 20px;}
 
-/*ionic override css */
+/*override ionic css animation speed */
 .modal-backdrop {
     -webkit-transition: background-color 150ms ease-in-out !important;
     transition: background-color 150ms ease-in-out !important;
@@ -824,18 +839,19 @@ input.form-control-text {  text-align: left !important; float: left !important;}
 
 /*Header*/
 .wrapper-tab { height: 100%; background: #fff; color: #000 !important; margin: 0; padding: 0;}
-.wrapper-tab .header { height: 59px; background: #02b5ef; text-align: center; padding: 20px 0 0 0; border: 0}
+.wrapper-tab .header { height: 49px; background: #02b6ef; text-align: center; padding: 20px 0 0 0; border: 0}
 .wrapper-tab .header h2 { color:#fff; font-size: 22px; display: inline-block;}
 
 /*tab-view-style override*/
 .tabs-stable > .tabs { border:0; padding:0 !important;}
 .tab-item .icon { font-size: 28px !important; padding-top: 12px; color: #fff; line-height: 1em;}
 .tab-item .icon:not(.ion-plus-round) { font-size: 18px !important}
+.tab-item[icon="ion-plus-round"] { opacity: 1;} /* ionic fades out unselected tab items with opacity: 0.7, for the plus button we want full opacity so override it here */
+.tab-item .icon.ion-more:before { font-size: 22px;}
 .tab-item span.tab-title { font-size: 9px; color: #fff; margin-top: 2px}
 .tab-item .ion-plus-round { position: relative; width: 50px; height: 50px;}
 .tab-item .ion-plus-round:before { width: 100%; position: absolute; z-index: +2 !important; left: 0; top: 12px;}
 .tab-item .ion-plus-round:after { content: ""; position: absolute; width: 60px; height: 60px; border-radius: 50px; background: rgba(0,0,0,.4); top: -6px; left:-5.33px; z-index: +1 !important }
-
 /*timeline*/
 ul.items-activity { text-align: center; padding: 20px 0}
 ul.items-activity li { display: inline-block; text-align: center; margin: 0 3px;}
@@ -862,14 +878,14 @@ position: absolute;
 bottom: 0px;
 z-index:9999;
 left: 50%;
-margin-left: -30px;
-height: 49px;
+margin-left: -30.3px; margin-top: 1px;
+height: 49px; overflow: hidden !important;
 }
 .floating-plus-button .tab-item  {
 opacity:1;
 }
 .floating-plus-button .tab-item .ion-plus-round  {
-visibility:visible; width: 60px; height: 60px;
+visibility:visible; width: 60px; height: 60px; 
 }
 .floating-plus-button .tab-item .ion-plus-round:before { left: 0}
 .ion-plus-round:before { -webkit-transition: all 0.2s ease-in-out;-moz-transition: all 0.2s ease-in-out;-o-transition: all 0.2s ease-in-out;transition:all 0.2s ease-in-out; transition-duration: 0.2s; transition-delay: 0s; 
@@ -881,10 +897,10 @@ visibility:visible; width: 60px; height: 60px;
  -ms-transform: rotate(-45deg); /* IE 9 */
     -webkit-transform: rotate(-45deg); /* Safari */
     transform: rotate(-45deg);
-    left: .66px !important; top: 12px;
+    /* left: .33px !important; top: 13px; */ /* this just made the x position wrong, removing for now */
 }
 
-.floating-plus-button .ion-plus-round:after { content: ""; position: absolute; width: 59px; height: 59px; border-radius: 50px; background: linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) ), rgba(47,119,177,1); top: -6px; left:0px; }
+.floating-plus-button .ion-plus-round:after { content: ""; position: absolute; width: 60px; height: 60px; border-radius: 50px; background: linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) ), rgba(1,109,144,1); left:0px; }
 
 /*more page*/
 .more-page ul.list li:not(.item-divider) { border-bottom: 1px solid #eaeaea}
@@ -923,9 +939,7 @@ visibility:visible; width: 60px; height: 60px;
 .fc-button .fc-text-arrow { display: none;}
 .fc-button-prev:before { content: "\e07a" !important;}
 .fc-button-next:before { content: "\e079" !important;}
-/*.fc-header-title h2 { width: 10px; font-size: 11px; margin-top: 8px !important; word-wrap:normal; text-align: center; position: relative; color: #eaeaea}
-.fc-header-title h2:first-line { color: #02b6ef; font-size: 22px !important;margin-left: -20%; }
-*/.fc-header-title h2 { margin-top:30px !important; color: #02b6ef; font-size: 18px; }
+.fc-header-title h2 { margin-top:30px !important; color: #02b6ef; font-size: 18px; }
 table.fc-border-separate thead tr { background: #e5f8fd !important; text-transform:uppercase;}
 table.fc-border-separate tr:nth-child(even) { background: #e5f8fd }
 table.fc-border-separate tr:nth-child(odd) { background: #dbf5fd }
@@ -973,6 +987,7 @@ td.fc-day { margin: 0 !important;padding:0 !important; margin: 0 !important; }
 
 .sub-head-text {
     display: inline;
+    font-size: 16px;
 }
 
 .input-row input{
@@ -1017,4 +1032,34 @@ td.fc-day { margin: 0 !important;padding:0 !important; margin: 0 !important; }
 
 .more-page ul.list li span.item-note {
   float: right;
+}
+
+.btm-btns{
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    margin-bottom: 58px;
+    display: block;
+}
+
+.pair-btn-con{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 95%;
+}
+
+.pair-btns{
+    display: inline-block;
+    width: 48%;
+    margin: 0 2px;
+}
+
+/** Other CSS **/
+
+form .hidden-submit{
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
 }
