@@ -613,7 +613,7 @@ input{
 }
 .wrapper.relative { position: relative;}
 .wrapper.on-white * { color: #000 }
-.wrapper .kotak , .kotak{ height: 49px;  border-bottom:1px solid rgba(255,255,255,.4); overflow: hidden !important; position: relative; width: 100%;}
+.wrapper .kotak , .kotak{ height: 49px;  /* border-bottom:1px solid rgba(255,255,255,.4); */ overflow: hidden !important; position: relative; width: 100%;}
 .wrapper .kotak.autoheight, .kotak.autoheight{
     height: auto !important;
 }
@@ -635,6 +635,13 @@ input{
 .rumah-radio { width: 100%; float: left; border-radius: 4px; padding: 0; border: 1px solid rgba(255,255,255,.3) ;margin-top: 3px; overflow: hidden;}
 .rumah-radio.on-white {  border: 1px solid rgba(0,0,0,.3); color: #000 !important; }
 .rumah-radio.on-white .item-content span { color: rgba(0,0,0,.6);}
+
+.kotak .item {
+background-color:transparent;
+color:#fff;
+font-size: 14px;
+border-width: 0px;
+}
 
 .item-radio.color-selection { text-align: center; margin-bottom: 12px; position: relative;}
 .item-radio.color-selection span { position: absolute; top: 22px; font-size: 8px; width: 100%; text-align: center; left: 0;  color: rgba(255,255,255,.4); }
@@ -750,8 +757,8 @@ span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px;  }
 .black-color{color: #336666;}
 .timeline { width: 100%; position: relative; height: auto !important; }
 .timeline h3.pd { color: #0a3656; font-size: 20px;}
-.timeline .item { width: 100%; position: relative; padding:0 10px; margin:-1px 0 0; padding-bottom: 10px; float: left; z-index: 2}
-.timeline .item .datetime-tl { width: 22%; color: #000; float: left; word-wrap: break-word; text-align: center; font-size: .8em !important;  }
+.timeline .item { width: 100%; position: relative; padding:1px 0px 0px 10px; margin:-1px 0 0; padding-bottom: 10px; float: left; z-index: 2}
+.timeline .item .datetime-tl { width: 15%; color: #000; float: left; word-wrap: break-word; text-align: center; font-size: .8em !important; line-height:1em; padding-top:2px;}
 .timeline .item .activity-icon { width: 14%; color: #000; height: 100%; position: relative; float: left; background: 0;}
                 .item-activity { width: 35px; height:35px; border-radius: 100px; display: block; color: #fff; display: -webkit-flex;  display: flex; }
                 .item-activity span { -webkit-align-self: center;    align-self: center; width: 100%; margin:0 auto; text-align:center; font-size: 16px;}
