@@ -39,7 +39,7 @@ angular.module('cleverbaby.controllers')
                 tooltipHide: function(e){ console.log("tooltipHide"); }
             },
             xAxis: {
-                tickValues: [0, 1, 2, 3, 4],
+                tickValues: [0, 1, 2, 3, 4, 5, 6],
                 axisLabel: 'Month'
             },
             yAxis: {
@@ -55,56 +55,31 @@ angular.module('cleverbaby.controllers')
         }
     };
 
-    $scope.data = [
-                    {
-                        "key" : "A" ,
-                        "values" : [{x: 0, y: 5}, {x: 1, y: 5}, {x: 2, y: 4}, {x: 3, y: 6}, {x: 4, y: 8}]
-                    } ,
-                    {
-                        "key" : "B" ,
-                        "values" : [{x: 0, y: 3}, {x: 1, y: 3}, {x: 2, y: 7}, {x: 3, y: 9}, {x: 4, y: 0}]
-                    } ,
-                    {
-                        "key" : "C" ,
-                        "values" : [{x: 0, y: 2}, {x: 1, y: 2}, {x: 2, y: 8}, {x: 3, y: 3}, {x: 4, y: 1}]
-                    } ,
-                    {
-                        "key" : "D" ,
-                        "values" : [{x: 0, y: 1}, {x: 1, y: 4}, {x: 2, y: 6}, {x: 3, y: 7}, {x: 4, y: 5}]
-                    }
-                ];
 
-    /*
-    function sinAndCos() {
-        var sin = [],sin2 = [],
-            cos = [];
-
-        //Data is represented as an array of {x,y} pairs.
-        for (var i = 0; i < 100; i++) {
-            sin.push({x: i, y: Math.sin(i/10)});
-            sin2.push({x: i, y: i % 10 == 5 ? null : Math.sin(i/10) *0.25 + 0.5});
-            cos.push({x: i, y: .5 * Math.cos(i/10+ 2) + Math.random() / 10});
-        }
-
-        //Line chart data should be sent as an array of series objects.
-        return [
-            {
-                values: sin,      //values - represents the array of {x,y} data points
-                key: 'Sine Wave' //key  - the name of the series.
-            },
-            {
-                values: cos,
-                key: 'Cosine Wave'
-            },
-            {
-                values: sin2,
-                key: 'Another sine wave',
-     //area - set to true if you want this line to turn into a filled area chart.
-            }
+     var data = [
+            [2.5, 3.4, 4.4, 5.1, 5.6, 6.1, 6.4],
+            [2.9, 3.9, 4.9, 5.6, 6.2, 6.7, 7.1],
+            [3.3, 4.5, 5.6, 6.4, 7, 7.5, 7.9],
+            [3.9, 5.1, 6.3, 7.2, 7.9, 8.4, 8.9],
+            [4.3, 5.7, 7, 7.9, 8.6, 9.2, 9.7]
         ];
-    };
-    */
 
+    $scope.data = [];
+
+    for(var i = 0; i < data.length; i++) {
+
+        var datarow = {
+            "key" : i,
+            "values" : []
+        };
+        for(var z = 0; z < data[i].length; z++) {
+            datarow.values.push(
+                {x: z, y: data[i][z]}
+            );
+        }
+        $scope.data.push(datarow);
+    }
+        
     $scope.trendTemplate = 'templates/trends/growth.html';
 
 }]).controller('SleepCtrl', ['$scope', function ($scope) {
