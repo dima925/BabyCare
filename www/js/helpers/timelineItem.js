@@ -29,8 +29,8 @@ angular
     })
     .directive('timelineDate', function($interval) {
         return function($scope, element, attrs) {
-            $scope.$watch(attrs.timelineDate, function(value){
-                value =  new Date(value).getTime()/1000;
+            $scope.$watch(attrs.timelineDate, function(x){
+                value =  new Date(x).getTime()/1000;
                 element.text(moment(value, 'X').fromNow());
                 $interval(function(){
                     element.text(moment(++value, 'X').fromNow());

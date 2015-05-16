@@ -5,8 +5,8 @@ angular
     })
     .constant('dataConfig', {
         //baseUrl: 'http://192.168.56.1:3000',
-        //baseUrl: 'http://localhost:3000',
-        baseUrl: 'https://arcane-anchorage-7139.herokuapp.com',
+        baseUrl: 'http://localhost:3000',
+        //baseUrl: 'https://arcane-anchorage-7139.herokuapp.com',
         apiVersion: 'v1',
         googleId: '692197579389-1tr4luact0pjjce4r47egob64bgoac51.apps.googleusercontent.com',
         facebookId: '1575754259375108'
@@ -42,8 +42,6 @@ angular
             }
             var promise;
             if(options.type == 'upload'){
-
-                alert('uploadSync');
                 promise = $cordovaFileTransfer.upload(options.url, options.fileUrl, {
                     fileKey: 'media',
                     headers: options.headers
@@ -87,7 +85,6 @@ angular
                 return request(options, now);
             },
             upload: function(url, fileUrl){
-                alert('upload');
                 return request({
                     url: url,
                     fileUrl: fileUrl,

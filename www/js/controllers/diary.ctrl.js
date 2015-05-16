@@ -17,6 +17,8 @@ angular.module('cleverbaby.controllers')
                 ActivityService.getTodayCount(baby.uuid).then(function(counts) {
                     $scope.TodayPlay = counts.playCount > 0;
                     $scope.TodayBath = counts.bathCount > 0;
+                    $scope.BathCount = counts.bathCount;
+                    $scope.PlayCount = counts.playCount;
                     $scope.ChangeCount = counts.changeCount;
                     $scope.NurseCount = counts.nurseCount;
                 });
@@ -29,30 +31,32 @@ angular.module('cleverbaby.controllers')
             });
 
             $scope.loadMore = function(){
-                start+=limit;
-                ActivityService.getAllActivitiesByBabyId($rootScope.baby.uuid, start, limit).then(function(activities){
+                loadMore(limit).then(function(){
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                })
+            };
+
+            function loadMore(count){
+                start+=count;
+                return ActivityService.getAllActivitiesByBabyId($rootScope.baby.uuid, start, count).then(function(activities){
                     if(activities.length == 0){
                         $scope.canBeloadedMore = false;
                     }
                     Array.prototype.push.apply($scope.activities, activities);
-                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                    return activities;
                 });
-            };
+            }
 
             $scope.addPlay = function(){
 
                 $scope.TodayPlay = true;
                 var data = {
-                    babies: $rootScope.baby.uuid,
-                    time: parseInt(new Date().getTime()/1000),
+                    time: new Date(),
                     type: "play"
                 };
-                ActivityService.addActivity(data);
-
-                (function(activity){
-                    $scope.$broadcast('activityAdd', activity)
-                })(data);
-
+                ActivityService.addActivity(data, $rootScope.baby.uuid).then(function(activity){
+                    $scope.$broadcast('activityAdd', activity);
+                });
             };
 
             $scope.addBath = function(){
@@ -60,27 +64,123 @@ angular.module('cleverbaby.controllers')
                 $scope.TodayBath = true;
 
                 var activity = {
-                    babies: $rootScope.baby.uuid,
-                    time: parseInt(new Date().getTime()/1000),
+                    time: new Date(),
                     type: "bath"
                 };
 
-                ActivityService.addActivity(activity);
-
-                (function(activity){
+                ActivityService.addActivity(activity, $rootScope.baby.uuid).then(function(activity){
                     $scope.$broadcast('activityAdd', activity);
-                })(activity);
+                });
             };
 
-            $scope.$on('activityAdd', function(event, activity){
+            function isToDay(date){
+                return new Date(date).setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0);
+            }
+
+            function getActivityByUUID(uuid){
+                for(var i = 0; i<$scope.activities.length; ++i) {
+                    if ($scope.activities[i].uuid == uuid) {
+                        return i;
+                    }
+                }
+            }
+
+            function increaseTodayStatus(activity){
+                if(isToDay(activity.time)){
+                    if(activity.type == 'change'){
+                        ++$scope.ChangeCount;
+                    }
+                    if(activity.type == 'nurse'){
+                        ++$scope.NurseCount;
+                    }
+                    if(activity.type == 'bath'){
+                        ++$scope.BathCount;
+                        $scope.TodayBath = true;
+                    }
+                    if(activity.type == 'play'){
+                        ++$scope.PlayCount;
+                        $scope.TodayPlay = true;
+                    }
+                }
+            }
+
+            function decreaseTodayStatus(activity){
                 if(activity.type == 'change'){
-                    ++$scope.ChangeCount;
+                    --$scope.ChangeCount;
                 }
                 if(activity.type == 'nurse'){
-                    ++$scope.NurseCount;
+                    --$scope.NurseCount;
                 }
-                $scope.activities.unshift(activity);
+                if(activity.type == 'bath'){
+                    --$scope.BathCount;
+                    $scope.TodayBath = $scope.BathCount>0;
+                }
+                if(activity.type == 'play'){
+                    --$scope.PlayCount;
+                    $scope.TodayPlay = $scope.PlayCount>0;
+                }
+            }
+
+
+            $scope.$on('activityAdd', function(event, activity){
+                if($scope.activities.length < limit || activity.time > $scope.activities[$scope.activities.length-1].time){
+                    ++start;
+                    increaseTodayStatus(activity);
+                    refreshActivity(activity, 'add');
+                } else {
+                    $scope.canBeloadedMore = true;
+                }
             });
+
+            $scope.$on('activityEdit', function(event, activity){
+                var i = getActivityByUUID(activity.uuid);
+                if(isToDay($scope.activities[i].time) && !isToDay(activity.time)){
+                    decreaseTodayStatus(activity);
+                } else if(!isToDay($scope.activities[i].time) && isToDay(activity.time)){
+                    increaseTodayStatus(activity);
+                }
+                if(activity.time > $scope.activities[$scope.activities.length-1].time || $scope.activities.length<limit){
+                    refreshActivity(activity, 'edit', i);
+                } else{
+                    --start;
+                    refreshActivity(activity, 'delete', i);
+                    $scope.canBeloadedMore = true;
+                }
+            });
+
+            function refreshActivity(activity, mode, index){
+                var activities = angular.copy($scope.activities);
+                function addActivity(activity){
+                    for(var i=0; i<activities.length; ++i){
+                        if(activity.time>activities[i].time){
+                            break;
+                        }
+                    }
+                    var middle = [];
+                    Array.prototype.push.apply(middle, activities.slice(0, i));
+                    middle.push(activity);
+                    Array.prototype.push.apply(middle, activities.slice(i, activities.length));
+                    activities = middle;
+                }
+                function deleteActivity(i){
+                    var middle = [];
+                    Array.prototype.push.apply(middle, activities.slice(0, i));
+                    Array.prototype.push.apply(middle, activities.slice(i+1, activities.length));
+                    activities = middle;
+                }
+
+                if(mode == 'add'){
+                    addActivity(activity);
+                }
+                if(mode =='delete'){
+                    deleteActivity(index);
+                }
+                if(mode == 'edit'){
+                    deleteActivity(index);
+                    addActivity(activity);
+                }
+                $scope.activities = activities;
+            }
 
             $scope.editBaby = function(){
                 BabyModal.showModal($rootScope.baby);
@@ -107,7 +207,6 @@ angular.module('cleverbaby.controllers')
             var showTip = DailytipService.showDailtyTip();
 
             if(showTip) {
-                //todo temporary activeBaby
                 var activeBaby = {'gender':'m', 'birthday': 1429682270000 };
                 DailytipService.getTranslatedTip(activeBaby).then(function(dailyTip){
                     $scope.showTip = true;

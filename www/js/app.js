@@ -17,10 +17,8 @@ angular.module('cleverbaby', [
     'timer',
     'ngStorage',
     'ui.calendar',
-    'nvd3',
-])
-
-.run(function ($ionicPlatform, $rootScope, AuthService, $timeout, $ionicModal, $location, $cordovaLocalNotification, timerService, BabyService, $localStorage, $cordovaSplashscreen, $http, $cordovaStatusbar, $ionicScrollDelegate) {
+    'nvd3'
+]).run(function ($ionicPlatform, $rootScope, AuthService, $timeout, $ionicModal, $location, $cordovaLocalNotification, timerService, BabyService, $localStorage, $cordovaSplashscreen, $http) {
 
     $ionicPlatform.ready(function () {
 
@@ -29,32 +27,10 @@ angular.module('cleverbaby', [
         if (window.cordova && window.cordova.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }
-        
         if (window.StatusBar) {
-            $cordovaStatusbar.overlaysWebView(true);
-            $cordovaStatusbar.style(1); //light
-            if (ionic.Platform.isAndroid()) {
-                $cordovaStatusbar.styleHex('#2f77b1');
-            }
             // org.apache.cordova.statusbar required
-            /*StatusBar.styleDefault();
-            if (ionic.Platform.isAndroid()) {
-                StatusBar.backgroundColorByHexString("#2f77b1");
-            }*/
+            StatusBar.styleDefault();
         }
-
-        $rootScope.dynamicStatusBar = function () {
-            var pos = $ionicScrollDelegate.$getByHandle('mainScroll').getScrollPosition();
-            if(window.StatusBar) {
-                if(pos.top > 50) {
-                    if($cordovaStatusbar.isVisible())
-                        $cordovaStatusbar.hide();
-                } else {
-                    if(!$cordovaStatusbar.isVisible())
-                        $cordovaStatusbar.show();
-                }
-            }
-        };
 
         $rootScope.showPlusButton = false;
 
@@ -114,22 +90,41 @@ angular.module('cleverbaby', [
         });
 
 
-		// hide the splashscreen
-		// only call .hide() if we are running inside cordova (webview), otherwise desktop chrome throws an error
-		if (ionic.Platform.isWebView()) $cordovaSplashscreen.hide();
-	});
+        // hide the splashscreen
+        // only call .hide() if we are running inside cordova (webview), otherwise desktop chrome throws an error
+        if (ionic.Platform.isWebView()) $cordovaSplashscreen.hide();
+
+    });
 
 })
 .config(["$translateProvider", "$ionicConfigProvider",
     function($translateProvider, $ionicConfigProvider){
-    $ionicConfigProvider.tabs.style('standard');
-    $ionicConfigProvider.tabs.position('bottom');
-    $translateProvider.preferredLanguage('en');
-    $translateProvider.useStaticFilesLoader({
-        'prefix': 'languages/',
-        'suffix': '.json'
+        $ionicConfigProvider.tabs.style('standard');
+        $ionicConfigProvider.tabs.position('bottom');
+        $translateProvider.preferredLanguage('en');
+        $translateProvider.useStaticFilesLoader({
+            'prefix': 'languages/',
+            'suffix': '.json'
+        });
+    }]).config(["$httpProvider", function ($httpProvider) {
+    $httpProvider.defaults.transformResponse.push(function(responseData){
+        convertDates(responseData);
+        return responseData;
     });
 }]);
+var convertDates = function(input) {
+    for(var key in input) {
+        if (!input.hasOwnProperty(key)) continue;
+
+        if (typeof input[key] === "object") {
+            convertDates(input[key]);
+        } else {
+            if (typeof input[key] === "string" &&  /^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$/.test(input[key])) {
+                input[key] = new Date(input[key]);
+            }
+        }
+    }
+};
 function escapeEmailAddress(email) {
     if (!email) return false;
     // Replace '.' (not allowed in a Firebase key) with ','

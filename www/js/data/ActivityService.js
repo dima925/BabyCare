@@ -15,12 +15,209 @@ angular.module('cleverbaby.data')
         return id + '-' + new Date().getTime() + '-' + generetaeUniqueKey();
     }
 
+    function filter(data){
+        var newData;
+        if(data.type == "change"){
+            newData = {
+                comment: data.comment,
+                time: data.time,
+                diaper_type: data.diaper_type,
+                amount_size: data.amount_size,
+                color: data.color,
+                texture: data.texture,
+                type: "change"
+            }
+        }
+        if(data.type == "pump"){
+            newData = {
+                comment: data.comment,
+                time: data.time,
+                side: data.side,
+                amount: data.amount,
+                start_side: data.start_side,
+                type: "pump"
+            }
+        }
+        if(data.type == "play"){
+            newData = {
+                comment: data.comment,
+                time: data.time,
+                notes: data.notes,
+                type: "play"
+            }
+        }
+        if(data.type == "diary"){
+            newData = {
+                comment: data.comment,
+                time: data.time,
+                notes: data.notes,
+                type: "diary"
+            }
+        }
+        if(data.type == "vaccination"){
+            newData = {
+                comment: data.comment,
+                time: data.time,
+                vaccination_type: data.vaccination_type,
+                type: "vaccination"
+            }
+        }
+        if(data.type == "growth"){
+            newData = {
+                comment: data.comment,
+                time: data.time,
+                height: data.height,
+                weight: data.weight,
+                head_size: data.head_size,
+                type: "growth"
+            }
+        }
+        if(data.type == "milestone"){
+            newData = {
+                comment: data.comment,
+                time: data.time,
+                milestone_type: data.milestone_type,
+                type: "milestone"
+            }
+        }
+        if(data.type == "sick"){
+            newData = {
+                comment: data.comment,
+                time: data.time,
+                symptom: data.symptom,
+                type: "sick"
+            }
+        }
+        if(data.type == "doctor"){
+            newData = {
+                comment: data.doctor,
+                time: data.time,
+                doctor: data.doctor || "No Doctor",
+                visit_type: data.visit_type,
+                type: "doctor"
+            }
+        }
+        if(data.type == "bath"){
+            newData = {
+                comment: data.comment,
+                time: data.time,
+                temp: data.temp,
+                notes: data.notes,
+                type: "bath"
+            }
+        }
+        if(data.type == "medication"){
+            newData = {
+                comment: data.comment,
+                time: data.time,
+                drug: data.drug,
+                amount_given: data.amount_given,
+                prescription_interval: data.prescription_interval,
+                type: "medication"
+            }
+        }
+        if(data.type == "temperature"){
+            newData = {
+                comment: data.comment,
+                time: data.time,
+                temp: data.temp,
+                reminder: data.reminder,
+                type: "temperature"
+            }
+        }
+        if(data.type == "mood"){
+            newData = {
+                comment: data.comment,
+                time: data.time,
+                mood_type: data.mood_type,
+                type: "mood"
+            }
+        }
+        if(data.type == "bottle"){
+            newData = {
+                comment: data.comment,
+                time: data.time,
+                bottle_type: data.bottle_type,
+                amount: data.amount,
+                notes: data.notes,
+                type: "bottle"
+            }
+        }
+        if(data.type == "todo"){
+            newData = {
+                comment: data.comment,
+                time: data.time,
+                notes: data.notes,
+                type: "todo"
+            }
+        }
+        if(data.type == "nurse"){
+            newData = {
+                comment: data.comment,
+                time: data.time,
+                time_left: data.time_left,
+                time_right: data.time_right,
+                time_both: data.time_both,
+                type: "nurse"
+            }
+        }
+        if(data.type == "sleep"){
+            newData = {
+                comment: data.comment,
+                time: data.time,
+                time_end: data.time_end,
+                location: data.location,
+                type: "sleep"
+            }
+        }
+        if(data.type == "solid") {
+            newData = {
+                comment: data.comment,
+                time: data.time,
+                food_type: data.food_type,
+                type: "solid"
+            }
+        }
+        if(data.type == "allergy"){
+            newData = {
+                comment: data.comment,
+                time: data.time,
+                source: data.source,
+                reaction: data.reaction,
+                severity: data.severity,
+                type: "allergy"
+            }
+        }
+        if(data.type == "moment"){
+            newData = {
+                comment: data.comment,
+                time: data.time,
+                notes: data.notes,
+                type: "moment"
+            }
+        }
+        return newData;
+    }
+
     return {
-        addActivity: function(data){
+        addActivity: function(data, babies){
             return $q(function(resolve, reject){
+
+                data = filter(data);
                 data.uuid = generateUniqueId($localStorage.user.id);
-                data.createdAt = new Date();
-                $localStorage.activities[data.babies].unshift(data);
+                data.babies = babies;
+
+                for(var i=0; i<$localStorage.activities[data.babies].length; ++i){
+                    if(data.time>$localStorage.activities[data.babies][i].time){
+                        break;
+                    }
+                }
+                var middle = [];
+                Array.prototype.push.apply(middle, $localStorage.activities[data.babies].slice(0, i));
+                middle.push(data);
+                Array.prototype.push.apply(middle, $localStorage.activities[data.babies].slice(i, $localStorage.activities[data.babies].length));
+                $localStorage.activities[data.babies] = middle;
+
                 network.post({
                     data: data,
                     url: '/activities'
@@ -28,20 +225,42 @@ angular.module('cleverbaby.data')
                 resolve(data);
             });
         },
-        editActivity: function(uuid, data){
+        editActivity: function(uuid, data, babies){
             return $q(function(resolve, reject){
+
+                data = filter(data);
+                data.uuid = uuid;
+                data.babies = babies;
+
                 network.put({
                     data: data,
                     url: '/activities/'+uuid
                 });
 
-                for(var i in $localStorage.activities[data.babies]){
-                    if($localStorage.activities[data.babies].hasOwnProperty(i)){
-                        if($localStorage.activities[data.babies][i].uuid == data.uuid){
-                            $localStorage.activities[data.babies][i] = data;
+                for(var index = 0; index<$localStorage.activities[data.babies].length; ++index){
+                    if($localStorage.activities[data.babies].hasOwnProperty(index)){
+                        if($localStorage.activities[data.babies][index].uuid == data.uuid){
+                            break;
                         }
                     }
                 }
+
+                var middle = [];
+                Array.prototype.push.apply(middle, $localStorage.activities[data.babies].slice(0, index));
+                Array.prototype.push.apply(middle, $localStorage.activities[data.babies].slice(index+1, $localStorage.activities[data.babies].length));
+                var activities = middle;
+
+                for(var i=0; i<activities.length; ++i){
+                    if(data.time>activities[i].time){
+                        break;
+                    }
+                }
+
+                middle = [];
+                Array.prototype.push.apply(middle, activities.slice(0, i));
+                middle.push(data);
+                Array.prototype.push.apply(middle, activities.slice(i, activities.length));
+                $localStorage.activities[data.babies] = middle;
                 resolve(data);
             });
         },
@@ -57,7 +276,7 @@ angular.module('cleverbaby.data')
                     /**
                      * checking for today
                      */
-                    if( new Date(activity.createdAt).setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0) ){
+                    if( new Date(activity.time).setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0) ){
                         if(activity.type == "nurse"){
                             ++count.nurseCount;
                         } else if(activity.type == "play"){
@@ -74,7 +293,10 @@ angular.module('cleverbaby.data')
         },
         getAllActivitiesByBabyId: function(babyId, start, limit){
             return $q(function(resolve, reject){
-                resolve($localStorage.activities[babyId].slice(start, start+limit));
+                resolve($localStorage.activities[babyId].slice(start, start+limit).map(function(x){
+                    x.time = new Date(x.time);
+                    return x;
+                }));
             });
         },
         setActivities: function(babyId, activities){
