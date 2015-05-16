@@ -9,16 +9,16 @@
             <a class="edit-btn" ng-click="showSelectCaptureImageModal()"><span class="icon-note"></span></a>
         </div>
         <div class="content">
-            <div class="row">
+            <div class="kotak">
                 <input ng-model="baby.name" type="text" value="Oli Bensin" class="form-control-text">
             </div>
-            <div class="row">
+            <div class="kotak">
                 <label class="default">
                     Birthdate
                 </label>
                 <input ng-model="baby.born" type="datetime-local" value="2004-08-31" class="form-control">
             </div>
-            <div class="row">
+            <div class="kotak">
                 <label class="default">
                     Gender
                 </label>
@@ -26,16 +26,16 @@
             </div>
         </div>
         <div class="to-bottom">
-            <div class="row no-border" ng-if="edit">
+            <div class="kotak no-border" ng-if="edit">
                 <button class="btn">Share Baby Data with others</button>
             </div>
-            <div class="row no-border" ng-if="modal.edit">
+            <div class="kotak no-border" ng-if="modal.edit">
                 <button class="btn" ng-click="delete()">Delete</button>
             </div>
-            <div class="row no-border" ng-click="update()" ng-if="modal.edit">
+            <div class="kotak no-border" ng-click="update()" ng-if="modal.edit">
                 <button class="btn">Done</button>
             </div>
-            <div class="row no-border" ng-click="save()" ng-if="!modal.edit">
+            <div class="kotak no-border" ng-click="save()" ng-if="!modal.edit">
                 <button class="btn">Add</button>
             </div>
         </div>

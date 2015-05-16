@@ -610,13 +610,13 @@ input{
 }
 .wrapper.relative { position: relative;}
 .wrapper.on-white * { color: #000 }
-.wrapper .row , .row{ height: 49px;  border-bottom:1px solid rgba(255,255,255,.4); overflow: hidden !important; position: relative; width: 100%;}
-.wrapper .row.autoheight, .row.autoheight{
+.wrapper .kotak , .kotak{ height: 49px;  border-bottom:1px solid rgba(255,255,255,.4); overflow: hidden !important; position: relative; width: 100%;}
+.wrapper .kotak.autoheight, .kotak.autoheight{
     height: auto !important;
 }
-.row.di-block-center { display: -webkit-flex;  display: flex; }
-.row.di-block-center > div{  -webkit-align-self: center;    align-self: center;    width: ; margin:0 auto; text-align:center }
-.wrapper .row:last-child, .wrapper .no-border, .row.no-border { border: none !important;}
+.kotak.di-block-center { display: -webkit-flex;  display: flex; }
+.kotak.di-block-center > div{  -webkit-align-self: center;    align-self: center;    width: ; margin:0 auto; text-align:center }
+.wrapper .kotak:last-child, .wrapper .no-border, .kotak.no-border { border: none !important;}
 .padding-top{
   padding-top: 10px;
 }
@@ -763,8 +763,8 @@ span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px;  }
 /* ADD MORE */
 .bot{margin-bottom: 66px;}
 .modal-backdrop.active{background: rgba(0,0,0,.8);}
-.row.menus { overflow: auto !important; height:150px !important; max-width: 355px; margin: 0 auto }
-.row.menus span { font-size:9px; float: left; width: 100%; text-align: center; }
+.kotak.menus { overflow: auto !important; height:150px !important; max-width: 355px; margin: 0 auto }
+.kotak.menus span { font-size:9px; float: left; width: 100%; text-align: center; }
 .modal-backdrop .menus .xs-5:nth-child(1), .modal-backdrop .menus .xs-5:nth-child(5) { margin-top: 65px !important }
 .modal-backdrop .menus .xs-5:nth-child(2), .modal-backdrop .menus .xs-5:nth-child(4) { margin-top: 20px !important }
 .modal-backdrop .menus .xs-5:nth-child(3) { margin-top: 0px !important }
@@ -812,10 +812,10 @@ span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px;  }
 .add-edit-baby .cover-img { height: 176px; background-position: center; background-repeat: no-repeat; background-size: cover; position: relative;}
 .add-edit-baby .cover-img .edit.circular { position: absolute; bottom:20px; right: 20px; z-index: +4; width: 75px; height: 75px; }
 .add-edit-baby .cover-img .edit-btn { position: absolute; bottom:37px; right: 85px; padding: 8px 18px 8px 15px; border-radius: 4px 0 0 4px; background: #fff; color: #000; z-index: +3; font-size: 12px; }
-.add-edit-baby .row { margin: 0; border-bottom:1px solid rgba(0,0,0,0.3); color: #000; padding:0 10px; }
+.add-edit-baby .kotak { margin: 0; border-bottom:1px solid rgba(0,0,0,0.3); color: #000; padding:0 10px; }
 .add-edit-baby input { color: #000;  width: 100%;}
 input.form-control-text {  text-align: left !important; float: left !important;}
-.add-edit-baby .row .btn, .wrapper.add button.btn { margin: 10px 0 0 0; border-radius: 4px; border:1px solid #000; color: #000; background: #fff; font-size: 16px; padding: 4px 10px; width: 100%; }
+.add-edit-baby .kotak .btn, .wrapper.add button.btn { margin: 10px 0 0 0; border-radius: 4px; border:1px solid #000; color: #000; background: #fff; font-size: 16px; padding: 4px 10px; width: 100%; }
 .to-bottom { position: absolute; bottom: 0; width: 100%; padding-bottom: 20px;}
 
 /*override ionic css animation speed */
@@ -858,9 +858,9 @@ ul.items-activity li span[class*="icon-"] { margin: 8px auto 10px; display: inli
 ul.items-activity li span.text { color: rgba(0,0,0,.6); font-size: 9px; }
 .has-header { top: 0;}
 .timeline-wrapper { width: 100%; }
-.row.timeline-item { height: 88px;  max-width: 100%; margin: 10px 0 18px; position: relative;}
-.row.timeline-item:after { content: "\f061"; font-family: 'FontAwesome'; position: absolute; top: 44px; right: 0; color: rgba(0,0,0,.6) }
-.row.timeline-item h3 { font-size: 18px; padding: 0 5px;margin: 0; color: rgba(0,0,0,.6);}
+.kotak.timeline-item { height: 88px;  max-width: 100%; margin: 10px 0 18px; position: relative;}
+.kotak.timeline-item:after { content: "\f061"; font-family: 'FontAwesome'; position: absolute; top: 44px; right: 0; color: rgba(0,0,0,.6) }
+.kotak.timeline-item h3 { font-size: 18px; padding: 0 5px;margin: 0; color: rgba(0,0,0,.6);}
 .data { position: relative; height: 88px; margin-top: 16px; width: auto;}
 ul.timeline-grid, ul.timeline-data { width:148.8%; }
 ul.timeline-grid li { position: relative; width: 13.55%; font-size: 14px; color: rgba(0,0,0,.6); float: left; padding-left: 12px; margin-left: -6px;}

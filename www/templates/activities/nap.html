@@ -10,7 +10,7 @@
             <a href="" class="btn pull-right"><i class="fa fa-check"></i></a>
         </div>
         <div class="content">
-            <div class="row no-border padding-top">
+            <div class="kotak no-border padding-top">
                 <div class="rumah-radio">
                     <ion-radio ng-click="switchtimer(false,true)"
                                name="content"
@@ -26,13 +26,13 @@
                     </ion-radio>
                 </div>
             </div>
-            <div class="row">
+            <div class="kotak">
                 <label class="default">
                     <span class="icon-clock"></span> <span data-translate>cleverbaby.app.activity.nap.time_start</span>
                 </label>
                 <input ng-model="modal.sleep.time_start" type="datetime-local" class="form-control">
             </div>
-            <div class="row" ng-show="manual">
+            <div class="kotak" ng-show="manual">
                 <label class="default item item-input item-select" data-translate>
                     cleverbaby.app.activity.nap.time_slept
                 </label>
@@ -49,13 +49,13 @@
                     <option value="10800">cleverbaby.app.activity.nap.time_slept.select.6hour</option>
                 </select>
             </div>
-            <div class="row" ng-show="manual">
+            <div class="kotak" ng-show="manual">
                 <label class="default">
                     <span class="icon-clock"></span> <span translate>cleverbaby.app.activity.nap.time_end</span>
                 </label>
                 <input ng-model="modal.sleep.time_end" type="datetime-local" class="form-control">
             </div>
-            <div class="row timer-padding" ng-show="timer">
+            <div class="kotak timer-padding" ng-show="timer">
                 <div class="rumah-radio">
                     <ion-radio ng-click="$root.timers.setTimer()" name="timer" class="xs-2 border-right tab-style">Start Left</ion-radio>
                     <ion-radio ng-click="$root.timers.setTimer()" name="timer" class="xs-2 border-right tab-style">Start Right</ion-radio>
