@@ -1,1 +1,1 @@
-angular.module('cleverbaby.directives', []);
+angular.module('cleverbaby.directives', ['ionic', 'ngSanitize']);

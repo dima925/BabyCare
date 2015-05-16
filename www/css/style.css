@@ -1063,3 +1063,8 @@ form .hidden-submit{
     width: 1px;
     height: 1px;
 }
+
+/* mobiscroll date picker modal event fix */
+.mbsc-ios.dw-bottom {
+  pointer-events: auto;
+}
