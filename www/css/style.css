@@ -31,8 +31,18 @@ html, body { font-family: 'Roboto', sans-serif !important;  }
 /*hide 1px bottom border of standard ionic-header-bar*/
 .bar {
     background-size: 100% 0px;
+	height: 49px; /* override ionic default height of 44px */
 }
 /*end hide bottom border*/
+
+.bar .title {
+	height: 49px; /* override ionic default height of 44px */
+	line-height: 49px; /* requied to vertical center align title inside header bar */
+	/* top: 7px; */
+	font-size: 16px;
+}
+.bar .title .nav-bar-title:after { margin-left: 10px; font-family: "FontAwesome"; content: "\f107";  }
+
 
 
 /*SLIDER*/
@@ -703,8 +713,6 @@ span.satuan { float:right;font-size: 24px; margin-top: 14px}
 .vaccination-foot { color: #cc3366; }
 
 
-.bar .title {top: 7px; font-size: 16px;}
-.bar .title .nav-bar-title:after { margin-left: 10px; font-family: "FontAwesome"; content: "\f107";  }
 span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px;  }
 .home-icon { color: #fff; font-size: 30px; width: 10%; display: inline-block; }
 .home-icon .icon-diaper { font-size: 24px;}
@@ -795,7 +803,7 @@ span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px;  }
 
 /*add edit baby*/
 .add-edit-baby { height: 100%; background: #fff; color: #000; margin: 0; padding: 0;}
-.add-edit-baby .header { height: 59px; background: #02b6ef; text-align: center; padding: 20px 0 0 0;}
+.add-edit-baby .header { height: 49px; background: #02b6ef; text-align: center; padding: 20px 0 0 0;}
 .add-edit-baby .header a.btn { position: absolute; top: 15px; }
 .add-edit-baby .header h2 { color:#fff; font-size: 22px; display: inline-block;}
 .add-edit-baby .cover-img { height: 176px; background-position: center; background-repeat: no-repeat; background-size: cover; position: relative;}
@@ -825,7 +833,7 @@ input.form-control-text {  text-align: left !important; float: left !important;}
 
 /*Header*/
 .wrapper-tab { height: 100%; background: #fff; color: #000 !important; margin: 0; padding: 0;}
-.wrapper-tab .header { height: 59px; background: #02b6ef; text-align: center; padding: 20px 0 0 0; border: 0}
+.wrapper-tab .header { height: 49px; background: #02b6ef; text-align: center; padding: 20px 0 0 0; border: 0}
 .wrapper-tab .header h2 { color:#fff; font-size: 22px; display: inline-block;}
 
 /*tab-view-style override*/
