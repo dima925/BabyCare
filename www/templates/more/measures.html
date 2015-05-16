@@ -2,20 +2,17 @@
     <ion-content>
         <div class="wrapper-tab more-page">
             <ion-nav-bar class="bar-positive">
+                <ion-nav-buttons side="left">
+                    <a class="btn left" ui-sref="app.more"><i class="fa fa-angle-left"></i></a>
+                </ion-nav-buttons>
                 <div class="header no-border">
                     <ion-nav-title cb-baby-drop-down></ion-nav-title>
-                    <ion-nav-buttons side="right">
-                        <a class="btn right" ui-sref="app.diary"><i class="fa fa-dashboard"></i></a>
-                    </ion-nav-buttons>
                 </div>
             </ion-nav-bar>
             <ul class="list">
-                <li class="item item-checkbox">
-                    <label class="checkbox">
-                        <input type="checkbox">
-                    </label> &nbsp;
+                <li class="item">
                     Weight oz/lb or g/kg
-                    <span class="item-note">Off</span>
+                    <span class="item-note">oz/lb</span>
                 </li>
                 <li class="item item-toggle">
                     Length inch/ft or cm/m
@@ -26,19 +23,13 @@
                         </div>
                     </label>
                 </li>
-                <li class="item item-checkbox">
-                    <label class="checkbox">
-                        <input type="checkbox">
-                    </label> &nbsp;
+                <li class="item">
                     Volume oz/lb or ml/L
-                    <span class="item-note">Off</span>
+                    <span class="item-note">oz/lb</span>
                 </li>
-                <li class="item item-checkbox">
-                    <label class="checkbox">
-                        <input type="checkbox">
-                    </label> &nbsp;
-                    Temperature c or F
-                    <span class="item-note">Off</span>
+                <li class="item">
+                    Temperature C or F
+                    <span class="item-note">c</span>
                 </li>
             </ul>
         </div>

@@ -5,12 +5,12 @@ angular.module('cleverbaby.controllers')
             $scope.submit = function() {
                 $scope.feedbacktext;
                 $scope.emailtext;
-                myForm.submit();
+                //myForm.submit();
             };
 
 
             $scope.cancel = function () {
-            	$ionicHistory.goBack();
+            	$state.go('app.more');
             };
 
         }
