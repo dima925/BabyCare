@@ -10,42 +10,42 @@
                 <a href="" class="btn pull-right"><i class="fa fa-check"></i></a>
             </div>
             <div class="content">
-                <div class="kotak no-border padding-top">
+                <div class="row no-border padding-top">
                     <div class="rumah-radio">
                         <ion-radio ng-click="switchtimer()" name="content" class="xs-2 border-right tab-style" data-translate>cleverbaby.app.activity.nurse.mode.timer</ion-radio>
                         <ion-radio ng-click="switchtimer()" name="content" class="xs-2 border-right tab-style" data-translate>cleverbaby.app.activity.nurse.mode.manual</ion-radio>
                     </div>
                 </div>
-                <div class="kotak">
+                <div class="row">
                     <label class="default">
                         <span class="icon-clock"></span> <span data-translate>cleverbaby.app.activity.nurse.time</span>
                     </label>
                     <input ng-model="modal.nurse.time_start" type="datetime-local" class="form-control">
                 </div>
-                <div class="kotak" ng-show="manual">
+                <div class="row" ng-show="manual">
                     <label class="default" data-translate>
                         cleverbaby.app.activity.nurse.time_left
                     </label>
                     <span class="satuan">min</span>
                     <input ng-model="modal.nurse.time_left" type="number" placeholder="15" class="form-control">
                 </div>
-                <div class="kotak" ng-show="manual">
+                <div class="row" ng-show="manual">
                     <label class="default" data-translate>
                         cleverbaby.app.activity.nurse.time_right
                     </label>
                     <span class="satuan">min</span>
                     <input ng-model="modal.nurse.time_right" type="number" class="form-control" placeholder="0">
                 </div>
-                <div class="kotak" ng-show="manual">
+                <div class="row" ng-show="manual">
                     <label class="default" data-translate>
                         cleverbaby.app.activity.nurse.time_both
                     </label>
                     <span class="satuan">min</span>
                     <input ng-model="modal.nurse.time_both" type="number" placeholder="15" class="form-control">
                 </div>
-                <div class="kotak no-border" ng-show="timer"></div>
-                <div class="kotak no-border" ng-show="timer"></div>
-                <div class="kotak" ng-show="timer">
+                <div class="row no-border" ng-show="timer"></div>
+                <div class="row no-border" ng-show="timer"></div>
+                <div class="row" ng-show="timer">
                     <div class="rumah-radio">
                         <ion-radio ng-click="$root.timers.setTimer()" name="timer" class="xs-2 border-right tab-style">Start Left</ion-radio>
                         <ion-radio ng-click="$root.timers.setTimer()" name="timer" class="xs-2 border-right tab-style">Start Right</ion-radio>

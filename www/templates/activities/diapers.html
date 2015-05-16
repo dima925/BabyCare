@@ -10,13 +10,13 @@
                 <a href="" class="btn pull-right"><i class="fa fa-check"></i></a>
             </div>
             <div class="content">
-                <div class="kotak">
+                <div class="row">
                     <label class="default">
                         <span class="icon-clock"></span> <span data-translate>cleverbaby.app.activity.diaper.change.time</span>
                     </label>
                     <input ng-model="modal.diaper.time" type="datetime-local" class="form-control">
                 </div>
-                <div class="kotak no-border">
+                <div class="row no-border">
                     <label class="small" data-translate>cleverbaby.app.activity.diaper.change.content</label>
                     <div class="clearfix"></div>
                     <div class="rumah-radio">
@@ -26,7 +26,7 @@
                         <ion-radio ng-model="modal.diaper.diaper_type" value="Mixed" name="diaper_type" class="xs-4 border-right tab-style"><span data-translate>cleverbaby.app.activity.diaper.change.content.mixed</span></ion-radio>
                     </div>
                 </div>
-                <div class="kotak no-border">
+                <div class="row no-border">
                     <label class="small" data-translate> cleverbaby.app.activity.diaper.change.size</label>
                     <div class="clearfix"></div>
                     <div class="rumah-radio">
@@ -35,7 +35,7 @@
                         <ion-radio ng-model="modal.diaper.amount_size" value="Xxl" name="size" class="xs-3 border-right tab-style"><span data-translate>cleverbaby.app.activity.diaper.change.size.xxl</span></ion-radio>
                     </div>
                 </div>
-                <div class="kotak no-border autoheight">
+                <div class="row no-border autoheight">
                     <label class="small" data-translate>cleverbaby.app.activity.diaper.change.color</label>
                     <div class="rumah-radio no-border ">
                         <div class="xs-5">
@@ -70,7 +70,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="kotak no-border">
+                <div class="row no-border">
                     <label class="small" data-translate>cleverbaby.app.activity.diaper.change.consistency</label>
                     <div class="clearfix"></div>
                     <div class="rumah-radio">
@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 <!-- addpic/addnote -->
-                <div class="kotak no-border autoheight" ng-if="modal.diaper.comment">
+                <div class="row no-border autoheight" ng-if="modal.diaper.comment">
                     <a class="delete" ng-click="deleteNote()"><i class="fa fa-trash"></i></a>
                     <div ng-click="addNote(modal.diaper.comment)">
                         <label class="small" data-translate>cleverbaby.app.activity.comment.click</label>
@@ -88,7 +88,7 @@
                     </div>
                 </div>
 
-                <div class="kotak no-border autoheight">
+                <div class="row no-border autoheight">
                     <a class="delete"><i class="fa fa-trash"></i></a>
                     <div class="thumb">
                         <img src="img/baby.png">
