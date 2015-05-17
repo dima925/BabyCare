@@ -16,7 +16,8 @@
     "ionic": "driftyco/ionic-bower#master",
     "ion-affix": "~1.0.0",
     "angular-ui-calendar": "~0.8.1",
-    "angular-nvd3": "~0.1.1"
+    "angular-nvd3": "~0.1.1",
+    "mobiscroll": "~2.15.1"
   },
   "resolutions": {
     "jquery": "~2.x",
