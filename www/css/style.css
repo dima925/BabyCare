@@ -644,7 +644,7 @@ border-width: 0px;
 }
 
 .item-radio.color-selection { text-align: center; margin-bottom: 12px; position: relative;}
-.item-radio.color-selection span { position: absolute; top: 22px; font-size: 8px; width: 100%; text-align: center; left: 0;  color: rgba(255,255,255,.4); }
+.item-radio.color-selection span { position: absolute; /* top: 22px; */ font-size: 8px; width: 100%; text-align: center; left: 0;  color: rgba(255,255,255,.4); }
 .item-radio.color-selection .item-content { border-radius:100px !important; margin: 0 auto !important; width: 65%; display: inline-block; border:2px solid #fff !important; }
 
 /*color jemaker*/
