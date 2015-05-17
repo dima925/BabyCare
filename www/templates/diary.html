@@ -105,7 +105,7 @@
         </div>
         <h3 class="pd" ion-affix data-affix-within-parent-with-class="timeline">Today</h3>
         <ion-list>
-            <div ng-repeat="activity in activities">
+            <div collection-repeat="activity in activities" collection-item-height="50">
                 <timeline-item activity="activity"></timeline-item>
             </div>
         </ion-list>
