@@ -1,6 +1,6 @@
 angular.module('cleverbaby.controllers')
-.controller('activityCtrl', ['$rootScope', '$scope', '$window', 'ActivityService', 'NotificationService', '$ionicModal',
-    function ($rootScope, $scope, $window, ActivityService, NotificationService, $ionicModal) {
+.controller('activityCtrl', ['$rootScope', '$scope', '$window', 'ActivityService', 'NotificationService', '$ionicModal', 'Image',
+    function ($rootScope, $scope, $window, ActivityService, NotificationService, $ionicModal, Image) {
 
         $scope.saveActivity = function(type){
 
@@ -26,20 +26,6 @@ angular.module('cleverbaby.controllers')
             $scope.timer = !$scope.timer;
         };
 
-		$scope.addPhoto = function(){
-			$ionicModal.fromTemplateUrl('templates/modals/addphoto.html', {
-				scope: $scope,
-				animation: 'slide-in-up'
-            }).then(function(modal) {
-				$scope.modalAddPhoto = modal;
-				$scope.modalAddPhoto.show();
-			});
-		};
-
-        $scope.closeAddPhotoModal = function(){
-            $scope.modalAddPhoto.hide();
-        };
-
 		$scope.addNote = function(){
 			$ionicModal.fromTemplateUrl('templates/modals/addnote.html', {
 				animation: 'slide-in-up',
@@ -59,6 +45,37 @@ angular.module('cleverbaby.controllers')
             $scope.modalAddNote.comment = "";
             $scope.modalAddNote.hide();
 		};
+
+        $scope.addPhoto = function(){
+            $ionicModal.fromTemplateUrl('templates/modals/addphoto.html', {
+                scope: $scope,
+                animation: 'slide-in-up'
+            }).then(function(modal) {
+                $scope.modalAddPhoto = modal;
+                $scope.modalAddPhoto.name = 'photoModal';
+                $scope.modalAddPhoto.show();
+            });
+        };
+
+        $scope.selectCaptureImage = function(sourceType){
+            $scope.modalAddPhoto.hide();
+            Image.captureImage(sourceType).then(function(imageURI) {
+                $scope.modal.data.media.push({
+                    displayImage: imageURI,
+                    imageType: 'new'
+                });
+            }, function(err) {
+                // error
+            });
+        };
+
+        $scope.deletePhoto = function(media){
+            media.type = 'del';
+        };
+
+        $scope.closeAddPhotoModal = function(){
+            $scope.modalAddPhoto.hide();
+        };
 
         $scope.closeActivity = function() {
             $scope.modal.hide();

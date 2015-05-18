@@ -1,14 +1,5 @@
 angular
     .module('cleverbaby.helpers')
-    .directive('background', function(){
-        return function(scope, element, attrs){
-            scope.$watch(attrs.background, function(url){
-                element.css({
-                    'background-image': 'url(' + url +')'
-                });
-            });
-        };
-    })
     .filter('babyImage', function(){
         return function(x){
             if(typeof cordova == 'undefined'){
@@ -16,4 +7,18 @@ angular
             }
             return x || 'img/baby.png';
         }
-    });
+    })
+    .directive('background', ['$filter', function($filter){
+        return {
+            scope: {
+              background: '=background'
+            },
+            link: function (scope, element, attrs) {
+                scope.$watch('background', function(url){
+                    element.css({
+                        'background-image': 'url(' + $filter('babyImage')(url) +')'
+                    }); 
+                });
+            }
+        };
+    }]);

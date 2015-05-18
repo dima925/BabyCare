@@ -33,10 +33,10 @@
                 </div>
             </div>
 
-            <div class="kotak no-border autoheight">
-                <a class="delete"><i class="fa fa-trash"></i></a>
+            <div class="kotak no-border autoheight" ng-repeat="media in modal.data.media | filter:{ type: '!del'}">
+                <a class="delete" ng-click="deletePhoto(media)"><i class="fa fa-trash"></i></a>
                 <div class="thumb">
-                    <img src="img/baby.png">
+                    <img ng-src="{{ media.displayImage | babyImage }}">
                 </div>
             </div>
 

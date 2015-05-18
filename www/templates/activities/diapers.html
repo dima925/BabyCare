@@ -89,12 +89,13 @@
                     </div>
                 </div>
 
-                <div class="kotak no-border double-height">
-                    <a class="delete"><i class="fa fa-trash"></i></a>
-                    <div class="thumb thumb-rounded thumb-activity">
-                        <img src="img/baby.png">
+                <div class="kotak no-border autoheight" ng-repeat="media in modal.data.media | filter:{ type: '!del'}">
+                    <a class="delete" ng-click="deletePhoto(media)"><i class="fa fa-trash"></i></a>
+                    <div class="thumb">
+                        <img ng-src="{{ media.displayImage | babyImage }}">
                     </div>
                 </div>
+
                 <!-- end addpic/addnote -->
             </div>
             <div class="footer">

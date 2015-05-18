@@ -9,7 +9,8 @@ angular
             showModal: function(baby){
                 while(!babyModal){}
                 babyModal.edit = baby?true:false;
-                babyModal.baby = baby || BabyService.newBaby();
+                babyModal.baby = (baby || BabyService.newBaby());
+                babyModal.x = Math.random();
                 babyModal.show();
             }
         }

@@ -4,7 +4,7 @@
 			<button class="button button-icon fa fa-angle-left" ng-click="cancel()"></button>
 			<div class="h1 title">{{ modal.baby.name }}</div>
 		</div>
-        <div class="cover-img" background="{{ baby.displayImage | babyImage }}">
+        <div class="cover-img" background="baby.displayImage">
             <div class="edit circular"><img ng-src="{{ baby.displayImage | babyImage }}"></div>
             <a class="edit-btn" ng-click="showSelectCaptureImageModal()"><span class="icon-note"></span></a>
         </div>
