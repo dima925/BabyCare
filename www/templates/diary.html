@@ -67,12 +67,17 @@
                             <h5 data-translate>cleverbaby.app.diary.bar.change</h5>
                         </div>
                         <div class="xs-5 center">
-                            <input type="checkbox" id="bath" ng-disabled="TodayBath" ng-checked="TodayBath" ng-model="today_bath" ng-change="addBath()">
+                            <input type="checkbox" id="bath" ng-disabled="TodayBath" ng-checked="TodayBath" ng-model="today_bath" ng-change="addActivityByType('bath')">
                             <label class="checkbox" for="bath"></label><br />
                             <label data-translate for="bath">cleverbaby.app.diary.bar.bath</label>
                         </div>
                         <div class="xs-5 center">
-                            <input type="checkbox" id="play" ng-disabled="TodayPlay" ng-checked="TodayPlay" ng-model="today_play" ng-change="addPlay()">
+                            <input type="checkbox" id="sleep" ng-disabled="TodaySleep" ng-checked="TodaySleep" ng-model="today_sleep" ng-change="addActivityByType('sleep')">
+                            <label class="checkbox" for="sleep"></label><br />
+                            <label data-translate for="sleep">cleverbaby.app.diary.bar.sleep</label>
+                        </div>
+                        <div class="xs-5 center">
+                            <input type="checkbox" id="play" ng-disabled="TodayPlay" ng-checked="TodayPlay" ng-model="today_play" ng-change="addActivityByType('play')">
                             <label class="checkbox" for="play"></label><br />
                             <label data-translate for="play">cleverbaby.app.diary.bar.play</label>
                         </div>

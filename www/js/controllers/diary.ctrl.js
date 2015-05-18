@@ -47,6 +47,7 @@ angular.module('cleverbaby.controllers')
                 });
             }
 
+            /*
             $scope.addPlay = function(){
 
                 $scope.TodayPlay = true;
@@ -69,6 +70,23 @@ angular.module('cleverbaby.controllers')
                 };
 
                 ActivityService.addActivity(activity, $rootScope.baby.uuid).then(function(activity){
+                    $scope.$broadcast('activityAdd', activity);
+                });
+            };
+            */
+
+            /**
+             * Add activity by the checkbox.
+             * @param type - type of activity
+             */
+            $scope.addActivityByType = function(type){
+                var requiredScope = 'Today'+ type[0].toUpperCase() + type.substring(1);
+                $scope.TodayPlay = true;
+                var data = {
+                    time: new Date(),
+                    type: type
+                };
+                ActivityService.addActivity(data, $rootScope.baby.uuid).then(function(activity){
                     $scope.$broadcast('activityAdd', activity);
                 });
             };
