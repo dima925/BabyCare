@@ -270,7 +270,8 @@ angular.module('cleverbaby.data')
                     nurseCount: 0,
                     changeCount: 0,
                     bathCount: 0,
-                    playCount: 0
+                    playCount: 0,
+                    sleepCount: 0
                 };
                 $localStorage.activities[babyId].forEach(function(activity){
                     /**
@@ -285,6 +286,9 @@ angular.module('cleverbaby.data')
                             ++count.bathCount;
                         } else if(activity.type == "change"){
                             ++count.changeCount;
+                        }
+                        else if(activity.type == "sleep"){
+                            ++count.sleepCount;
                         }
                     }
                 });

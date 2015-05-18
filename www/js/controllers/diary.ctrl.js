@@ -21,7 +21,7 @@ angular.module('cleverbaby.controllers')
                     $scope.PlayCount = counts.playCount;
                     $scope.ChangeCount = counts.changeCount;
                     $scope.NurseCount = counts.nurseCount;
-                    $scope.SleepCount = counts.sleepcount;
+                    $scope.SleepCount = counts.sleepCount;
                 });
             }
             if($rootScope.babyId){
@@ -47,34 +47,6 @@ angular.module('cleverbaby.controllers')
                     return activities;
                 });
             }
-
-            /*
-            $scope.addPlay = function(){
-
-                $scope.TodayPlay = true;
-                var data = {
-                    time: new Date(),
-                    type: "play"
-                };
-                ActivityService.addActivity(data, $rootScope.baby.uuid).then(function(activity){
-                    $scope.$broadcast('activityAdd', activity);
-                });
-            };
-
-            $scope.addBath = function(){
-
-                $scope.TodayBath = true;
-
-                var activity = {
-                    time: new Date(),
-                    type: "bath"
-                };
-
-                ActivityService.addActivity(activity, $rootScope.baby.uuid).then(function(activity){
-                    $scope.$broadcast('activityAdd', activity);
-                });
-            };
-            */
 
             /**
              * Add activity by the checkbox.
