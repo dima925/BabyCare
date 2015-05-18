@@ -21,6 +21,7 @@ angular.module('cleverbaby.controllers')
                     $scope.PlayCount = counts.playCount;
                     $scope.ChangeCount = counts.changeCount;
                     $scope.NurseCount = counts.nurseCount;
+                    $scope.SleepCount = counts.sleepcount;
                 });
             }
             if($rootScope.babyId){
@@ -119,6 +120,10 @@ angular.module('cleverbaby.controllers')
                         ++$scope.PlayCount;
                         $scope.TodayPlay = true;
                     }
+                    if(activity.type == 'sleep'){
+                        ++$scope.SleepCount;
+                        $scope.TodaySleep = true;
+                    }
                 }
             }
 
@@ -136,6 +141,10 @@ angular.module('cleverbaby.controllers')
                 if(activity.type == 'play'){
                     --$scope.PlayCount;
                     $scope.TodayPlay = $scope.PlayCount>0;
+                }
+                if(activity.type == 'sleep'){
+                    --$scope.SleepCount;
+                    $scope.TodaySleep = $scope.SleepCount>0;
                 }
             }
 
