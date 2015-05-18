@@ -94,11 +94,7 @@ angular.module('cleverbaby.controllers')
         
     $scope.trendTemplate = 'templates/trends/growth.html';
 
-    //todo work around for the chart not being displayed correctly when opening a modal in another page then going back to chart page.
-    $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
-        angular.element('.chart').html('');
-        readyData();
-    });
+
 
 }]).controller('SleepCtrl', ['$scope', function ($scope) {
 
