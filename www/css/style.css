@@ -627,11 +627,12 @@ input{
   margin-top: 132px;
 }
 /* FORM */
+.item-input textarea, .item-input input[type="text"], .item-input input[type="email"] { padding: 0 10px;}
 .wrapper label.default{
   opacity: 0.6;
-  font-size: 18px; display: inline-block; text-align: left; font-family: 'Roboto', sans-serif !important; margin-top: 14px; position: absolute;}
+  font-size: 12px; display: inline-block; text-align: left; font-family: 'Roboto', sans-serif !important; margin-top: 22px; position: absolute;}
   .wrapper label.small { width: 100% !important; height:8px; margin-top: 3px; font-size: 8px; float: left; display: block; padding: 0 !important;}
-.wrapper input { font-family: 'Roboto', sans-serif !important; display: inline-block; text-align: right !important; padding: 0 !important; margin: 0 !important; height:auto; font-size: 24px; width: auto !important; color: #fff; line-height: 2em; float: right;}
+.wrapper input { font-family: 'Roboto', sans-serif !important; display: inline-block; text-align: right !important; padding: 0 !important; margin: 0 !important; height:auto; font-size: 17px; width: auto !important; color: #fff; line-height: 3.2em; float: right;}
 .rumah-radio { width: 100%; float: left; border-radius: 4px; padding: 0; border: 1px solid rgba(255,255,255,.3) ;margin-top: 3px; overflow: hidden;}
 .rumah-radio.on-white {  border: 1px solid rgba(0,0,0,.3); color: #000 !important; }
 .rumah-radio.on-white .item-content span { color: rgba(0,0,0,.6);}
@@ -645,7 +646,7 @@ border-width: 0px;
 
 .item-radio.color-selection { text-align: center; margin-bottom: 12px; position: relative;}
 .item-radio.color-selection span { position: absolute; /* top: 22px; */ font-size: 8px; width: 100%; text-align: center; left: 0;  color: rgba(255,255,255,.4); }
-.item-radio.color-selection .item-content { border-radius:100px !important; margin: 0 auto !important; width: 65%; display: inline-block; border:2px solid #fff !important; }
+.item-radio.color-selection .item-content { border-radius:100px !important; margin: 1px auto !important; width: 75%; display: inline-block; border:2px solid #fff !important; }
 
 /*color jemaker*/
 .item-radio.color-selection.yellow .item-content {  background-color: #ffff00;}
@@ -661,11 +662,11 @@ border-width: 0px;
 
 .item-radio { border: none; border-radius: 0 !important;}
 .item-radio .item-content {
-  padding: 4px 2px; 
+  padding: 8px 2px; 
   border: none !important; 
   border-radius: 0 !important;
   position: relative;
-  z-index: 2; height: 24px;
+  z-index: 2; height: 32px;
   text-align: center;
   background:0;
 }
@@ -698,9 +699,9 @@ border-width: 0px;
 span.satuan { float:right;font-size: 24px; margin-top: 14px}
 
 .footer { margin-top: 22px; text-align: center; font-size: 10px}
-.footer a[class*="pull-"]{ width: 27.33%; margin-top: 5px}
+.footer a[class*="pull-"]{ width: 27.33%; padding: 7px 14px 8px;}
 .footer a[class*="pull-"] span[class*="icon-"] { font-size: 14px; width: 100%; float: left; }
-.footer a.btn-mid { padding: 10px 14px; background: #fff;  display: inline-block; border-radius:4px 4px 0 0;}
+.footer a.btn-mid { padding: 14px 14px 15px; background: #fff;  display: inline-block; border-radius:4px 4px 0 0;}
 .diaper-foot{color: #ff6b01;}
 .doctor-foot { color: #cc33ff; }
 .bottle-foot{color: #66cc33;}
@@ -757,7 +758,7 @@ span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px;  }
 .black-color{color: #336666;}
 .timeline { width: 100%; position: relative; height: auto !important; }
 .timeline h3.pd { color: #0a3656; font-size: 20px;}
-.timeline .item { width: 100%; position: relative; padding:1px 0px 0px 10px; margin:-1px 0 0; padding-bottom: 10px; float: left; z-index: 2}
+.timeline .item { width: 100%; position: relative; padding:1px 0px 10px 10px; margin:-1px 0 0; float: left; z-index: 2}
 .timeline .item .datetime-tl { width: 15%; color: #000; float: left; word-wrap: break-word; text-align: center; font-size: .8em !important; line-height:1em; padding-top:2px;}
 .timeline .item .activity-icon { width: 14%; color: #000; height: 100%; position: relative; float: left; background: 0;}
                 .item-activity { width: 35px; height:35px; border-radius: 100px; display: block; color: #fff; display: -webkit-flex;  display: flex; }
@@ -904,7 +905,6 @@ visibility:visible; width: 60px; height: 60px;
  -ms-transform: rotate(-45deg); /* IE 9 */
     -webkit-transform: rotate(-45deg); /* Safari */
     transform: rotate(-45deg);
-    /* left: .33px !important; top: 13px; */ /* this just made the x position wrong, removing for now */
 }
 
 .floating-plus-button .ion-plus-round:after { content: ""; position: absolute; width: 60px; height: 60px; border-radius: 50px; background: linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) ), rgba(1,109,144,1); left:0px; }
@@ -986,6 +986,7 @@ td.fc-day { margin: 0 !important;padding:0 !important; margin: 0 !important; }
 
 /*Your account page*/
 
+.wrapper .content .row, .wrapper .content .row [class^="col-"], .wrapper .content .row .col { padding: 5px 0;}
 .form-label-short{
     display: block;
     width: 175px;
@@ -1031,7 +1032,7 @@ td.fc-day { margin: 0 !important;padding:0 !important; margin: 0 !important; }
 
 .more-rateus.wrapper .feedbackMessage {
   min-height: 120px;
-  width: 100%;
+  width: 100%; padding: 10px;
 }
 
 .more-page ul.list li input[type="checkbox"] {
