@@ -21,6 +21,7 @@ angular.module('cleverbaby.controllers')
                     $scope.PlayCount = counts.playCount;
                     $scope.ChangeCount = counts.changeCount;
                     $scope.NurseCount = counts.nurseCount;
+                    $scope.SleepCount = counts.sleepCount;
                 });
             }
             if($rootScope.babyId){
@@ -47,28 +48,18 @@ angular.module('cleverbaby.controllers')
                 });
             }
 
-            $scope.addPlay = function(){
-
-                $scope.TodayPlay = true;
+            /**
+             * Add activity by the checkbox.
+             * @param type - type of activity
+             */
+            $scope.addActivityByType = function(type){
+                var requiredScope = 'Today'+ type[0].toUpperCase() + type.substring(1);
+                $scope[requiredScope] = true;
                 var data = {
                     time: new Date(),
-                    type: "play"
+                    type: type
                 };
                 ActivityService.addActivity(data, $rootScope.baby.uuid).then(function(activity){
-                    $scope.$broadcast('activityAdd', activity);
-                });
-            };
-
-            $scope.addBath = function(){
-
-                $scope.TodayBath = true;
-
-                var activity = {
-                    time: new Date(),
-                    type: "bath"
-                };
-
-                ActivityService.addActivity(activity, $rootScope.baby.uuid).then(function(activity){
                     $scope.$broadcast('activityAdd', activity);
                 });
             };
@@ -101,6 +92,10 @@ angular.module('cleverbaby.controllers')
                         ++$scope.PlayCount;
                         $scope.TodayPlay = true;
                     }
+                    if(activity.type == 'sleep'){
+                        ++$scope.SleepCount;
+                        $scope.TodaySleep = true;
+                    }
                 }
             }
 
@@ -118,6 +113,10 @@ angular.module('cleverbaby.controllers')
                 if(activity.type == 'play'){
                     --$scope.PlayCount;
                     $scope.TodayPlay = $scope.PlayCount>0;
+                }
+                if(activity.type == 'sleep'){
+                    --$scope.SleepCount;
+                    $scope.TodaySleep = $scope.SleepCount>0;
                 }
             }
 

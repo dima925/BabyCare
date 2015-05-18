@@ -13,4 +13,5 @@ Max OSX
 5. Clone Git Repo
 6. ```ionic state restore```
 7. ```bower install```
-8. ```ionic emulate ios``` or ```ionic run ios```
+8. ```ionic plugin add org.apache.cordova.statusbar```
+9. ```ionic emulate ios``` or ```ionic run ios```

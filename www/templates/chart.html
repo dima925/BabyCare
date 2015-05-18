@@ -8,19 +8,15 @@
         </div>
     </ion-nav-bar>
   </div>
-	  
-
-      <div class="padding combo-box">
-          <select ng-model="trendTemplate">
-              <option value="templates/trends/growth.html" selected>Growth</option>
-              <option value="templates/trends/feeding.html">Feeding</option>
-              <option value="templates/trends/diaper.html">Diaper</option>
-              <option value="templates/trends/sleep.html">Sleep</option>
-              <option value="templates/trends/pumping.html">Pumping</option>
-          </select>
-      </div>
-
-      <div class="row responsive-sm" ng-include="trendTemplate"></div>
-
+  <div class="padding combo-box">
+      <select ng-model="trendTemplate">
+          <option value="templates/trends/growth.html" selected>Growth</option>
+          <option value="templates/trends/feeding.html">Feeding</option>
+          <option value="templates/trends/diaper.html">Diaper</option>
+          <option value="templates/trends/sleep.html">Sleep</option>
+          <option value="templates/trends/pumping.html">Pumping</option>
+      </select>
+  </div>
+  <div class="row responsive-sm" ng-include="trendTemplate"></div>
   </ion-content>
 </ion-view>

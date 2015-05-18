@@ -617,6 +617,9 @@ input{
 .wrapper .kotak.autoheight, .kotak.autoheight{
     height: auto !important;
 }
+.wrapper .kotak.double-height, .kotak.double-height{
+    height: 98px;
+}
 .kotak.di-block-center { display: -webkit-flex;  display: flex; }
 .kotak.di-block-center > div{  -webkit-align-self: center;    align-self: center;    width: ; margin:0 auto; text-align:center }
 .wrapper .kotak:last-child, .wrapper .no-border, .kotak.no-border { border: none !important;}
@@ -627,25 +630,25 @@ input{
   margin-top: 132px;
 }
 /* FORM */
+.item-input textarea, .item-input input[type="text"], .item-input input[type="email"] { padding: 0 10px;}
 .wrapper label.default{
-  opacity: 0.6;
-  font-size: 18px; display: inline-block; text-align: left; font-family: 'Roboto', sans-serif !important; margin-top: 14px; position: absolute;}
-  .wrapper label.small { width: 100% !important; height:8px; margin-top: 3px; font-size: 8px; float: left; display: block; padding: 0 !important;}
-.wrapper input { font-family: 'Roboto', sans-serif !important; display: inline-block; text-align: right !important; padding: 0 !important; margin: 0 !important; height:auto; font-size: 24px; width: auto !important; color: #fff; line-height: 2em; float: right;}
-.rumah-radio { width: 100%; float: left; border-radius: 4px; padding: 0; border: 1px solid rgba(255,255,255,.3) ;margin-top: 3px; overflow: hidden;}
+  opacity: 0.6; font-size: 16px; display: inline-block; text-align: left; font-family: 'Roboto', sans-serif !important; position: absolute; line-height: 3.2em;}
+  .wrapper label.small { width: 100% !important; height:10px; margin-top: 4px; font-size: 10px; float: left; display: block; padding: 0 !important; opacity: .7}
+.wrapper input { font-family: 'Roboto', sans-serif !important; display: inline-block; text-align: right !important; padding: 0 !important; margin: 0 !important; height:auto; font-size: 16px; width: auto !important; color: #fff; line-height: 3.2em; float: right;}
+.rumah-radio { width: 100%; float: left; border-radius: 4px; padding: 0; border: 1px solid rgba(255,255,255,1) ;margin-top: 3px; overflow: hidden;}
 .rumah-radio.on-white {  border: 1px solid rgba(0,0,0,.3); color: #000 !important; }
 .rumah-radio.on-white .item-content span { color: rgba(0,0,0,.6);}
 
 .kotak .item {
 background-color:transparent;
 color:#fff;
-font-size: 14px;
+font-size: 12px;
 border-width: 0px;
 }
 
-.item-radio.color-selection { text-align: center; margin-bottom: 12px; position: relative;}
-.item-radio.color-selection span { position: absolute; /* top: 22px; */ font-size: 8px; width: 100%; text-align: center; left: 0;  color: rgba(255,255,255,.4); }
-.item-radio.color-selection .item-content { border-radius:100px !important; margin: 0 auto !important; width: 65%; display: inline-block; border:2px solid #fff !important; }
+.item-radio.color-selection { text-align: center; margin-top: 8px; position: relative;}
+.item-radio.color-selection span { position: absolute; font-size: 8px; width: 100%; text-align: center; left: 0;  color: rgba(255,255,255,.4); }
+.item-radio.color-selection .item-content { border-radius:100px !important; margin: 0 !important; width: 75%; display: inline-block; border:2px solid #fff !important; height: 26px; padding: 5px 2px; }
 
 /*color jemaker*/
 .item-radio.color-selection.yellow .item-content {  background-color: #ffff00;}
@@ -669,9 +672,9 @@ border-width: 0px;
   text-align: center;
   background:0;
 }
-.item-radio.border-right .item-content:after { position: absolute; content: ""; height: 200%; border-right: 1px solid rgba(255,255,255,.3) ; top: 0px; right:0;}
+.item-radio.border-right .item-content:after { position: absolute; content: ""; height: 200%; border-right: 1px solid rgba(255,255,255,1) ; top: 0px; right:0;}
 .rumah-radio.on-white .item-radio.border-right .item-content:after {
-  border-right: 1px solid rgba(0,0,0,.3) ;
+  border-right: 1px solid rgba(0,0,0,1) ;
 }
 .item-radio.border-right:last-child .item-content:after { border: 0; display: none}
 .item-radio.tab-style input:checked ~ .item-content {
@@ -692,15 +695,16 @@ border-width: 0px;
   visibility: none !important;
   color: rgba(0, 0, 0, 0);
 }
-.header { position: relative; text-align: center; width: 100%; border-bottom:2px dotted #fff; padding:10px 0; }
-.header h2 { font-size: 22px; display: inline-block; font-family: 'Roboto', sans-serif !important; padding: 0; margin:5px 0 0;}
-
+.header { position: relative; text-align: center; width: 100%; border-bottom:1px solid rgba(255,255,255,.7); padding:3px 0 12px; height: 50px; overflow: hidden; }
+.header h2 { font-size: 20px; display: inline-block; font-family: 'Roboto', sans-serif !important; padding: 0; margin:5px 0 0; line-height: 1.7em;}
+.header h2 span[class*="icon-"] { font-size: 18px;}
 span.satuan { float:right;font-size: 24px; margin-top: 14px}
 
-.footer { margin-top: 22px; text-align: center; font-size: 10px}
-.footer a[class*="pull-"]{ width: 27.33%; margin-top: 5px}
-.footer a[class*="pull-"] span[class*="icon-"] { font-size: 14px; width: 100%; float: left; }
-.footer a.btn-mid { padding: 10px 14px; background: #fff;  display: inline-block; border-radius:4px 4px 0 0;}
+.footer { margin-top: 22px; text-align: center; font-size: 10px; height: 49px; overflow: hidden;}
+.footer a[class*="pull-"]{ width: 27.33%; padding: 9px 14px 0; line-height: 2.6em; }
+.footer a span[class*="icon-"], .footer a i[class*="fa-"] { font-size: 14px; width: 100%; display: block;}
+.footer a span { font-size: 12px; width: 100%; }
+.footer a.btn-mid { padding: 8px 24px 6px; background: #fff;  display: inline-block; border-radius:4px 4px 0 0; height: 49px; line-height: 2.6em;}
 .diaper-foot{color: #ff6b01;}
 .doctor-foot { color: #cc33ff; }
 .bottle-foot{color: #66cc33;}
@@ -757,7 +761,7 @@ span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px;  }
 .black-color{color: #336666;}
 .timeline { width: 100%; position: relative; height: auto !important; }
 .timeline h3.pd { color: #0a3656; font-size: 20px;}
-.timeline .item { width: 100%; position: relative; padding:1px 0px 0px 10px; margin:-1px 0 0; padding-bottom: 10px; float: left; z-index: 2}
+.timeline .item { width: 100%; position: relative; padding:1px 0px 10px 10px; margin:-1px 0 0; float: left; z-index: 2}
 .timeline .item .datetime-tl { width: 15%; color: #000; float: left; word-wrap: break-word; text-align: center; font-size: .8em !important; line-height:1em; padding-top:2px;}
 .timeline .item .activity-icon { width: 14%; color: #000; height: 100%; position: relative; float: left; background: 0;}
                 .item-activity { width: 35px; height:35px; border-radius: 100px; display: block; color: #fff; display: -webkit-flex;  display: flex; }
@@ -904,7 +908,6 @@ visibility:visible; width: 60px; height: 60px;
  -ms-transform: rotate(-45deg); /* IE 9 */
     -webkit-transform: rotate(-45deg); /* Safari */
     transform: rotate(-45deg);
-    /* left: .33px !important; top: 13px; */ /* this just made the x position wrong, removing for now */
 }
 
 .floating-plus-button .ion-plus-round:after { content: ""; position: absolute; width: 60px; height: 60px; border-radius: 50px; background: linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) ), rgba(1,109,144,1); left:0px; }
@@ -979,13 +982,15 @@ td.fc-day { margin: 0 !important;padding:0 !important; margin: 0 !important; }
 .wrapper.add textarea:-ms-input-placeholder { color: #000 !important; opacity: .9 !important }
 .delete { position: absolute; right: 0; top: 5px; font-size: 16px;}
 .thumb { width: 60px; height: 60px; overflow: hidden; border-radius: 50px;} .thumb img { width: 100%; margin-left: 0%;  }
-
+.thumb.thumb-rounded { border-radius: 4px !important;}
+.thumb-activity { height: 86px; width: 86px; margin: 6px; }
 /********************************************/
 .rotate-to-cross{    -ms-transform: rotate(-20deg); /* IE 9 */    -webkit-transform: rotate(-20deg); /* Safari */    transform: rotate(-20deg);}
 .hide-plus-btn{    display: none;}
 
 /*Your account page*/
 
+.wrapper .content .row, .wrapper .content .row [class^="col-"], .wrapper .content .row .col { padding: 5px 0;}
 .form-label-short{
     display: block;
     width: 175px;
@@ -1031,7 +1036,7 @@ td.fc-day { margin: 0 !important;padding:0 !important; margin: 0 !important; }
 
 .more-rateus.wrapper .feedbackMessage {
   min-height: 120px;
-  width: 100%;
+  width: 100%; padding: 10px;
 }
 
 .more-page ul.list li input[type="checkbox"] {

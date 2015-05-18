@@ -48,6 +48,7 @@ angular.module('cleverbaby')
     })
     .state('app.chart', {
         url: "/chart",
+        cache: false,
         views: {
             'chart': {
                 templateUrl: "templates/chart.html",

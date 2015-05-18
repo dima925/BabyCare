@@ -64,23 +64,37 @@ angular.module('cleverbaby.controllers')
             [4.3, 5.7, 7, 7.9, 8.6, 9.2, 9.7]
         ];
 
-    $scope.data = [];
+    function readyData(){
+        $scope.data = [];
 
-    for(var i = 0; i < data.length; i++) {
+        for(var i = 0; i < data.length; i++) {
 
-        var datarow = {
-            "key" : i,
-            "values" : []
-        };
-        for(var z = 0; z < data[i].length; z++) {
-            datarow.values.push(
-                {x: z, y: data[i][z]}
-            );
+            var datarow = {
+                "key" : i,
+                "values" : []
+            };
+            for(var z = 0; z < data[i].length; z++) {
+                datarow.values.push(
+                    {x: z, y: data[i][z]}
+                );
+            }
+            $scope.data.push(datarow);
         }
-        $scope.data.push(datarow);
     }
+
+    readyData();
+
+    $scope.config = {
+        visible: true, // default: true
+        extended: false, // default: false
+        disabled: false, // default: false
+        autorefresh: true, // default: true
+        refreshDataOnly: false // default: false
+    };
         
     $scope.trendTemplate = 'templates/trends/growth.html';
+
+
 
 }]).controller('SleepCtrl', ['$scope', function ($scope) {
 
@@ -163,4 +177,4 @@ angular.module('cleverbaby.controllers')
 
 
 
-    }]);
+}]);
