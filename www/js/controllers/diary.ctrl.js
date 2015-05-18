@@ -81,7 +81,7 @@ angular.module('cleverbaby.controllers')
              */
             $scope.addActivityByType = function(type){
                 var requiredScope = 'Today'+ type[0].toUpperCase() + type.substring(1);
-                $scope.TodayPlay = true;
+                $scope[requiredScope] = true;
                 var data = {
                     time: new Date(),
                     type: type
