@@ -24,7 +24,7 @@
     "cordova-plugin-whitelist",
     "org.apache.cordova.file",
     "org.apache.cordova.file-transfer",
-    "cordova-plugin-statusbar"
+    "org.apache.cordova.statusbar"
   ],
   "cordovaPlatforms": [
     {
