@@ -1,9 +1,9 @@
 <div class="modal transparent" ng-controller="activityCtrl" ng-click="closeActivity()">
-    <div class="wrapper nurse" ng-click="$event.stopPropagation()">
+    <div class="wrapper sleep" ng-click="$event.stopPropagation()">
         <form ng-submit="hideKeyboard()">
         <div class="header">
             <h2 class="title">
-                <span class="icon-breast-feeding"></span>
+                <span class="icon-sleepcc"></span>
                 <span data-translate>cleverbaby.app.activity.nap.mode.title</span>
             </h2>
             <a ng-click="closeActivity()" class="btn pull-left"><i class="fa fa-close"></i></a>
@@ -80,7 +80,7 @@
         </div>
         <div class="footer">
             <a class="pull-left" ng-click="addNote()"><span class="icon-book-open"></span><span data-translate>cleverbaby.app.activity.add_note</span></a>
-            <a class="btn-mid nurse-foot" ng-click="saveActivity('sleep')"><span class="icon-check"></span> &nbsp;<span data-translate>cleverbaby.app.activity.save_close</span></a>
+            <a class="btn-mid sleep-foot" ng-click="saveActivity('sleep')"><i class="fa fa-check"></i> &nbsp;<span data-translate>cleverbaby.app.activity.save_close</span></a>
             <a class="pull-right"><span class="icon-camera"></span><span data-translate>cleverbaby.app.activity.photo</span></a>
         </div>
             <input type="submit" value="submit" class="hidden-submit">
