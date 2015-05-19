@@ -565,32 +565,11 @@ input{
   text-shadow:0 0 1px #fff, 2px 0 0 #fff, -2px 0 0 #fff, 0 0 1px #fff, 0 -2px 0 #fff; z-index: +100;}
 
 /* color activity */
-.btn-nursed { background: #3300cc;}
-.btn-bottle { background: #00cc33;}
-.btn-diaper { background: #ff6600;}
-.btn-nap { background: #0099cc;}
-.btn-solid{background: #ffcc00;}
-.btn-pumping{background: #ff9933;}
-.btn-todo {background: #66cc00;}
-.btn-activity{background: #00cc33;}
-.btn-mood{background: #cc00cc;}
-.btn-play{background: #ff0000;}
-.btn-bath{background: #ff0066;}
-.btn-medications{background: #0099cc;}
-.btn-temp{background: #3300ff;}
-.btn-diary{background: #330099;}
-.btn-milestone{background: #ffcc00;}
-.btn-sickness{background: #339999;}
-.btn-drvisit{background: #0099cc;}
-.btn-vaccinations{background: #cccc33;}
-.btn-growth{background: #6633cc;}
-.btn-more{background: #232323;}
-
+.more{background: #232323;}
 .diapers { background: #ff6b01; }
 .bottle { background: #66cc33; }
 .nurse { background: #3300cc; }
 .activity { background: #336699; }
-.alergy { background: #cc0033; }
 .bath { background: #33ccff; }
 .diary { background: #00cc99; }
 .doctor { background: #cc33ff; }
@@ -605,10 +584,9 @@ input{
 .todo { background: #66cc00;}
 .vaccination { background: #cc3366; }
 .sleep { background: #0099cc; }
-.solid{background: #ffcc00;}
-.dropdown{background: #fff;}
+.solid {background: #ffcc00;}
+.dropdown {background: #fff;}
 .allergy { background: #5c6bc0; }
-.drvisit{background: #0099cc;}
 .diapers .item-radio input:checked ~ .item-content { color: #ff6b01}
 .bottle .item-radio input:checked ~ .item-content { color: #66cc33}
 .nurse .item-radio input:checked ~ .item-content { color: #3300cc}
@@ -634,11 +612,12 @@ input{
   margin-top: 132px;
 }
 /* FORM */
-.item-input textarea, .item-input input[type="text"], .item-input input[type="email"] { padding: 0 10px;}
+.item-input textarea, .item-input input[type="text"], .item-input input[type="password"], .item-input input[type="email"] { padding: 0 10px;}
 .wrapper label.default{
   opacity: 0.6; font-size: 16px; display: inline-block; text-align: left; font-family: 'Roboto', sans-serif !important; position: absolute; line-height: 3.2em;}
   .wrapper label.small { width: 100% !important; height:10px; margin-top: 4px; font-size: 10px; float: left; display: block; padding: 0 !important; opacity: .7}
 .wrapper input { font-family: 'Roboto', sans-serif !important; display: inline-block; text-align: right !important; padding: 0 !important; margin: 0 !important; height:auto; font-size: 16px; width: auto !important; color: #fff; line-height: 3.2em; float: right;}
+.wrapper textarea { margin-top: 3px; width: 100%; padding: 10px}
 .rumah-radio { width: 100%; float: left; border-radius: 4px; padding: 0; border: 1px solid rgba(255,255,255,1) ;margin-top: 3px; overflow: hidden;}
 .rumah-radio.on-white {  border: 1px solid rgba(0,0,0,.3); color: #000 !important; }
 .rumah-radio.on-white .item-content span { color: rgba(0,0,0,.6);}
@@ -714,7 +693,7 @@ span.satuan { float:right;font-size: 24px; margin-top: 14px}
 .bottle-foot{color: #66cc33;}
 .nurse-foot{color: #3300cc;}
 .activity-foot{color: #336699;}
-.alergy-foot{color: #cc0033;}
+.allergy-foot{color: #5c6bc0;}
 .bath-foot{color: #33ccff;}
 .diary-foot{color: #00cc99;}
 .growth-foot { color: #99cc00; }

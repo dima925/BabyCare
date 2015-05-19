@@ -21,6 +21,7 @@ angular.module('cleverbaby')
 
     .state('app.timeline', {
         url: "/timeline",
+        cache: false,
         views: {
             'home': {
                 templateUrl: "templates/timeline.html",
