@@ -10,7 +10,7 @@ angular.module('cleverbaby.controllers')
             $scope.selectCaptureImageModal.hide();
             Image.captureImage(sourceType).then(function(imageURI) {
                 $scope.baby.displayImage = imageURI;
-                $scope.$apply();
+                $scope.baby.imageType = 'new';
             }, function(err) {
                 // error
             });
@@ -31,14 +31,15 @@ angular.module('cleverbaby.controllers')
         }).then(function(modal) {
             $scope.selectCaptureImageModal = modal;
         });
-
-        $scope.$watch('modal.baby', function(newValue){
-            newValue = newValue || {};
-            $scope.baby = {
-                name: newValue.name || "",
-                born: newValue.born ? new Date(newValue.born) : new Date(),
-                gender: newValue.gender || "m"
-            };
+        $scope.$watch('modal.x', function(){
+            if($scope.modal.baby){
+                $scope.baby = {
+                    name: $scope.modal.baby.name || "",
+                    born: $scope.modal.baby.born ? new Date($scope.modal.baby.born) : new Date(),
+                    gender: $scope.modal.baby.gender || "m",
+                    displayImage: $scope.modal.baby.displayImage
+                };
+            }
         });
 
         $scope.save = function(){
@@ -46,6 +47,7 @@ angular.module('cleverbaby.controllers')
             $scope.modal.baby.born = $scope.baby.born;
             $scope.modal.baby.gender = $scope.baby.gender;
             $scope.modal.baby.displayImage = $scope.baby.displayImage;
+            $scope.modal.baby.imageType = $scope.baby.imageType;
             BabyService.add($scope.modal.baby).then(function(baby){
                 $rootScope.$broadcast('babyAdd', baby);
                 $scope.modal.hide();
@@ -58,7 +60,9 @@ angular.module('cleverbaby.controllers')
             $scope.modal.baby.name = $scope.baby.name;
             $scope.modal.baby.born = $scope.baby.born;
             $scope.modal.baby.gender = $scope.baby.gender;
-            BabyService.edit($scope.modal.baby).then(function(){
+            $scope.modal.baby.displayImage = $scope.baby.displayImage;
+            $scope.modal.baby.imageType = $scope.baby.imageType;
+            BabyService.edit($scope.modal.baby).then(function(baby){
                 $scope.modal.hide();
             }, function(err){
                 NotificationService.notify(err.data.message);

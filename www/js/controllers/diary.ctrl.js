@@ -57,7 +57,8 @@ angular.module('cleverbaby.controllers')
                 $scope[requiredScope] = true;
                 var data = {
                     time: new Date(),
-                    type: type
+                    type: type,
+                    media: []
                 };
                 ActivityService.addActivity(data, $rootScope.baby.uuid).then(function(activity){
                     $scope.$broadcast('activityAdd', activity);

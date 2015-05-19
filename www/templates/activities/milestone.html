@@ -14,7 +14,7 @@
                 <label class="default">
                     <span class="icon-clock"></span> <span data-translate>cleverbaby.app.activity.milestone.time</span>
                 </label>
-                <input ng-model="modal.data.time" type="datetime-local" value="2004-08-31" class="form-control">
+                <div mobiscroll-datetime="" mobiscroll-model="modal.data.time" class-child="form-control"></div>
             </div>
             <div class="kotak">
                 <label class="default">
@@ -32,10 +32,10 @@
             </div>
         </div>
 
-        <div class="kotak no-border autoheight">
-            <a class="delete"><i class="fa fa-trash"></i></a>
+        <div class="kotak no-border autoheight" ng-repeat="media in modal.data.media | filter:{ type: '!del'}">
+            <a class="delete" ng-click="deletePhoto(media)"><i class="fa fa-trash"></i></a>
             <div class="thumb">
-                <img src="img/baby.png">
+                <img ng-src="{{ media.displayImage | babyImage }}">
             </div>
         </div>
         <div class="footer">

@@ -41,6 +41,10 @@ html, body { font-family: 'Roboto', sans-serif !important;  }
 	/* top: 7px; */
 	font-size: 16px;
 }
+
+.bar .title .nav-bar-title[cb-baby-drop-down=""] {
+  display: inline-block !important;
+}
 .bar .title .nav-bar-title:after { margin-left: 10px; font-family: "FontAwesome"; content: "\f0d7";  }
 
 /* override ionic ios default top margin to accomodate ios status bar */

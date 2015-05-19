@@ -1,6 +1,6 @@
 angular.module('cleverbaby.data')
-    .factory('BabyService', ['network', '$q', 'ActivityService', '$localStorage', '$window', '$cordovaFile',
-        function(network, $q, ActivityService, $localStorage, $window, $cordovaFile) {
+    .factory('BabyService', ['network', '$q', 'ActivityService', '$localStorage', '$window', '$cordovaFile', '$sce',
+        function(network, $q, ActivityService, $localStorage, $window, $cordovaFile, $sce) {
 
         function generetaeUniqueKey(){
             var text = "";
@@ -18,16 +18,17 @@ angular.module('cleverbaby.data')
 
         function handleFile(baby){
             return $q(function(resolve, reject){
-                if(baby.displayImage){
+                if(baby.imageType == 'new'){
                     $window.resolveLocalFileSystemURL(baby.displayImage, function(fileEntry){
                         $window.resolveLocalFileSystemURL(cordova.file.dataDirectory+'/babies', function(dirEntry){
                             fileEntry.moveTo(dirEntry, baby.uuid, function(newFileEntry){
-                                baby.displayImage = newFileEntry.nativeURL;
+                                baby.displayImage = $sce.trustAsResourceUrl(newFileEntry.nativeURL) + '?'+Math.random();
+                                delete baby.imageType;
                                 try{
-                                    network.upload('/babies/'+ baby.uuid + '/media', newFileEntry.nativeURL);   
+                                    network.upload('/babies/'+ baby.uuid + '/media', newFileEntry.nativeURL, generateUniqueId($localStorage.user.id));
                                 } catch(e){
                                 }
-                                resolve();
+                                resolve(baby);
                             }, function(err){
                                 reject(err);
                             });
@@ -41,6 +42,34 @@ angular.module('cleverbaby.data')
                 } else{
                     resolve();
                 }
+            });
+        }
+
+        function downloadImage(baby){
+            return $cordovaFile.then(function(){
+                var destintion = cordova.file.dataDirectory+'/babies'+baby.uuid;
+                return $cordovaFileTransfer.download(
+                    network.makeUrl('/babies/'+baby.uuid+'/media'),
+                    destintion, {
+                        auth_token: $localStorage.token
+                    }, true).then(function(){
+                        return destintion;
+                    });
+            });
+        }
+
+        function fetchBaby(baby){
+            return ActivityService.setActivities(baby.uuid, baby.activities).then(function(){
+                delete baby.activities;
+                if(!baby.media){
+                    $localStorage.babies[baby.uuid] = baby;
+                    return baby;
+                }
+                return downloadImage(baby).then(function(path){
+                    baby.displayImage = path;
+                    $localStorage.babies[baby.uuid] = baby;
+                    return baby;
+                });
             });
         }
 
@@ -59,14 +88,7 @@ angular.module('cleverbaby.data')
                 return this.getAllBabiesFromServer('activities').then(function(babies){
 
                     $localStorage.babies = {};
-
-                    var promises = babies.map(function(baby){
-                        return ActivityService.setActivities(baby.uuid, baby.activities).then(function(){
-                            delete baby.activities;
-                            $localStorage.babies[baby.uuid] = baby;
-                            return baby;
-                        });
-                    });
+                    var promises = babies.map(fetchBaby);
 
                     if(typeof cordova != "undefined"){
                         promises.unshift($cordovaFile.createDir(cordova.file.dataDirectory, "babies", true));
@@ -109,8 +131,10 @@ angular.module('cleverbaby.data')
                         url: '/babies/' + data.uuid,
                         data: data
                     });
-                    $localStorage.babies[data.uuid] = data;
-                    resolve(data);
+                    handleFile(data).then(function(){
+                        $localStorage.babies[data.uuid] = data;
+                        resolve(data);  
+                    })
                 });
             }
         };

@@ -10,18 +10,18 @@
                 </div>
             </ion-nav-bar>
             <ul class="list">
-                <li class="item">
-                    Weight oz/lb or g/kg
-                    <span class="item-note">oz/lb</span>
+                <li class="item" ng-repeat="(key, m) in measures" ng-click="change(key, m)">
+                    {{ m.label }}
+                    <span class="item-note">{{ m.valueName }}</span>
                 </li>
-                <li class="item">
+                <!--<li class="item">
                     Length inch/ft or cm/m
-                    <!--<label class="toggle toggle-assertive">
+                    <label class="toggle toggle-assertive">
                         <input type="checkbox">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
-                    </label>-->
+                    </label>
                     <span class="item-note">inch/ft</span>
                 </li>
                 <li class="item">
@@ -31,7 +31,7 @@
                 <li class="item">
                     Temperature C or F
                     <span class="item-note">c</span>
-                </li>
+                </li>-->
             </ul>
         </div>
     </ion-content>

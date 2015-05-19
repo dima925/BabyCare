@@ -18,7 +18,7 @@ angular.module('cleverbaby', [
     'ngStorage',
     'ui.calendar',
     'nvd3'
-]).run(function ($ionicPlatform, $rootScope, AuthService, $timeout, $ionicModal, $location, $cordovaLocalNotification, timerService, BabyService, $localStorage, $cordovaSplashscreen, $http, $cordovaStatusbar, $ionicScrollDelegate) {
+]).run(function ($ionicPlatform, $rootScope, AuthService, $timeout, $ionicModal, $location, $cordovaLocalNotification, timerService, BabyService, $localStorage, $cordovaSplashscreen, $http, $cordovaStatusbar, $ionicScrollDelegate, $state, $timeout) {
 
     $ionicPlatform.ready(function () {
 
@@ -55,7 +55,11 @@ angular.module('cleverbaby', [
             }
         };
 
-
+        $rootScope.onTabSelected = function (that) {
+            $timeout(function () {
+                $state.go('app.more', {});
+            }, 20);
+        };
 
         $rootScope.showPlusButton = false;
 

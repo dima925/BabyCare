@@ -99,119 +99,139 @@ angular
                 diaper_type: "Empty",
                 amount_size: "Tiny",
                 color: "Yellow",
-                texture: "Runny"
+                texture: "Runny",
+                media: []
             };
 
             data.pump = {
                 time: new Date(),
                 side: "",
                 amount: null,
-                start_side: ""
+                start_side: "",
+                media: []
             };
 
             data.play = {
                 time: new Date(),
-                notes: null
+                notes: null,
+                media: []
             };
 
             data.diary = {
                 time: new Date(),
-                notes: null
+                notes: null,
+                media: []
             };
 
             data.vaccination = {
                 time: new Date(),
-                vaccination_type: null
+                vaccination_type: null,
+                media: []
             };
 
             data.growth = {
                 time: new Date(),
                 weight: null,
                 height: null,
-                head: null
+                head: null,
+                media: []
             };
 
             data.milestone = {
                 time: new Date(),
-                milestone_type: null
+                milestone_type: null,
+                media: []
             };
 
             data.sickness = {
                 time: new Date(),
-                symptom: null
+                symptom: null,
+                media: []
             };
 
             data.doctor = {
                 time: new Date(),
                 visit_type: null,
-                doctor: null
+                doctor: null,
+                media: []
             };
 
             data.bath = {
                 time: new Date(),
                 notes: null,
-                temp: null
+                temp: null,
+                media: []
             };
 
             data.medication = {
                 time: new Date(),
                 drug: null,
                 amount_given: null,
-                prescription_interval: null
+                prescription_interval: null,
+                media: []
             };
 
             data.temperature = {
                 time: new Date(),
                 temp: null,
-                reminder: null
+                reminder: null,
+                media: []
             };
 
             data.mood = {
                 time: new Date(),
-                mood_type: null
+                mood_type: null,
+                media: []
             };
 
             data.bottle = {
                 time: new Date(),
                 bottle_type: null,
                 amount: null,
-                notes: null
+                notes: null,
+                media: []
             };
 
             data.todo = {
                 time: new Date(),
-                notes: null
+                notes: null,
+                media: []
             };
 
             data.nurse = {
                 time: new Date(),
                 time_left: null,
                 time_right: null,
-                time_both: null
+                time_both: null,
+                media: []
             };
 
             data.sleep = {
                 time: new Date(),
                 time_slept: null,
                 time_end: new Date(),
-                location: null
+                location: null,
+                media: []
             };
 
             data.solid = {
                 time: new Date(),
-                food_type: null
+                food_type: null,
+                media: []
             };
 
             data.allergy = {
                 time: new Date(),
                 source: null,
                 reaction: null,
-                severity: null
+                severity: null,
+                media: []
             };
 
             data.moment = {
                 time: new Date(),
-                notes: null
+                notes: null,
+                media: []
             };
 
             return data[type];

@@ -4,6 +4,9 @@ angular.module('cleverbaby.directives')
         return {
             restrict: 'EA',
             require: "?ngModel",
+            scope: {
+                'mobiscrollModel': '=',
+            },
             template: function(element, attrs) {
                 var usrClasses = angular.isDefined(attrs['class-child']) ? attrs['class-child'] : '';
                 var usrStyles = angular.isDefined(attrs['style-child']) ? attrs['style-child'] : '';
@@ -12,7 +15,7 @@ angular.module('cleverbaby.directives')
                 var isApple = ionic.Platform.isWebView() && (ionic.Platform.isIPad() || ionic.Platform.isIOS());
 
                 if (isApple)
-                    return '<input type="datetime-local" ng-model="' + attrs['ngModel'] + '" class="mobiscroll-input ' + usrClasses + '" style="' + usrStyles + '" />';
+                    return '<input type="datetime-local" ng-model="appleDateModel" class="mobiscroll-input ' + usrClasses + '" style="' + usrStyles + '" />';
 
                 // if android
                 return '<input type="text" class="mobiscroll-input ' + usrClasses + '" style="' + usrStyles + ' background-color: transparent;" readonly="readonly" /><input type="hidden" class="mobiscroll-hidden" readonly="readonly" />';
@@ -23,6 +26,20 @@ angular.module('cleverbaby.directives')
             	// APPLE 
                 var isApple = ionic.Platform.isWebView() && (ionic.Platform.isIPad() || ionic.Platform.isIOS());
                 if (isApple) {
+
+                    jDateLocal = $(element).find('.mobiscroll-input');
+
+                    // user change
+                    scope.$watch('appleDateModel', function (newDateTime, oldDatetime) {
+                        scope.mobiscrollModel = newDateTime;
+                    });
+
+                    // model change
+                    scope.$watch('mobiscrollModel', function (newDateTime, oldDatetime) {
+                        if(typeof newDateTime == 'undefined')
+                            newDateTime = new Date();
+                        scope.appleDateModel = newDateTime;
+                    });
                     return;
                 }
 
@@ -42,11 +59,6 @@ angular.module('cleverbaby.directives')
 
                 moment.locale('en');
 
-                // redirect clicks
-                $(element).find('.mobiscroll-input').click(function() {
-                    $(element).find('.mobiscroll-hidden').trigger('click');
-                })
-
                 // init mobiscroll
                 $(element).find('.mobiscroll-hidden').mobiscroll().datetime({
                     theme: 'ios', // Specify theme like: theme: 'ios' or omit setting to use default 
@@ -55,31 +67,28 @@ angular.module('cleverbaby.directives')
                     lang: 'en', // Specify language like: lang: 'pl' or omit setting to use default
                 });
 
-                // update interface changes > update visible input & ng-model
-                $(element).find('.mobiscroll-hidden').on('change', function(event) {
+                // redirect clicks
+                $(element).find('.mobiscroll-input').click(function() {
+                    $(element).find('.mobiscroll-hidden').trigger('click');
+                })
 
-                    $(element).find('.mobiscroll-input').val(moment(event.target.value).calendar());
-
-                    if (ngModel)
-                        ngModel.$setViewValue(moment(event.target.value).format('DD/MM/YYYY  hh:mm A'));
+                // model changes > update visible & mobi
+                scope.$watch('mobiscrollModel', function (newDateTime, oldDatetime) {
+                    if(typeof newDateTime == 'undefined')
+                        newDateTime = new Date();
+                    
+                    $(element).find('.mobiscroll-input').val(moment(newDateTime).calendar());
+                    $(element).find('.mobiscroll-hidden').mobiscroll('setVal', newDateTime, true, false);
                 });
 
-                if (!ngModel) return; // do nothing if no ng-model
-
-                // init value
-                $(element).find('.mobiscroll-input').val(moment().calendar());
-                $(element).find('.mobiscroll-hidden').val(moment().calendar());
-
-                // ng-model changes > update mobiscroll
-                ngModel.$render = function() {
-                    var newDateTime = $sce.getTrustedHtml(ngModel.$viewValue || '');
-                    $(element).find('.mobiscroll-input').val(moment(newDateTime, 'DD/MM/YYYY  hh:mm A').calendar());
-                    $(element).find('.mobiscroll-hidden').mobiscroll('setVal', new Date(moment(newDateTime, 'DD/MM/YYYY  hh:mm A').valueOf()), true, false);
-                };
-
-                // init ng-model value
-                ngModel.$setViewValue(moment().format('DD/MM/YYYY  hh:mm A'));
-
+                // interface changes > update visible input & ng-model
+                $(element).find('.mobiscroll-hidden').on('change', function(event) {
+                    
+                    $(element).find('.mobiscroll-input').val(moment(event.target.value, "MM/DD/YYYY hh:mm A").calendar());
+                    scope.$apply(function () {
+                        scope.mobiscrollModel = moment(event.target.value, "MM/DD/YYYY hh:mm A").toDate();    
+                    });
+                });
             }
         }
     }]);
