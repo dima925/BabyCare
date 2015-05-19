@@ -14,7 +14,8 @@
                     <label class="default">
                         <span class="icon-clock"></span> <span data-translate>cleverbaby.app.activity.bottle.time</span>
                     </label>
-                    <input ng-model="modal.data.time" type="datetime-local" placeholder="Today, 06:09PM" class="form-control">
+                    <!--<input ng-model="modal.data.time" type="datetime-local" placeholder="Today, 06:09PM" class="form-control">-->
+                    <div mobiscroll-datetime="" mobiscroll-model="modal.data.time" class-child="form-control"></div>
                 </div>
                 <div class="kotak">
                     <label class="default" data-translate>
@@ -26,9 +27,9 @@
                     <label class="default" data-translate>
                         cleverbaby.app.activity.bottle.amount
                     </label>
-                    <span class="satuan">ml</span>
-                    <input ng-model="modal.data.amount" type="number" class="form-control punya-satuan" step="10" min="10" max="120" value="10" title="">
-                    <!--<div mobiscroll-customunits="" mobiscroll-mode="volume" mobiscroll-model-value="modal.data.amount" mobiscroll-model-unit="modal.data.amount_unit" mobiscroll-id="activity_bottle"></div>-->
+                    <!--<span class="satuan">ml</span>
+                    <input ng-model="modal.data.amount" type="number" class="form-control punya-satuan" step="10" min="10" max="120" value="10" title="">-->
+                    <div mobiscroll-customunits="" mobiscroll-mode="volume" mobiscroll-model-value="modal.data.amount" mobiscroll-model-unit="modal.data.amount_unit" mobiscroll-id="activity_bottle"></div>
                 </div>
                 <div class="kotak">
                     <label class="default" data-translate>
