@@ -55,8 +55,8 @@ angular.module('cleverbaby.directives')
                         var startTime = moment.duration(startTime);
                         var valueDateEnd = moment.duration(endTime);
                         var durationMinute = valueDateEnd.subtract(startTime).asMinutes(); //
-                        var durationPercentage = (332/1440) * durationMinute;
-                        var fillPercentage = (durationPercentage/ 332) * 100;
+                        var durationPercentage = (timelineIonContentWidth/1440) * durationMinute;
+                        var fillPercentage = (durationPercentage/ timelineIonContentWidth) * 100;
 
                         return fillPercentage;
                     }
