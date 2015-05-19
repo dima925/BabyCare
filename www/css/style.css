@@ -1064,3 +1064,7 @@ form .hidden-submit{
 .mbsc-ios.dw-bottom {
   pointer-events: auto;
 }
+
+div[mobiscroll-mode="predefined"] input {
+  background-color: transparent !important;
+}

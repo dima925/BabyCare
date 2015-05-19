@@ -18,7 +18,7 @@ angular.module('cleverbaby.directives')
                     return '<input type="text" class="mobiscroll-input ' + usrClasses + '" style="' + usrStyles + ' background-color: transparent;" readonly="readonly" /><input type="datetime-local" ng-model="appleDateModel" class="mobiscroll-hidden" style="padding-top: 14px;" />';
 
                 // if android
-                return '<input type="text" class="mobiscroll-input ' + usrClasses + '" style="' + usrStyles + ' background-color: transparent;" readonly="readonly" /><input type="hidden" class="mobiscroll-hidden" />';
+                return '<input type="text" class="mobiscroll-input ' + usrClasses + '" style="' + usrStyles + ' background-color: transparent;" readonly="readonly" /><input type="hidden" class="mobiscroll-hidden ' + usrClasses + '" style="' + usrStyles + ' background-color: transparent;"  />';
             },
 
             link: function(scope, element, attrs, ngModel) {
