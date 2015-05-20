@@ -567,26 +567,26 @@ input{
 
 /* color activity */
 .more {background: #232323;}
-.diapers { background: #ff6b01; } .diapers .footer a.btn-mid { color: #ff6b01 }
-.bottle { background: #66cc33; } .bottle .footer a.btn-mid { color: #66cc33 }
-.nurse { background: #3300cc; } .nurse .footer a.btn-mid { color: #3300cc }
-.activity { background: #336699; } .activity .footer a.btn-mid { color: #336699 }
-.bath { background: #33ccff; } .bath .footer a.btn-mid { color: #33ccff }
-.diary { background: #00cc99; } .diary .footer a.btn-mid { color: #00cc99 }
-.doctor { background: #cc33ff; } .doctor .footer a.btn-mid { color: #cc33ff }
-.growth { background: #99cc00; } .growth .footer a.btn-mid { color: #99cc00 }
-.medication { background: #6633cc; } .medication .footer a.btn-mid { color: #6633cc }
-.milestone { background: #003366; } .milestone .footer a.btn-mid { color: #003366 }
-.mood { background: #ff9933; } .mood .footer a.btn-mid { color: #ff9933 }
-.play { background: #9933ff; } .play .footer a.btn-mid { color: #9933ff } 
-.pumping { background: #00cc33; } .pumping .footer a.btn-mid { color: #00cc33 }
-.sickness { background: #3366ff; } .sickness .footer a.btn-mid { color: #3366ff }
-.temp { background: #ff0000; } .temp .footer a.btn-mid { color: #ff0000 }
-.todo { background: #66cc00;} .todo .footer a.btn-mid { color: #66cc00 }
-.vaccination { background: #cc3366; } .vaccination .footer a.btn-mid { color: #cc3366 }
-.sleep { background: #0099cc; } .sleep .footer a.btn-mid { color: #0099cc }
-.solid {background: #ffcc00;} .solid .footer a.btn-mid { color: #ffcc00 }
-.allergy { background: #5c6bc0; } .allergy .footer a.btn-mid { color: #5c6bc0 }
+.diapers { background: #ff6b01; } .diapers .footer a.btn-mid, .diaper-color { color: #ff6b01 }
+.bottle { background: #66cc33; } .bottle .footer a.btn-mid, .bottle-color { color: #66cc33 }
+.nurse { background: #3300cc; } .nurse .footer a.btn-mid, .nurse-color { color: #3300cc }
+.activity { background: #336699; } .activity .footer a.btn-mid, .activity-color { color: #336699 }
+.bath { background: #33ccff; } .bath .footer a.btn-mid, .bath-color { color: #33ccff }
+.diary { background: #00cc99; } .diary .footer a.btn-mid, .diary-color { color: #00cc99 }
+.doctor { background: #cc33ff; } .doctor .footer a.btn-mid, .doctor-color { color: #cc33ff }
+.growth { background: #99cc00; } .growth .footer a.btn-mid, .growth-color { color: #99cc00 }
+.medication { background: #6633cc; } .medication .footer a.btn-mid, .medication-color { color: #6633cc }
+.milestone { background: #003366; } .milestone .footer a.btn-mid, .milestone-color { color: #003366 }
+.mood { background: #ff9933; } .mood .footer a.btn-mid, .mood-color { color: #ff9933 }
+.play { background: #9933ff; } .play .footer a.btn-mid, .play-color { color: #9933ff } 
+.pumping { background: #00cc33; } .pumping .footer a.btn-mid, .pumping-color { color: #00cc33 }
+.sickness { background: #3366ff; } .sickness .footer a.btn-mid, .sickness-color { color: #3366ff }
+.temp { background: #ff0000; } .temp .footer a.btn-mid, .temp-color { color: #ff0000 }
+.todo { background: #66cc00;} .todo .footer a.btn-mid, .todo-color { color: #66cc00 }
+.vaccination { background: #cc3366; } .vaccination .footer a.btn-mid, .vaccination-color { color: #cc3366 }
+.sleep { background: #0099cc; } .sleep .footer a.btn-mid, .sleep-color { color: #0099cc }
+.solid {background: #ffcc00;} .solid .footer a.btn-mid, .solid-color { color: #ffcc00 }
+.allergy { background: #5c6bc0; } .allergy .footer a.btn-mid, .allergy-color { color: #5c6bc0 }
 .dropdown {background: #fff;} 
 
 .diapers .item-radio input:checked ~ .item-content { color: #ff6b01}
