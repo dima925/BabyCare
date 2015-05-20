@@ -16,11 +16,29 @@
                 </label>
                 <div mobiscroll-datetime="" mobiscroll-model="modal.data.time" class-child="form-control"></div>
             </div>
-            <div class="kotak">
-                <label class="default" data-translate>
+            <div class="kotak double-height">
+                <div class="xs-3">
+                    <input type="radio" id="happy" name="mood" class="hidden" />
+                    <label class="mood happy" for="happy">
+                        <span>Happy</span>
+                    </label>    
+                </div>
+                <div class="xs-3">
+                    <input type="radio" id="ok" name="mood" class="hidden" />
+                    <label class="mood ok" for="ok">
+                        <span>OK</span>
+                    </label>    
+                </div>
+                <div class="xs-3">
+                    <input type="radio" id="sad" name="mood" class="hidden" />
+                    <label class="mood sad" for="sad">
+                        <span>Sad</span>
+                    </label>    
+                </div>
+                <!-- <label class="default" data-translate>
                     cleverbaby.app.activity.mood.mood_type
                 </label>
-                <input ng-model="modal.data.mood_type" type="text" placeholder="{{ 'cleverbaby.app.activity.mood.mood_type.placeholder' | translate }}" class="form-control">
+                <input ng-model="modal.data.mood_type" type="text" placeholder="{{ 'cleverbaby.app.activity.mood.mood_type.placeholder' | translate }}" class="form-control"> -->
             </div>
         </div>
         <!-- addpic/addnote -->

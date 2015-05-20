@@ -538,6 +538,7 @@ input{
   font-weight: bolder;
 }
 /*helper*/
+.hidden { display: none !important;}
 .pull-left { float: left; }
 .pull-right { float: right; }
 .text-left { text-align: left !important;}
@@ -590,6 +591,14 @@ input{
 .diapers .item-radio input:checked ~ .item-content { color: #ff6b01}
 .bottle .item-radio input:checked ~ .item-content { color: #66cc33}
 .nurse .item-radio input:checked ~ .item-content { color: #3300cc}
+
+input:checked ~ label.mood { opacity: 1;}
+label.mood { text-align: center; width: 100%; display: inline-block; opacity: .7; line-height: 1.4em; font-size: 11px;}
+label.mood:before { display: inline-block; font-family: "icomoon"; font-size: 56px; width: 100%; line-height: 1em;  }
+label.mood.happy:before { content: "\e617"; }
+label.mood.ok:before { content: "\e616"; }
+label.mood.sad:before { content: "\e619"; }
+
 .wrapper { font-family: 'Roboto', sans-serif !important;
   padding:0 10px 0; width: 100%; display: block; position: absolute; bottom:0; left: 0;color: #fff !important;
 }
@@ -967,6 +976,7 @@ td.fc-day { margin: 0 !important;padding:0 !important; margin: 0 !important; }
 .thumb { width: 60px; height: 60px; overflow: hidden; border-radius: 50px;} .thumb img { width: 100%; margin-left: 0%;  }
 .thumb.thumb-rounded { border-radius: 4px !important;}
 .thumb-activity { height: 86px; width: 86px; margin: 6px; }
+
 /********************************************/
 .rotate-to-cross{    -ms-transform: rotate(-20deg); /* IE 9 */    -webkit-transform: rotate(-20deg); /* Safari */    transform: rotate(-20deg);}
 .hide-plus-btn{    display: none;}
