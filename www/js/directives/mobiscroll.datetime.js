@@ -82,10 +82,12 @@ angular.module('cleverbaby.directives')
 
                 // init mobiscroll
                 $(element).find('.mobiscroll-hidden').mobiscroll().datetime({
-                    theme: 'ios', // Specify theme like: theme: 'ios' or omit setting to use default 
+                    theme: 'android-holo-light', // Specify theme like: theme: 'ios' or omit setting to use default 
                     mode: 'scroller', // Specify scroller mode like: mode: 'mixed' or omit setting to use default 
                     display: 'bottom', // Specify display mode like: display: 'bottom' or omit setting to use default 
                     lang: 'en', // Specify language like: lang: 'pl' or omit setting to use default
+					dateFormat: 'yy-mm-dd',
+					timeFormat: 'HH:ii:ss'
                 });
 
                 // redirect clicks
@@ -104,10 +106,9 @@ angular.module('cleverbaby.directives')
 
                 // interface changes > update visible input & ng-model
                 $(element).find('.mobiscroll-hidden').on('change', function(event) {
-                    
-                    $(element).find('.mobiscroll-input').val(moment(event.target.value, "MM/DD/YYYY hh:mm A").calendar());
+                    $(element).find('.mobiscroll-input').val(moment(event.target.value).calendar());
                     scope.$apply(function () {
-                        scope.mobiscrollModel = moment(event.target.value, "MM/DD/YYYY hh:mm A").toDate();    
+                        scope.mobiscrollModel = moment(event.target.value).toDate();    
                     });
                 });
             }

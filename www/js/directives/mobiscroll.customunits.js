@@ -26,7 +26,8 @@ angular.module('cleverbaby.directives')
                         cat = angular.isDefined(attrs['cat']) ? attrs['cat'] : 0,  // ml or L
                         measure = MeasureunitService.getSettings()[mode],
                         units = measure.units[cat],
-                        systemUnit = measure.units[cat][measure.value];
+                        systemUnit = measure.units[cat][measure.value],
+                        isApple = ionic.Platform.isWebView() && (ionic.Platform.isIPad() || ionic.Platform.isIOS());
 
                     function getRange (min, max, step) {
                         var list = [];
@@ -115,7 +116,7 @@ angular.module('cleverbaby.directives')
                         ];
 
                     jHidden.mobiscroll().scroller({
-                        theme: 'ios',
+                        theme: isApple ? 'ios' : 'android-holo-light',
                         display: 'bottom',
                         wheels: wheel,
                         headerText: '',

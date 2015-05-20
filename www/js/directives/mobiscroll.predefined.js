@@ -83,7 +83,8 @@ angular.module('cleverbaby.directives')
             link: function(scope, element, attrs) {
 
             	var mode = angular.isDefined(scope.mobiscrollMode) ? scope.mobiscrollMode : MODE_PREDEFINED,
-            		data = {};
+            		data = {},
+                    isApple = ionic.Platform.isWebView() && (ionic.Platform.isIPad() || ionic.Platform.isIOS());
         		
             	if(mode == MODE_PREDEFINED) {
             		// get data from source
@@ -99,7 +100,7 @@ angular.module('cleverbaby.directives')
             	var jInput = $(element).find('.mobiscroll-input')
 
             	jInput.mobiscroll().select({
-                    theme: 'ios',
+                    theme: isApple ? 'ios' : 'android-holo-light',
                     display: 'bottom',
                     minWidth: 200,
                     label: '',
