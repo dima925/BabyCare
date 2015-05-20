@@ -6,7 +6,6 @@ angular.module('cleverbaby.directives')
             link: function (scope, element) {
 
                 ActivityService.getAllActivitiesByBabyId($rootScope.babyId, 0, 10).then(function(activities){
-                    console.log(activities);
 
                     var dateToday = moment(new Date()).format("MM-DD-YYYY");
                     var dateYesterday = moment(new Date()).subtract(1, 'days').format("MM-DD-YYYY");
@@ -47,9 +46,7 @@ angular.module('cleverbaby.directives')
                     //get percentage of 1minute in 1440 minutes
                     // (332/1440) * durationMinute = fillPx
                     //(fillpx / 332) x 100
-                    var timelineIonContentWidth = angular.element('.timeline-ion-content').css('width').replace('px',''); //332px sample
-                    var timeSlotWidth = angular.element('.timeline-grid li').css('width').replace('px',''); // 3hrs is 44px sample
-                    var percentageOfMinute = (1/1440) *100;
+                    var timelineIonContentWidth = parseInt(angular.element('.timeline-ion-content').css('width').replace('px','')); //332px sample
 
                     function calculateDurationPercentage(startTime, endTime){
                         var startTime = moment.duration(startTime);

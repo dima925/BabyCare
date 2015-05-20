@@ -91,10 +91,14 @@ angular.module('cleverbaby.controllers')
         autorefresh: true, // default: true
         refreshDataOnly: false // default: false
     };
-        
-    $scope.trendTemplate = 'templates/trends/growth.html';
 
+    $scope.activeActivityType = "growth";
+    $scope.trendTemplate = 'templates/trends/'+$scope.activeActivityType+'.html';
 
+    $scope.changeActivityType = function(activityType){
+        $scope.activeActivityType = activityType;
+        $scope.trendTemplate = 'templates/trends/'+activityType+'.html';
+    }
 
 }]).controller('SleepCtrl', ['$scope', function ($scope) {
 
@@ -165,6 +169,151 @@ angular.module('cleverbaby.controllers')
             }
         ];
 
+
+
+}]).controller('TrendCtrl', ['$filter', '$scope', '$rootScope', 'ActivityService', function ($filter, $scope, $rootScope, ActivityService) {
+
+        var activeDate = moment();
+
+        /**
+         * Toggle data by weekly or Monthly
+         * @dateType - fase is monthly, true is weekly
+         */
+        $scope.toggleDurationType = function(dateTypeBoolean){
+            if($scope.weekly != dateTypeBoolean){
+                $scope.weekly = dateTypeBoolean;
+                generateFromToDateText(activeDate, $scope.weekly);
+            }
+        };
+
+        /**
+         * Change the fromDate and toDate, Sunday to Monday
+         * @date - date
+         * @dateType - weekly or monthly //true is weekly, false is monthly
+         */
+        function generateFromToDateText(date, dateType){
+            //activeDate = date;
+            if(dateType) {
+                var firstDay = moment(date).day(0);
+                var lastDay = moment(date).day(6);
+            } else {
+                var firstDay = moment(date).date(1);
+                var lastDay = moment(firstDay).endOf('month');
+            }
+            activeDate = firstDay;
+            var from = moment(firstDay).format("Do") + " " + moment(firstDay).format("MMMM");
+            var to = moment(lastDay).format("Do") + " " + moment(lastDay).format("MMMM");
+            $scope.fromToDateText = from + " - " + to;
+        }
+
+        /**
+         * creates the options required by the plugin.
+         */
+        function createOptions(xAxisLabel, yAxisLabel, tickValues) {
+            $scope.options = {
+                chart: {
+                    type: 'discreteBarChart',
+                    height: 450,
+                    margin : {
+                        top: 20,
+                        right: 20,
+                        bottom: 60,
+                        left: 55
+                    },
+                    x: function(d){return d.label;},
+                    y: function(d){return d.value;},
+                    showValues: true,
+                    valueFormat: function(d){
+                        return d3.format(',.4f')(d);
+                    },
+                    transitionDuration: 500,
+                    xAxis: {
+                        tickValues: tickValues,
+                        axisLabel: xAxisLabel
+                    },
+                    yAxis: {
+                        axisLabel: yAxisLabel,
+                        axisLabelDistance: 30
+                    }
+                }
+            };
+        }
+
+        var activityTypeFiltersCalculation = {};
+
+        activityTypeFiltersCalculation.sleep = function (dataActivityType) {
+            var sleepHours = {};
+            angular.forEach(dataActivityType, function(sleep, index){
+                var startTimeKey = moment(sleep.time).format("MM-DD-YYYY");
+                var valueDateStart = moment.duration(sleep.time);
+                var valueDateEnd = moment.duration(sleep.time_end);
+                if(sleepHours[startTimeKey]){
+                    sleepHours[startTimeKey].total += valueDateEnd.subtract(valueDateStart).asHours(); //
+                }else{
+                    sleepHours[startTimeKey] = {
+                        'total': valueDateEnd.subtract(valueDateStart).asHours()
+                    }
+                }
+            })
+            return sleepHours;
+        }
+
+
+        /**
+         * Creates the required data for the plugin
+         */
+        function generateData(date, dataActivityType, isWeekly){
+
+            var acitivityDataValues = [];
+            var dataType = dataActivityType[0].type;
+            var sortedDataActivityType = activityTypeFiltersCalculation[dataType](dataActivityType);
+
+            if(isWeekly){
+                var firstDay = moment(date).day(0);
+                var lastDay = moment(date).day(6);
+                var labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                for(var x = 0; x <= 6; x++){
+                    var datePeriodFormatted = moment(date).day(x).format("MM-DD-YYYY");
+                    var totalValue = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].total : 0;
+                    acitivityDataValues.push({
+                        "label":  labels[x],
+                        "value": totalValue
+                    });
+                }
+            }else{
+                var firstDay = moment(date).date(1);
+                var lastDay = moment(firstDay).endOf('month').date();
+
+                for(var x = 1; x <= lastDay; x++){
+                    var datePeriodFormatted = moment(date).day(x).format("MM-DD-YYYY");
+                    var label = "";
+                    if(5 % x == 0){
+                        label = x;
+                    }
+                    var totalValue = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].total : 0;
+                    acitivityDataValues.push({
+                        "label":  label,
+                        "value": totalValue
+                    });
+                }
+            }
+
+            $scope.discreteChartData = [
+                {
+                    key: "Cumulative Return",
+                    values: acitivityDataValues
+                }
+            ];
+
+        }
+
+        /**
+         * Generates the average details info displayed below of the graph
+         */
+        function generateAverageInfo(){
+
+        }
+
         $scope.config = {
             visible: true, // default: true
             extended: false, // default: false
@@ -173,8 +322,31 @@ angular.module('cleverbaby.controllers')
             refreshDataOnly: false // default: false
         };
 
-}]).controller('PumpingCtrl', ['$scope', function ($scope) {
+        /**
+         * generate and filter next period Infos
+         */
+        $scope.nextPeriod = function(){
+            generateFromToDateText(moment(activeDate).add(1, 'days'), $scope.weekly);
+        }
 
+        /**
+         * generate and filter prev period Infos
+         */
+        $scope.prevPeriod = function(){
+            generateFromToDateText(moment(activeDate).subtract(1, 'days'), $scope.weekly);
+        }
 
+        $scope.weekly = true;
+        generateFromToDateText(activeDate, $scope.weekly); //generate of date today
+
+        ActivityService.getAllActivitiesByBabyId($rootScope.babyId, 0, 1000).then(function(activities){
+            var trendInfoObj = {};
+            trendInfoObj.sleep = $filter('filter')(activities, {'type': 'sleep'});
+            trendInfoObj.pumping = $filter('filter')(activities, {'type': 'pumping'});
+            trendInfoObj.diaper = $filter('filter')(activities, {'type': 'diaper'});
+            trendInfoObj.feeding = $filter('filter')(activities, {'type': 'feeding'});
+
+            generateData(activeDate, trendInfoObj[$scope.activeActivityType], $scope.weekly);
+        });
 
 }]);

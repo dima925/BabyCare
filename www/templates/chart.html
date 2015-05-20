@@ -9,12 +9,12 @@
     </ion-nav-bar>
   </div>
   <div class="padding combo-box">
-      <select ng-model="trendTemplate">
-          <option value="templates/trends/growth.html" selected>Growth</option>
-          <option value="templates/trends/feeding.html">Feeding</option>
-          <option value="templates/trends/diaper.html">Diaper</option>
-          <option value="templates/trends/sleep.html">Sleep</option>
-          <option value="templates/trends/pumping.html">Pumping</option>
+      <select ng-model="activeActivityType" ng-change="changeActivityType(activeActivityType)">
+          <option value="growth" selected>Growth</option>
+          <option value="feeding">Feeding</option>
+          <option value="diaper">Diaper</option>
+          <option value="sleep">Sleep</option>
+          <option value="pumping">Pumping</option>
       </select>
   </div>
   <div class="row responsive-sm" ng-include="trendTemplate"></div>
