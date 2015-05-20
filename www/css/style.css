@@ -1053,7 +1053,15 @@ form .hidden-submit{
 .mbsc-ios.dw-bottom {
   pointer-events: auto;
 }
-
+.mbsc-android-holo-light.dw-bottom {
+  pointer-events: auto;
+}
+.mbsc-android-holo-light .dw div {
+  /*font-size: 12px;*/
+}
+.mbsc-android-holo-light .dwfl {
+  min-width: 45px !important;
+}
 div[mobiscroll-mode="predefined"] input {
   background-color: transparent !important;
 }

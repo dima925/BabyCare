@@ -82,7 +82,7 @@ angular.module('cleverbaby.directives')
 
                 // init mobiscroll
                 $(element).find('.mobiscroll-hidden').mobiscroll().datetime({
-                    theme: 'ios', // Specify theme like: theme: 'ios' or omit setting to use default 
+                    theme: 'android-holo-light', // Specify theme like: theme: 'ios' or omit setting to use default 
                     mode: 'scroller', // Specify scroller mode like: mode: 'mixed' or omit setting to use default 
                     display: 'bottom', // Specify display mode like: display: 'bottom' or omit setting to use default 
                     lang: 'en', // Specify language like: lang: 'pl' or omit setting to use default
