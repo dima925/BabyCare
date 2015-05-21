@@ -3,12 +3,12 @@ angular.module('cleverbaby.controllers')
 
 	$scope.closeModal=function(){
 		// $scope.modal.hide();
-       	
+
 		$scope.modal.hide().then(function(){
 			// this would be the better way to hide the plus button, but its bit slower, so i prefer the hardcoded way below
 			// $rootScope.showPlusButton = false
 		});
-		
+
 		if ($scope.addMoreModal.isShown()){
            // dont hide the floating-plus-button because we want to keep showing it on the addMoreModal
         } else {
@@ -20,9 +20,9 @@ angular.module('cleverbaby.controllers')
             $rootScope.showPlusButton = false;
             $ionicClickBlock.hide();
             }, 200);
-        } 
+        }
     };
-	
+
     $ionicModal.fromTemplateUrl('templates/modals/addMore.html',function(addmore){
         $scope.addMoreModal = addmore;
     });
@@ -30,14 +30,6 @@ angular.module('cleverbaby.controllers')
         //$rootScope.activatePlus = true;
         //$scope.modal.hide();
         $scope.addMoreModal.show();
-    };
-	$scope.newNursed = function(){
-		$scope.modal.hide();
-        $scope.nursedModal.show();
-    };
-    $scope.newDiapers = function(){
-    	$scope.modal.hide();
-        $scope.diapersModal.show();
     };
 
     $scope.newBottle = function(){
@@ -48,6 +40,7 @@ angular.module('cleverbaby.controllers')
     $scope.openModal = function(type){
         $rootScope.hidePlusBtn = true;
         //$scope.closeModal();
+        console.log('narek');
         activityModals.showModal(type);
     };
 }]);

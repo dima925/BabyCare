@@ -19,7 +19,7 @@ angular.module('cleverbaby.controllers')
                     $scope.TodayBath = counts.bathCount > 0;
                     $scope.BathCount = counts.bathCount;
                     $scope.PlayCount = counts.playCount;
-                    $scope.ChangeCount = counts.changeCount;
+                    $scope.DiaperCount = counts.diaperCount;
                     $scope.NurseCount = counts.nurseCount;
                     $scope.SleepCount = counts.sleepCount;
                 });
@@ -79,8 +79,8 @@ angular.module('cleverbaby.controllers')
 
             function increaseTodayStatus(activity){
                 if(isToDay(activity.time)){
-                    if(activity.type == 'change'){
-                        ++$scope.ChangeCount;
+                    if(activity.type == 'diaper'){
+                        ++$scope.DiaperCount;
                     }
                     if(activity.type == 'nurse'){
                         ++$scope.NurseCount;
@@ -101,8 +101,8 @@ angular.module('cleverbaby.controllers')
             }
 
             function decreaseTodayStatus(activity){
-                if(activity.type == 'change'){
-                    --$scope.ChangeCount;
+                if(activity.type == 'diaper'){
+                    --$scope.DiaperCount;
                 }
                 if(activity.type == 'nurse'){
                     --$scope.NurseCount;
