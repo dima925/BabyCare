@@ -17,46 +17,50 @@ angular.module('cleverbaby.data')
 
         function filter(data){
             var newData;
-            if(data.type == "change"){
+            if(data.type == "diaper"){
                 newData = {
                     comment: data.comment,
                     time: data.time,
                     diaper_type: data.diaper_type,
-                    amount_size: data.amount_size,
-                    color: data.color,
-                    texture: data.texture,
-                    type: "change"
+                    diaper_color: data.diaper_color,
+                    diaper_texture: data.diaper_texture,
+                    diaper_amount: data.diaper_amount,
+                    diaper_brand: data.diaper_brand,
+                    diaper_leaked: data.diaper_leaked,
+                    type: "diaper"
                 }
             }
             if(data.type == "pump"){
                 newData = {
-                    comment: data.comment,
+                    note: data.note,
                     time: data.time,
-                    side: data.side,
-                    amount: data.amount,
-                    start_side: data.start_side,
+                    pump_side: data.pump_side,
+                    pump_amount: data.pump_amount,
+                    pump_startside: data.pump_startside,
+                    pump_bottlelabel: data.pump_bottlelabel,
                     type: "pump"
                 }
             }
             if(data.type == "play"){
                 newData = {
-                    comment: data.comment,
+                    comment: data.note,
                     time: data.time,
-                    notes: data.notes,
+                    play_comment: data.play_comment,
+                    play_location: data.play_location,
                     type: "play"
                 }
             }
             if(data.type == "diary"){
                 newData = {
-                    comment: data.comment,
+                    note: data.note,
                     time: data.time,
-                    notes: data.notes,
+                    diary_desc: data.diary_desc,
                     type: "diary"
                 }
             }
             if(data.type == "vaccination"){
                 newData = {
-                    comment: data.comment,
+                    note: data.note,
                     time: data.time,
                     vaccination_type: data.vaccination_type,
                     type: "vaccination"
@@ -64,11 +68,11 @@ angular.module('cleverbaby.data')
             }
             if(data.type == "growth"){
                 newData = {
-                    comment: data.comment,
+                    note: data.note,
                     time: data.time,
-                    height: data.height,
-                    weight: data.weight,
-                    head_size: data.head_size,
+                    growth_height: data.growth_height,
+                    growth_weight: data.growth_weight,
+                    growth_headsize: data.growth_headsize,
                     type: "growth"
                 }
             }
@@ -82,52 +86,55 @@ angular.module('cleverbaby.data')
             }
             if(data.type == "sick"){
                 newData = {
-                    comment: data.comment,
+                    note: data.note,
                     time: data.time,
-                    symptom: data.symptom,
+                    sick_symptom: data.sick_symptom,
                     type: "sick"
                 }
             }
             if(data.type == "doctor"){
                 newData = {
-                    comment: data.doctor,
+                    note: data.note,
                     time: data.time,
-                    doctor: data.doctor || "No Doctor",
-                    visit_type: data.visit_type,
+                    doctor_type: data.doctor_type,
+                    doctor_name: data.doctor_name || "No Doctor",
                     type: "doctor"
                 }
             }
             if(data.type == "bath"){
                 newData = {
-                    comment: data.comment,
+                    note: data.note,
                     time: data.time,
-                    temp: data.temp,
-                    notes: data.notes,
+                    bath_comment: data.bath_comment,
+                    bath_temp: data.bath_temp,
                     type: "bath"
                 }
             }
             if(data.type == "medication"){
                 newData = {
-                    comment: data.comment,
+                    note: data.note,
                     time: data.time,
-                    drug: data.drug,
-                    amount_given: data.amount_given,
-                    prescription_interval: data.prescription_interval,
+                    medication_drug: data.medication_drug,
+                    medication_drugdesc: data.medication_drugdesc,
+                    medication_amountgiven: data.medication_amountgiven,
+                    medication_prescriptionamount: data.medication_prescriptionamount,
+                    medication_prescriptionunit: data.medication_prescriptionunit,
+                    medication_prescriptioninterval: data.medication_prescriptioninterval,
                     type: "medication"
                 }
             }
             if(data.type == "temperature"){
                 newData = {
-                    comment: data.comment,
+                    note: data.note,
                     time: data.time,
-                    temp: data.temp,
-                    reminder: data.reminder,
+                    temperature_reminder: data.temperature_reminder,
+                    temperature_temp: data.temperature_temp,
                     type: "temperature"
                 }
             }
             if(data.type == "mood"){
                 newData = {
-                    comment: data.comment,
+                    note: data.note,
                     time: data.time,
                     mood_type: data.mood_type,
                     type: "mood"
@@ -135,64 +142,67 @@ angular.module('cleverbaby.data')
             }
             if(data.type == "bottle"){
                 newData = {
-                    comment: data.comment,
+                    note: data.note,
                     time: data.time,
                     bottle_type: data.bottle_type,
-                    amount: data.amount,
-                    notes: data.notes,
+                    bottle_amount: data.bottle_amount,
+                    bottle_comment: data.bottle_comment,
                     type: "bottle"
                 }
             }
             if(data.type == "todo"){
                 newData = {
-                    comment: data.comment,
+                    note: data.note,
                     time: data.time,
-                    notes: data.notes,
+                    todo_desc: data.todo_desc,
                     type: "todo"
                 }
             }
             if(data.type == "nurse"){
                 newData = {
-                    comment: data.comment,
+                    note: data.note,
                     time: data.time,
-                    time_left: data.time_left,
-                    time_right: data.time_right,
-                    time_both: data.time_both,
+                    nurse_timeleft: data.nurse_timeleft,
+                    nurse_timeright: data.nurse_timeright,
+                    nurse_timeboth: data.nurse_timeboth,
+                    nurse_comment: data.nurse_comment,
                     type: "nurse"
                 }
             }
             if(data.type == "sleep"){
                 newData = {
-                    comment: data.comment,
+                    note: data.note,
                     time: data.time,
-                    time_end: data.time_end,
-                    location: data.location,
+                    sleep_location: data.sleep_location,
+                    sleep_timeend: data.sleep_timeend,
+                    sleep_comment: data.sleep_comment,
                     type: "sleep"
                 }
             }
             if(data.type == "solid") {
                 newData = {
-                    comment: data.comment,
+                    note: data.note,
                     time: data.time,
-                    food_type: data.food_type,
+                    solid_foodtype: data.solid_foodtype,
                     type: "solid"
                 }
             }
             if(data.type == "allergy"){
                 newData = {
-                    comment: data.comment,
+                    note: data.note,
                     time: data.time,
-                    source: data.source,
-                    reaction: data.reaction,
-                    severity: data.severity,
+                    allergy_source: data.allergy_source,
+                    allergy_reaction: data.allergy_reaction,
+                    allergy_severity: data.allergy_severity,
                     type: "allergy"
                 }
             }
             if(data.type == "moment"){
                 newData = {
-                    comment: data.comment,
+                    note: data.note,
                     time: data.time,
-                    notes: data.notes,
+                    moment_desc: data.moment_desc,
+                    moment_daily: data.moment_daily,
                     type: "moment"
                 }
             }
@@ -364,7 +374,7 @@ angular.module('cleverbaby.data')
                 return $q(function(resolve, reject){
                     var count = {
                         nurseCount: 0,
-                        changeCount: 0,
+                        diaperCount: 0,
                         bathCount: 0,
                         playCount: 0,
                         sleepCount: 0
@@ -380,8 +390,8 @@ angular.module('cleverbaby.data')
                                 ++count.playCount;
                             } else if(activity.type == "bath"){
                                 ++count.bathCount;
-                            } else if(activity.type == "change"){
-                                ++count.changeCount;
+                            } else if(activity.type == "diaper"){
+                                ++count.diaperCount;
                             } else if(activity.type == "sleep"){
                                 ++count.sleepCount;
                             }
@@ -392,6 +402,9 @@ angular.module('cleverbaby.data')
             },
             getAllActivitiesByBabyId: function(babyId, start, limit){
                 return $q(function(resolve, reject){
+                    console.log($localStorage.activities);
+                    console.log(babyId);
+                    console.log($localStorage.activities[babyId]);
                     resolve($localStorage.activities[babyId].slice(start, start+limit).map(function(x){
                         x.time = new Date(x.time);
                         return x;

@@ -49,7 +49,7 @@ html, body { font-family: 'Roboto', sans-serif !important;  }
 
 /* override ionic ios default top margin to accomodate ios status bar */
 .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) > * {
-margin-top: 10px !important;  
+margin-top: 10px !important;
 }
 
 /*SLIDER*/
@@ -567,10 +567,10 @@ input{
 
 /* color activity */
 .more {background: #232323;}
-.diapers { background: #ff6b01; } .diapers .footer a.btn-mid, .diaper-color { color: #ff6b01 }
+.diaper { background: #ff6b01; } .diaper .footer a.btn-mid, .diaper-color { color: #ff6b01 }
 .bottle { background: #66cc33; } .bottle .footer a.btn-mid, .bottle-color { color: #66cc33 }
 .nurse { background: #3300cc; } .nurse .footer a.btn-mid, .nurse-color { color: #3300cc }
-.activity { background: #336699; } .activity .footer a.btn-mid, .activity-color { color: #336699 }
+.moment { background: #336699; } .moment .footer a.btn-mid, .moment-color { color: #336699 }
 .bath { background: #33ccff; } .bath .footer a.btn-mid, .bath-color { color: #33ccff }
 .diary { background: #00cc99; } .diary .footer a.btn-mid, .diary-color { color: #00cc99 }
 .doctor { background: #cc33ff; } .doctor .footer a.btn-mid, .doctor-color { color: #cc33ff }
@@ -578,16 +578,16 @@ input{
 .medication { background: #6633cc; } .medication .footer a.btn-mid, .medication-color { color: #6633cc }
 .milestone { background: #003366; } .milestone .footer a.btn-mid, .milestone-color { color: #003366 }
 .mood { background: #ff9933; } .mood .footer a.btn-mid, .mood-color { color: #ff9933 }
-.play { background: #9933ff; } .play .footer a.btn-mid, .play-color { color: #9933ff } 
-.pumping { background: #00cc33; } .pumping .footer a.btn-mid, .pumping-color { color: #00cc33 }
-.sickness { background: #3366ff; } .sickness .footer a.btn-mid, .sickness-color { color: #3366ff }
-.temp { background: #ff0000; } .temp .footer a.btn-mid, .temp-color { color: #ff0000 }
+.play { background: #9933ff; } .play .footer a.btn-mid, .play-color { color: #9933ff }
+.pump { background: #00cc33; } .pump .footer a.btn-mid, .pump { color: #00cc33 }
+.sick { background: #3366ff; } .sick .footer a.btn-mid, .sick-color { color: #3366ff }
+.temperature { background: #ff0000; } .temperature .footer a.btn-mid, .temperature-color { color: #ff0000 }
 .todo { background: #66cc00;} .todo .footer a.btn-mid, .todo-color { color: #66cc00 }
 .vaccination { background: #cc3366; } .vaccination .footer a.btn-mid, .vaccination-color { color: #cc3366 }
 .sleep { background: #0099cc; } .sleep .footer a.btn-mid, .sleep-color { color: #0099cc }
 .solid {background: #ffcc00;} .solid .footer a.btn-mid, .solid-color { color: #ffcc00 }
 .allergy { background: #5c6bc0; } .allergy .footer a.btn-mid, .allergy-color { color: #5c6bc0 }
-.dropdown {background: #fff;} 
+.dropdown {background: #fff;}
 
 .diapers .item-radio input:checked ~ .item-content { color: #ff6b01}
 .bottle .item-radio input:checked ~ .item-content { color: #66cc33}
@@ -658,8 +658,8 @@ border-width: 0px;
 
 .item-radio { border: none; border-radius: 0 !important;}
 .item-radio .item-content {
-  padding: 4px 2px; 
-  border: none !important; 
+  padding: 4px 2px;
+  border: none !important;
   border-radius: 0 !important;
   position: relative;
   z-index: 2; height: 24px;
@@ -677,7 +677,7 @@ border-width: 0px;
     border-radius: 4px;
 }
 .rumah-radio.on-white .item-radio.tab-style input:checked ~ .item-content {
-  background: rgba(0,0,0,.6); 
+  background: rgba(0,0,0,.6);
 }
 .rumah-radio.on-white .item-radio.tab-style input:checked ~ .item-content span { color: #fff;}
 
@@ -869,10 +869,10 @@ height: 49px; overflow: hidden !important;
 opacity:1;
 }
 .floating-plus-button .tab-item .ion-plus-round  {
-visibility:visible; width: 60px; height: 60px; 
+visibility:visible; width: 60px; height: 60px;
 }
 .floating-plus-button .tab-item .ion-plus-round:before { left: 0}
-.ion-plus-round:before { -webkit-transition: all 0.2s ease-in-out;-moz-transition: all 0.2s ease-in-out;-o-transition: all 0.2s ease-in-out;transition:all 0.2s ease-in-out; transition-duration: 0.2s; transition-delay: 0s; 
+.ion-plus-round:before { -webkit-transition: all 0.2s ease-in-out;-moz-transition: all 0.2s ease-in-out;-o-transition: all 0.2s ease-in-out;transition:all 0.2s ease-in-out; transition-duration: 0.2s; transition-delay: 0s;
  -ms-transform: rotate(0deg); /* IE 9 */
     -webkit-transform: rotate(0deg); /* Safari */
     transform: rotate(0deg);
@@ -931,7 +931,7 @@ td.fc-day { margin: 0 !important;padding:0 !important; margin: 0 !important; }
 .fc-day-number { float: none !important; text-align: center !important;}
 .fc-state-highlight { font-size: 1.4em; font-weight: 400; background: 0 !important; color: #02b6ef;  }
 .fc-state-highlight .fc-day-number { margin-top: -1px;}
-.content-calendar { padding: 18px 10px 10px;} 
+.content-calendar { padding: 18px 10px 10px;}
 .content-calendar span.icon-calendar { position: relative; padding:8px 0 0 40px;}
 .content-calendar span.icon-calendar:before { font-size:30px; left: 0; top: 0; position: absolute;}
 .content-calendar span.icon-calendar:after { position: absolute; content: attr(title); background: #fff; width: 20px; height: 16px; font-size: 12px; top: 11px; left: 5px; text-align: center;}

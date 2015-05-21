@@ -5,41 +5,41 @@ angular
             var str = "";
 
             if(activity.type == 'nurse'){
-                if(activity.time_left){
-                    str += "Left " + activity.time_left + "m ";
+                if(activity.nurse_timeleft){
+                    str += "Left " + activity.nurse_timeleft + "m ";
                 }
-                if(activity.time_right){
-                    str += "Right " + activity.time_right + "m";
+                if(activity.nurse_timeright){
+                    str += "Right " + activity.nurse_timeright + "m";
                 }
             }
 
             if(activity.type == 'bottle'){
-                str += "Fed" + " " + (activity.amount? activity.amount + "oz" : "")
+                str += "Fed" + " " + (activity.bottle_amount? activity.bottle_amount + "oz" : "")
                 + " " + (activity.bottle_type || "");
             }
 
-            if(activity.type == 'change'){
+            if(activity.type == 'diaper'){
                 str += (activity.diaper_type || "");
             }
 
             if(activity.type == 'solid'){
-                if(activity.food_type){
-                    str += "Ate " + activity.food_type;
+                if(activity.solid_foodtype){
+                    str += "Ate " + activity.solid_foodtype;
                 }
             }
 
             if(activity.type == 'pump'){
-                if(activity.side){
-                    str += activity.side + " ";
+                if(activity.pump_side){
+                    str += activity.pump_side + " ";
                 }
-                if(activity.amount){
-                    str += activity.amount+"oz";
+                if(activity.pump_amount){
+                    str += activity.pump_amount+"oz";
                 }
             }
 
             if(activity.type == 'todo'){
-                if(activity.notes){
-                    str += activity.notes;
+                if(activity.todo_desc){
+                    str += activity.todo_desc;
                 }
             }
 
@@ -50,32 +50,32 @@ angular
             }
 
             if(activity.type == 'play'){
-                if(activity.notes){
-                    str += activity.notes;
+                if(activity.play_comment){
+                    str += activity.play_comment;
                 }
             }
 
             if(activity.type == 'bath'){
-                if(activity.notes){
-                    str += activity.notes;
+                if(activity.bath_comment){
+                    str += activity.bath_comment;
                 } else{
                     str += "Had a bath";
                 }
             }
 
             if(activity.type == 'medication'){
-                if(activity.drug){
+                if(activity.medication_drug){
                     str += "Took ";
-                    if(activity.amount_given){
-                        str+=activity.amount_given+" ";
+                    if(activity.medication_amountgiven){
+                        str+=activity.medication_amountgiven+" ";
                     }
-                    str += activity.drug;
+                    str += activity.medication_drug;
                 }
             }
 
             if(activity.type == 'diary'){
-                if(activity.notes){
-                    str += activity.notes;
+                if(activity.diary_desc){
+                    str += activity.diary_desc;
                 }
             }
 
@@ -86,14 +86,14 @@ angular
             }
 
             if(activity.type == 'sick'){
-                if(activity.symptom){
-                    str += activity.symptom;
+                if(activity.sick_symptom){
+                    str += activity.sick_symptom;
                 }
             }
 
             if(activity.type == 'doctor'){
-                if(activity.visit_type){
-                    str += activity.visit_type;
+                if(activity.doctor_type){
+                    str += activity.doctor_type;
                 }
             }
 
@@ -104,40 +104,40 @@ angular
             }
 
             if(activity.type == 'growth'){
-                if(activity.weight){
-                    str += activity.weight;
+                if(activity.growth_weight){
+                    str += activity.growth_weight;
                 }
-                if(activity.height){
-                    str += activity.height;
+                if(activity.growth_height){
+                    str += activity.growth_height;
                 }
             }
 
             if(activity.type == 'sleep'){
-                if(activity.time_slept){
-                    str+="Slept for "+activity.time_slept;
+                if(activity.sleep_timeslept){
+                    str+="Slept for "+activity.sleep_timeslept;
                 }
             }
 
             if(activity.type == 'temperature'){
-                if(activity.temp){
-                    str+=activity.temp+"c";
+                if(activity.temperature_temp){
+                    str+=activity.temperature_temp+"c";
                 }
             }
 
             if(activity.type == 'allergy'){
                 if(activity.source){
-                    if( activity.severity ){
-                        str += activity.severity + " reaction to ";
+                    if( activity.allergy_severity ){
+                        str += activity.allergy_severity + " reaction to ";
                     } else{
                         str += "Reaction to";
                     }
-                    str += activity.source;
+                    str += activity.allergy_source;
                 }
             }
 
             if(activity.type == 'moment'){
-                if(activity.notes){
-                    str += activity.notes;
+                if(activity.moment_desc){
+                    str += activity.moment_desc;
                 }
             }
             return str;

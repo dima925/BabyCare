@@ -63,7 +63,7 @@
                             <h5 data-translate>cleverbaby.app.diary.bar.nurses</h5>
                         </div>
                         <div class="xs-5">
-                            <h5>{{ ChangeCount }}</h5>
+                            <h5>{{ DiaperCount }}</h5>
                             <h5 data-translate>cleverbaby.app.diary.bar.change</h5>
                         </div>
                         <div class="xs-5">
@@ -109,7 +109,7 @@
         </div>
         <h3 class="pd" ion-affix data-affix-within-parent-with-class="timeline">Today</h3>
         <ion-list>
-            <div collection-repeat="activity in activities" collection-item-height="50">
+            <div collection-repeat="activity in activities" collection-item-height="50" collection-item-width = "80%">
                 <timeline-item activity="activity"></timeline-item>
             </div>
         </ion-list>

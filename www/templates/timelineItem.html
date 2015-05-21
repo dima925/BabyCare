@@ -2,12 +2,12 @@
     <div class="item">
         <div class="datetime-tl"><span timeline-date="activity.time"></span></div>
         <div class="activity-icon">
-            <div class="item-activity" ng-class="activity.type | classOfActivity">
+            <div class="item-activity" ng-class="activity.type">
                 <span ng-class="activity.type | iconOfActivity"></span>
             </div>
         </div>
         <div class="desc">
-            <h3 ng-class="activity.type | footOfActivity">{{ activity.type | nameOfActivity}}</h3>
+            <h3 ng-class="activity.type+'-foot'">{{ activity.type | nameOfActivity}}</h3>
             <p>{{ activity | showActivity }}</p>
         </div>
     </div>

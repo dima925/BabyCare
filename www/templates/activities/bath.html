@@ -22,21 +22,21 @@
                     <span data-translate>cleverbaby.app.activity.bath.temp</span>
                 </label>
                 <span class="satuan">c</span>
-                <input ng-model="modal.data.temp" type="text" placeholder="40" class="form-control">
+                <input ng-model="modal.data.bath_temp" type="text" placeholder="40" class="form-control">
             </div>
             <div class="kotak">
                 <label class="default">
                     <span data-translate>cleverbaby.app.activity.bath.notes</span>
                 </label>
-                <input ng-model="modal.data.notes" type="text" placeholder="{{ 'cleverbaby.app.activity.bath.notes.placeholder' | translate }}" class="form-control">
+                <input ng-model="modal.data.bath_comment" type="text" placeholder="{{ 'cleverbaby.app.activity.bath.notes.placeholder' | translate }}" class="form-control">
             </div>
         </div>
         <!-- addpic/addnote -->
-        <div class="kotak no-border autoheight" ng-if="modal.data.comment">
+        <div class="kotak no-border autoheight" ng-if="modal.data.note">
             <a class="delete" ng-click="deleteNote()"><i class="fa fa-trash"></i></a>
-            <div ng-click="addNote(modal.data.comment)">
+            <div ng-click="addNote(modal.data.note)">
                 <label class="small" data-translate>cleverbaby.app.activity.comment.click</label>
-                <p>{{ modal.data.comment }}</p>
+                <p>{{ modal.data.note }}</p>
             </div>
         </div>
 
@@ -49,7 +49,7 @@
         <div class="footer">
             <a class="pull-left" ng-click="addNote()"><span class="icon-book-open"></span><span data-translate>cleverbaby.app.activity.add_note</span></a>
             <a class="btn-mid" ng-click="saveActivity('bath')"><i class="fa fa-check"></i> &nbsp;<span data-translate>cleverbaby.app.activity.save_close</span></a>
-            <a class="pull-right"><span class="icon-camera"></span><span data-translate>cleverbaby.app.activity.photo</span></a>
+            <a class="pull-right" ng-click="addPhoto()"><span class="icon-camera"></span><span data-translate>cleverbaby.app.activity.photo</span></a>
         </div>
             <input type="submit" value="submit" class="hidden-submit">
         </form>

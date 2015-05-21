@@ -6,7 +6,7 @@ angular
             'bottle': 'Bottle',
             'pump': 'Pump',
             'solid': 'Solid',
-            'change': 'Diaper change',
+            'diaper': 'Diaper change',
             'sleep': 'Sleep',
             'milestone': 'Milestone',
             'growth': 'Growth',
