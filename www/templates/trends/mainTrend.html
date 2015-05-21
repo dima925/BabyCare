@@ -1,0 +1,22 @@
+<div class="wrapper relative on-white" ng-controller="TrendCtrl">
+    <div class="kotak">
+        <div class="xs-2">
+            <div class="rumah-radio on-white">
+                <ion-radio ng-model="periodType" value="monthly" name="type-view" class="xs-2 border-right tab-style"><span>Monthly</span></ion-radio>
+                <ion-radio ng-model="periodType" value="weekly" name="type-view" class="xs-2 border-right tab-style"><span>Weekly</span></ion-radio>
+            </div>
+        </div>
+        <div class="xs-2 type-view-nav">
+            <a class="btn-trigger left" ng-click="prevPeriod()"><i class="fa fa-caret-left"></i></a>
+            <a class="btn-trigger right" ng-click="nextPeriod()"><i class="fa fa-caret-right"></i></a>
+            <span>{{fromToDateText}}</span>
+        </div>
+    </div>
+    <div class="kotak autoheight bar-chart">
+        <h4 class="text-center">Formula (oz or ml per day)</h4>
+        <nvd3 options="discreteOptions" data="discreteChartData" config="config"></nvd3>
+    </div>
+    <div ng-include="trendAverageTemplate">
+
+    </div>
+</div>
