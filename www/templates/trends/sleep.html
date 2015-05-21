@@ -2,8 +2,8 @@
     <div class="kotak">
         <div class="xs-2">
             <div class="rumah-radio on-white">
-                <ion-radio value="monthly" name="type-view" class="xs-2 border-right tab-style"><span>Monthly</span></ion-radio>
-                <ion-radio value="weekly" name="type-view" class="xs-2 border-right tab-style"><span>Weekly</span></ion-radio>
+                <ion-radio ng-model="periodType" value="monthly" name="type-view" class="xs-2 border-right tab-style"><span>Monthly</span></ion-radio>
+                <ion-radio ng-model="periodType" value="weekly" name="type-view" class="xs-2 border-right tab-style"><span>Weekly</span></ion-radio>
             </div>
         </div>
         <div class="xs-2 type-view-nav">
@@ -14,8 +14,6 @@
     </div>
     <div class="kotak autoheight bar-chart">
         <h4 class="text-center">Formula (oz or ml per day)</h4>
-        <br /><br /><br />
-        <!-- Chart Code -->
         <nvd3 options="options" data="discreteChartData" config="config"></nvd3>
     </div>
     <div class="kotak autoheight border-divider">

@@ -176,15 +176,29 @@ angular.module('cleverbaby.controllers')
         var activeDate = moment();
 
         /**
-         * Toggle data by weekly or Monthly
-         * @dateType - fase is monthly, true is weekly
+         * changing period type 'monthly' or 'weekly'
          */
-        $scope.toggleDurationType = function(dateTypeBoolean){
-            if($scope.weekly != dateTypeBoolean){
-                $scope.weekly = dateTypeBoolean;
-                generateFromToDateText(activeDate, $scope.weekly);
+        $scope.$watch('periodType', function(newValue, oldValue){
+            if(newValue != oldValue){
+                $scope.fromToDateText = generateFromToDateText(activeDate, $scope.periodType);
+                createGraph();
             }
-        };
+        });
+
+        function getFirstAndLastDay(date, dateType){
+            if(dateType == 'weekly') {
+                var firstDay = moment(date).day(0);
+                var lastDay = moment(date).day(6);
+            } else {
+                var firstDay = moment(date).date(1);
+                var lastDay = moment(firstDay).endOf('month');
+            }
+
+            return{
+                'firstDay': firstDay,
+                'lastDay': lastDay
+            }
+        }
 
         /**
          * Change the fromDate and toDate, Sunday to Monday
@@ -192,28 +206,20 @@ angular.module('cleverbaby.controllers')
          * @dateType - weekly or monthly //true is weekly, false is monthly
          */
         function generateFromToDateText(date, dateType){
-            //activeDate = date;
-            if(dateType) {
-                var firstDay = moment(date).day(0);
-                var lastDay = moment(date).day(6);
-            } else {
-                var firstDay = moment(date).date(1);
-                var lastDay = moment(firstDay).endOf('month');
-            }
-            activeDate = firstDay;
-            var from = moment(firstDay).format("Do") + " " + moment(firstDay).format("MMMM");
-            var to = moment(lastDay).format("Do") + " " + moment(lastDay).format("MMMM");
-            $scope.fromToDateText = from + " - " + to;
+            var firstAndLastDay = getFirstAndLastDay(date, dateType)
+            var from = moment(firstAndLastDay.firstDay).format("Do") + " " + moment(firstAndLastDay.firstDay).format("MMMM");
+            var to = moment(firstAndLastDay.lastDay).format("Do") + " " + moment(firstAndLastDay.lastDay).format("MMMM");
+            return from + " - " + to;
         }
 
         /**
          * creates the options required by the plugin.
          */
         function createOptions(xAxisLabel, yAxisLabel, tickValues) {
-            $scope.options = {
+            return {
                 chart: {
                     type: 'discreteBarChart',
-                    height: 450,
+                    height: 350,
                     margin : {
                         top: 20,
                         right: 20,
@@ -224,7 +230,7 @@ angular.module('cleverbaby.controllers')
                     y: function(d){return d.value;},
                     showValues: true,
                     valueFormat: function(d){
-                        return d3.format(',.4f')(d);
+                        return d3.format(',.0f')(d);
                     },
                     transitionDuration: 500,
                     xAxis: {
@@ -261,16 +267,17 @@ angular.module('cleverbaby.controllers')
 
         /**
          * Creates the required data for the plugin
+         * @date - date to use to get the desired entries
+         * @dataActivityType - array containing the activities
+         * @periodType - weekly or monthly
          */
-        function generateData(date, dataActivityType, isWeekly){
+        function generateData(date, dataActivityType, periodType){
 
             var acitivityDataValues = [];
             var dataType = dataActivityType[0].type;
             var sortedDataActivityType = activityTypeFiltersCalculation[dataType](dataActivityType);
 
-            if(isWeekly){
-                var firstDay = moment(date).day(0);
-                var lastDay = moment(date).day(6);
+            if(periodType == 'weekly'){
                 var labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
                 for(var x = 0; x <= 6; x++){
                     var datePeriodFormatted = moment(date).day(x).format("MM-DD-YYYY");
@@ -283,11 +290,10 @@ angular.module('cleverbaby.controllers')
             }else{
                 var firstDay = moment(date).date(1);
                 var lastDay = moment(firstDay).endOf('month').date();
-
                 for(var x = 1; x <= lastDay; x++){
                     var datePeriodFormatted = moment(date).day(x).format("MM-DD-YYYY");
-                    var label = "";
-                    if(5 % x == 0){
+                    var label = " ";
+                    if(x % 5 == 0 && x != 1){
                         label = x;
                     }
                     var totalValue = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].total : 0;
@@ -298,13 +304,19 @@ angular.module('cleverbaby.controllers')
                 }
             }
 
-            $scope.discreteChartData = [
+            return [
                 {
                     key: "Cumulative Return",
                     values: acitivityDataValues
                 }
             ];
 
+        }
+
+        function createGraph(){
+            angular.element('.with-3d').html('');
+            $scope.discreteChartData = generateData(activeDate, $scope.trendInfoObj[$scope.activeActivityType], $scope.periodType);
+            $scope.options = createOptions();
         }
 
         /**
@@ -326,27 +338,32 @@ angular.module('cleverbaby.controllers')
          * generate and filter next period Infos
          */
         $scope.nextPeriod = function(){
-            generateFromToDateText(moment(activeDate).add(1, 'days'), $scope.weekly);
+            var firstAndLastDay = getFirstAndLastDay(activeDate, $scope.periodType);
+            activeDate = moment(firstAndLastDay.lastDay).add(1, 'd');
+            $scope.fromToDateText = generateFromToDateText(activeDate, $scope.periodType);
+            createGraph();
         }
 
         /**
          * generate and filter prev period Infos
          */
         $scope.prevPeriod = function(){
-            generateFromToDateText(moment(activeDate).subtract(1, 'days'), $scope.weekly);
+            var firstAndLastDay = getFirstAndLastDay(activeDate, $scope.periodType);
+            activeDate = moment(firstAndLastDay.firstDay).subtract(1, 'd');
+            $scope.fromToDateText = generateFromToDateText(activeDate, $scope.periodType);
+            createGraph();
         }
 
-        $scope.weekly = true;
-        generateFromToDateText(activeDate, $scope.weekly); //generate of date today
+        $scope.periodType = 'weekly';
+        $scope.fromToDateText = generateFromToDateText(activeDate, $scope.periodType); //generate of date today
 
         ActivityService.getAllActivitiesByBabyId($rootScope.babyId, 0, 1000).then(function(activities){
-            var trendInfoObj = {};
-            trendInfoObj.sleep = $filter('filter')(activities, {'type': 'sleep'});
-            trendInfoObj.pumping = $filter('filter')(activities, {'type': 'pumping'});
-            trendInfoObj.diaper = $filter('filter')(activities, {'type': 'diaper'});
-            trendInfoObj.feeding = $filter('filter')(activities, {'type': 'feeding'});
-
-            generateData(activeDate, trendInfoObj[$scope.activeActivityType], $scope.weekly);
+            $scope.trendInfoObj = {};
+            $scope.trendInfoObj.sleep = $filter('filter')(activities, {'type': 'sleep'});
+            $scope.trendInfoObj.pumping = $filter('filter')(activities, {'type': 'pumping'});
+            $scope.trendInfoObj.diaper = $filter('filter')(activities, {'type': 'diaper'});
+            $scope.trendInfoObj.feeding = $filter('filter')(activities, {'type': 'feeding'});
+            createGraph();
         });
 
 }]);
