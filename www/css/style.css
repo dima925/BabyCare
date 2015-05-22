@@ -567,32 +567,47 @@ input{
 
 /* color activity */
 .more {background: #232323;}
-.diaper { background: #ff6b01; } .diaper .footer a.btn-mid, .diaper-color { color: #ff6b01 }
-.bottle { background: #66cc33; } .bottle .footer a.btn-mid, .bottle-color { color: #66cc33 }
-.nurse { background: #3300cc; } .nurse .footer a.btn-mid, .nurse-color { color: #3300cc }
-.moment { background: #336699; } .moment .footer a.btn-mid, .moment-color { color: #336699 }
-.bath { background: #33ccff; } .bath .footer a.btn-mid, .bath-color { color: #33ccff }
-.diary { background: #00cc99; } .diary .footer a.btn-mid, .diary-color { color: #00cc99 }
-.doctor { background: #cc33ff; } .doctor .footer a.btn-mid, .doctor-color { color: #cc33ff }
-.growth { background: #99cc00; } .growth .footer a.btn-mid, .growth-color { color: #99cc00 }
-.medication { background: #6633cc; } .medication .footer a.btn-mid, .medication-color { color: #6633cc }
-.milestone { background: #003366; } .milestone .footer a.btn-mid, .milestone-color { color: #003366 }
-.mood { background: #ff9933; } .mood .footer a.btn-mid, .mood-color { color: #ff9933 }
-.play { background: #9933ff; } .play .footer a.btn-mid, .play-color { color: #9933ff }
-.pump { background: #00cc33; } .pump .footer a.btn-mid, .pump { color: #00cc33 }
-.sick { background: #3366ff; } .sick .footer a.btn-mid, .sick-color { color: #3366ff }
-.temperature { background: #ff0000; } .temperature .footer a.btn-mid, .temperature-color { color: #ff0000 }
-.todo { background: #66cc00;} .todo .footer a.btn-mid, .todo-color { color: #66cc00 }
-.vaccination { background: #cc3366; } .vaccination .footer a.btn-mid, .vaccination-color { color: #cc3366 }
-.sleep { background: #0099cc; } .sleep .footer a.btn-mid, .sleep-color { color: #0099cc }
-.solid {background: #ffcc00;} .solid .footer a.btn-mid, .solid-color { color: #ffcc00 }
-.allergy { background: #5c6bc0; } .allergy .footer a.btn-mid, .allergy-color { color: #5c6bc0 }
+.diaper { background: #ff6b01; } 
+.diaper .item-radio input:checked ~ .item-content, .diaper .footer a.btn-mid, .diaper-color { color: #ff6b01 }
+.bottle { background: #66cc33; } 
+.bottle .item-radio input:checked ~ .item-content, .bottle .footer a.btn-mid, .bottle-color { color: #66cc33 }
+.nurse { background: #3300cc; } 
+.nurse .item-radio input:checked ~ .item-content, .nurse .footer a.btn-mid, .nurse-color { color: #3300cc }
+.moment { background: #336699; } 
+.moment .footer a.btn-mid, .moment-color { color: #336699 }
+.bath { background: #33ccff; } 
+.bath .footer a.btn-mid, .bath-color { color: #33ccff }
+.diary { background: #00cc99; } 
+.diary .footer a.btn-mid, .diary-color { color: #00cc99 }
+.doctor { background: #cc33ff; } 
+.doctor .footer a.btn-mid, .doctor-color { color: #cc33ff }
+.growth { background: #99cc00; } 
+.growth .footer a.btn-mid, .growth-color { color: #99cc00 }
+.medication { background: #6633cc; } 
+.medication .footer a.btn-mid, .medication-color { color: #6633cc }
+.milestone { background: #003366; } 
+.milestone .footer a.btn-mid, .milestone-color { color: #003366 }
+.mood { background: #ff9933; } 
+.mood .footer a.btn-mid, .mood-color { color: #ff9933 }
+.play { background: #9933ff; } 
+.play .footer a.btn-mid, .play-color { color: #9933ff }
+.pump { background: #00cc33; } 
+.pump .footer a.btn-mid, .pump { color: #00cc33 }
+.sick { background: #3366ff; } 
+.sick .footer a.btn-mid, .sick-color { color: #3366ff }
+.temperature { background: #ff0000; }
+.temperature .footer a.btn-mid, .temperature-color { color: #ff0000 }
+.todo { background: #66cc00;} 
+.todo .footer a.btn-mid, .todo-color { color: #66cc00 }
+.vaccination { background: #cc3366; } 
+.vaccination .footer a.btn-mid, .vaccination-color { color: #cc3366 }
+.sleep { background: #0099cc; } 
+.sleep .item-radio input:checked ~ .item-content, .sleep .footer a.btn-mid, .sleep-color { color: #0099cc }
+.solid {background: #ffcc00;} 
+.solid .footer a.btn-mid, .solid-color { color: #ffcc00 }
+.allergy { background: #5c6bc0; } 
+.allergy .footer a.btn-mid, .allergy-color { color: #5c6bc0 }
 .dropdown {background: #fff;}
-
-.diapers .item-radio input:checked ~ .item-content { color: #ff6b01}
-.bottle .item-radio input:checked ~ .item-content { color: #66cc33}
-.nurse .item-radio input:checked ~ .item-content { color: #3300cc}
-.sleep .item-radio input:checked ~ .item-content { color: #0099cc}
 
 input:checked ~ label.mood { opacity: 1;}
 label.mood { text-align: center; width: 100%; display: inline-block; opacity: .7; line-height: 1.4em; font-size: 11px;}
@@ -700,7 +715,7 @@ span.satuan { float:right;font-size: 24px; margin-top: 14px}
 .footer a span { font-size: 12px; width: 100%; }
 .footer a.btn-mid { padding: 8px 24px 6px; background: #fff;  display: inline-block; border-radius:4px 4px 0 0; height: 49px; line-height: 2.6em;}
 
-span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px;  }
+span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px; display: inline-block; }
 .home-icon { color: #fff; font-size: 30px; width: 10%; display: inline-block; }
 .home-icon .icon-diaper { font-size: 24px;}
 .di-home > div:nth-child(2) { margin-left: -10px;}
@@ -750,11 +765,14 @@ span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px;  }
 /* ADD MORE */
 .bot{margin-bottom: 66px;}
 .modal-backdrop.active{background: rgba(0,0,0,.8);}
-.kotak.menus { overflow: auto !important; height:150px !important; max-width: 355px; margin: 0 auto }
-.kotak.menus span { font-size:9px; float: left; width: 100%; text-align: center; }
-.modal-backdrop .menus .xs-5:nth-child(1), .modal-backdrop .menus .xs-5:nth-child(5) { margin-top: 65px !important }
-.modal-backdrop .menus .xs-5:nth-child(2), .modal-backdrop .menus .xs-5:nth-child(4) { margin-top: 20px !important }
-.modal-backdrop .menus .xs-5:nth-child(3) { margin-top: 0px !important }
+.kotak.menus {  height:200px !important; max-width: 355px; margin: 0 auto -76px; position: relative; }
+/*.kotak.menus:after { position: absolute; width: 305px; height: 305px; border-radius: 200px; border: 3px solid #ff0000; left: 25px; top: 30px; content: "";  }
+*/.kotak.menus span { font-size:9px; float: left; width: 100%; text-align: center; }
+.modal-backdrop .menus .xs-5:nth-child(1) { margin: 75px 0 0 10px !important }
+.modal-backdrop .menus .xs-5:nth-child(2) { margin: 25px 0 0 -15px !important }
+.modal-backdrop .menus .xs-5:nth-child(3) { margin: 0 0 0 4px !important }
+.modal-backdrop .menus .xs-5:nth-child(4) { margin: 25px 0 0 6px !important }
+.modal-backdrop .menus .xs-5:nth-child(5) { margin: 75px 0 0 -18px !important }
 
 .more-section { text-align: center;}
 .more-section div { margin-bottom: 10px;}
