@@ -27,10 +27,17 @@
                         <input type="email" class="email" placeholder="Type your email here if you would like a response" name="emailtext" ng-model="emailtext" ng-model-options="{ updateOn: 'blur' }">
                     </label>
                 </div>
-                <div class="row" style="max-height: 62px;">
-                    <button class="col button-cancel button" ng-click="cancel()" type="button">Cancel</button>
-                    <button class="col button-submit button" ng-click="submit()" type="button">Submit</button>
+            </div>
+            <div class="wrapper add">
+                <div class="kotak autoheight gutter">
+                    <div class="xs-3">
+                        <button class="btn small-text" ng-click="cancel()" type="button">Cancel</button>
+                    </div>
+                    <div class="xs-7">
+                        <button class="btn small-text" ng-click="submit()" type="button">Submit</button>
+                    </div>
                 </div>
+            </div>
             </form>
         </div>
     </ion-content>
@@ -62,8 +69,8 @@
     
 }
 
-.feedbackForm .item-input input, textarea {
-    
+.feedbackForm .item-input textarea {
+    padding-top: 12px
 }
 
 .feedbackForm .description {

@@ -551,10 +551,15 @@ input{
 .btn-trigger { padding:6px 10px; font-size: 22px;}
 .btn-trigger.left { position: absolute;top: 0; left: 0;  }
 .btn-trigger.right { position: absolute;top: 0; right: 0;}
+.btn.small-text { font-size: 12px !important;}
 .clearfix { clear: both;}
 [class*="xs-"]  { float: left; padding: 0; margin:0;}
+.gutter [class*="xs-"] { padding: 0 10px; margin-bottom: 10px;}
+.gutter [class*="xs-"]:first-child { padding-left: 0}
+.gutter [class*="xs-"]:last-child { padding-right: 0}
+.xs-7 { width: 66.66%;  }
 .xs-5 { width: 20%; }
-/*.xs-4 { width: 24.73%; }*/.xs-4 { width: 25%; }
+.xs-4 { width: 25%; }
 .xs-3 { width: 33.33%; }
 .xs-2 { width: 50%; }
 .xs-1 { width: 100%; }
@@ -1006,12 +1011,6 @@ td.fc-day { margin: 0 !important;padding:0 !important; margin: 0 !important; }
     border: none;
 }
 
-.more-page button{
-    float: right;
-    width: 95px;
-    display: inline-table;
-}
-
 .more-page button.button-block {
   width: 100%;
 }
@@ -1021,9 +1020,9 @@ td.fc-day { margin: 0 !important;padding:0 !important; margin: 0 !important; }
 }
 
 .more-rateus.wrapper {
-  background-color: #222222;
+  background-color: #fff;
 }
-
+.more-rateus.wrapper * { color: #000; border-color: #000;}
 .more-rateus.wrapper .feedbackMessage {
   min-height: 120px;
   width: 100%; padding: 10px;

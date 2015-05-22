@@ -1,5 +1,5 @@
 <div class="modal transparent" ng-controller="MoreRateusFeedbackCtrl" ng-click="">
-    <div class="wrapper more-rateus" ng-click="$event.stopPropagation()">
+    <div class="wrapper more-rateus add" ng-click="$event.stopPropagation()">
         <div class="header">
             <h2 class="title">
                 <span data-translate>cleverbaby.app.more.rateus.feedback.question</span>
@@ -8,12 +8,16 @@
         <div class="content">
             <div class="row">
                 <div class="col">
-                    <textarea class="feedbackMessage" ng-model="feedbackMessage"></textarea>
+                    <textarea class="feedbackMessage" ng-model="feedbackMessage" placeholder="Your Feedback here"></textarea>
                 </div>
             </div>
-            <div class="row">
-                <div class="col col-50 text-center">{{'cleverbaby.app.more.rateus.feedback.submit' | translate}}</div>
-                <div class="col col-50 text-center" ng-click="cancel()">{{'cleverbaby.app.more.rateus.feedback.cancel' | translate}}</div>
+            <div class="kotak autoheight gutter">
+                <div class="xs-2">
+                    <button class="btn small-text">{{'cleverbaby.app.more.rateus.feedback.submit' | translate}}</button>
+                </div>
+                <div class="xs-2">
+                    <button class="btn small-text" ng-click="cancel()">{{'cleverbaby.app.more.rateus.feedback.cancel' | translate}}</button>
+                </div>
             </div>
         </div>
     </div>
