@@ -1,6 +1,6 @@
 angular.module('cleverbaby.controllers')
-.controller('activityCtrl', ['$rootScope', '$scope', '$window', 'ActivityService', 'NotificationService', '$ionicModal', 'Image',
-    function ($rootScope, $scope, $window, ActivityService, NotificationService, $ionicModal, Image) {
+.controller('activityCtrl', ['$rootScope', '$scope', '$timeout', '$window', 'ActivityService', 'NotificationService', '$ionicModal', 'Image',
+    function ($rootScope, $scope, $timeout, $window, ActivityService, NotificationService, $ionicModal, Image) {
 
         $scope.saveActivity = function(type){
 
@@ -80,6 +80,12 @@ angular.module('cleverbaby.controllers')
         $scope.closeActivity = function() {
             $scope.modal.hide();
         };
+
+        $scope.submitActivityCheck = function() {
+            $timeout(function() {
+                angular.element('.btn-mid').trigger('click');
+            }, 0);
+        }
 
         $scope.$on('modal.hidden', function(e, a){
             if($scope.modalAddNote && a.name == 'noteModal'){

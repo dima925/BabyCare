@@ -33,7 +33,6 @@ angular.module('cleverbaby.directives')
                         if(unorderedDate[valueDateEnd]){
                             unorderedDate[valueDateEnd].activities.unshift(value);
                         }else{
-                            unorderedDate[valueDateEnd]
                             var dateObjectStructure = {
                                 'activities': [value],
                                 'dateString': dateToString(value.time_end)
