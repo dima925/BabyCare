@@ -597,7 +597,7 @@ input{
 .play { background: #9933ff; } 
 .play .footer a.btn-mid, .play-color { color: #9933ff }
 .pump { background: #00cc33; } 
-.pump .footer a.btn-mid, .pump { color: #00cc33 }
+.pump .footer a.btn-mid, .pump-color { color: #00cc33 }
 .sick { background: #3366ff; } 
 .sick .footer a.btn-mid, .sick-color { color: #3366ff }
 .temperature { background: #ff0000; }
