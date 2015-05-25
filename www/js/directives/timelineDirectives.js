@@ -5,7 +5,7 @@ angular.module('cleverbaby.directives')
             templateUrl: 'templates/elements/timeline-chart.html',
             link: function (scope, element) {
 
-                ActivityService.getAllActivitiesByBabyId($rootScope.babyId, 0, 10).then(function(activities){
+                ActivityService.getAllActivitiesByBabyId($rootScope.babyId, 0, 1000).then(function(activities){
 
                     var dateToday = moment(new Date()).format("MM-DD-YYYY");
                     var dateYesterday = moment(new Date()).subtract(1, 'days').format("MM-DD-YYYY");
@@ -30,14 +30,14 @@ angular.module('cleverbaby.directives')
                     angular.forEach(activities, function(value, index){
                         var valueDateStart = moment(value.time).format("MM-DD-YYYY");
                         var valueDateEnd = moment(value.time_end).format("MM-DD-YYYY");
-                        if(unorderedDate[valueDateEnd]){
-                            unorderedDate[valueDateEnd].activities.unshift(value);
+                        if(unorderedDate[valueDateStart]){
+                            unorderedDate[valueDateStart].activities.unshift(value);
                         }else{
                             var dateObjectStructure = {
                                 'activities': [value],
-                                'dateString': dateToString(value.time_end)
+                                'dateString': dateToString(valueDateStart)
                             }
-                            unorderedDate[valueDateEnd] = dateObjectStructure;
+                            unorderedDate[valueDateStart] = dateObjectStructure;
                         }
                     });
 
@@ -45,7 +45,7 @@ angular.module('cleverbaby.directives')
                     //get percentage of 1minute in 1440 minutes
                     // (332/1440) * durationMinute = fillPx
                     //(fillpx / 332) x 100
-                    var timelineIonContentWidth = parseInt(angular.element('.timeline-ion-content').css('width').replace('px','')); //332px sample
+                    var timelineIonContentWidth = parseInt(screen.width); //332px sample
 
                     function calculateDurationPercentage(startTime, endTime){
                         var startTime = moment.duration(startTime);
@@ -63,12 +63,21 @@ angular.module('cleverbaby.directives')
                         var finalFillAray = [];
 
                         angular.forEach(activity, function(activity, index){
-                            fillAray.push({'percentage': calculateDurationPercentage(activity.time, activity.time_end), 'type': activity.type, 'startTime': activity.time, 'endTime': activity.time_end});
+                            var timeEnd;
+                            if(activity.type == "sleep"){
+                                timeEnd = activity.sleep_timeend;
+                            }else{
+                                timeEnd = angular.isDefined(activity.time_end) ? activity.time_end : moment(activity.time).add(10, 'm');
+
+                            }
+                            fillAray.push({'percentage': calculateDurationPercentage(activity.time, timeEnd), 'type': activity.type, 'startTime': activity.time, 'endTime': timeEnd});
                         });
 
+                        //this part is to get the blank percentage on the timeline
                         angular.forEach(fillAray, function(activity, index) {
                             var activityDate = moment(activity.startTime);
 
+                            //this is to set the start time to 6:00am for the first array
                             if(index == 0){
                                 var startTime = moment(activity.startTime).set({'hour': 6, 'second': 00, 'minute': 00});
 

@@ -35,7 +35,7 @@ angular
         function createOptions(xAxisLabel, yAxisLabel, tickValues) {
             return {
                 chart: {
-                    type: 'discreteBarChart',
+                    type: 'multiBarChart',
                     height: 350,
                     margin : {
                         top: 20,
@@ -45,19 +45,20 @@ angular
                     },
                     x: function(d){return d.label;},
                     y: function(d){return d.value;},
+                    stacked: true,
                     showValues: true,
+                    reduceXTicks: false,
                     valueFormat: function(d){
-                        return d3.format(',.0f')(d);
+                        return d3.format(',.1f')(d);
                     },
                     transitionDuration: 500,
                     xAxis: {
                         tickValues: tickValues,
                         axisLabel: xAxisLabel
                     },
-                    yAxis: {
-                        axisLabel: yAxisLabel,
-                        axisLabelDistance: 30
-                    }
+                    showYAxis: true,
+                    showControls: true,
+                    showLegend: true
                 }
             };
         }
@@ -70,10 +71,12 @@ angular
                 var valueDateStart = moment.duration(sleep.time);
                 var valueDateEnd = moment.duration(sleep.time_end);
                 if(sleepHours[startTimeKey]){
-                    sleepHours[startTimeKey].total += valueDateEnd.subtract(valueDateStart).asHours(); //
+                    sleepHours[startTimeKey].totalTop += valueDateEnd.subtract(valueDateStart).asHours(); //
+                    sleepHours[startTimeKey].totalBot += 1;
                 }else{
                     sleepHours[startTimeKey] = {
-                        'total': valueDateEnd.subtract(valueDateStart).asHours()
+                        'totalTop': valueDateEnd.subtract(valueDateStart).asHours(),
+                        'totalBot': 1
                     }
                 }
             })
@@ -88,7 +91,8 @@ angular
          */
         function generateData(date, dataType, dataActivityType, periodType){
 
-            var acitivityDataValues = [];
+            var acitivityDataValuesTop = [];
+            var acitivityDataValuesBot = [];
             var dataType = dataType;
             var sortedDataActivityType = activityTypeFiltersCalculation[dataType](dataActivityType);
 
@@ -96,10 +100,15 @@ angular
                 var labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
                 for(var x = 0; x <= 6; x++){
                     var datePeriodFormatted = moment(date).day(x).format("MM-DD-YYYY");
-                    var totalValue = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].total : 0;
-                    acitivityDataValues.push({
+                    var totalValueTop = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].totalTop : 0;
+                    var totalValueBot = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].totalBot : 0;
+                    acitivityDataValuesTop.push({
                         "label":  labels[x],
-                        "value": totalValue
+                        "value": 20
+                    });
+                    acitivityDataValuesBot.push({
+                        "label":  labels[x],
+                        "value": -30
                     });
                 }
             }else{
@@ -111,17 +120,26 @@ angular
                     if(x % 5 == 0 && x != 1){
                         label = x;
                     }
-                    var totalValue = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].total : 0;
-                    acitivityDataValues.push({
+                    var totalValueTop = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].totalTop : 0;
+                    var totalValueBot = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].totalBot : 0;
+                    acitivityDataValuesTop.push({
                         "label":  label,
-                        "value": totalValue
+                        "value": totalValueTop
+                    });
+                    acitivityDataValuesBot.push({
+                        "label": label,
+                        "value": totalValueBot
                     });
                 }
             }
             return [
                 {
-                    key: "Cumulative Return",
-                    values: acitivityDataValues
+                    key: "Top",
+                    values: acitivityDataValuesTop
+                },
+                {
+                    key: "Bot",
+                    values: acitivityDataValuesBot
                 }
             ];
         }
