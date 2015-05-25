@@ -1,43 +1,3 @@
-/*
-
-"notes": "None|Burped|BurpedAndSpitUp|SpitUp",
-
-// Bottle
-"bottle_type": "formula|breastmilk|milk|water|juice",
-
-// Pumped
-"side": "left|right|both",
-"start_side": "left|right",
-
-// Solid Feed
-"food_type": "cereal|mash|others",
-
-// Sleep
-"location: bassinet,bed,crib,stroller,swing,withmommy,carseat,other,User Defined"
-
-//Milestone
-"milestone_type": "firstsmile|firstwalk", // this will be along list, need to structure better
-
-// Bath
-"notes": "bubblebath|shower",
-
-// Playtime
-"notes": "tummytime|crawling|crusing|storytime|tvtime|others",
-"location": "ourbed|outdoors|others",
-
-//Doctor
-type of appointment: Checkup, Sick Visit, Therapy, Vaccine, Follow Up, User Defined
-
-// Sick
-symptom: Fever, Cough, User Defined
-
-// Allergy
-source: Egg, Fish, Milk, Peanut, Shellfish, Soybean, Tree Nut, Wheat, User Defined
-reaction: Safe, Rash, Not Sure, User Defined
-severity: None, Mild, Moderate, Severe, Very Severe
-
-// Mood
-type: Sad, Ok, Happy, User Defined*/
 
 var MODE_LIST = "list",
 	MODE_URL = "url",
@@ -47,6 +7,20 @@ angular.module('cleverbaby.directives')
     .directive('mobiscrollPredefined', ['$timeout', '$sce', function($timeout, $sce) {
 
     	var predefinedData = {
+            'comment': [{
+                'value': 'None',
+                'text': 'None'
+            }, {
+                'value': 'Burped',
+                'text': 'Burped'
+            }, {
+                'value': 'BurpedAndSpitUp',
+                'text': 'Burped And SpitUp'
+            }, {
+                'value': 'SpitUp',
+                'text': 'SpitUp'
+            }],
+
     		'bottle_type': [{
     			'value': 'formula',
     			'text': 'Formula',
@@ -62,7 +36,241 @@ angular.module('cleverbaby.directives')
     		}, {
     			'value': 'juice',
     			'text': 'Juice',
-    		}]
+    		}],            
+
+            'pump_side': [{
+                'value': 'left',
+                'text': 'Left'
+            }, {
+                'value': 'right',
+                'text': 'Right'
+            }, {
+                'value': 'both',
+                'text': 'Both'
+            }],
+
+            'pump_side_start': [{
+                'value': 'left',
+                'text': 'Left'
+            }, {
+                'value': 'right',
+                'text': 'Right'
+            }],
+
+            'solid_foodtype': [{
+                'value': 'cereal',
+                'text': 'Cereal'
+            }, {
+                'value': 'mash',
+                'text': 'Mash'
+            }, {
+                'value': 'others',
+                'text': 'Others'
+            }],
+
+            'diaper_brand': [{
+                'value': 'pampers',
+                'text': 'Pampers'
+            }, {
+                'value': 'other',
+                'text': 'Other'
+            }],
+
+            'sleep_location': [{
+                'value': 'bassinet',
+                'text': 'Bassinet'
+            }, {
+                'value': 'bed',
+                'text': 'Bed'
+            }, {
+                'value': 'crib',
+                'text': 'Crib'
+            }, {
+                'value': 'stroller',
+                'text': 'Stroller'
+            }, {
+                'value': 'swing',
+                'text': 'Swing'
+            }, {
+                'value': 'withmommy',
+                'text': 'Withmommy'
+            }, {
+                'value': 'carseat',
+                'text': 'Carseat'
+            }, {
+                'value': 'other',
+                'text': 'Other'
+            }],
+
+            'sleep_duration': [{
+                'value': '300',
+                'text': '5 min'
+            }, {
+                'value': '600',
+                'text': '10 min'
+            }, {
+                'value': '900',
+                'text': '30 min'
+            }, {
+                'value': '1800',
+                'text': '1 hour'
+            }, {
+                'value': '3600',
+                'text': '2 hour'
+            }, {
+                'value': '5400',
+                'text': '3 hour'
+            }, {
+                'value': '7200',
+                'text': '4 hour'
+            }, {
+                'value': '9000',
+                'text': '5 hour'
+            }, {
+                'value': '10800',
+                'text': '6 hour'
+            }],
+
+            'milestone_type': [{
+                'value': 'firstsmile',
+                'text': 'First smile'
+            }, {
+                'value': 'firstwalk',
+                'text': 'First walk'
+            }, {
+                'value': 'firstword',
+                'text': 'First word'
+            }, {
+                'value': 'other',
+                'text': 'Other'
+            }],
+
+            'bath_types': [{
+                'value': 'bubblebath',
+                'text': 'Bubblebath'
+            }, {
+                'value': 'shower',
+                'text': 'Shower'
+            }, {
+                'value': 'other',
+                'text': 'Other'
+            }],
+
+            'play_comment': [{
+                'value': 'tummytime',
+                'text': 'Tummy-Time'
+            }, {
+                'value': 'crawling',
+                'text': 'Crawling'
+            }, {
+                'value': 'crusing',
+                'text': 'Crusing'
+            }, {
+                'value': 'storytime',
+                'text': 'Story-Time'
+            }, {
+                'value': 'tvtime',
+                'text': 'Tv-Time'
+            }, {
+                'value': 'others',
+                'text': 'Others'
+            }],
+
+            'play_location': [{
+                'value': 'ourbed',
+                'text': 'Ourbed'
+            }, {
+                'value': 'outdoors',
+                'text': 'Outdoors'
+            }, {
+                'value': 'others',
+                'text': 'Others'
+            }],
+
+            'doctor_type': [{
+                'value': 'checkup',
+                'text': 'Checkup'
+            }, {
+                'value': 'sickvisit',
+                'text': 'Sick Visit'
+            }, {
+                'value': 'therapy',
+                'text': 'Therapy'
+            }, {
+                'value': 'vaccine',
+                'text': 'Vaccine'
+            }, {
+                'value': 'followup',
+                'text': 'Follow Up'
+            }],
+
+            'sick_symptom': [{
+                'value': 'fever',
+                'text': 'Fever'
+            }, {
+                'value': 'cough',
+                'text': 'Cough'
+            }, {
+                'value': 'others',
+                'text': 'Others'
+            }],
+
+            'allergy_source': [{
+                'value': 'egg',
+                'text': 'Egg'
+            }, {
+                'value': 'fish',
+                'text': 'Fish'
+            }, {
+                'value': 'milk',
+                'text': 'Milk'
+            }, {
+                'value': 'peanut',
+                'text': 'Peanut'
+            }, {
+                'value': 'shellfish',
+                'text': 'Shellfish'
+            }, {
+                'value': 'soybean',
+                'text': 'Soybean'
+            }, {
+                'value': 'treenut',
+                'text': 'Tree Nut'
+            }, {
+                'value': 'wheat',
+                'text': 'Wheat'
+            }],
+
+            'allergy_reaction': [{
+                'value': 'safe',
+                'text': 'Safe'
+            }, {
+                'value': 'rash',
+                'text': 'Rash'
+            }, {
+                'value': 'notSure',
+                'text': 'Not Sure'
+            }, {
+                'value': 'other',
+                'text': 'Other'
+            }],
+
+            'allergy_severity': [{
+                'value': 'none',
+                'text': 'None'
+            }, {
+                'value': 'mild',
+                'text': 'Mild'
+            }, {
+                'value': 'moderate',
+                'text': 'Moderate'
+            }, {
+                'value': 'severe',
+                'text': 'Severe'
+            }, {
+                'value': 'verysevere',
+                'text': 'Very Severe'
+            }]
     	};
 
         return {
@@ -70,9 +278,9 @@ angular.module('cleverbaby.directives')
             scope: {
                 'mobiscrollModel': '=',
                 'mobiscrollMode': '@',
+                'mobiscrollValues': '@',
                 'mobiscrollList': '=',
                 'mobiscrollUrl': '=',
-                'mobiscrollPredefined': '@' 
             },
             template: function(element, attrs) {
                 var usrClasses = angular.isDefined(attrs['class-child']) ? attrs['class-child'] : '';
@@ -88,7 +296,7 @@ angular.module('cleverbaby.directives')
         		
             	if(mode == MODE_PREDEFINED) {
             		// get data from source
-            		var cat = scope.mobiscrollPredefined ? scope.mobiscrollPredefined : 'bottle_type';
+            		var cat = scope.mobiscrollValues ? scope.mobiscrollValues : '';
             		data = predefinedData[cat] ? predefinedData[cat] : {};
             	} else if(mode == MODE_URL) {
             		// get data from source

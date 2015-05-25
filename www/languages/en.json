@@ -118,6 +118,7 @@
     "cleverbaby.app.activity.nap.mode.title": "Sleep",
     "cleverbaby.app.activity.nap.mode.timer": "Timer Mode",
     "cleverbaby.app.activity.nap.mode.manual": "Manual Mode",
+    "cleverbaby.app.activity.nap.location": "Sleep Location",    
     "cleverbaby.app.activity.nap.time_start": "Time",
     "cleverbaby.app.activity.nap.time_slept": "Time Slept",
     "cleverbaby.app.activity.nap.time_end": "Time Stop",
@@ -180,6 +181,7 @@
     "cleverbaby.app.activity.play.title": "Play",
     "cleverbaby.app.activity.play.time": "Time",
     "cleverbaby.app.activity.play.activity": "Activity",
+    "cleverbaby.app.activity.play.location": "Location",
     "cleverbaby.app.activity.play.activity.placeholder": "Crawling",
 
     "cleverbaby.app.activity.diary.title": "Diary",

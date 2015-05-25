@@ -14,7 +14,6 @@
                 <label class="default">
                     <span class="icon-clock"></span> <span data-translate>cleverbaby.app.activity.bath.time</span>
                 </label>
-                <!--<input ng-model="modal.data.time" type="datetime-local" value="2004-08-31" class="form-control">-->
                 <div mobiscroll-datetime="" mobiscroll-model="modal.data.time" class-child="form-control"></div>
             </div>
             <div class="kotak">
@@ -28,7 +27,7 @@
                 <label class="default">
                     <span data-translate>cleverbaby.app.activity.bath.notes</span>
                 </label>
-                <input ng-model="modal.data.bath_comment" type="text" placeholder="{{ 'cleverbaby.app.activity.bath.notes.placeholder' | translate }}" class="form-control">
+                <div mobiscroll-predefined="" mobiscroll-values="bath_types" mobiscroll-mode="predefined" mobiscroll-model="modal.data.bath_comment" class-child="form-control"></div>
             </div>
         </div>
         <!-- addpic/addnote -->

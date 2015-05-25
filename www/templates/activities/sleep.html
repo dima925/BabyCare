@@ -10,6 +10,13 @@
             <a ng-click="submitActivityCheck(); $event.stopPropagation();" class="btn pull-right"><i class="fa fa-check"></i></a>
         </div>
         <div class="content">
+
+            <div class="kotak no-border padding-top">
+                <label class="default">
+                    <span class="icon-bed"></span> <span data-translate>cleverbaby.app.activity.nap.location</span>
+                </label>
+                <div mobiscroll-predefined="" mobiscroll-values="sleep_location" mobiscroll-mode="predefined" mobiscroll-model="modal.data.sleep_location" class-child="form-control"></div>
+            </div>
             <div class="kotak no-border padding-top">
                 <div class="rumah-radio">
                     <ion-radio ng-click="switchtimer(false,true)"
@@ -36,8 +43,9 @@
                 <label class="default item item-input item-select" data-translate>
                     cleverbaby.app.activity.nap.time_slept
                 </label>
-                <select ng-model="modal.data.time_slept">
-                    <option>cleverbaby.app.activity.nap.time_slept.select.default</option>
+                <div mobiscroll-predefined="" mobiscroll-values="sleep_duration" mobiscroll-mode="predefined" mobiscroll-model="modal.data.time_slept" class-child="form-control"></div>
+                <!--<select ng-model="modal.data.time_slept">
+                    <option></option>
                     <option value="300">cleverbaby.app.activity.nap.time_slept.select.5min</option>
                     <option value="600">cleverbaby.app.activity.nap.time_slept.select.10min</option>
                     <option value="900">cleverbaby.app.activity.nap.time_slept.select.30min</option>
@@ -47,7 +55,7 @@
                     <option value="7200">cleverbaby.app.activity.nap.time_slept.select.4hour</option>
                     <option value="9000">cleverbaby.app.activity.nap.time_slept.select.5hour</option>
                     <option value="10800">cleverbaby.app.activity.nap.time_slept.select.6hour</option>
-                </select>
+                </select>-->
             </div>
             <div class="kotak" ng-show="manual">
                 <label class="default">
