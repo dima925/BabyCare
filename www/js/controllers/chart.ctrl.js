@@ -78,9 +78,9 @@ angular.module('cleverbaby.controllers')
     var activeDate = moment();
 
     $scope.createGraph = function (activeDate, periodType){
-        angular.element('.with-3d').html('');
-        $scope.discreteChartData = TrendDataChart.generateData(activeDate, $scope.activeActivityType,  $scope.trendInfoObj[$scope.activeActivityType], periodType);
+        //angular.element('.with-3d').html('');
         $scope.discreteOptions = TrendDataChart.createOptions();
+        $scope.discreteChartData = TrendDataChart.generateData(activeDate, $scope.activeActivityType,  $scope.trendInfoObj[$scope.activeActivityType], periodType);
     }
 
     $scope.activeActivityType = "growth";
@@ -124,7 +124,6 @@ angular.module('cleverbaby.controllers')
                 $scope.createGraph(activeDate, $scope.periodType);
             }
         });
-
 
         $scope.config = {
             visible: true, // default: true

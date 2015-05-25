@@ -57,8 +57,8 @@ angular
                         axisLabel: xAxisLabel
                     },
                     showYAxis: true,
-                    showControls: true,
-                    showLegend: true
+                    showControls: false,
+                    showLegend: false
                 }
             };
         }
@@ -69,14 +69,14 @@ angular
             angular.forEach(dataActivityType, function(sleep, index){
                 var startTimeKey = moment(sleep.time).format("MM-DD-YYYY");
                 var valueDateStart = moment.duration(sleep.time);
-                var valueDateEnd = moment.duration(sleep.time_end);
+                var valueDateEnd = moment.duration(sleep.sleep_timeend);
                 if(sleepHours[startTimeKey]){
                     sleepHours[startTimeKey].totalTop += valueDateEnd.subtract(valueDateStart).asHours(); //
-                    sleepHours[startTimeKey].totalBot += 1;
+                    sleepHours[startTimeKey].totalBot -= 1;
                 }else{
                     sleepHours[startTimeKey] = {
                         'totalTop': valueDateEnd.subtract(valueDateStart).asHours(),
-                        'totalBot': 1
+                        'totalBot': -1
                     }
                 }
             })
@@ -104,11 +104,11 @@ angular
                     var totalValueBot = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].totalBot : 0;
                     acitivityDataValuesTop.push({
                         "label":  labels[x],
-                        "value": 20
+                        "value": totalValueTop
                     });
                     acitivityDataValuesBot.push({
                         "label":  labels[x],
-                        "value": -30
+                        "value": totalValueBot
                     });
                 }
             }else{

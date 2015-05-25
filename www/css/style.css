@@ -58,7 +58,7 @@ margin-top: 10px !important;
 }
 .positive{
   background-color: #02b6ef !important;
-  height: auto;
+  /* height: auto; this doesnt show the bars of the nvd3 charts*/
 }
 .balanced{
   background-color: blue !important;
