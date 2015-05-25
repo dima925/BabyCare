@@ -4,7 +4,8 @@
 3. npm install (in the repository)
 4. bower install
 5. ionic serve (to run and test in browser)'
-6. ionic build android
+6. ```ionic state restore``` (this will install all cordova platforms and plugins)
+7. ```ionic build android```
 
 Max OSX
 1. Install NodeJS
