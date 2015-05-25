@@ -21,6 +21,9 @@ angular.module('cleverbaby.controllers')
         $scope.manual = true;
         $scope.timer = false;
 
+        $scope.$watch('timer', function (isTimer) {
+            $scope.manual = !isTimer;
+        });
         $scope.switchtimer = function(){
             $scope.manual = !$scope.manual;
             $scope.timer = !$scope.timer;

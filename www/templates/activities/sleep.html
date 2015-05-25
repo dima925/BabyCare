@@ -19,18 +19,8 @@
             </div>
             <div class="kotak no-border padding-top">
                 <div class="rumah-radio">
-                    <ion-radio ng-click="switchtimer(false,true)"
-                               name="content"
-                               class="xs-2 border-right tab-style text-center"
-                               data-translate>
-                        cleverbaby.app.activity.nap.mode.timer
-                    </ion-radio>
-                    <ion-radio ng-click="switchtimer(true,false)"
-                               name="content"
-                               class="xs-2 border-right tab-style text-center"
-                               data-translate>
-                        cleverbaby.app.activity.nap.mode.manual
-                    </ion-radio>
+                    <ion-radio ng-model="timer" ng-value="false" name="content" class="xs-2 border-right tab-style" ><span data-translate>cleverbaby.app.activity.nap.mode.manual</span></ion-radio>
+                    <ion-radio ng-model="timer" ng-value="true" name="content" class="xs-2 border-right tab-style"><span data-translate>cleverbaby.app.activity.nap.mode.timer</span></ion-radio>
                 </div>
             </div>
             <div class="kotak">
