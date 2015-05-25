@@ -40,6 +40,7 @@ angular.module('cleverbaby')
     })
     .state('app.diary', {
         url: "/diary",
+        cache: false,
         views: {
             'home': {
                 templateUrl: "templates/diary.html",
