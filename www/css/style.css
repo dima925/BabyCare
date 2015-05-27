@@ -785,11 +785,12 @@ span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px; di
 .btn-more-items { display: inline-block; }
 
 /*dayli-checklist*/
-.dayli-checklist { font-weight: normal; padding-bottom: 10px}
-.dayli-checklist h5 { margin: 0 0 5px 0 ; font-weight: normal !important; }
-.dayli-checklist h3 { color: rgba(255,255,255,.5); font-size: 16px; margin: 0;padding:11px 10px 10px; text-align: center;}
+.dayli-checklist { font-weight: normal; padding-bottom: 10px; text-align: center;}
+.dayli-checklist h5 { margin: 0 0 5px 0 ; font-weight: normal !important; } 
+.dayli-checklist h5.activity { border-radius: 50px; display: inline-block; padding: 3px 8px; }
+.dayli-checklist h3 { color: rgba(255,255,255,.5); font-size: 16px; margin: 0; padding:11px 10px 10px; text-align: center;}
 .dayli-checklist input[type="checkbox"] { display: none;}
-.dayli-checklist label.checkbox {position: relative; width: 20px; height: 22px; overflow: hidden; display: inline-block; margin: -10px 0 0 0;  }
+.dayli-checklist label.checkbox {position: relative; width: 20px; height: 22px; overflow: hidden; display: inline-block; margin: -3px 0 0 0;  }
 .dayli-checklist label.checkbox:before { content: "\f096"; font-family: 'FontAwesome'; position: absolute; top: 0; left: 0; color: rgba(255,255,255,.5); font-size: 20px;}
 .dayli-checklist input[type="checkbox"]:checked ~ label.checkbox:before { content: "\f14a"; color: #64dd17;}
 
