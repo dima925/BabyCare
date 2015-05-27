@@ -6,12 +6,35 @@
                     <ion-nav-title cb-baby-drop-down></ion-nav-title>
                 </div>
             </ion-nav-bar>
-
             <div ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
-            <div class="content-calendar">
-                <h2><span class="icon-calendar" title="09"></span>  May, 2015</h2>
+            <div class="content-calendar" ng-if="!hasContent">
+                <p>Please select day to see activities</p>
+            </div>
+            <div class="content-calendar" ng-if="hasContent">
+                <h2><span class="icon-calendar" title="{{selectedDay}}"></span>  {{selectedMonth}}, {{selectedYear}}</h2>
                 <p>Development Milestones</p>
+                <ion-list>
+                    <div collection-repeat="activity in activities" collection-item-height="50" collection-item-width="80%">
+                        <timeline-item activity="activity"></timeline-item>
+                    </div>
+                </ion-list>
+                <ion-infinite-scroll on-infinite="loadMore()" distance="1%" ng-if="canBeloadedMore">
+                </ion-infinite-scroll>
             </div>
         </div>
     </ion-content>
 </ion-view>
+<style>
+table.fc-border-separate tr td.calendar-highlight-circle {
+    /*font-style: italic;
+    border: 1px solid #000 !important;
+    border-radius: 25px;*/
+    background: url(../img/highlight-circle.png) !important;
+    background-size: 100% 100% !important;
+}
+table.fc-border-separate tr td.calendar-highlight-circle .fc-day-number {    
+    /*border: 1px solid #000 !important;
+    border-radius: 25px;
+    */
+}
+</style>
