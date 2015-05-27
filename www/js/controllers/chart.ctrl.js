@@ -81,6 +81,7 @@ angular.module('cleverbaby.controllers')
         //angular.element('.with-3d').html('');
         $scope.discreteOptions = TrendDataChart.createOptions();
         $scope.discreteChartData = TrendDataChart.generateData(activeDate, $scope.activeActivityType,  $scope.trendInfoObj[$scope.activeActivityType], periodType);
+        $scope.averageDataResult = TrendDataChart.calculateAverageData(activeDate, $scope.activeActivityType,  $scope.trendInfoObj[$scope.activeActivityType], periodType);
     }
 
     $scope.activeActivityType = "growth";

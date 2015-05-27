@@ -3,12 +3,14 @@ angular
     .factory("TrendDataChart", ["$rootScope", function($rootScope){
 
         function getFirstAndLastDay(date, dateType){
+            var firstDay;
+            var lastDay
             if(dateType == 'weekly') {
-                var firstDay = moment(date).day(0);
-                var lastDay = moment(date).day(6);
+                 firstDay = moment(date).day(0);
+                 lastDay = moment(date).day(6);
             } else {
-                var firstDay = moment(date).date(1);
-                var lastDay = moment(firstDay).endOf('month');
+                 firstDay = moment(date).date(1);
+                 lastDay = moment(firstDay).endOf('month');
             }
 
             return{
@@ -81,6 +83,55 @@ angular
                 }
             })
             return sleepHours;
+        };
+        activityTypeFiltersCalculation.diaper = function (dataActivityType) {
+            var diaperWetDirty = {};
+            angular.forEach(dataActivityType, function(diaper, index){
+                var startTimeKey = moment(diaper.time).format("MM-DD-YYYY");
+                var valueDateStart = moment.duration(diaper.time);
+                if(diaper.type != "Empty"){
+                    var wetOrDity = diaper.type == "Wet" ? "totalTop" : "totalBot"
+
+                    if(diaperWetDirty[startTimeKey]){
+                        var total = diaperWetDirty[startTimeKey][wetOrDity]
+                        diaperWetDirty[startTimeKey][wetOrDity] = diaper.type == "Wet" ? total + 1 : total - 1;
+                    }else{
+                        diaperWetDirty[startTimeKey] = {'totalTop': 0, 'totalBot': 0};
+                        diaperWetDirty[startTimeKey][wetOrDity] = diaper.type == "Wet" ? 1 : -1;
+                    }
+                }
+            })
+            return diaperWetDirty;
+        }
+
+        /**
+         * Provides the data in the Average Section on trend, for calculating the average result of current week/month and last week/month.
+         * @param date - current date
+         * @param dataType - datatype to filter
+         * @param dataActivityType - array containing the data of data type
+         * @param periodType - weekly or monthly
+         */
+        function calculateAverageData(date, dataType, dataActivityType, periodType) {
+
+            function getAverage(periodData) {
+                var totalVal = 0;
+                angular.forEach(periodData, function(dayValue, index){
+                    totalVal =  totalVal + Math.abs(dayValue.value);
+                });
+
+                return totalVal / periodData.length;
+            }
+
+            var previousPeriodDate = moment(date).subtract(1, periodType == 'weekly' ? 'w' : 'M');
+            var currentDateGenerateData = generateData(date, dataType, dataActivityType, periodType);
+            var prevPeriodDateGenerateData = generateData(previousPeriodDate, dataType, dataActivityType, periodType);
+
+            return {
+                'topAverage': getAverage(currentDateGenerateData[0].values),
+                'topAverageLastPeriod': getAverage(prevPeriodDateGenerateData[0].values),
+                'botAverage': getAverage(currentDateGenerateData[1].values),
+                'botAverageLastPeriod': getAverage(prevPeriodDateGenerateData[1].values)
+            }
         }
 
         /**
@@ -155,6 +206,7 @@ angular
             generateData: generateData,
             createOptions: createOptions,
             generateFromToDateText: generateFromToDateText,
-            getFirstAndLastDay: getFirstAndLastDay
+            getFirstAndLastDay: getFirstAndLastDay,
+            calculateAverageData: calculateAverageData
         }
     }]);
