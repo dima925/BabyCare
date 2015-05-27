@@ -1,14 +1,13 @@
 <div class="kotak autoheight border-divider">
     <div class="chart-description">
-        <h4 class="text-center">Dirty (times changed)</h4>
         <div class="xs-2 ">
             <span>Average changes</span>
-            <span>4.5 times</span>
+            <span>{{averageDataResult.topAverage + averageDataResult.botAverage}} times</span>
             <span>per day</span>
         </div>
         <div class="xs-2 ">
             <span>Last Week</span>
-            <span>4.3 times</span>
+            <span>{{averageDataResult.topAverageLastPeriod + averageDataResult.botAverageLastPeriod}} times</span>
             <span>per day</span>
         </div>
     </div>

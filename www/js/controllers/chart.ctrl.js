@@ -116,6 +116,25 @@ angular.module('cleverbaby.controllers')
 
         var activeDate;
 
+        $scope.axisLabel = {
+            'sleep':{
+                'topLabel': "Sleep hours (per day)",
+                'botLabel': "Sleep Times (per day)"
+            },
+            'feeding':{
+                'topLabel': "Formula (oz or ml per day)",
+                'botLabel': "Breastfeeding (hours)"
+            },
+            'diaper':{
+                'topLabel': "Wet (times changed)",
+                'botLabel': "Dirty (times changed)"
+            },
+            'pumping':{
+                'topLabel': "Left (oz or ml per day)",
+                'botLabel': "Right (oz or ml per day)"
+            }
+        };
+
         /**
          * changing period type 'monthly' or 'weekly'
          */
