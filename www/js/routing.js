@@ -11,6 +11,7 @@ angular.module('cleverbaby')
 
     .state('app.calendar', {
         url: "/calendar",
+        cache: false,
         views: {
             'calendar': {
                 templateUrl: "templates/calendar.html",

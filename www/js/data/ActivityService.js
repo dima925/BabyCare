@@ -411,6 +411,53 @@ angular.module('cleverbaby.data')
                     }));
                 });
             },
+            getActivitiesByDate: function(babyId, date) {
+                return $q(function(resolve, reject){
+                    var nDate = date.getTime();
+                    resolve($localStorage.activities[babyId].filter(function(item) {
+                        if(nDate == (new Date(item.time)).setHours(0,0,0,0))
+                            return true;
+                        return false;
+                    }).map(function(x) {
+                        x.time = new Date(x.time);
+                        return x;
+                    }).sort(function(act1, act2) {
+                        var act1special = false,
+                            act2special = false;
+
+                        if(act1.type == "todo" || act1.type == "milestone" || act1.type == "doctor" || act1.type == "vaccination")
+                            act1special = true;
+
+                        if(act2.type == "todo" || act2.type == "milestone" || act2.type == "doctor" || act2.type == "vaccination")
+                            act2special = true;
+
+                        if(act1special && act2special)
+                            return 0;
+                        if(act1special)
+                            return -1;
+                        return 1;
+                    }));
+                });
+            },
+            getActivityCalendar: function(babyId) {
+                // filter for activity calendar circle
+                // 1) filter data type = 'todo' 2) milestone 3) doctor 4) vaccination
+                return $q(function(resolve, reject){
+                    var calendar = [],
+                        activities = $localStorage.activities[babyId].slice(0),
+                        activity, activityDate;
+
+                    for(var i=0; i<activities.length; i++) {
+                        activity = activities[i];
+                        if(activity.type == "todo" || activity.type == "milestone" || activity.type == "doctor" || activity.type == "vaccination") {
+                            activityDate = (new Date(activity.time)).setHours(0,0,0,0);
+                            if(calendar.indexOf(activityDate) === -1)
+                                calendar.push(activityDate);
+                        }
+                    }
+                    resolve(calendar);
+                });
+            },
             setActivities: function(babyId, activities){
                 return $q(function(resolve, reject){
                     if(!$localStorage.activities){

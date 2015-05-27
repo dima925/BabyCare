@@ -3,27 +3,23 @@
  */
 
 angular.module('cleverbaby.controllers')
-    .controller('CalendarCtrl', ['$scope', '$rootScope', 'ActivityService',
-        function($scope, $rootScope, ActivityService) {
+    .controller('CalendarCtrl', ['$scope', '$rootScope', 'ActivityService', '$timeout',
+        function($scope, $rootScope, ActivityService, $timeout) {
 
             $scope.hasContent = false;
             $scope.selectedDay = '';
             $scope.selectedMonth = '';
+            $scope.selectedMonthName = '';
             $scope.selectedYear = '';
 
             $scope.activities = [];
-            
+            $scope.activityCalendar = [];
+
             $scope.eventSources = [];
 
-            var date = new Date();
-            var d = date.getDate();
-            var m = date.getMonth();
-            var y = date.getFullYear();
-
-            start = 0;
-            limit = 10;
-            ActivityService.getAllActivitiesByBabyId($rootScope.baby.uuid, start, limit).then(function(activities){
-                $scope.activities = activities;
+            ActivityService.getActivityCalendar($rootScope.baby.uuid).then(function(activityCalendar) {
+                $scope.activityCalendar = activityCalendar;
+                $scope.refreshCalendar();
             });
 
             /* event sources array*/
@@ -45,23 +41,29 @@ angular.module('cleverbaby.controllers')
                 //textColor: 'yellow' // an option!
             }];*/
 
-            $scope.alertOnEventClick = function() {
+            $scope.alertOnEventClick = function() {                
             };
 
             $scope.alertOnDayClick = function(date) {
                 // when user clicks on day
-                if(date.getMonth() == m && date.getDate() == d) {
+                $scope.selectedDay = date.getDate();
+                $scope.selectedMonthName = moment(date).format("MMMM");
+                $scope.selectedMonth = date.getMonth();
+                $scope.selectedYear = date.getFullYear();
+                
+                start = 0;
+                limit = 100;
+                ActivityService.getActivitiesByDate($rootScope.baby.uuid, date, start, limit).then(function(activities) {
+                    $scope.activities = activities;
                     $scope.hasContent = true;
-                    $scope.selectedDay = d;
-                    $scope.selectedMonth = m;
-                    $scope.selectedYear = y;
-
-                } else {
-                    $scope.hasContent = false;
-                }
+                });
             };
 
             $scope.eventRender = function(event, element, view) {
+            };
+
+            $scope.refreshCalendar = function() {
+                $('#calendar').fullCalendar('render');
             };
 
             /* config object */
@@ -79,7 +81,7 @@ angular.module('cleverbaby.controllers')
                     eventResize: $scope.alertOnResize,
                     eventRender: $scope.eventRender,
                     dayRender: function(date, cell) {
-                        if(date.getMonth() == m && date.getDate() == d) {
+                        if ($scope.activityCalendar.indexOf(date.getTime()) !== -1) {
                             $(cell).addClass('calendar-highlight-circle');
                         }
                     }
