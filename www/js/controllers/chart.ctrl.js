@@ -78,9 +78,10 @@ angular.module('cleverbaby.controllers')
     var activeDate = moment();
 
     $scope.createGraph = function (activeDate, periodType){
-        angular.element('.with-3d').html('');
-        $scope.discreteChartData = TrendDataChart.generateData(activeDate, $scope.activeActivityType,  $scope.trendInfoObj[$scope.activeActivityType], periodType);
+        //angular.element('.with-3d').html('');
         $scope.discreteOptions = TrendDataChart.createOptions();
+        $scope.discreteChartData = TrendDataChart.generateData(activeDate, $scope.activeActivityType,  $scope.trendInfoObj[$scope.activeActivityType], periodType);
+        $scope.averageDataResult = TrendDataChart.calculateAverageData(activeDate, $scope.activeActivityType,  $scope.trendInfoObj[$scope.activeActivityType], periodType);
     }
 
     $scope.activeActivityType = "growth";
@@ -115,6 +116,25 @@ angular.module('cleverbaby.controllers')
 
         var activeDate;
 
+        $scope.axisLabel = {
+            'sleep':{
+                'topLabel': "Sleep hours (per day)",
+                'botLabel': "Sleep Times (per day)"
+            },
+            'feeding':{
+                'topLabel': "Formula (oz or ml per day)",
+                'botLabel': "Breastfeeding (hours)"
+            },
+            'diaper':{
+                'topLabel': "Wet (times changed)",
+                'botLabel': "Dirty (times changed)"
+            },
+            'pumping':{
+                'topLabel': "Left (oz or ml per day)",
+                'botLabel': "Right (oz or ml per day)"
+            }
+        };
+
         /**
          * changing period type 'monthly' or 'weekly'
          */
@@ -124,7 +144,6 @@ angular.module('cleverbaby.controllers')
                 $scope.createGraph(activeDate, $scope.periodType);
             }
         });
-
 
         $scope.config = {
             visible: true, // default: true

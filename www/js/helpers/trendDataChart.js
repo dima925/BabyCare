@@ -3,12 +3,14 @@ angular
     .factory("TrendDataChart", ["$rootScope", function($rootScope){
 
         function getFirstAndLastDay(date, dateType){
+            var firstDay;
+            var lastDay
             if(dateType == 'weekly') {
-                var firstDay = moment(date).day(0);
-                var lastDay = moment(date).day(6);
+                 firstDay = moment(date).day(0);
+                 lastDay = moment(date).day(6);
             } else {
-                var firstDay = moment(date).date(1);
-                var lastDay = moment(firstDay).endOf('month');
+                 firstDay = moment(date).date(1);
+                 lastDay = moment(firstDay).endOf('month');
             }
 
             return{
@@ -35,7 +37,7 @@ angular
         function createOptions(xAxisLabel, yAxisLabel, tickValues) {
             return {
                 chart: {
-                    type: 'discreteBarChart',
+                    type: 'multiBarChart',
                     height: 350,
                     margin : {
                         top: 20,
@@ -45,19 +47,20 @@ angular
                     },
                     x: function(d){return d.label;},
                     y: function(d){return d.value;},
+                    stacked: true,
                     showValues: true,
+                    reduceXTicks: false,
                     valueFormat: function(d){
-                        return d3.format(',.0f')(d);
+                        return d3.format(',.1f')(d);
                     },
                     transitionDuration: 500,
                     xAxis: {
                         tickValues: tickValues,
                         axisLabel: xAxisLabel
                     },
-                    yAxis: {
-                        axisLabel: yAxisLabel,
-                        axisLabelDistance: 30
-                    }
+                    showYAxis: true,
+                    showControls: false,
+                    showLegend: false
                 }
             };
         }
@@ -68,16 +71,67 @@ angular
             angular.forEach(dataActivityType, function(sleep, index){
                 var startTimeKey = moment(sleep.time).format("MM-DD-YYYY");
                 var valueDateStart = moment.duration(sleep.time);
-                var valueDateEnd = moment.duration(sleep.time_end);
+                var valueDateEnd = moment.duration(sleep.sleep_timeend);
                 if(sleepHours[startTimeKey]){
-                    sleepHours[startTimeKey].total += valueDateEnd.subtract(valueDateStart).asHours(); //
+                    sleepHours[startTimeKey].totalTop += valueDateEnd.subtract(valueDateStart).asHours(); //
+                    sleepHours[startTimeKey].totalBot -= 1;
                 }else{
                     sleepHours[startTimeKey] = {
-                        'total': valueDateEnd.subtract(valueDateStart).asHours()
+                        'totalTop': valueDateEnd.subtract(valueDateStart).asHours(),
+                        'totalBot': -1
                     }
                 }
             })
             return sleepHours;
+        };
+        activityTypeFiltersCalculation.diaper = function (dataActivityType) {
+            var diaperWetDirty = {};
+            angular.forEach(dataActivityType, function(diaper, index){
+                var startTimeKey = moment(diaper.time).format("MM-DD-YYYY");
+                var valueDateStart = moment.duration(diaper.time);
+                if(diaper.type != "Empty"){
+                    var wetOrDity = diaper.type == "Wet" ? "totalTop" : "totalBot"
+
+                    if(diaperWetDirty[startTimeKey]){
+                        var total = diaperWetDirty[startTimeKey][wetOrDity]
+                        diaperWetDirty[startTimeKey][wetOrDity] = diaper.type == "Wet" ? total + 1 : total - 1;
+                    }else{
+                        diaperWetDirty[startTimeKey] = {'totalTop': 0, 'totalBot': 0};
+                        diaperWetDirty[startTimeKey][wetOrDity] = diaper.type == "Wet" ? 1 : -1;
+                    }
+                }
+            })
+            return diaperWetDirty;
+        }
+
+        /**
+         * Provides the data in the Average Section on trend, for calculating the average result of current week/month and last week/month.
+         * @param date - current date
+         * @param dataType - datatype to filter
+         * @param dataActivityType - array containing the data of data type
+         * @param periodType - weekly or monthly
+         */
+        function calculateAverageData(date, dataType, dataActivityType, periodType) {
+
+            function getAverage(periodData) {
+                var totalVal = 0;
+                angular.forEach(periodData, function(dayValue, index){
+                    totalVal =  totalVal + Math.abs(dayValue.value);
+                });
+
+                return totalVal / periodData.length;
+            }
+
+            var previousPeriodDate = moment(date).subtract(1, periodType == 'weekly' ? 'w' : 'M');
+            var currentDateGenerateData = generateData(date, dataType, dataActivityType, periodType);
+            var prevPeriodDateGenerateData = generateData(previousPeriodDate, dataType, dataActivityType, periodType);
+
+            return {
+                'topAverage': getAverage(currentDateGenerateData[0].values),
+                'topAverageLastPeriod': getAverage(prevPeriodDateGenerateData[0].values),
+                'botAverage': getAverage(currentDateGenerateData[1].values),
+                'botAverageLastPeriod': getAverage(prevPeriodDateGenerateData[1].values)
+            }
         }
 
         /**
@@ -88,7 +142,8 @@ angular
          */
         function generateData(date, dataType, dataActivityType, periodType){
 
-            var acitivityDataValues = [];
+            var acitivityDataValuesTop = [];
+            var acitivityDataValuesBot = [];
             var dataType = dataType;
             var sortedDataActivityType = activityTypeFiltersCalculation[dataType](dataActivityType);
 
@@ -96,10 +151,15 @@ angular
                 var labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
                 for(var x = 0; x <= 6; x++){
                     var datePeriodFormatted = moment(date).day(x).format("MM-DD-YYYY");
-                    var totalValue = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].total : 0;
-                    acitivityDataValues.push({
+                    var totalValueTop = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].totalTop : 0;
+                    var totalValueBot = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].totalBot : 0;
+                    acitivityDataValuesTop.push({
                         "label":  labels[x],
-                        "value": totalValue
+                        "value": totalValueTop
+                    });
+                    acitivityDataValuesBot.push({
+                        "label":  labels[x],
+                        "value": totalValueBot
                     });
                 }
             }else{
@@ -111,17 +171,26 @@ angular
                     if(x % 5 == 0 && x != 1){
                         label = x;
                     }
-                    var totalValue = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].total : 0;
-                    acitivityDataValues.push({
+                    var totalValueTop = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].totalTop : 0;
+                    var totalValueBot = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].totalBot : 0;
+                    acitivityDataValuesTop.push({
                         "label":  label,
-                        "value": totalValue
+                        "value": totalValueTop
+                    });
+                    acitivityDataValuesBot.push({
+                        "label": label,
+                        "value": totalValueBot
                     });
                 }
             }
             return [
                 {
-                    key: "Cumulative Return",
-                    values: acitivityDataValues
+                    key: "Top",
+                    values: acitivityDataValuesTop
+                },
+                {
+                    key: "Bot",
+                    values: acitivityDataValuesBot
                 }
             ];
         }
@@ -137,6 +206,7 @@ angular
             generateData: generateData,
             createOptions: createOptions,
             generateFromToDateText: generateFromToDateText,
-            getFirstAndLastDay: getFirstAndLastDay
+            getFirstAndLastDay: getFirstAndLastDay,
+            calculateAverageData: calculateAverageData
         }
     }]);

@@ -103,10 +103,10 @@ angular.module('cleverbaby.controllers')
          * @param input
          */
         $scope.hideKeyboard = function(){
-            alert(1);
             $(document.activeElement).blur();
             return false;
         };
 
     }
 ]);
+
