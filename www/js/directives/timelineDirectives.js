@@ -52,7 +52,7 @@ angular.module('cleverbaby.directives')
                     /****** IMPORTANT ul.timeline-grid, the right width for this is required currently its 144.8% ******/
 
                     var widthPerBlockPercentage = 144.8 / 100;
-                    var widthOfBlockCon = (widthPerBlockPercentage * timelineIonContentWidth) + 6; //because there is a -6 margin left on its css
+                    var widthOfBlockCon = (widthPerBlockPercentage * timelineIonContentWidth) + 8; //because there is a -6 margin left on its css
 
 
 
