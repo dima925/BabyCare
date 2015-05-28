@@ -30,7 +30,7 @@ angular.module('cleverbaby.directives')
                     angular.forEach(activities, function(value, index){
                         var valueDateStart = moment(value.time).format("MM-DD-YYYY");
                         var valueDateEnd = moment(value.time_end).format("MM-DD-YYYY");
-                        
+
                         if(unorderedDate[valueDateStart]){
                             unorderedDate[valueDateStart].activities.unshift(value);
                         }else{
@@ -52,7 +52,7 @@ angular.module('cleverbaby.directives')
                     /****** IMPORTANT ul.timeline-grid, the right width for this is required currently its 144.8% ******/
 
                     var widthPerBlockPercentage = 144.8 / 100;
-                    var widthOfBlockCon = widthPerBlockPercentage * timelineIonContentWidth;
+                    var widthOfBlockCon = (widthPerBlockPercentage * timelineIonContentWidth) + 6; //because there is a -6 margin left on its css
 
 
 
