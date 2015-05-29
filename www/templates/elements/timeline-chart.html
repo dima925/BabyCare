@@ -16,7 +16,7 @@
                     <li>3am</li>
                 </ul>
                 <ul class="timeline-data">
-                    <li class="data-activity {{fill.type}}" style="width:{{fill.percentage}}%" ng-repeat="(key, fill) in activity.fill"></li>
+                    <li class="data-activity {{fill.type}}" style="width:{{fill.percentage}}%; left: {{fill.marginLeft}}px;" ng-repeat="(key, fill) in activity.fill"></li>
                 </ul>
             </div>
         </ion-content>

@@ -1,0 +1,59 @@
+<ion-view view-title="{{'cleverbaby.app.more.youraccount.title' | translate}}">
+    <ion-content>
+        <div class="wrapper-tab activate-baby-pin-page">
+            <ion-nav-bar class="bar-positive">
+                <div class="header no-border">
+                    <ion-nav-buttons side="left">
+                        <a class="btn left" ui-sref="app.more"><i class="fa fa-angle-left"></i></a>
+                    </ion-nav-buttons>
+                    <ion-nav-title cb-baby-drop-down></ion-nav-title>
+                </div>
+            </ion-nav-bar>
+            <div class="row responsive-sm page-con">
+                <div class="loggedin-info col">
+                    Please enter the information you have received below to get access to the babys data:
+                </div>
+                <form>
+                    <div class="col">
+                        <div class="sub-head-text">Your Name</div>
+                        <div class="input-row">
+                            <label for="yourname" class="form-label-short">
+                                This is the name the other person will see
+                            </label>
+                            <input id="yourname" type="text" ng-model="data.yourname">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="input-row">
+                            <label for="babyName" class="form-label-short">
+                                Baby Name
+                            </label>
+                            <input id="babyName" type="text" ng-model="data.name">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="input-row">
+                            <label for="babyBday" class="form-label-short">
+                                Baby Birthdate
+                            </label>
+                            <input id="babyBday" type="text" ng-model="data.name">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="input-row">
+                            <label for="babyPin" class="form-label-short">
+                                PIN
+                            </label>
+                            <input id="babyPin" type="text" ng-model="data.name">
+                        </div>
+                    </div>
+
+                </form>
+                <button class="button button-small button-positive submit-baby-access-pin" ng-click="submitBabyAccessPin()">
+                    Get Access to Baby Data
+                </button>
+
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
