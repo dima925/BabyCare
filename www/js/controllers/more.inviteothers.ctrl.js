@@ -4,17 +4,26 @@ angular.module('cleverbaby.controllers')
 
             $scope.babies = $localStorage.babies;
 
-            $scope.invite = function(allowInviteOthers){
-                $rootScope.allowInviteOthers = allowInviteOthers;
-                $state.go('app.inviteothers2', { uuid: $scope.selectedBaby.uuid });
+            $scope.invite = function(type){
+                $state.go('app.inviteothers2', {
+                    uuid: $scope.selectedBaby.uuid,
+                    type: type
+                });
             };
 
             $scope.changeSelectedBaby = function (selectedBaby) {
                 $scope.selectedBaby = selectedBaby;
-            }
+            };
 
-            $rootScope.allowInviteOthers = $rootScope.allowInviteOthers ? $rootScope.allowInviteOthers : false;
-
+            //$rootScope.allowInviteOthers = $rootScope.allowInviteOthers ? $rootScope.allowInviteOthers : false;
+            var firstIndexAchieved = false;
+            angular.forEach($scope.babies, function(baby, index){
+                if(!firstIndexAchieved){
+                    $scope.selectedBaby = baby;
+                    firstIndexAchieved = true;
+                }
+            });
+            /*
             $scope.hasBaby = $stateParams.uuid ? true : false;
 
             if($scope.hasBaby){
@@ -23,13 +32,7 @@ angular.module('cleverbaby.controllers')
                 $scope.selectedBabyPin = Math.floor(Math.random() * moment($scope.selectedBaby.birthday));
             }else{
                 //todo workaround to get the first index of the object
-                var firstIndexAchieved = false;
-                angular.forEach($scope.babies, function(baby, index){
-                    if(!firstIndexAchieved){
-                        $scope.selectedBaby = baby;
-                        firstIndexAchieved = true;
-                    }
-                })
-            }
+
+            }*/
         }
     ]);

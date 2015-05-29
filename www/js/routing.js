@@ -78,11 +78,16 @@ angular.module('cleverbaby')
         }
     })
     .state('app.inviteothers2', {
-        url: "/inviteothers/:uuid",
+        url: "/inviteothers/:uuid/:type",
         views: {
             'more': {
                 templateUrl: "templates/more/invite-others2.html",
-                controller: "MoreInviteOthersCtrl"
+                controller: "MoreInviteOthers2Ctrl",
+                resolve: {
+                    shareData: ["BabyService", "$stateParams", function(BabyService, $stateParams){
+                        return BabyService.inviteData($stateParams.uuid, $stateParams.type);
+                    }]
+                }
             }
         }
     })

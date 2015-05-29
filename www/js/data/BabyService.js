@@ -54,6 +54,8 @@ angular.module('cleverbaby.data')
                         auth_token: $localStorage.token
                     }, true).then(function(){
                         return destintion;
+                    }, function(err){
+                        console.log(err);
                     });
             });
         }
@@ -136,6 +138,33 @@ angular.module('cleverbaby.data')
                         resolve(data);  
                     })
                 });
+            },
+            inviteData: function(uuid, type){
+                return network.get({
+                    url: '/babies/'+uuid+'/share'
+                }, true).then(function(response){
+                    return {
+                        name: response.data.name,
+                        birthday: response.data.birthday,
+                        admin: response.data.adminPin,
+                        read: response.data.readPin,
+                        write: response.data.writePin
+                    }
+                });
+            },
+            acceptPin: function(pin, name, birthday){
+                return network.post({
+                    url: '/babies/view',
+                    data: {
+                        pin: pin,
+                        name: name,
+                        birthday: birthday
+                    }
+                }, true).then(function(response){
+                    return response.data;
+                }).then(function(baby){
+                    return fetchBaby(baby);
+                })
             }
         };
     }]);
