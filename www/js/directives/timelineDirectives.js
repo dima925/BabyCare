@@ -31,6 +31,13 @@ angular.module('cleverbaby.directives')
                         var valueDateStart = moment(value.time).format("MM-DD-YYYY");
                         var valueDateEnd = moment(value.time_end).format("MM-DD-YYYY");
 
+                        var midnight = moment(value.time).set({'hour': 00, 'second': 00, 'minute': 00});
+                        var morning = moment(value.time).set({'hour': 6, 'second': 00, 'minute': 00});
+
+                        if( moment(value.time) >= midnight && moment(value.time) <= morning ){
+                            valueDateStart = moment(value.time).subtract(1, 'days').format("MM-DD-YYYY");
+                        }
+
                         if(unorderedDate[valueDateStart]){
                             unorderedDate[valueDateStart].activities.unshift(value);
                         }else{
@@ -48,13 +55,10 @@ angular.module('cleverbaby.directives')
                     //(fillpx / 332) x 100
                     var timelineIonContentWidth = parseInt(screen.width); //332px sample
 
-                    //parseInt(angular.element('.ul.timeline-grid li').css('width').substring(0, this.length - 1));
                     /****** IMPORTANT ul.timeline-grid, the right width for this is required currently its 144.8% ******/
 
                     var widthPerBlockPercentage = 144.8 / 100;
                     var widthOfBlockCon = (widthPerBlockPercentage * timelineIonContentWidth) + 8; //because there is a -6 margin left on its css
-
-
 
                     function calculateDurationPercentage(startTime, endTime){
                         var startTime = moment.duration(startTime);
@@ -81,22 +85,27 @@ angular.module('cleverbaby.directives')
                             //one block is 3 hrs gap so divide by 3
                             (3 / 3) * lengthPerBlank
                          */
-
-                        var startTime = moment(activityStartTime).set({'hour': 6, 'second': 00, 'minute': 00});
+                        var startTime = moment(activityStartTime).set({'hour': 6, 'second': 00, 'minute': 00});;
                         var lengthPerBlank = widthOfBlockCon / 8;
 
-                        startTime = moment.duration(startTime);
-                        var valueDateEnd = moment.duration(activityStartTime);
-                        var durationHours = valueDateEnd.subtract(startTime).asHours();
 
+                        var valueDateEnd = moment(activityStartTime);
+
+                        var midnight = moment(activityStartTime).set({'hour': 00, 'second': 00, 'minute': 00});
+                        var morning = moment(activityStartTime).set({'hour': 6, 'second': 00, 'minute': 00});
+                        if( moment(activityStartTime) >= midnight && moment(activityStartTime) <= morning ) {
+                            startTime = moment(startTime).subtract(1, 'days');
+                        }
+
+                        var duration = moment.duration(valueDateEnd.diff(startTime));
+
+                        var durationHours = duration.asHours();
                         var marginLeftPercentage = (durationHours / 3) * lengthPerBlank;
                         return marginLeftPercentage;
                     }
 
                     function getFillPercentages(activity){
-
                         var fillAray = [];
-                        var finalFillAray = [];
 
                         angular.forEach(activity, function(activity, index){
                             var timeEnd;
@@ -109,31 +118,6 @@ angular.module('cleverbaby.directives')
                             fillAray.push({'marginLeft': calculateMarginLeftPercentage(activity.time), 'percentage': calculateDurationPercentage(activity.time, timeEnd), 'type': activity.type, 'startTime': activity.time, 'endTime': timeEnd});
                         });
 
-                        //this part is to get the blank percentage on the timeline
-
-                        /*
-                        angular.forEach(fillAray, function(activity, index) {
-                            var activityDate = moment(activity.startTime);
-
-                            //this is to set the start time to 6:00am for the first array
-                            if(index == 0){
-                                var startTime = moment(activity.startTime).set({'hour': 6, 'second': 00, 'minute': 00});
-
-                                if(activityDate >= startTime){
-                                    finalFillAray.push({'percentage': calculateDurationPercentage(startTime, activityDate), 'type': '', 'startTime': startTime, 'endTime': activityDate});
-                                }
-
-                            }else{
-                                var lastTimeEnd = fillAray[index - 1].endTime;
-                                var betweenFillPercentage = calculateDurationPercentage(lastTimeEnd, activityDate);
-                                if(betweenFillPercentage != 0){
-                                    finalFillAray.push({'percentage': betweenFillPercentage, 'type': '', 'startTime': lastTimeEnd, 'endTime': activityDate});
-                                }
-                            }
-
-                            finalFillAray.push(activity);
-                        });
-                        */
                         return fillAray;
                     }
 
@@ -144,10 +128,8 @@ angular.module('cleverbaby.directives')
                         dateArrayActivity.fill = getFillPercentages(dateArrayActivity.activities)
                         scope.orderedDateFinal.push(dateArrayActivity);
                     });
-                    scope.orderedDateFinal.reverse();
 
                     console.log(scope.orderedDateFinal);
-
                 });
             }
         }
