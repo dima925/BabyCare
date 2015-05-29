@@ -68,6 +68,33 @@ angular.module('cleverbaby')
            }
        }
     })
+    .state('app.inviteothers', {
+        url: "/inviteothers",
+        views: {
+            'more': {
+                templateUrl: "templates/more/invite-others.html",
+                controller: "MoreInviteOthersCtrl"
+            }
+        }
+    })
+    .state('app.inviteothers2', {
+        url: "/inviteothers/:uuid",
+        views: {
+            'more': {
+                templateUrl: "templates/more/invite-others2.html",
+                controller: "MoreInviteOthersCtrl"
+            }
+        }
+    })
+    .state('app.activatebabyaccesspin', {
+        url: "/activatebabyaccesspin",
+        views: {
+            'more': {
+                templateUrl: "templates/more/activate-baby-access-pin.html",
+                controller: "MoreActivateBabyAccessPinCtrl"
+            }
+        }
+    })
     .state('app.measures', {
         url: "/measures",
         views: {

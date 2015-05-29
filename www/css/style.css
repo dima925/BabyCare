@@ -14,7 +14,6 @@ html, body { font-family: 'Roboto', sans-serif !important;  }
 .bigicon:before {
         font-size: 10vmin;
         margin-left: 0px;
-
 }
 
 .fixheight > .scroll {
@@ -1084,4 +1083,12 @@ form .hidden-submit{
 }
 div[mobiscroll-mode="predefined"] input {
   background-color: transparent !important;
+}
+
+.activate-baby-pin-page .col{
+    display: inline;
+}
+
+.submit-baby-access-pin{
+    margin-top: 15px;
 }

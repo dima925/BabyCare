@@ -17,7 +17,5 @@ angular.module('cleverbaby.controllers')
         		$state.go('app.help', { helpId: id });
             };
 
-
-
         }
     ]);
