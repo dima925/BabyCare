@@ -311,6 +311,13 @@ p.time{
   background-color: #003366;
   border-radius: 50px;
 }
+
+.col .button.button-positive {
+    border-radius: 0px;
+    line-height: 20px !important;
+    margin-bottom: 3px;
+}
+
 .tabs{
   background-color: #02b6ef !important;
 }
@@ -1000,13 +1007,14 @@ td.fc-day { margin: 0 !important;padding:0 !important; margin: 0 !important; }
 
 .sub-head-text {
     display: inline;
-    font-size: 16px;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .input-row input{
     float: right;
     display: block;
-    width: 160px;
+    width: 43%;
     text-align: right;
     border: 1px solid lightblue;
     padding: 1px 5px;
@@ -1095,4 +1103,55 @@ div[mobiscroll-mode="predefined"] input {
 
 .submit-baby-access-pin{
     margin-top: 15px;
+}
+
+/** Invite Others Page **/
+
+.allowed-list{
+    display: block;
+    height: 40px;
+}
+
+.allowed-list-desc{
+    width: 70%;
+    float: left;
+}
+
+.remove-x{
+    float: right;
+    font-size: 39px;
+    width: 30px;
+    top: 8px;
+    position: relative;
+}
+
+.leftLabel{
+    float: left;
+    width: 100px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.rightValue{
+    float: right;
+}
+
+.input-row{
+    display: block;
+    height: 29px;
+}
+
+.access-baby-pin-form .input-row{
+    display: block;
+    height: 42px;
+}
+
+.access-baby-pin-form .first-row{
+    height: 72px;
+}
+
+.label-subtext{
+    position: absolute;
+    width: 176px;
+    margin-top: 20px;
 }

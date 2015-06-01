@@ -16,13 +16,11 @@
                 <div class="col">
                     <form>
                         <div class="sub-head-text">Manage settings for</div>
-                        <div class="input-row">
                             <div class="padding combo-box">
                                 <select ng-change="changeSelectedBaby(selectedBaby)" ng-options="baby.name for (key , baby) in babies" ng-model="selectedBaby" class="ng-pristine ng-untouched ng-valid">
 
                                 </select>
                             </div>
-                        </div>
                     </form>
                 </div>
                 <div class="col">
@@ -37,10 +35,12 @@
         </div>
     </ion-content>
     <div class="btm-btns">
-        <div class="sub-head-text">Others who currently have access to "Baby 1"</div>
-        <div class="allowed-list">
-            <div>John (daddy) can View, Add and Edit and Invite Others</div>
-            <div class="remove-x">X</div>
+        <div class="col">
+            <div class="sub-head-text">Others who currently have access to "Baby 1"</div>
+            <div class="allowed-list">
+                <div class="allowed-list-desc">John (daddy) can View, Add and Edit and Invite Others</div>
+                <div class="remove-x">X</div>
+            </div>
         </div>
     </div>
 </ion-view>
