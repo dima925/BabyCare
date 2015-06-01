@@ -1101,10 +1101,6 @@ div[mobiscroll-mode="predefined"] input {
     display: inline;
 }
 
-.submit-baby-access-pin{
-    margin-top: 15px;
-}
-
 /** Invite Others Page **/
 
 .allowed-list{
@@ -1154,4 +1150,34 @@ div[mobiscroll-mode="predefined"] input {
     position: absolute;
     width: 176px;
     margin-top: 20px;
+}
+
+.bottom-nvd3-chart{
+    position: relative;
+    top: -100px;
+    left: 35px;
+}
+
+.bottom-nvd3-chart svg{
+    transform: rotate(180deg);
+}
+
+.bottom-nvd3-chart .tick text{
+    transform: rotate(180deg);
+}
+
+.chart-con{
+    height: 200px;
+}
+
+.nv-x .nv-axis .tick line {
+    display: none;
+}
+
+.nv-zeroLine{
+    display: none;
+}
+
+.text-center.btm{
+
 }

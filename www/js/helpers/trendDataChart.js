@@ -34,11 +34,11 @@ angular
         /**
          * creates the options required by the plugin.
          */
-        function createOptions(xAxisLabel, yAxisLabel, tickValues) {
+        function createOptions(showXAxis, rightAlignYAxis, xAxisLabel, yAxisLabel, tickValues) {
             return {
                 chart: {
-                    type: 'multiBarChart',
-                    height: 350,
+                    type: 'discreteBarChart',
+                    height: 150,
                     margin : {
                         top: 20,
                         right: 20,
@@ -48,19 +48,25 @@ angular
                     x: function(d){return d.label;},
                     y: function(d){return d.value;},
                     stacked: true,
-                    showValues: true,
+                    showValues: false,
                     reduceXTicks: false,
+                    reduceYTicks: false,
                     valueFormat: function(d){
                         return d3.format(',.1f')(d);
                     },
                     transitionDuration: 500,
+                    yAxis:{
+                        showMaxMin: false
+                    },
                     xAxis: {
                         tickValues: tickValues,
                         axisLabel: xAxisLabel
                     },
                     showYAxis: true,
+                    showXAxis: showXAxis,
                     showControls: false,
-                    showLegend: false
+                    showLegend: false,
+                    rightAlignYAxis: rightAlignYAxis
                 }
             };
         }
@@ -70,15 +76,16 @@ angular
             var sleepHours = {};
             angular.forEach(dataActivityType, function(sleep, index){
                 var startTimeKey = moment(sleep.time).format("MM-DD-YYYY");
-                var valueDateStart = moment.duration(sleep.time);
-                var valueDateEnd = moment.duration(sleep.sleep_timeend);
+                var valueDateStart = moment(sleep.time);
+                var valueDateEnd = moment(sleep.sleep_timeend);
+                var valueTimeDifference = moment.duration(valueDateEnd.diff(valueDateStart)).asHours();
                 if(sleepHours[startTimeKey]){
-                    sleepHours[startTimeKey].totalTop += valueDateEnd.subtract(valueDateStart).asHours(); //
-                    sleepHours[startTimeKey].totalBot -= 1;
+                    sleepHours[startTimeKey].totalTop += valueTimeDifference; //
+                    sleepHours[startTimeKey].totalBot += 1;
                 }else{
                     sleepHours[startTimeKey] = {
-                        'totalTop': valueDateEnd.subtract(valueDateStart).asHours(),
-                        'totalBot': -1
+                        'totalTop': valueTimeDifference,
+                        'totalBot': 1
                     }
                 }
             })
@@ -127,10 +134,10 @@ angular
             var prevPeriodDateGenerateData = generateData(previousPeriodDate, dataType, dataActivityType, periodType);
 
             return {
-                'topAverage': getAverage(currentDateGenerateData[0].values),
-                'topAverageLastPeriod': getAverage(prevPeriodDateGenerateData[0].values),
-                'botAverage': getAverage(currentDateGenerateData[1].values),
-                'botAverageLastPeriod': getAverage(prevPeriodDateGenerateData[1].values)
+                'topAverage': getAverage(currentDateGenerateData.top[0].values),
+                'topAverageLastPeriod': getAverage(prevPeriodDateGenerateData.top[0].values),
+                'botAverage': getAverage(currentDateGenerateData.bot[0].values),
+                'botAverageLastPeriod': getAverage(prevPeriodDateGenerateData.bot[0].values)
             }
         }
 
@@ -146,6 +153,8 @@ angular
             var acitivityDataValuesBot = [];
             var dataType = dataType;
             var sortedDataActivityType = activityTypeFiltersCalculation[dataType](dataActivityType);
+
+            console.log(sortedDataActivityType);
 
             if(periodType == 'weekly'){
                 var labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -167,10 +176,10 @@ angular
                 var lastDay = moment(firstDay).endOf('month').date();
                 for(var x = 1; x <= lastDay; x++){
                     var datePeriodFormatted = moment(date).day(x).format("MM-DD-YYYY");
-                    var label = " ";
-                    if(x % 5 == 0 && x != 1){
-                        label = x;
-                    }
+                    //var label = " ";
+                    //if(x % 5 == 0 || x == 1){
+                        var label = x;
+                    //}
                     var totalValueTop = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].totalTop : 0;
                     var totalValueBot = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].totalBot : 0;
                     acitivityDataValuesTop.push({
@@ -183,16 +192,17 @@ angular
                     });
                 }
             }
-            return [
-                {
-                    key: "Top",
-                    values: acitivityDataValuesTop
-                },
-                {
-                    key: "Bot",
-                    values: acitivityDataValuesBot
-                }
-            ];
+            acitivityDataValuesBot.reverse();
+            return {
+                'top': [{
+                    'key': "Top",
+                    'values': acitivityDataValuesTop
+                }],
+                'bot': [{
+                    'key': "Bot",
+                    'values': acitivityDataValuesBot
+                }]
+            }
         }
 
         /**

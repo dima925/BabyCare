@@ -14,8 +14,11 @@
     </div>
     <div class="kotak autoheight bar-chart">
         <h4 class="text-center">{{axisLabel[activeActivityType].topLabel}}</h4>
-        <nvd3 options="discreteOptions" data="discreteChartData" config="config"></nvd3>
-        <h4 class="text-center">{{axisLabel[activeActivityType].botLabel}}</h4>
+        <div class="chart-con">
+            <nvd3 options="discreteOptionsTop" data="discreteChartDataTop" config="config"></nvd3>
+            <nvd3 options="discreteOptionsBot" data="discreteChartDataBot" config="config" class="bottom-nvd3-chart"></nvd3>
+        </div>
+        <h4 class="text-center btm">{{axisLabel[activeActivityType].botLabel}}</h4>
     </div>
     <div ng-include="trendAverageTemplate"></div>
 </div>

@@ -1,6 +1,6 @@
 angular.module('cleverbaby.controllers')
 
-.controller('ChartCtrl', ['$filter', '$rootScope', '$scope', 'ActivityService', 'TrendDataChart', function ($filter, $rootScope, $scope, ActivityService, TrendDataChart) {
+.controller('ChartCtrl', ['$filter', '$timeout', '$rootScope', '$scope', 'ActivityService', 'TrendDataChart', function ($filter, $timeout, $rootScope, $scope, ActivityService, TrendDataChart) {
 
     $scope.options = {
         chart: {
@@ -79,9 +79,25 @@ angular.module('cleverbaby.controllers')
 
     $scope.createGraph = function (activeDate, periodType){
         //angular.element('.with-3d').html('');
-        $scope.discreteOptions = TrendDataChart.createOptions();
-        $scope.discreteChartData = TrendDataChart.generateData(activeDate, $scope.activeActivityType,  $scope.trendInfoObj[$scope.activeActivityType], periodType);
+        $scope.discreteOptionsTop = TrendDataChart.createOptions(true, false);
+        $scope.discreteOptionsBot = TrendDataChart.createOptions(false, true);
+        var generateDate = TrendDataChart.generateData(activeDate, $scope.activeActivityType,  $scope.trendInfoObj[$scope.activeActivityType], periodType);
+        $scope.discreteChartDataTop = generateDate.top;
+        $scope.discreteChartDataBot = generateDate.bot;
         $scope.averageDataResult = TrendDataChart.calculateAverageData(activeDate, $scope.activeActivityType,  $scope.trendInfoObj[$scope.activeActivityType], periodType);
+
+        $timeout(function(){
+            angular.element('.bottom-nvd3-chart .tick text').attr('x', -20);
+            if(periodType == "monthly"){
+                var x = angular.element('.nv-x .nv-axis .tick text');
+                angular.forEach(x, function(value, key){
+                    var textKey = key + 1;
+                    if(textKey % 5 != 0)
+                        if(key != 0)
+                            x[key].innerHTML = " ";
+                })
+            }
+        }, 500);
     }
 
     $scope.activeActivityType = "growth";
