@@ -148,13 +148,15 @@ angular
                 angular.forEach(periodData, function(dayValue, index){
                     totalVal =  totalVal + Math.abs(dayValue.value);
                 });
-
-                return totalVal / periodData.length;
+                var average = totalVal / periodData.length;
+                return parseFloat(average.toFixed(2));
             }
 
             var previousPeriodDate = moment(date).subtract(1, periodType == 'weekly' ? 'w' : 'M');
             var currentDateGenerateData = generateData(date, dataType, dataActivityType, periodType);
             var prevPeriodDateGenerateData = generateData(previousPeriodDate, dataType, dataActivityType, periodType);
+
+            var topAverage = getAverage(currentDateGenerateData.top[0].values);
 
             return {
                 'topAverage': getAverage(currentDateGenerateData.top[0].values),
