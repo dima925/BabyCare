@@ -120,7 +120,7 @@ angular.module('cleverbaby.controllers')
     ActivityService.getAllActivitiesByBabyId($rootScope.babyId, 0, 1000).then(function(activities){
         $scope.trendInfoObj = {};
         $scope.trendInfoObj.sleep = $filter('filter')(activities, {'type': 'sleep'});
-        $scope.trendInfoObj.pumping = $filter('filter')(activities, {'type': 'pumping'});
+        $scope.trendInfoObj.pump = $filter('filter')(activities, {'type': 'pump'});
         $scope.trendInfoObj.diaper = $filter('filter')(activities, {'type': 'diaper'});
         $scope.trendInfoObj.feeding = $filter('filter')(activities, {'type': 'feeding'});
     });
@@ -145,7 +145,7 @@ angular.module('cleverbaby.controllers')
                 'topLabel': "Wet (times changed)",
                 'botLabel': "Dirty (times changed)"
             },
-            'pumping':{
+            'pump':{
                 'topLabel': "Left (oz or ml per day)",
                 'botLabel': "Right (oz or ml per day)"
             }

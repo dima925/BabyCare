@@ -97,18 +97,41 @@ angular
                 var startTimeKey = moment(diaper.time).format("MM-DD-YYYY");
                 var valueDateStart = moment.duration(diaper.time);
                 if(diaper.type != "Empty"){
-                    var wetOrDity = diaper.type == "Wet" ? "totalTop" : "totalBot"
+                    var wetOrDity = diaper.diaper_type == "Wet" ? "totalTop" : "totalBot"
 
                     if(diaperWetDirty[startTimeKey]){
                         var total = diaperWetDirty[startTimeKey][wetOrDity]
-                        diaperWetDirty[startTimeKey][wetOrDity] = diaper.type == "Wet" ? total + 1 : total - 1;
+                        diaperWetDirty[startTimeKey][wetOrDity] = diaper.type == "Wet" ? total + 1 : total + 1;
                     }else{
                         diaperWetDirty[startTimeKey] = {'totalTop': 0, 'totalBot': 0};
-                        diaperWetDirty[startTimeKey][wetOrDity] = diaper.type == "Wet" ? 1 : -1;
+                        diaperWetDirty[startTimeKey][wetOrDity] = diaper.type == "Wet" ? 1 : 1;
                     }
                 }
             })
             return diaperWetDirty;
+        }
+        activityTypeFiltersCalculation.pump = function (dataActivityType) {
+            var botTopTotalObj = {};
+            angular.forEach(dataActivityType, function(entry, index){
+                var startTimeKey = moment(entry.time).format("MM-DD-YYYY");
+                var pumpSide = entry.pump_side;
+                var pumpAmount = entry.pump_amount;
+
+                if(!botTopTotalObj[startTimeKey]){
+                    botTopTotalObj[startTimeKey] = {'totalTop': 0, 'totalBot': 0};
+                }
+
+                if(pumpSide == "both"){
+                    botTopTotalObj[startTimeKey]['totalTop'] += pumpAmount;
+                    botTopTotalObj[startTimeKey]['totalBot'] += pumpAmount;
+                }else{
+                    var topOrBot = pumpSide == 'left' ? 'totalTop' : 'totalBot';
+                    botTopTotalObj[startTimeKey][topOrBot] += pumpAmount;
+                }
+
+            });
+
+            return botTopTotalObj;
         }
 
         /**
@@ -176,10 +199,7 @@ angular
                 var lastDay = moment(firstDay).endOf('month').date();
                 for(var x = 1; x <= lastDay; x++){
                     var datePeriodFormatted = moment(date).day(x).format("MM-DD-YYYY");
-                    //var label = " ";
-                    //if(x % 5 == 0 || x == 1){
-                        var label = x;
-                    //}
+                    var label = x;
                     var totalValueTop = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].totalTop : 0;
                     var totalValueBot = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].totalBot : 0;
                     acitivityDataValuesTop.push({
