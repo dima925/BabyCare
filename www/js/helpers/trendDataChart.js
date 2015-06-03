@@ -132,7 +132,25 @@ angular
             });
 
             return botTopTotalObj;
-        }
+        };
+        activityTypeFiltersCalculation.bottle = function (dataActivityType) {
+            var botTopTotalObj = {};
+            angular.forEach(dataActivityType, function(entry, index){
+                var startTimeKey = moment(entry.time).format("MM-DD-YYYY");
+                var bottleType = entry.bottle_type;
+                var bottleAmount = entry.bottle_amount;
+
+                if(!botTopTotalObj[startTimeKey]){
+                    botTopTotalObj[startTimeKey] = {'totalTop': 0, 'totalBot': 0};
+                }
+
+                if(bottleType == 'formula' || bottleType == 'breastmilk')
+                    var topOrBot = bottleType == 'formula' ? 'totalTop' : 'totalBot';
+                    botTopTotalObj[startTimeKey][topOrBot] += bottleAmount;
+            });
+
+            return botTopTotalObj;
+        };
 
         /**
          * Provides the data in the Average Section on trend, for calculating the average result of current week/month and last week/month.

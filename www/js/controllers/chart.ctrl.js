@@ -122,7 +122,7 @@ angular.module('cleverbaby.controllers')
         $scope.trendInfoObj.sleep = $filter('filter')(activities, {'type': 'sleep'});
         $scope.trendInfoObj.pump = $filter('filter')(activities, {'type': 'pump'});
         $scope.trendInfoObj.diaper = $filter('filter')(activities, {'type': 'diaper'});
-        $scope.trendInfoObj.feeding = $filter('filter')(activities, {'type': 'feeding'});
+        $scope.trendInfoObj.bottle = $filter('filter')(activities, {'type': 'bottle'});
     });
 
 }]).controller('SleepCtrl', ['$scope', function ($scope) {
@@ -137,7 +137,7 @@ angular.module('cleverbaby.controllers')
                 'topLabel': "Sleep hours (per day)",
                 'botLabel': "Sleep Times (per day)"
             },
-            'feeding':{
+            'bottle':{
                 'topLabel': "Formula (oz or ml per day)",
                 'botLabel': "Breastfeeding (hours)"
             },
