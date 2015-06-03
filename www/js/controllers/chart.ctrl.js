@@ -123,6 +123,13 @@ angular.module('cleverbaby.controllers')
         $scope.trendInfoObj.pump = $filter('filter')(activities, {'type': 'pump'});
         $scope.trendInfoObj.diaper = $filter('filter')(activities, {'type': 'diaper'});
         $scope.trendInfoObj.bottle = $filter('filter')(activities, {'type': 'bottle'});
+        var nurse = $filter('filter')(activities, {'type': 'nurse'});
+
+        angular.forEach(nurse, function(obj, index){
+            $scope.trendInfoObj.bottle.push(obj);
+        });
+
+        console.log($scope.trendInfoObj.bottle);
     });
 
 }]).controller('SleepCtrl', ['$scope', function ($scope) {

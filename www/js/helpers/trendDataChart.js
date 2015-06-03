@@ -134,19 +134,29 @@ angular
             return botTopTotalObj;
         };
         activityTypeFiltersCalculation.bottle = function (dataActivityType) {
+            console.log(dataActivityType);
             var botTopTotalObj = {};
             angular.forEach(dataActivityType, function(entry, index){
                 var startTimeKey = moment(entry.time).format("MM-DD-YYYY");
-                var bottleType = entry.bottle_type;
-                var bottleAmount = entry.bottle_amount;
 
-                if(!botTopTotalObj[startTimeKey]){
-                    botTopTotalObj[startTimeKey] = {'totalTop': 0, 'totalBot': 0};
-                }
+                if(entry.type == 'nurse' || (entry.type == 'bottle' && entry.bottle_type == 'formula'))
+                    if(!botTopTotalObj[startTimeKey]){
+                        botTopTotalObj[startTimeKey] = {'totalTop': 0, 'totalBot': 0};
+                    }
 
-                if(bottleType == 'formula' || bottleType == 'breastmilk')
-                    var topOrBot = bottleType == 'formula' ? 'totalTop' : 'totalBot';
-                    botTopTotalObj[startTimeKey][topOrBot] += bottleAmount;
+                    if(entry.type == 'bottle'){
+                        var bottleType = entry.bottle_type;
+                        var bottleAmount = entry.bottle_amount;
+                        if(bottleType == 'formula')
+                            botTopTotalObj[startTimeKey]['totalTop'] += bottleAmount;
+                    }else{
+                        var nurseTimeLeft = angular.isUndefined(entry.nurse_timeleft) ? 0 : entry.nurse_timeleft;
+                        var nurseTimeRight = angular.isUndefined(entry.nurse_timeright) ? 0 : entry.nurse_timeright;
+                        var nurseTimeBoth = angular.isUndefined(entry.nurse_timeboth) ? 0 : entry.nurse_timeboth;
+                        var nurseTotal = nurseTimeLeft + nurseTimeRight + nurseTimeBoth
+
+                        botTopTotalObj[startTimeKey]['totalBot'] += nurseTotal;
+                    }
             });
 
             return botTopTotalObj;
