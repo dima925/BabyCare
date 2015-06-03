@@ -984,6 +984,10 @@ td.fc-day { margin: 0 !important;padding:0 !important; margin: 0 !important; }
     margin: 0 2px;
 }
 
+.no-activities{
+    margin-left: 10px;
+}
+
 /** Other CSS **/
 
 form .hidden-submit{

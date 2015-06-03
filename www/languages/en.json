@@ -51,6 +51,7 @@
     "cleverbaby.app.diary.delete.message": "Please wait... Deleting from List",
     "cleverbaby.app.diary.delete.error": "Oops! something went wrong. Try again later",
     "cleverbaby.app.diary.delete.success": "Successfully deleted",
+    "cleverbaby.app.diary.noActivities": "There are no acitivities done",
 
     "cleverbaby.auth.modal.signin.title": "Login",
     "cleverbaby.auth.modal.signin.close": "Close",
