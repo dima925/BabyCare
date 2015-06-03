@@ -458,6 +458,58 @@ angular.module('cleverbaby.data')
                     resolve(calendar);
                 });
             },
+            getLastActivityByType: function (babyId, activity) {
+                var activities = $localStorage.activities[babyId]
+                    .sort(function(act1, act2) {
+                        if(moment(act1.time) == moment(act2.time))
+                            return 0;
+                        if(moment(act1.time) > moment(act2.time))
+                            return -1;
+                        return 1;
+                    });
+
+                for(var i = 0; i < activities.length; i++) {
+                    if(activities[i].type == activity)
+                        return activities[i];
+                }
+                return null;
+            },
+            getActivityEtaByType: function (babyId, activity) {
+                // calculates difference in last logged activities of specified type
+                var activities = $localStorage.activities[babyId]
+                    .sort(function(act1, act2) {
+                        if(moment(act1.time) == moment(act2.time))
+                            return 0;
+                        if(moment(act1.time) > moment(act2.time))
+                            return -1;
+                        return 1;
+                    });
+
+                var lastActivity = null,
+                    beforeLastActivity = null;
+
+                for(var i = 0; i < activities.length; i++) {
+                    // last 48 hours
+                    var hours = moment().diff(moment(activities[i].time), 'hours', true);
+                    if(hours > 48)
+                        break;
+                    if(activities[i].type == activity) {
+                        if(lastActivity == null) {
+                            lastActivity = activities[i];
+                            continue;
+                        } else {
+                            beforeLastActivity = activities[i];
+                            break;
+                        }
+                    }
+                }
+
+                if(lastActivity == null || beforeLastActivity == null) {
+                    return -1;
+                }
+
+                return Math.round(moment(lastActivity.time).diff(moment(beforeLastActivity.time), 'minutes', true));
+            },
             setActivities: function(babyId, activities){
                 return $q(function(resolve, reject){
                     if(!$localStorage.activities){

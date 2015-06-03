@@ -13,12 +13,15 @@
                     <div class="home-icon botol"><i class="icon-bottle"></i></div>
                     <div class="graph-circle-home">
                         <div class="progress-wrapper">
-                            <div class="progress">14min <span>ETA</span></div>
+                            <div class="progress" ng-if="etaBottle > 0">
+                                {{etaBottleDynamic}}min <span >ETA</span>
+                            </div>
+                            <div class="progress long-text" ng-if="etaBottle < 0" data-translate>cleverbaby.app.diary.etabottle</div>
                             <div
                                 round-progress
                                 max="100"
-                                current="75"
-                                color="#ffcc66"
+                                current="etaBottleProgress"
+                                color="{{getProgressColor(etaBottleProgress)}}"
                                 bgcolor="rgba(255,255,255,.5)"
                                 radius="28"
                                 stroke="3"
@@ -32,12 +35,15 @@
                     <div class="thumbnail-baby" ng-click="editBaby()"><div class="circular"><img ng-src="{{ $root.baby.displayImage | babyImage }}"></div></div>
                     <div class="graph-circle-home">
                         <div class="progress-wrapper">
-                            <div class="progress">14min <span>ETA</span></div>
+                            <div class="progress" ng-if="etaDiaper > 0">
+                                {{etaDiaperDynamic}}min <span >ETA</span>
+                            </div>
+                            <div class="progress long-text" ng-if="etaDiaper < 0" data-translate>cleverbaby.app.diary.etadiaper</div>
                             <div
                                     round-progress
                                     max="100"
-                                    current="25"
-                                    color="#66cc00"
+                                    current="etaDiaperProgress"
+                                    color="{{getProgressColor(etaDiaperProgress)}}"
                                     bgcolor="rgba(255,255,255,.5)"
                                     radius="28"
                                     stroke="3"
@@ -51,8 +57,11 @@
                     <div class="home-icon"><i class="icon-diaper"></i></div>
                 </div>
                 <div class="baby-summary">
-                    <span class="text-center">7 Weeks 2 Days</span>
-                    <span class="text-center">5.4 Kg 59 Cm</span>
+                    <span class="text-center" ng-if="babyId">{{babysAge}}</span>
+                    <span class="text-center" ng-if="!babyId" data-translate>cleverbaby.app.diary.welcome</span>
+                    
+                    <span class="text-center" ng-if="babyId">{{babysWeight}} {{babysHeight}}</span>
+                    <span class="text-center" ng-if="!babyId" data-translate>cleverbaby.app.diary.tapbaby</span>
                 </div>
 
                 <div class="dayli-checklist">

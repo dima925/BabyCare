@@ -35,6 +35,10 @@
     "cleverbaby.app.search.title": "Search",
 
     "cleverbaby.app.diary.title": "Diary",
+    "cleverbaby.app.diary.welcome": "Welcome to Clever Baby!",
+    "cleverbaby.app.diary.tapbaby": "Tap to enter your Baby's name and age",
+    "cleverbaby.app.diary.etadiaper": "est. next change time",
+    "cleverbaby.app.diary.etabottle": "est. next feed time",
     "cleverbaby.app.diary.bar.nurses": "Nurses",
     "cleverbaby.app.diary.bar.change": "Change",
     "cleverbaby.app.diary.bar.bath": "Bath",
