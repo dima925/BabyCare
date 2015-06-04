@@ -59,12 +59,12 @@
             <div class="row kotak" ng-show="timer">
                 <div class="col">
                     <div class="rumah-radio">
-                        <ion-radio ng-click="$root.timers.setTimer()" name="timer" class="border-right tab-style text-center">Start Left</ion-radio>
+                        <ion-radio ng-click="$root.timers.setTimer(); closeActivity()" name="timer" class="border-right tab-style text-center">Start Left</ion-radio>
                     </div>
                 </div>
                 <div class="col">
                     <div class="rumah-radio">
-                        <ion-radio ng-click="$root.timers.setTimer()" name="timer" class="border-right tab-style text-center">Start Right</ion-radio>
+                        <ion-radio ng-click="$root.timers.setTimer(); closeActivity()" name="timer" class="border-right tab-style text-center">Start Right</ion-radio>
                     </div>
                 </div>
             </div>
