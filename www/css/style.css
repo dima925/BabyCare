@@ -732,7 +732,7 @@ span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px; di
 .wrapper-dropdown h2, .wrapper-dropdown a { color: #000;}
 .wrapper-dropdown .item { padding: 0; margin: 8px 0 5px; float: left; width: 100%;}
 .wrapper-dropdown .item h2 { float: left; font-size: 18px; margin: 14px 0 0 10px}
-.wrapper-dropdown .item a.edit { float: right; margin: 14px 0 0 0}
+.wrapper-dropdown .item a.edit { float: right; margin: 14px 0 0 0; display: inline-table;}
 .wrapper-dropdown .item a.btn-add { float: left; background: #eee; width: 50px; height: 50px; font-size: 22px; text-align: center; line-height: 2.2em }
       .thumb-baby { float: left; width: 50px;height: 50px; border:0;}
 
@@ -1093,6 +1093,10 @@ div[mobiscroll-mode="predefined"] input {
 
 .nv-zeroLine{
     display: none;
+}
+
+.baby-img-name-con{
+    display: inline-table;
 }
 
 .text-center.btm{

@@ -8,8 +8,10 @@
         </div>
         <div class="kotak autoheight">
             <div class="item" ng-repeat="baby in storage.babies">
-                <div class="thumb-baby circular" ng-click="select(baby)"><img ng-src="{{ baby.displayImage | babyImage }}"></div>
-                <h2>{{ baby.name }}</h2>
+                <div class="baby-img-name-con" ng-click="select(baby)">
+                    <div class="thumb-baby circular" ><img ng-src="{{ baby.displayImage | babyImage }}"></div>
+                    <h2>{{ baby.name }}</h2>
+                </div>
                 <a class="edit" ng-click="newBaby(baby)"><span class="icon-note"></span> Edit</a>
             </div>
             <div class="item">
