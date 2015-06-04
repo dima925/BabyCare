@@ -730,7 +730,7 @@ span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px; di
 .wrapper-dropdown .header .btn { position: absolute;top: -4px;}
 .wrapper-dropdown h2 { font-size: 22px;}
 .wrapper-dropdown h2, .wrapper-dropdown a { color: #000;}
-.wrapper-dropdown .item { padding: 0; margin: 8px 0 5px; float: left; width: 100%;}
+.wrapper-dropdown .item { padding: 0; margin: 6px 0 5px; float: left; width: 100%;}
 .wrapper-dropdown .item h2 { float: left; font-size: 18px; margin: 14px 0 0 10px}
 .wrapper-dropdown .item a.edit { float: right; margin: 14px 0 0 0; display: inline-table;}
 .wrapper-dropdown .item a.btn-add { float: left; background: #eee; width: 50px; height: 50px; font-size: 22px; text-align: center; line-height: 2.2em }
@@ -1101,4 +1101,24 @@ div[mobiscroll-mode="predefined"] input {
 
 .text-center.btm{
 
+}
+
+/** No activities in Diary **/
+
+.no-activities{
+    width: 170px;
+    text-align: center;
+    margin: auto auto;
+}
+
+.no-activities-arrow-text-con{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto auto 5px auto;
+}
+
+.big-btm-arrow{
+    font-size: 34px;
 }
