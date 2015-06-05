@@ -73,7 +73,12 @@ angular.module('cleverbaby')
         views: {
             'more': {
                 templateUrl: "templates/more/invite-others.html",
-                controller: "MoreInviteOthersCtrl"
+                controller: "MoreInviteOthersCtrl",
+                resolve: {
+                    userList: ["BabyService", "$rootScope", function(BabyService, $rootScope){
+                        return BabyService.getUsersList($rootScope.babyId);
+                    }]
+                }
             }
         }
     })

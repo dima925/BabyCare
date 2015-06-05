@@ -165,6 +165,16 @@ angular.module('cleverbaby.data')
                 }).then(function(baby){
                     return fetchBaby(baby);
                 })
+            },
+            getUsersList: function(babyId){
+                return network.get({
+                    url: '/babies/'+babyId+'/users'
+                }, true);
+            },
+            deleteUserFromBaby: function(babyId, userId){
+                return network.delete({
+                    url: '/babies/'+babyId+'/users/'+userId
+                }, true);
             }
         };
     }]);

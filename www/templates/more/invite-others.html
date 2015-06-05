@@ -35,10 +35,11 @@
     </ion-content>
     <div class="btm-btns">
         <div class="col">
-            <div class="sub-head-text">Others who currently have access to "Baby 1"</div>
-            <div class="allowed-list">
-                <div class="allowed-list-desc">John (daddy) can View, Add and Edit and Invite Others</div>
-                <div class="remove-x">X</div>
+            <div class="sub-head-text" ng-if="userList.length > 0">Others who currently have access to "Baby 1"</div>
+            <div class="allowed-list" ng-repeat="user in userList">
+                <div class="allowed-list-desc" ng-if="user.permission == '1'">{{ user.name }} ({{ user.role }}) can View, Add and Edit and Invite Others</div>
+                <div class="allowed-list-desc" ng-if="user.permission == '2'">{{ user.name }} ({{ user.role }}) can View, Add and Edit</div>
+                <div class="remove-x" ng-click="removeUser($index)">X</div>
             </div>
         </div>
     </div>
