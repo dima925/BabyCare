@@ -638,7 +638,7 @@ border-width: 0px;
 span.satuan { float:right;font-size: 24px; margin-top: 14px}
 
 .footer { margin-top: 22px; text-align: center; font-size: 10px; height: 49px; overflow: hidden;}
-.footer a[class*="pull-"]{ width: 27.33%; padding: 9px 14px 0; line-height: 2.6em; }
+.footer a[class*="pull-"]{ width: 27.33%; padding: 9px 0 0; line-height: 2.6em; }
 .footer a span[class*="icon-"], .footer a i[class*="fa-"] { font-size: 14px; width: 100%; display: block;}
 .footer a span { font-size: 12px; width: 100%; }
 .footer a.btn-mid { padding: 8px 24px 6px; background: #fff;  display: inline-block; border-radius:4px 4px 0 0; height: 49px; line-height: 2.6em;}
@@ -675,14 +675,14 @@ span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px; di
 .no-padding{padding:0 !important;}
 .no-padding-top{padding-top: 0!important; padding-bottom: 0 !important;}
 .black-color{color: #336666;}
-.timeline { width: 100%; position: relative; height: auto !important; }
+.timeline { width: 100%; position: relative; height: auto !important; overflow: visible !important; }
 .timeline h3.pd { color: #0a3656; font-size: 20px;}
-.timeline .item { width: 100%; position: relative; padding:1px 0px 10px 10px; margin:-1px 0 0; float: left; z-index: 2}
+.timeline .item { width: 100%; position: relative; padding:1px 0px 10px 10px; margin:-1px 0 0; float: left; z-index: 2; overflow: visible !important;}
 .timeline .item .datetime-tl { width: 15%; color: #000; float: left; word-wrap: break-word; text-align: center; font-size: .8em !important; line-height:1em; padding-top:2px;}
 .timeline .item .activity-icon { width: 14%; color: #000; height: 100%; position: relative; float: left; background: 0;}
                 .item-activity { width: 35px; height:35px; border-radius: 100px; display: block; color: #fff; display: -webkit-flex;  display: flex; }
                 .item-activity span { -webkit-align-self: center;    align-self: center; width: 100%; margin:0 auto; text-align:center; font-size: 16px;}
-                .activity-icon:after { position: absolute; content: ""; border: 1px solid #c9c9c9; height: 150%; left:16.6px; z-index: -1;}
+                .activity-icon:after { position: absolute; content: ""; border: 1px solid #c9c9c9; height: 100%; left:16.6px; z-index: -1;}
 .timeline .item .desc { width: 64%; color: #0a3656; float: left;  }
 .timeline .item .desc h3 {margin: 0; padding: 2px 0 0 ; width: 100%;  }
 .timeline .item .desc p { float: left; width: 100%; color: #0a3656 }
