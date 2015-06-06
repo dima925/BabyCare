@@ -1,5 +1,5 @@
 angular.module('cleverbaby.directives')
-    .directive('mobiscrollCustomunits', ['$timeout', '$sce', 'MeasureunitService', '$localStorage',
+    .directive('mobiscrollWeight', ['$timeout', '$sce', 'MeasureunitService', '$localStorage',
         function($timeout, $sce, MeasureunitService, $localStorage) {
 
             return {
@@ -15,7 +15,7 @@ angular.module('cleverbaby.directives')
                         usrStyles = angular.isDefined(attrs['style-child']) ? attrs['style-child'] : '',
                         usrPlaceholder = angular.isDefined(attrs['placeholder']) ? attrs['placeholder'] : '';
 
-                    return '<input type="text" class="mobiscroll-input ' + usrClasses + '" style="' + usrStyles + ' background-color: transparent;" placeholder="' + usrPlaceholder + '" readonly="readonly" /><input type="hidden" class="mobiscroll-hidden" readonly="readonly" />';
+                    return '<input type="text" class="mobiscroll-input ' + usrClasses + '" style="' + usrStyles + ' background-color: transparent;" placeholder="' + usrPlaceholder + '" readonly="readonly" /><input type="text" class="mobiscroll-hidden" readonly="readonly" />';
                 },
 
                 link: function(scope, element, attrs) {
@@ -43,16 +43,25 @@ angular.module('cleverbaby.directives')
                                 return "";
                             valObj = JSON.parse(value);
                         }
-                        return valObj.value + ' ' + valObj.unit;
+                        return valObj.valueInt + '.' + valObj.valueFlt + ' ' + valObj.unit;
                     }
 
-                    function getLastInputValue () {
+                    function getLastInputValueInt () {
                         if( typeof $localStorage.inputHistory == 'undefined' ||
                             typeof $localStorage.inputHistory[mode] == 'undefined' ||
                             typeof $localStorage.inputHistory[mode]['mb_' + scope.mobiscrollId] == 'undefined' ||
-                            typeof $localStorage.inputHistory[mode]['mb_' + scope.mobiscrollId].value == 'undefined')
+                            typeof $localStorage.inputHistory[mode]['mb_' + scope.mobiscrollId].valueInt == 'undefined')
                             return null;
-                        return $localStorage.inputHistory[mode]['mb_' + scope.mobiscrollId].value;
+                        return $localStorage.inputHistory[mode]['mb_' + scope.mobiscrollId].valueInt;
+                    }
+
+                    function getLastInputValueFlt () {
+                        if( typeof $localStorage.inputHistory == 'undefined' ||
+                            typeof $localStorage.inputHistory[mode] == 'undefined' ||
+                            typeof $localStorage.inputHistory[mode]['mb_' + scope.mobiscrollId] == 'undefined' ||
+                            typeof $localStorage.inputHistory[mode]['mb_' + scope.mobiscrollId].valueFlt == 'undefined')
+                            return null;
+                        return $localStorage.inputHistory[mode]['mb_' + scope.mobiscrollId].valueFlt;
                     }
 
                     function getLastInputUnit () {
@@ -64,65 +73,42 @@ angular.module('cleverbaby.directives')
                         return $localStorage.inputHistory[mode]['mb_' + scope.mobiscrollId].unit;
                     }
 
-                    function setLastInput (value, unit) {
+                    function setLastInput (valueInt, valueFlt, unit) {
                         if(!$localStorage.inputHistory)
                             $localStorage.inputHistory = {};
                         if(!$localStorage.inputHistory[mode])
                             $localStorage.inputHistory[mode] = {};
 
                         $localStorage.inputHistory[mode]['mb_' + scope.mobiscrollId] = {
-                            value: value,
+                            valueInt: valueInt,
+                            valueFlt: valueFlt,
                             unit: unit
                         }
                     }
 
                     function getDefaults () {
-                        var lastVal = getLastInputValue(),
+                        var lastValInt = getLastInputValueInt(),
+                            lastValFlt = getLastInputValueFlt(),
                             lastUnit = getLastInputUnit();
 
                         var valObj = {
-                            value: lastVal ? lastVal : 0,
+                            valueInt: lastValInt ? lastValInt : 0,
+                            valueFlt: lastValFlt ? lastValFlt : 0,
                             unit: lastUnit ? lastUnit : systemUnit
                         }
                         return valObj;
                     }
 
                     var defSetup = {
-                        'volume': {
-                            'oz': {
-                                'min': 1,
-                                'max': 16,
-                                'step': 0.5,
-                                'range': getRange(1, 16, 0.5),
-                            },
-                            'ml': {
-                                'min': 10,
-                                'max': 500,
-                                'step': 10,
-                                'range': getRange(10, 500, 10),
-                            },
-                        },
                         'weight': {
                             'kg': {
-                                'min': 1,
-                                'max': 16,
-                                'step': 0.5,
-                                'range': getRange(1, 16, 0.5),
+                                'intRange': getRange(1, 30, 1),
+                                'fltRange': getRange(0, 9, 1),
                             },
                             'lb': {
-                                'min': 10,
-                                'max': 500,
-                                'step': 10,
-                                'range': getRange(10, 500, 10),
+                                'intRange': getRange(1, 70, 1),
+                                'fltRange': getRange(0, 9, 1),
                             },
-                        },
-                        'length': {
-                            'cm': {
-                                'range': getRange(10, 160, 1),
-                            },
-                            'inch': {
-                                'range': getRange(4, 63, 0.5),
-                            }
                         }
                     }
 
@@ -130,7 +116,10 @@ angular.module('cleverbaby.directives')
                         wheel = [
                             [{
                                 label: '',
-                                values: defSetup[mode][getDefaults().unit].range
+                                values: defSetup[mode][getDefaults().unit].intRange
+                            }, {
+                                label: '',
+                                values: defSetup[mode][getDefaults().unit].fltRange
                             }, {
                                 label: 'Unit',
                                 values: units
@@ -143,33 +132,36 @@ angular.module('cleverbaby.directives')
                         wheels: wheel,
                         headerText: '',
                         validate: function(html, index, time, dir, inst) {
-                            var currUnit = inst._tempWheelArray[1];
+                            var currUnit = inst._tempWheelArray[2];
                             if (typeof currUnit == 'undefined')
                                 currUnit = getDefaults().unit;
 
-                            if (index == 1 && currUnit != prevUnit) {
-                                decs = defSetup[mode][currUnit].range;
+                            if (index == 2 && currUnit != prevUnit) {
+                                decs = defSetup[mode][currUnit].intRange;
+                                flts = defSetup[mode][currUnit].fltRange;
 
                                 wheel[0][0].values = decs;
+                                wheel[0][1].values = flts;
 
                                 inst.settings.wheels = wheel;
-                                inst.changeWheel([0]);
+                                inst.changeWheel([0, 1]);
                                 prevUnit = currUnit;
                             }
                         },
                         parseValue: function(val) {
                             if (val !== '') {
-                                val = JSON.parse(val);
-                                if ((typeof val === "object") && (val !== null)) {
-                                    return [val['value'], val['unit']];
+                                var valObj = JSON.parse(val);
+                                if ((typeof valObj === "object") && (valObj !== null)) {
+                                    return [valObj['valueInt'], valObj['valueFlt'], valObj['unit']];
                                 }
                             }
-                            return [getDefaults().value, getDefaults().unit];
+                            return [getDefaults().valueInt, getDefaults().valueFlt, getDefaults().unit];
                         },
                         formatValue: function(data) {
                             var valObj = {
-                                'value': data[0],
-                                'unit': data[1],
+                                'valueInt': data[0],
+                                'valueFlt': data[1],
+                                'unit': data[2],
                             };
                             return JSON.stringify(valObj);
                         },
@@ -178,29 +170,30 @@ angular.module('cleverbaby.directives')
                                 return;
 
                             var valObj = JSON.parse(valueText);
-                            setLastInput(valObj.value, valObj.unit)
+                            setLastInput(valObj.valueInt, valObj.valueFlt, valObj.unit)
                         }
                     });
+    
+                    scope.currentObj = {
+                        valueInt: null,
+                        valueFlt: null,
+                        unit: null
+                    };
 
                     // redirect clicks
                     jInput.click(function() {
                         jHidden.trigger('click');
                     });
 
-                    scope.currentObj = {
-                        value: null,
-                        unit: null
-                    };
-
                     // update interface changes > update visible input & ng-model
                     jHidden.on('change', function(event) {
                         jInput.val(getFriendlyValue(event.target.value));
 
                         if (event.target.value && event.target.value !== '') {
-                            valObj = JSON.parse(event.target.value);
+                            var valObj = JSON.parse(event.target.value);
 
                             $timeout(function () {
-                                scope.mobiscrollModelValue = valObj.value;
+                                scope.mobiscrollModelValue = valObj.valueInt * 1000 + valObj.valueFlt * 100;
                                 scope.mobiscrollModelUnit = valObj.unit;    
                             });
                         }
@@ -212,11 +205,12 @@ angular.module('cleverbaby.directives')
                             newValue = getDefaults().value;
                         }
 
-                        if (newValue == oldValue)
+                        if (newValue === oldValue)
                             return;
 
                         var valObj = {
-                            value: newValue,
+                            valueInt: (newValue - (newValue % 1000)) / 1000,
+                            valueFlt: Number((newValue % 1000) / 100).toFixed(),
                             unit: scope.currentObj.unit ? scope.currentObj.unit : getDefaults().unit
                         };
 
@@ -233,7 +227,8 @@ angular.module('cleverbaby.directives')
                             return;
 
                         var valObj = {
-                            value: scope.currentObj.value ? scope.currentObj.value : getDefaults().value,
+                            valueInt: scope.currentObj.valueInt? scope.currentObj.valueInt : getDefaults().valueInt,
+                            valueFlt: scope.currentObj.valueFlt? scope.currentObj.valueFlt : getDefaults().valueFlt,
                             unit: newUnit
                         };
 

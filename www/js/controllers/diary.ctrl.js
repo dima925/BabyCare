@@ -109,10 +109,12 @@ angular.module('cleverbaby.controllers')
                 updateAvgTimes(baby);
                 
                 var lastGrowth = ActivityService.getLastActivityByType($rootScope.babyId, 'growth');
-
                 if(lastGrowth) {
-                    $scope.babysWeight = lastGrowth.growth_weight || '';
-                    $scope.babysHeight = lastGrowth.growth_height || '';    
+                    $scope.babysWeight = (Number(lastGrowth.growth_weight/1000).toFixed(1)) + ' ' + (lastGrowth.growth_weight_unit || '');
+                    $scope.babysHeight = lastGrowth.growth_height + ' ' + (lastGrowth.growth_height_unit || '');
+                } else {
+                    $scope.babysWeight = 'Please add growth progress';
+                    $scope.babysHeight = '';
                 }
             }
 
