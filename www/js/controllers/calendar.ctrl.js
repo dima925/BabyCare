@@ -66,6 +66,21 @@ angular.module('cleverbaby.controllers')
                 $('#calendar').fullCalendar('render');
             };
 
+            $scope.reloadCalendar = function () {
+                ActivityService.getActivityCalendar($rootScope.baby.uuid).then(function(activityCalendar) {
+                    $scope.activityCalendar = activityCalendar;
+                    $scope.refreshCalendar();
+                });
+            };
+
+            $rootScope.$on('activityAdd', function (activity) {
+                $scope.reloadCalendar();
+            });
+
+            $rootScope.$on('activityEdit', function (activity) {
+                $scope.reloadCalendar();
+            });
+
             /* config object */
             $scope.uiConfig = {
                 calendar: {
@@ -87,7 +102,5 @@ angular.module('cleverbaby.controllers')
                     }
                 }
             };
-
-
         }
     ]);
