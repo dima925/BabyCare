@@ -13,6 +13,7 @@ angular.module('cleverbaby.controllers')
                 limit = 10;
                 ActivityService.getAllActivitiesByBabyId(baby.uuid, start, limit).then(function(activities){
                     $scope.activities = activities;
+                    console.log($scope.activities );
                 });
                 ActivityService.getTodayCount(baby.uuid).then(function(counts) {
                     $scope.TodayPlay = counts.playCount > 0;

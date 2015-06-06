@@ -47,7 +47,6 @@ angular
                     },
                     x: function(d){return d.label;},
                     y: function(d){return d.value;},
-                    stacked: true,
                     showValues: false,
                     reduceXTicks: false,
                     reduceYTicks: false,
@@ -97,19 +96,98 @@ angular
                 var startTimeKey = moment(diaper.time).format("MM-DD-YYYY");
                 var valueDateStart = moment.duration(diaper.time);
                 if(diaper.type != "Empty"){
-                    var wetOrDity = diaper.type == "Wet" ? "totalTop" : "totalBot"
+                    var wetOrDity = diaper.diaper_type == "Wet" ? "totalTop" : "totalBot"
 
                     if(diaperWetDirty[startTimeKey]){
                         var total = diaperWetDirty[startTimeKey][wetOrDity]
-                        diaperWetDirty[startTimeKey][wetOrDity] = diaper.type == "Wet" ? total + 1 : total - 1;
+                        diaperWetDirty[startTimeKey][wetOrDity] = diaper.type == "Wet" ? total + 1 : total + 1;
                     }else{
                         diaperWetDirty[startTimeKey] = {'totalTop': 0, 'totalBot': 0};
-                        diaperWetDirty[startTimeKey][wetOrDity] = diaper.type == "Wet" ? 1 : -1;
+                        diaperWetDirty[startTimeKey][wetOrDity] = diaper.type == "Wet" ? 1 : 1;
                     }
                 }
             })
             return diaperWetDirty;
         }
+        activityTypeFiltersCalculation.pump = function (dataActivityType) {
+            var botTopTotalObj = {};
+            angular.forEach(dataActivityType, function(entry, index){
+                var startTimeKey = moment(entry.time).format("MM-DD-YYYY");
+                var pumpSide = entry.pump_side;
+                var pumpAmount = entry.pump_amount;
+
+                if(!botTopTotalObj[startTimeKey]){
+                    botTopTotalObj[startTimeKey] = {'totalTop': 0, 'totalBot': 0};
+                }
+
+                if(pumpSide == "both"){
+                    botTopTotalObj[startTimeKey]['totalTop'] += pumpAmount;
+                    botTopTotalObj[startTimeKey]['totalBot'] += pumpAmount;
+                }else{
+                    var topOrBot = pumpSide == 'left' ? 'totalTop' : 'totalBot';
+                    botTopTotalObj[startTimeKey][topOrBot] += pumpAmount;
+                }
+
+            });
+
+            return botTopTotalObj;
+        };
+        activityTypeFiltersCalculation.bottle = function (dataActivityType) {
+            console.log(dataActivityType);
+            var botTopTotalObj = {};
+            angular.forEach(dataActivityType, function(entry, index){
+                var startTimeKey = moment(entry.time).format("MM-DD-YYYY");
+
+                if(entry.type == 'nurse' || (entry.type == 'bottle' && entry.bottle_type == 'formula'))
+                    if(!botTopTotalObj[startTimeKey]){
+                        botTopTotalObj[startTimeKey] = {'totalTop': 0, 'totalBot': 0};
+                    }
+
+                    if(entry.type == 'bottle'){
+                        var bottleType = entry.bottle_type;
+                        var bottleAmount = entry.bottle_amount;
+                        if(bottleType == 'formula')
+                            botTopTotalObj[startTimeKey]['totalTop'] += bottleAmount;
+                    }else{
+                        var nurseTimeLeft = angular.isUndefined(entry.nurse_timeleft) ? 0 : entry.nurse_timeleft;
+                        var nurseTimeRight = angular.isUndefined(entry.nurse_timeright) ? 0 : entry.nurse_timeright;
+                        var nurseTimeBoth = angular.isUndefined(entry.nurse_timeboth) ? 0 : entry.nurse_timeboth;
+                        var nurseTotal = nurseTimeLeft + nurseTimeRight + nurseTimeBoth
+
+                        botTopTotalObj[startTimeKey]['totalBot'] += nurseTotal;
+                    }
+            });
+
+            return botTopTotalObj;
+        };
+        activityTypeFiltersCalculation.growth = function (dataActivityType) {
+            console.log(dataActivityType);
+            var botTopTotalObj = {};
+            angular.forEach(dataActivityType, function(entry, index){
+                var startTimeKey = moment(entry.time).format("MM-DD-YYYY");
+                    if(!botTopTotalObj[startTimeKey]){
+                        botTopTotalObj[startTimeKey] = {'weight': 0,
+                            'height': 0,
+                            'headCircumference': 0,
+                            'bmi': 0
+                        };
+                    }
+
+                    var growthHeadsize = entry.growth_headsize;
+                    var growthHeight = entry.growth_height;
+                    var growthWeight = entry.growth_weight;
+
+                    var heightInMs = growthHeight / 10;
+                    var bmi = parseFloat((growthWeight/(heightInMs * heightInMs)).toFixed(2)); //parseFloat(average.toFixed(2));
+
+                    botTopTotalObj[startTimeKey]['weight'] += growthWeight;
+                    botTopTotalObj[startTimeKey]['height'] += growthHeight;
+                    botTopTotalObj[startTimeKey]['headCircumference'] += growthHeadsize;
+                    botTopTotalObj[startTimeKey]['bmi'] += bmi;
+            });
+
+            return botTopTotalObj;
+        };
 
         /**
          * Provides the data in the Average Section on trend, for calculating the average result of current week/month and last week/month.
@@ -125,13 +203,15 @@ angular
                 angular.forEach(periodData, function(dayValue, index){
                     totalVal =  totalVal + Math.abs(dayValue.value);
                 });
-
-                return totalVal / periodData.length;
+                var average = totalVal / periodData.length;
+                return parseFloat(average.toFixed(2));
             }
 
             var previousPeriodDate = moment(date).subtract(1, periodType == 'weekly' ? 'w' : 'M');
             var currentDateGenerateData = generateData(date, dataType, dataActivityType, periodType);
             var prevPeriodDateGenerateData = generateData(previousPeriodDate, dataType, dataActivityType, periodType);
+
+            var topAverage = getAverage(currentDateGenerateData.top[0].values);
 
             return {
                 'topAverage': getAverage(currentDateGenerateData.top[0].values),
@@ -139,6 +219,57 @@ angular
                 'botAverage': getAverage(currentDateGenerateData.bot[0].values),
                 'botAverageLastPeriod': getAverage(prevPeriodDateGenerateData.bot[0].values)
             }
+        }
+
+
+        /**
+         * Creates the required data for the plugin ** LINE GRAPH FORMAT GROWTH TREND**
+         * @date - date to use to get the desired entries
+         * @dataActivityType - array containing the activities
+         * @periodType - weekly or monthly
+         */
+        function generateDataGrowth(date, dataType, dataActivityType, periodType){
+
+            function addActivity(datePeriodFormatted, xNumber, label){
+                var weight = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].weight : 0;
+                var height = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].height : 0;
+                var headCircumference = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].headCircumference : 0;
+                var bmi = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].bmi : 0;
+
+                activityData.weight.push({x: xNumber, y: weight, label:label});
+                activityData.height.push({x: xNumber, y: height, label:label});
+                activityData.headCircumference.push({x: xNumber, y: headCircumference, label:label});
+                activityData.bmi.push({x: xNumber, y: bmi, label:label});
+            }
+
+            var dataType = dataType;
+            var sortedDataActivityType = activityTypeFiltersCalculation[dataType](dataActivityType);
+            var activityData = {
+                'weight':[],
+                'height':[],
+                'headCircumference': [],
+                'bmi': []
+            };
+
+            console.log(sortedDataActivityType);
+
+            if(periodType == 'weekly'){
+                var labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                for(var x = 0; x <= 6; x++){
+                    var datePeriodFormatted = moment(date).day(x).format("MM-DD-YYYY");
+                    addActivity(datePeriodFormatted, x, labels[x]);
+                }
+            }else{
+                var firstDay = moment(date).date(1);
+                var lastDay = moment(firstDay).endOf('month').date();
+                for(var x = 1; x <= lastDay; x++){
+                    var datePeriodFormatted = moment(date).day(x).format("MM-DD-YYYY");
+                    var label = x;
+                    addActivity(datePeriodFormatted, x-1, label);
+                }
+            }
+
+            return activityData;
         }
 
         /**
@@ -176,10 +307,7 @@ angular
                 var lastDay = moment(firstDay).endOf('month').date();
                 for(var x = 1; x <= lastDay; x++){
                     var datePeriodFormatted = moment(date).day(x).format("MM-DD-YYYY");
-                    //var label = " ";
-                    //if(x % 5 == 0 || x == 1){
-                        var label = x;
-                    //}
+                    var label = x;
                     var totalValueTop = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].totalTop : 0;
                     var totalValueBot = angular.isObject(sortedDataActivityType[datePeriodFormatted]) ? sortedDataActivityType[datePeriodFormatted].totalBot : 0;
                     acitivityDataValuesTop.push({
@@ -217,6 +345,7 @@ angular
             createOptions: createOptions,
             generateFromToDateText: generateFromToDateText,
             getFirstAndLastDay: getFirstAndLastDay,
-            calculateAverageData: calculateAverageData
+            calculateAverageData: calculateAverageData,
+            generateDataGrowth: generateDataGrowth
         }
     }]);

@@ -70,7 +70,7 @@ angular.module('cleverbaby', [
             $rootScope.$broadcast('babySelected', baby);
         };
 
-        AuthService.setup().then(function(babies){
+        $rootScope.findDefaultBaby = function (babies) {
             if($localStorage.babyId){
                 for (var i in babies){
                     if(babies.hasOwnProperty(i)){
@@ -85,7 +85,10 @@ angular.module('cleverbaby', [
             if(!$rootScope.babyId){
                 $rootScope.setBaby(babies[0])
             }
+        };
 
+        AuthService.setup().then(function(babies){
+            $rootScope.findDefaultBaby(babies);
             $rootScope.$broadcast('auth');
         });
 

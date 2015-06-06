@@ -559,6 +559,7 @@ label.mood.sad:before { content: "\e619"; }
 .kotak.di-block-center { display: -webkit-flex;  display: flex; }
 .kotak.di-block-center > div{  -webkit-align-self: center;    align-self: center;    width: ; margin:0 auto; text-align:center }
 .wrapper .kotak:last-child, .wrapper .no-border, .kotak.no-border { border: none !important;}
+.wrapper .kotak.last-border { border-bottom:1px solid #e7e7e7 !important;}
 .padding-top{
   padding-top: 10px;
 }
@@ -638,7 +639,7 @@ border-width: 0px;
 span.satuan { float:right;font-size: 24px; margin-top: 14px}
 
 .footer { margin-top: 22px; text-align: center; font-size: 10px; height: 49px; overflow: hidden;}
-.footer a[class*="pull-"]{ width: 27.33%; padding: 9px 14px 0; line-height: 2.6em; }
+.footer a[class*="pull-"]{ width: 27.33%; padding: 9px 0 0; line-height: 2.6em; }
 .footer a span[class*="icon-"], .footer a i[class*="fa-"] { font-size: 14px; width: 100%; display: block;}
 .footer a span { font-size: 12px; width: 100%; }
 .footer a.btn-mid { padding: 8px 24px 6px; background: #fff;  display: inline-block; border-radius:4px 4px 0 0; height: 49px; line-height: 2.6em;}
@@ -675,14 +676,14 @@ span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px; di
 .no-padding{padding:0 !important;}
 .no-padding-top{padding-top: 0!important; padding-bottom: 0 !important;}
 .black-color{color: #336666;}
-.timeline { width: 100%; position: relative; height: auto !important; }
+.timeline { width: 100%; position: relative; height: auto !important; overflow: visible !important; }
 .timeline h3.pd { color: #0a3656; font-size: 20px;}
-.timeline .item { width: 100%; position: relative; padding:1px 0px 10px 10px; margin:-1px 0 0; float: left; z-index: 2}
+.timeline .item { width: 100%; position: relative; padding:1px 0px 10px 10px; margin:-1px 0 0; float: left; z-index: 2; overflow: visible !important;}
 .timeline .item .datetime-tl { width: 15%; color: #000; float: left; word-wrap: break-word; text-align: center; font-size: .8em !important; line-height:1em; padding-top:2px;}
 .timeline .item .activity-icon { width: 14%; color: #000; height: 100%; position: relative; float: left; background: 0;}
                 .item-activity { width: 35px; height:35px; border-radius: 100px; display: block; color: #fff; display: -webkit-flex;  display: flex; }
                 .item-activity span { -webkit-align-self: center;    align-self: center; width: 100%; margin:0 auto; text-align:center; font-size: 16px;}
-                .activity-icon:after { position: absolute; content: ""; border: 1px solid #c9c9c9; height: 150%; left:16.6px; z-index: -1;}
+                .activity-icon:after { position: absolute; content: ""; border: 1px solid #c9c9c9; height: 44%; left:16.6px; z-index: -1;}
 .timeline .item .desc { width: 64%; color: #0a3656; float: left;  }
 .timeline .item .desc h3 {margin: 0; padding: 2px 0 0 ; width: 100%;  }
 .timeline .item .desc p { float: left; width: 100%; color: #0a3656 }
@@ -730,9 +731,9 @@ span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px; di
 .wrapper-dropdown .header .btn { position: absolute;top: -4px;}
 .wrapper-dropdown h2 { font-size: 22px;}
 .wrapper-dropdown h2, .wrapper-dropdown a { color: #000;}
-.wrapper-dropdown .item { padding: 0; margin: 8px 0 5px; float: left; width: 100%;}
+.wrapper-dropdown .item { padding: 0; margin: 6px 0 5px; float: left; width: 100%;}
 .wrapper-dropdown .item h2 { float: left; font-size: 18px; margin: 14px 0 0 10px}
-.wrapper-dropdown .item a.edit { float: right; margin: 14px 0 0 0}
+.wrapper-dropdown .item a.edit { float: right; margin: 14px 0 0 0; display: inline-table;}
 .wrapper-dropdown .item a.btn-add { float: left; background: #eee; width: 50px; height: 50px; font-size: 22px; text-align: center; line-height: 2.2em }
       .thumb-baby { float: left; width: 50px;height: 50px; border:0;}
 
@@ -744,14 +745,14 @@ span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px; di
 /*
 .add-edit-baby .header a.btn { position: absolute; top: 15px; }
 .add-edit-baby .header h2 { color:#fff; font-size: 22px; display: inline-block;} */
-.add-edit-baby .cover-img { height: 176px; background-position: center; background-repeat: no-repeat; background-size: cover; position: relative;}
+.add-edit-baby .cover-img { height: 40%; background-position: center; background-repeat: no-repeat; background-size: cover; position: relative;}
 .add-edit-baby .cover-img .edit.circular { position: absolute; bottom:20px; right: 20px; z-index: +4; width: 75px; height: 75px; }
 .add-edit-baby .cover-img .edit-btn { position: absolute; bottom:37px; right: 85px; padding: 8px 18px 8px 15px; border-radius: 4px 0 0 4px; background: #fff; color: #000; z-index: +3; font-size: 12px; }
-.add-edit-baby .kotak { margin: 0; border-bottom:1px solid rgba(0,0,0,0.3); color: #000; padding:0 10px; }
+.add-edit-baby .kotak { margin: 0; border-bottom:1px solid #e7e7e7; color: #000; padding:0 10px; }
 .add-edit-baby input { color: #000;  width: 100%;}
 input.form-control-text {  text-align: left !important; float: left !important;}
 .add-edit-baby .kotak .btn, .wrapper.add button.btn { margin: 10px 0 0 0; border-radius: 4px; border:1px solid #000; color: #000; background: #fff; font-size: 16px; padding: 4px 10px; width: 100%; }
-.to-bottom { position: absolute; bottom: 0; width: 100%; padding-bottom: 20px;}
+.to-bottom { position: absolute; bottom: 0; width: 100%; padding-bottom: 10px;}
 
 /*override ionic css animation speed */
 .modal-backdrop {
@@ -836,10 +837,10 @@ visibility:visible; width: 60px; height: 60px;
 
 /*more page*/
 .more-page ul.list li:not(.item-divider) { border-bottom: 1px solid #eaeaea}
-.more-page ul.list li { color: #000; text-decoration: none; font-size: 18px; font-weight: lighter !important;}
+.more-page ul.list li { color: #000; text-decoration: none; font-size: 18px;}
 .more-page ul.list li span { margin: 0px 15px 0 0; float: left;}
 .more-page ul.list li span[class*="icon-"] { font-size: 14.6px; margin-top: 1.6px}
-.more-page ul.list li.item-divider span { margin: 0 20px 0 0}
+.more-page ul.list li.item-divider { font-size: 14px !important; font-weight: normal;}
 .more-page ul.list li:not(.item-divider):after { content: "\f105"; font-family: 'FontAwesome'; position: absolute; right: 10px; top: 12px; color: #b2b2b2; font-size: 16px;}
 
 /*SIGN IN SIGN UP*/
@@ -984,6 +985,10 @@ td.fc-day { margin: 0 !important;padding:0 !important; margin: 0 !important; }
     margin: 0 2px;
 }
 
+.no-activities{
+    margin-left: 10px;
+}
+
 /** Other CSS **/
 
 form .hidden-submit{
@@ -1091,6 +1096,30 @@ div[mobiscroll-mode="predefined"] input {
     display: none;
 }
 
+.baby-img-name-con{
+    display: inline-table;
+}
+
 .text-center.btm{
 
+}
+
+/** No activities in Diary **/
+
+.no-activities{
+    width: 170px;
+    text-align: center;
+    margin: auto auto;
+}
+
+.no-activities-arrow-text-con{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto auto 5px auto;
+}
+
+.big-btm-arrow{
+    font-size: 34px;
 }
