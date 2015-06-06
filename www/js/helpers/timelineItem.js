@@ -27,14 +27,27 @@ angular
 
         }
     })
+
     .directive('timelineDate', function($interval) {
-        return function($scope, element, attrs) {
-            $scope.$watch(attrs.timelineDate, function(x){
-                value =  new Date(x).getTime()/1000;
-                element.text(moment(value, 'X').fromNow());
+        return {
+            scope: {
+                'timelineDate': '=',
+            },
+            link: function($scope, element, attrs) {
+                function setDate(x) {
+                    var value =  new Date(x).getTime() / 1000;
+                    element.text(moment(value, 'X').fromNow());
+                }
+
+                // refresher
                 $interval(function(){
-                    element.text(moment(++value, 'X').fromNow());
+                    setDate($scope.timelineDate);
                 }, 10000);
-            });
+
+                // outside changes
+                $scope.$watch('timelineDate', function (x) {
+                    setDate(x);
+                });
+            },
         }
     });
