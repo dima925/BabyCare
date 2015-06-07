@@ -400,13 +400,30 @@ angular.module('cleverbaby.data')
                     resolve(count);
                 });
             },
-            getAllActivitiesByBabyId: function(babyId, start, limit){
+            getAllActivitiesByBabyId: function(babyId, start, limit, includeFuture){
                 return $q(function(resolve, reject){
+                    if(typeof includeFuture == 'undefined')
+                        includeFuture = true;
                     if(typeof $localStorage.activities == 'undefined' || typeof babyId == 'undefined' || $localStorage.activities[babyId] == 'undefined') {
                         resolve([]);
                         return;
                     }
-                    resolve($localStorage.activities[babyId].slice(start, start+limit).map(function(x){
+
+                    if(includeFuture) {
+                        resolve($localStorage.activities[babyId].slice(start, start+limit).map(function(x){
+                            x.time = new Date(x.time);
+                            return x;
+                        }));
+                        return;
+                    }
+
+                    // sensitive code -- should be optimized
+                    resolve($localStorage.activities[babyId].filter(function (obj) {
+                        if(moment().diff(moment(obj.time)) >= 0)
+                            return true;
+                        return false;
+                    })
+                    .slice(start, start+limit).map(function(x){
                         x.time = new Date(x.time);
                         return x;
                     }));

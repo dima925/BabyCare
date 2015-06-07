@@ -11,7 +11,7 @@ angular.module('cleverbaby.controllers')
                 $scope.canBeloadedMore = true;
                 start = 0;
                 limit = 10;
-                ActivityService.getAllActivitiesByBabyId(baby.uuid, start, limit).then(function(activities){
+                ActivityService.getAllActivitiesByBabyId(baby.uuid, start, limit, false).then(function(activities){
                     $scope.activities = activities;
                     console.log($scope.activities );
                 });
@@ -67,31 +67,26 @@ angular.module('cleverbaby.controllers')
 
             // updates baby birthday on request
             function updateBirth (baby) {
-                moment.locale('en');                
-
+                moment.locale('en');
                 var years, months, days;
 
                 // fill baby information
                 var born = moment(baby.born),
                     now = moment();
-
                 var ms = now.diff(born, 'milliseconds', true);
                 years = Math.floor(moment.duration(ms).asYears());
 
                 var withoutYears = born.add(years, 'years');
-
                 ms = now.diff(withoutYears, 'milliseconds', true);
                 months = Math.floor(moment.duration(ms).asMonths());
 
                 var withoutMonths = born.add(months, 'months').add(1, 'days');
-                
                 ms = now.diff(withoutMonths, 'milliseconds', true);
                 days = Math.floor(moment.duration(ms).asDays());
 
                 var yearText = years <= 0 ? '' : (years == 1 ? '1 year' : years + ' years'),
                     monthText = months <= 0 ? '' : (months == 1 ? '1 month' : months + ' months'),
                     dayText = days <= 0 ? '' : (days == 1 ? '1 day' : days + ' days');
-
                 $scope.babysAge = String(yearText + ' ' + monthText + ' ' + dayText + '').trim();
             }
 
@@ -140,7 +135,7 @@ angular.module('cleverbaby.controllers')
 
             function loadMore(count){
                 start+=count;
-                return ActivityService.getAllActivitiesByBabyId($rootScope.baby.uuid, start, count).then(function(activities){
+                return ActivityService.getAllActivitiesByBabyId($rootScope.baby.uuid, start, count, false).then(function(activities){
                     if(activities.length == 0){
                         $scope.canBeloadedMore = false;
                     }
@@ -224,6 +219,8 @@ angular.module('cleverbaby.controllers')
 
 
             $scope.$on('activityAdd', function(event, activity){
+                if(moment().diff(moment(activity.time)) < 0)
+                    return;
                 if($scope.activities.length < limit || activity.time > $scope.activities[$scope.activities.length-1].time){
                     ++start;
                     increaseTodayStatus(activity);
@@ -250,6 +247,10 @@ angular.module('cleverbaby.controllers')
             });
 
             $scope.$on('babyUpdate', function (event, baby) {
+                updateBirth(baby);
+            });
+
+            $scope.$on('babyDelete', function (event, baby) {
                 updateBirth(baby);
             });
 
