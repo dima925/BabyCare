@@ -36,7 +36,7 @@ angular.module('cleverbaby.controllers')
                 }
                 $scope.countdownStartTime = moment();
                 $scope.countdownPromise = $interval(function () {
-                    console.log('countdown event triggered');
+                    //console.log('countdown event triggered');
 
                     var now = moment(),
                         passed = now.diff($scope.countdownStartTime, 'minutes', true);

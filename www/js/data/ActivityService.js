@@ -283,6 +283,24 @@ angular.module('cleverbaby.data')
                     })
                 });
             },
+            deleteActivity: function (uuid, data, babies) {
+                return $q(function(resolve, reject){
+                    //var data = [];
+
+                    var medias = data.media;
+
+                    data = filter(data);
+                    data.uuid = uuid;
+                    data.babies = babies;
+
+                    /*network.put({
+                        data: data,
+                        url: '/activities/'+uuid
+                    });*/
+
+                    resolve(data);
+                });
+            },
             editActivity: function(uuid, data, babies){
                 return $q(function(resolve, reject){
 

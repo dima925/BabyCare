@@ -1,6 +1,6 @@
 angular.module('cleverbaby.controllers')
-.controller('activityCtrl', ['$rootScope', '$scope', '$timeout', '$window', 'ActivityService', 'NotificationService', '$ionicModal', 'Image',
-    function ($rootScope, $scope, $timeout, $window, ActivityService, NotificationService, $ionicModal, Image) {
+.controller('activityCtrl', ['$rootScope', '$scope', '$timeout', '$window', 'ActivityService', 'NotificationService', '$ionicModal', 'Image', '$ionicActionSheet',
+    function ($rootScope, $scope, $timeout, $window, ActivityService, NotificationService, $ionicModal, Image, $ionicActionSheet) {
 
         $scope.saveActivity = function(type){
 
@@ -16,6 +16,28 @@ angular.module('cleverbaby.controllers')
                     $scope.modal.hide();
                 });
             }
+        };
+
+        $scope.deleteActivity = function (type) {
+            // Show the action sheet
+            var hideSheet = $ionicActionSheet.show({
+                destructiveText: 'Delete',
+                titleText: 'Are you sure you want to delete this activity?',
+                cancelText: 'Cancel',
+                cancel: function() {
+                },
+                destructiveButtonClicked: function () {
+                    $scope.modal.data.type = type;
+                    ActivityService.deleteActivity($scope.modal.data.uuid, $scope.modal.data, $rootScope.babyId).then(function(activity){
+                        $rootScope.$broadcast('activityDelete', activity);
+                        $scope.modal.hide();
+                    });
+                    hideSheet();
+                },
+                buttonClicked: function(index) {
+                    return true;
+                }
+            });
         };
 
         $scope.manual = true;
