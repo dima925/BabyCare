@@ -28,6 +28,7 @@ angular.module('cleverbaby.controllers')
 
             $scope.countdownPromise = null;
             $scope.countdownStartTime = null;
+            $scope.babysAge = '';
 
             $scope.countdownStart = function () {
                 if($scope.countdownPromise) {
@@ -54,6 +55,7 @@ angular.module('cleverbaby.controllers')
                     $interval.cancel($scope.countdownPromise);
             };
 
+            // progress coloring rules
             $scope.getProgressColor = function (value) {
                 if(value > 50) {
                     return '#66cc00';
@@ -63,8 +65,9 @@ angular.module('cleverbaby.controllers')
                 return '#ff5500' 
             };
 
+            // updates baby birthday on request
             function updateBirth (baby) {
-                moment.locale('en');
+                moment.locale('en');                
 
                 var years, months, days;
 
@@ -89,7 +92,7 @@ angular.module('cleverbaby.controllers')
                     monthText = months <= 0 ? '' : (months == 1 ? '1 month' : months + ' months'),
                     dayText = days <= 0 ? '' : (days == 1 ? '1 day' : days + ' days');
 
-                $scope.babysAge = yearText + ' ' + monthText + ' ' + dayText + '';
+                $scope.babysAge = String(yearText + ' ' + monthText + ' ' + dayText + '').trim();
             }
 
             function updateAvgTimes (baby) {
@@ -105,6 +108,7 @@ angular.module('cleverbaby.controllers')
                 $scope.countdownStart();
             }
 
+            // general function for UPDATING diary quick data
             function updateActivityQuickData (baby) {
                 updateBirth(baby);
                 updateAvgTimes(baby);
@@ -243,6 +247,10 @@ angular.module('cleverbaby.controllers')
                     refreshActivity(activity, 'delete', i);
                     $scope.canBeloadedMore = true;
                 }
+            });
+
+            $scope.$on('babyUpdate', function (event, baby) {
+                updateBirth(baby);
             });
 
             function refreshActivity(activity, mode, index){

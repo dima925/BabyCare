@@ -26,8 +26,11 @@ angular
                 options.headers = {
                     auth_token: $localStorage.token
                 };
-                if(!now)
+                if(!now) {
+                    if(angular.isUndefined($localStorage.queue))
+                        $localStorage.queue = [];
                     $localStorage.queue.push(options);
+                }
                 else
                     return $http(options);
             }
@@ -35,7 +38,7 @@ angular
             function sync(force){
                 if(isSync && !force) return;
                 isSync = true;
-                var options = $localStorage.queue[0];
+                var options = (angular.isArray($localStorage.queue) && $localStorage.queue.length >0 ) ? $localStorage.queue[0] : null;
                 if(!options) {
                     isSync = false;
                     return;

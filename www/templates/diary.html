@@ -56,12 +56,15 @@
                     </div>
                     <div class="home-icon"><i class="icon-diaper"></i></div>
                 </div>
-                <div class="baby-summary">
+                <div class="baby-summary" ng-if="babysAge != ''">
                     <span class="text-center" ng-if="babyId">{{babysAge}}</span>
-                    <span class="text-center" ng-if="!babyId" data-translate>cleverbaby.app.diary.welcome</span>
-                    
                     <span class="text-center" ng-if="babyId">{{babysWeight}} {{babysHeight}}</span>
-                    <span class="text-center" ng-if="!babyId" data-translate>cleverbaby.app.diary.tapbaby</span>
+                </div>
+
+                <div class="baby-summary" ng-if="babysAge == ''" ng-click="editBaby()">
+                    <!-- no birthday and age -->
+                    <span class="text-center" data-translate>cleverbaby.app.diary.welcome</span>
+                    <span class="text-center" data-translate>cleverbaby.app.diary.tapbaby</span>
                 </div>
 
                 <div class="dayli-checklist">

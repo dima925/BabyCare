@@ -402,9 +402,10 @@ angular.module('cleverbaby.data')
             },
             getAllActivitiesByBabyId: function(babyId, start, limit){
                 return $q(function(resolve, reject){
-                    console.log($localStorage.activities);
-                    console.log(babyId);
-                    console.log($localStorage.activities[babyId]);
+                    if(typeof $localStorage.activities == 'undefined' || typeof babyId == 'undefined' || $localStorage.activities[babyId] == 'undefined') {
+                        resolve([]);
+                        return;
+                    }
                     resolve($localStorage.activities[babyId].slice(start, start+limit).map(function(x){
                         x.time = new Date(x.time);
                         return x;

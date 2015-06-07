@@ -63,6 +63,7 @@ angular.module('cleverbaby.controllers')
             $scope.modal.baby.displayImage = $scope.baby.displayImage;
             $scope.modal.baby.imageType = $scope.baby.imageType;
             BabyService.edit($scope.modal.baby).then(function(baby){
+                $rootScope.$broadcast('babyUpdate', baby);
                 $scope.modal.hide();
             }, function(err){
                 NotificationService.notify(err.data.message);
