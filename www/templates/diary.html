@@ -13,10 +13,8 @@
                     <div class="home-icon botol"><i class="icon-bottle"></i></div>
                     <div class="graph-circle-home">
                         <div class="progress-wrapper">
-                            <div class="progress" ng-if="etaBottle > 0">
-                                {{etaBottleDynamic}}min <span >ETA</span>
-                            </div>
-                            <div class="progress long-text" ng-if="etaBottle < 0" data-translate>cleverbaby.app.diary.etabottle</div>
+                            <div class="progress" ng-if="etaBottle !== null">{{etaBottleDynamic}}min <span >ETA</span></div>
+                            <div class="progress long-text" ng-if="etaBottle === null" data-translate>cleverbaby.app.diary.etabottle</div>
                             <div
                                 round-progress
                                 max="100"
@@ -35,10 +33,8 @@
                     <div class="thumbnail-baby" ng-click="editBaby()"><div class="circular"><img ng-src="{{ $root.baby.displayImage | babyImage }}"></div></div>
                     <div class="graph-circle-home">
                         <div class="progress-wrapper">
-                            <div class="progress" ng-if="etaDiaper > 0">
-                                {{etaDiaperDynamic}}min <span >ETA</span>
-                            </div>
-                            <div class="progress long-text" ng-if="etaDiaper < 0" data-translate>cleverbaby.app.diary.etadiaper</div>
+                            <div class="progress" ng-if="etaDiaper !== null">{{etaDiaperDynamic}}min <span >ETA</span></div>
+                            <div class="progress long-text" ng-if="etaDiaper === null" data-translate>cleverbaby.app.diary.etadiaper</div>
                             <div
                                     round-progress
                                     max="100"

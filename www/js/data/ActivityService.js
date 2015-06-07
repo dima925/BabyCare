@@ -541,7 +541,7 @@ angular.module('cleverbaby.data')
                 }
 
                 if(lastActivity == null || beforeLastActivity == null) {
-                    return -1;
+                    return null;
                 }
 
                 return Math.round(moment(lastActivity.time).diff(moment(beforeLastActivity.time), 'minutes', true));

@@ -36,18 +36,20 @@ angular.module('cleverbaby.controllers')
                 }
                 $scope.countdownStartTime = moment();
                 $scope.countdownPromise = $interval(function () {
-                    //console.log('countdown event triggered');
-
                     var now = moment(),
                         passed = now.diff($scope.countdownStartTime, 'minutes', true);
 
                     // decrementing times
-                    $scope.etaDiaperDynamic = Math.max(Math.round($scope.etaDiaper - passed), 0);
-                    $scope.etaBottleDynamic =  Math.max(Math.round($scope.etaBottle - passed), 0);
-
-                    $scope.etaDiaperProgress = Math.round($scope.etaDiaperDynamic * 100 / $scope.etaDiaper);
-                    $scope.etaBottleProgress = Math.round($scope.etaBottleDynamic * 100 / $scope.etaBottle);
-                }, 60000)
+                    if($scope.etaDiaper !== null) {
+                        $scope.etaDiaperDynamic = Math.max(Math.round($scope.etaDiaper - passed), 0);
+                        $scope.etaDiaperProgress = $scope.etaDiaper == 0 ? 0 : Math.round($scope.etaDiaperDynamic * 100 / $scope.etaDiaper);
+                    }
+                    
+                    if($scope.etaBottle !== null) {
+                        $scope.etaBottleDynamic =  Math.max(Math.round($scope.etaBottle - passed), 0);
+                        $scope.etaBottleProgress = $scope.etaBottle == 0 ? 0 : Math.round($scope.etaBottleDynamic * 100 / $scope.etaBottle);    
+                    }
+                }, 60000);
             };
 
             $scope.countdownStop = function () {
@@ -91,14 +93,14 @@ angular.module('cleverbaby.controllers')
             }
 
             function updateAvgTimes (baby) {
-                $scope.etaDiaper = ActivityService.getActivityEtaByType($rootScope.babyId, 'diaper'), // average
                 $scope.etaBottle = ActivityService.getActivityEtaByType($rootScope.babyId, 'bottle'); // average
+                $scope.etaDiaper = ActivityService.getActivityEtaByType($rootScope.babyId, 'diaper'), // average
 
-                $scope.etaDiaperDynamic = $scope.etaDiaper;
-                $scope.etaBottleDynamic = $scope.etaBottle;
-
-                $scope.etaDiaperProgress = 100;
-                $scope.etaBottleProgress = 100;
+                $scope.etaBottleDynamic = $scope.etaBottle !== null ? $scope.etaBottle : 0;
+                $scope.etaDiaperDynamic = $scope.etaDiaper !== null ? $scope.etaDiaper : 0;
+                
+                $scope.etaBottleProgress = $scope.etaBottle !== null ? ($scope.etaBottle > 0 ? 100 : 0) : undefined;
+                $scope.etaDiaperProgress = $scope.etaDiaper !== null ? ($scope.etaDiaper > 0 ? 100 : 0) : undefined;
 
                 $scope.countdownStart();
             }
