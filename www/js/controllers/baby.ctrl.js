@@ -6,6 +6,17 @@ angular.module('cleverbaby.controllers')
             $scope.modal.hide();
         };
 
+		/* hide footer when native keyboard is open */
+		$scope.showFooter = true;
+
+	    window.addEventListener('native.keyboardshow', function() {
+			$scope.showFooter = false;
+	    });
+
+	    window.addEventListener('native.keyboardhide', function() {
+			$scope.showFooter = true;
+	    });
+		
         $scope.selectCaptureImage = function(sourceType){
             $scope.selectCaptureImageModal.hide();
             Image.captureImage(sourceType).then(function(imageURI) {

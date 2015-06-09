@@ -62,7 +62,16 @@ angular.module('cleverbaby', [
         };
 
         $rootScope.showPlusButton = false;
-
+		
+		/**
+         * Global Utility Function: Hides the keyboard when tapping go.
+         * @param input
+         */
+        $rootScope.hideKeyboard = function(){
+            $(document.activeElement).blur();
+            return false;
+        };
+		
         $rootScope.setBaby = function (baby){
             $rootScope.baby = baby;
             $rootScope.babyId = baby.uuid;
