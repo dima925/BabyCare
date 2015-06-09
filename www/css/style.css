@@ -33,10 +33,13 @@ html, body { font-family: 'Roboto', sans-serif !important;  }
 	height: 49px; /* override ionic default height of 44px */
 }
 /*end hide bottom border*/
+.platform-android .bar .title {
+line-height: 49px; */ /* override ionic default height of 44px */
+}
 
 .bar .title {
 	height: 49px; /* override ionic default height of 44px */
-	line-height: 49px; /* requied to vertical center align title inside header bar */
+	line-height: 49px; /* required to vertical center align title inside header bar */
 	/* top: 7px; */
 	font-size: 17px;
 }

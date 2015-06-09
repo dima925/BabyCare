@@ -124,7 +124,16 @@ angular.module('cleverbaby', [
 
         // hide the splashscreen
         // only call .hide() if we are running inside cordova (webview), otherwise desktop chrome throws an error
-        if (ionic.Platform.isWebView()) $cordovaSplashscreen.hide();
+        if (ionic.Platform.isWebView()) {
+			$timeout(function () {
+				$timeout(function () {
+					//DOM has finished rendering - the double timeout is required otherwise its triggered too early
+					$cordovaSplashscreen.hide();
+				}, 0);
+			}, 0);
+		}
+		
+		
 
     });
 

@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.bymo.cleverbaby" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>CleverBaby</name>
+  <name>Clever Baby</name>
   <description>
-        Track your baby!
+        The easiest way to track your baby's well-being, growth and development
     </description>
-  <author email="info@mycleverbaby.com" href="http://mycleverbaby.com/">
-      Bymo Ltd
+  <author email="info@mycleverbaby.com" href="http://www.mycleverbaby.com/">
+      Clever Ltd
     </author>
   <content src="index.html"/>
   <access origin="*"/>
-  <allow-navigation origin="https://arcane-anchorage-7139.herokuapp.com" />
+  <allow-navigation origin="https://arcane-anchorage-7139.herokuapp.com"/>
+  <allow-navigation origin="https://dev.mycleverbaby.com"/>
+  <allow-navigation origin="https://qa.mycleverbaby.com"/>
+  <allow-navigation origin="https://api.mycleverbaby.com"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
