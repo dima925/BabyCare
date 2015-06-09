@@ -1,10 +1,11 @@
 <div class="modal transparent" ng-controller="BabyCtrl" ng-click="closeModal()">
 	<div class="wrapper add-edit-baby">
 		<div class="bar bar-header">
-			<button class="button button-icon" ng-click="cancel()">Cancel</button>
+			<button class="button button-clear" ng-click="cancel()">Cancel</button>
             <div class="h1 title" ng-if="!modal.edit">Add New</div>
-            <div class="h1 title" ng-if="modal.edit">Baby Profile</div>
-            <button class="button button-icon btn right" ng-click="update()">Done</button>
+            <div class="h1 title" ng-if="modal.edit">Edit Profile</div>
+            <button class="button button-clear" ng-click="update()" ng-if="modal.edit">Save</button>
+			<button class="button button-clear" ng-click="save()" ng-if="!modal.edit">Save</button>
 		</div>
         <div class="cover-img" background="baby.displayImage">
             <div class="edit circular"><img ng-src="{{ baby.displayImage | babyImage }}"></div>
@@ -13,7 +14,7 @@
         <div class="content">
             <div class="kotak">
                 <label class="default">
-                    Baby Name
+                    Name
                 </label>
                 <input ng-model="baby.name" type="text" class="form-control">
             </div>
@@ -35,14 +36,8 @@
             <div class="kotak no-border" ng-if="edit">
                 <button class="btn">Share Baby Data with others</button>
             </div>
-            <div class="kotak no-border" ng-if="modal.edit">
-                <button class="btn" ng-click="delete()">Delete</button>
-            </div>
-<!--             <div class="kotak no-border" ng-click="update()" ng-if="modal.edit">
-                <button class="btn">Done</button>
-            </div>
- -->            <div class="kotak no-border" ng-click="save()" ng-if="!modal.edit">
-                <button class="btn">Add</button>
+            <div class="" ng-if="modal.edit">
+                <button class="button button-light button-block" ng-click="delete()">Delete</button>
             </div>
         </div>
     </div>
