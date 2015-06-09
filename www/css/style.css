@@ -248,9 +248,7 @@ h4, h5{
   background-color: #00ccff !important;
 }
 .button{
-  color:#ffffff;
-  /* width:100%; */ /* its not ok to override ALL buttons in the app to 100% */
-  line-height: 35px !important;
+  font-family: 'Roboto', sans-serif !important;
 }
 .range .icon {
   -webkit-box-flex: 0;
