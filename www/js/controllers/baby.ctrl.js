@@ -6,7 +6,7 @@ angular.module('cleverbaby.controllers')
             $scope.modal.hide();
         };
 
-		/* hide footer when native keyboard is open */
+		/* hide footer when native keyboard is open, ionic also provides a css class hide-on-keyboard-open but its super slow on lowend android phones, the below is ugly but faster */
 		$scope.showFooter = true;
 
 	    window.addEventListener('native.keyboardshow', function() {
