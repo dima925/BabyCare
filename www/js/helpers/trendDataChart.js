@@ -1159,7 +1159,7 @@ angular
                        var done = false;
                        var subtractVal = 0;
                        while(!done){
-                           date = moment(date).subtract(subtractVal, 'd');
+                           date = moment(date).subtract(1, 'd');
                            var datePeriodFormatted = moment(date).format("MM-DD-YYYY");
                            var dateLabel;
                            var monthLabel = moment(date).format("MMM");
@@ -1195,7 +1195,7 @@ angular
                 var currentMoment = moment();
                 var valueMonthsDifference = parseInt(moment.duration(currentMoment.diff(babyBornMoment)).asMonths());
                 var indexX = 0;
-                for(x = 0; x <= valueMonthsDifference+2; x++){
+                for(x = 0; x <= valueMonthsDifference+5; x++){
                     var toDate = moment(babyBorn).add(x+1, 'M');
                     var fromDate = moment(toDate).subtract(1, 'M');
                     var fromDateSubtractedFormatted = moment(fromDate).format("MM-DD-YYYY");
