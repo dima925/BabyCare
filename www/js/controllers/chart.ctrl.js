@@ -34,7 +34,7 @@ angular.module('cleverbaby.controllers')
     };
 
     $scope.createGrowthGraph = function (activeDate, growthType, periodType) {
-        var generateDate = TrendDataChart.generateDataGrowth(activeDate, 'growth',  $scope.trendInfoObj['growth'], periodType);
+        var generateDate = TrendDataChart.generateDataGrowth(activeDate, 'growth',  $scope.trendInfoObj['growth'], periodType, $rootScope.babyBorn);
 
         $scope.data = [{'values': generateDate[growthType]}];
         console.log($scope.data);

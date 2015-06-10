@@ -64,6 +64,7 @@ angular.module('cleverbaby', [
         $rootScope.showPlusButton = false;
 
         $rootScope.setBaby = function (baby){
+            $rootScope.babyBorn = baby.born;
             $rootScope.baby = baby;
             $rootScope.babyId = baby.uuid;
             $localStorage.babyId = baby.uuid;
