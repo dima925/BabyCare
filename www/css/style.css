@@ -7,7 +7,7 @@
 ::-moz-placeholder {    color: #fff !important; opacity: .6 !important  }
 :-ms-input-placeholder { color: #fff !important; opacity: .6 !important }
 
-html, body { font-family: 'Roboto', sans-serif !important;  }
+html, body, h1, h2, h3, h4,h5,h6 { font-family: 'Roboto', sans-serif !important;  }
 .bgcolor{
   background-color: #20BAEF !important;
 }
@@ -33,12 +33,15 @@ html, body { font-family: 'Roboto', sans-serif !important;  }
 	height: 49px; /* override ionic default height of 44px */
 }
 /*end hide bottom border*/
+.platform-android .bar .title {
+line-height: 49px; */ /* override ionic default height of 44px */
+}
 
 .bar .title {
 	height: 49px; /* override ionic default height of 44px */
-	line-height: 49px; /* requied to vertical center align title inside header bar */
+	line-height: 49px; /* required to vertical center align title inside header bar */
 	/* top: 7px; */
-	font-size: 16px;
+	font-size: 17px;
 }
 
 .bar .title .nav-bar-title[cb-baby-drop-down=""] {
@@ -50,6 +53,11 @@ html, body { font-family: 'Roboto', sans-serif !important;  }
 .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) > * {
 margin-top: 10px !important;
 }
+/* override dropdown wrapper top margin to accomodate ios status bar */
+.platform-ios.platform-cordova:not(.fullscreen) .wrapper-dropdown {
+	margin-top: 25px !important;
+}
+
 
 /*SLIDER*/
 .box {
@@ -243,9 +251,7 @@ h4, h5{
   background-color: #00ccff !important;
 }
 .button{
-  color:#ffffff;
-  /* width:100%; */ /* its not ok to override ALL buttons in the app to 100% */
-  line-height: 35px !important;
+  font-family: 'Roboto', sans-serif !important;
 }
 .range .icon {
   -webkit-box-flex: 0;
@@ -671,11 +677,10 @@ span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px; di
 
 /*TIMELINE */
 .pd{padding: 8px 10px 0; font-size: 17px; margin-top: 0px;}
-.kartu{background: #fafafa; margin: 15px 10px;}
+.kartu{background: #fafafa; margin: 15px 10px; padding: 8px 0 6px;}
 .kartu h2 { color: #5a5a5a;}
 .no-padding{padding:0 !important;}
 .no-padding-top{padding-top: 0!important; padding-bottom: 0 !important;}
-.black-color{color: #336666;}
 .timeline { width: 100%; position: relative; height: auto !important; overflow: visible !important; }
 .timeline h3.pd { color: #0a3656; font-size: 20px;}
 .timeline .item { width: 100%; position: relative; padding:1px 0px 10px 10px; margin:-1px 0 0; float: left; z-index: 2; overflow: visible !important;}
@@ -725,23 +730,24 @@ span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px; di
 
 /*dropdown*/
 .wrapper-dropdown {
-  width: 80%; margin: 10px auto; padding: 10px; background: #fff; color: #000; border-radius:4px;
+  width: 80%; margin: 10px auto; padding: 10px 12px; background: #fff; color: #000; border-radius:4px;
 }
-.wrapper-dropdown .header { padding: 0 0 10px; border-color:#000;}
+.wrapper-dropdown .header { padding: 0; border-color:#000; height: 49px; margin-bottom: 10px}
 .wrapper-dropdown .header .btn { position: absolute;top: -4px;}
 .wrapper-dropdown h2 { font-size: 22px;}
+.wrapper-dropdown h2 { margin-top: -1px;}
 .wrapper-dropdown h2, .wrapper-dropdown a { color: #000;}
-.wrapper-dropdown .item { padding: 0; margin: 6px 0 5px; float: left; width: 100%;}
+.wrapper-dropdown .item { padding: 0; margin: 6px 0 5px; float: left; width: 100%; height: 49px;}
 .wrapper-dropdown .item h2 { float: left; font-size: 18px; margin: 14px 0 0 10px}
-.wrapper-dropdown .item a.edit { float: right; margin: 14px 0 0 0; display: inline-table;}
-.wrapper-dropdown .item a.btn-add { float: left; background: #eee; width: 50px; height: 50px; font-size: 22px; text-align: center; line-height: 2.2em }
-      .thumb-baby { float: left; width: 50px;height: 50px; border:0;}
+.wrapper-dropdown .item a.edit { float: right; margin: 14px 0 0 0; font-size: 14px}
+.wrapper-dropdown .item a.btn-add { float: left; background: #eee; width: 49px; height: 49px; font-size: 22px; text-align: center; line-height: 2.4em; margin: 0 !important; padding: 0 !important; border:0; }
+      .thumb-baby { float: left; width: 49px;height: 49px; border:0; overflow: hidden; margin: 0 !important; padding: 0 !important;}
 
 /*add edit baby*/
 .add-edit-baby { height: 100%; background: #fff; color: #000; margin: 0; padding: 0;}
 .add-edit-baby .bar-header {background: #02b6ef; height: 49px;}
-.add-edit-baby .bar-header .button { color:#fff;}
-.add-edit-baby .bar-header .h1 {color:#fff; font-size: 22px; display: inline-block; font-family: 'Roboto', sans-serif !important;}
+.add-edit-baby .bar-header .button { color:#fff;font-family: 'Roboto', sans-serif !important;}
+.add-edit-baby .bar-header .h1 {color:#fff; font-family: 'Roboto', sans-serif !important;}
 /*
 .add-edit-baby .header a.btn { position: absolute; top: 15px; }
 .add-edit-baby .header h2 { color:#fff; font-size: 22px; display: inline-block;} */
@@ -752,7 +758,11 @@ span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px; di
 .add-edit-baby input { color: #000;  width: 100%;}
 input.form-control-text {  text-align: left !important; float: left !important;}
 .add-edit-baby .kotak .btn, .wrapper.add button.btn { margin: 10px 0 0 0; border-radius: 4px; border:1px solid #000; color: #000; background: #fff; font-size: 16px; padding: 4px 10px; width: 100%; }
-.to-bottom { position: absolute; bottom: 0; width: 100%; padding-bottom: 10px;}
+.to-bottom { position: absolute; bottom: 0; width: 100%; padding: 0px;}
+.to-bottom .button.button-block  {  
+	margin-top: 10px;
+  margin-bottom: 0px;
+}
 
 /*override ionic css animation speed */
 .modal-backdrop {

@@ -6,6 +6,7 @@ angular.module('cleverbaby.controllers')
 
         $scope.newBaby = function(baby){
             BabyModal.showModal(baby);
+			$scope.modal.hide();
         };
         $scope.select = function(baby){
             $rootScope.setBaby(baby);
