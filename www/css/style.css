@@ -731,17 +731,18 @@ span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px; di
 
 /*dropdown*/
 .wrapper-dropdown {
-  width: 80%; margin: 10px auto; padding: 10px; background: #fff; color: #000; border-radius:4px;
+  width: 80%; margin: 10px auto; padding: 10px 12px; background: #fff; color: #000; border-radius:4px;
 }
-.wrapper-dropdown .header { padding: 0 0 10px; border-color:#000;}
+.wrapper-dropdown .header { padding: 0; border-color:#000; height: 49px; margin-bottom: 10px}
 .wrapper-dropdown .header .btn { position: absolute;top: -4px;}
 .wrapper-dropdown h2 { font-size: 22px;}
+.wrapper-dropdown h2 { margin-top: -1px;}
 .wrapper-dropdown h2, .wrapper-dropdown a { color: #000;}
-.wrapper-dropdown .item { padding: 0; margin: 6px 0 5px; float: left; width: 100%;}
+.wrapper-dropdown .item { padding: 0; margin: 6px 0 5px; float: left; width: 100%; height: 49px;}
 .wrapper-dropdown .item h2 { float: left; font-size: 18px; margin: 14px 0 0 10px}
-.wrapper-dropdown .item a.edit { float: right; margin: 14px 0 0 0; display: inline-table;}
-.wrapper-dropdown .item a.btn-add { float: left; background: #eee; width: 50px; height: 50px; font-size: 22px; text-align: center; line-height: 2.2em }
-      .thumb-baby { float: left; width: 50px;height: 50px; border:0;}
+.wrapper-dropdown .item a.edit { float: right; margin: 14px 0 0 0; font-size: 14px}
+.wrapper-dropdown .item a.btn-add { float: left; background: #eee; width: 49px; height: 49px; font-size: 22px; text-align: center; line-height: 2.4em; margin: 0 !important; padding: 0 !important; border:0; }
+      .thumb-baby { float: left; width: 49px;height: 49px; border:0; overflow: hidden; margin: 0 !important; padding: 0 !important;}
 
 /*add edit baby*/
 .add-edit-baby { height: 100%; background: #fff; color: #000; margin: 0; padding: 0;}
