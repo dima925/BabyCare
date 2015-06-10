@@ -74,6 +74,7 @@ angular.module('cleverbaby', [
 		
         $rootScope.setBaby = function (baby){
             $rootScope.babyBorn = baby.born;
+            $rootScope.babyGender = baby.gender;
             $rootScope.baby = baby;
             $rootScope.babyId = baby.uuid;
             $localStorage.babyId = baby.uuid;
