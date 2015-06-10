@@ -677,11 +677,10 @@ span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px; di
 
 /*TIMELINE */
 .pd{padding: 8px 10px 0; font-size: 17px; margin-top: 0px;}
-.kartu{background: #fafafa; margin: 15px 10px;}
+.kartu{background: #fafafa; margin: 15px 10px; padding: 8px 0 6px;}
 .kartu h2 { color: #5a5a5a;}
 .no-padding{padding:0 !important;}
 .no-padding-top{padding-top: 0!important; padding-bottom: 0 !important;}
-.black-color{color: #336666;}
 .timeline { width: 100%; position: relative; height: auto !important; overflow: visible !important; }
 .timeline h3.pd { color: #0a3656; font-size: 20px;}
 .timeline .item { width: 100%; position: relative; padding:1px 0px 10px 10px; margin:-1px 0 0; float: left; z-index: 2; overflow: visible !important;}
