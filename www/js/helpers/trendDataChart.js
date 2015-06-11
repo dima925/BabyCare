@@ -1207,7 +1207,7 @@ angular
                         if(angular.isObject(sortedDataActivityType[toDateSubtractedFormatted]) || toDateSubtractedFormatted == fromDateSubtractedFormatted){
                             done = true;
                             addActivity(toDateSubtractedFormatted, indexX, x);
-                            addWhoActivity(datePeriodFormatted, indexX);
+                            addWhoActivity(toDateSubtractedFormatted, indexX);
                             indexX++;
                         }
                     }
