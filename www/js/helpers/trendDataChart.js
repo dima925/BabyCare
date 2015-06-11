@@ -964,7 +964,7 @@ angular
 
                     var growthHeadsize = entry.growth_headsize;
                     var growthHeight = entry.growth_height;
-                    var growthWeight = entry.growth_weight;
+                    var growthWeight = entry.growth_weight / 1000;
 
                     var heightInMs = growthHeight / 10;
                     var bmi = parseFloat((growthWeight/(heightInMs * heightInMs)).toFixed(2)); //parseFloat(average.toFixed(2));
