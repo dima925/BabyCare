@@ -44,13 +44,20 @@ line-height: 49px; */ /* override ionic default height of 44px */
 	font-size: 17px;
 }
 
+.platform-ios.platform-cordova:not(.fullscreen) .bar .title {
+  height: 44px; /* on iOS we have the status bar on top and so we go back to default height of 44px */
+  line-height: 44px; /* important to set this to 44px again as well, otherwise it will use 49px from above and be wrong */
+  /* top: 7px; */
+  font-size: 17px;
+}
+
 .bar .title .nav-bar-title[cb-baby-drop-down=""] {
   display: inline-block !important;
 }
 .bar .title .nav-bar-title:after { margin-left: 10px; font-family: "FontAwesome"; content: "\f0d7";  }
 
 /* override ionic ios default top margin to accomodate ios status bar */
-.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) > * {
+.platform-ios.platform-cordova:not(.fullscreen) .bar-positive .bar-header:not(.bar-subheader) > * {
 margin-top: 10px !important;
 }
 /* override dropdown wrapper top margin to accomodate ios status bar */
