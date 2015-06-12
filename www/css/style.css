@@ -686,6 +686,7 @@ span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px; di
 .pd{padding: 8px 10px 0; font-size: 17px; margin-top: 0px;}
 .kartu{background: #fafafa; margin: 15px 10px; padding: 8px 0 6px;}
 .kartu h2 { color: #5a5a5a;}
+.kartu .item {background: #fafafa;}
 .no-padding{padding:0 !important;}
 .no-padding-top{padding-top: 0!important; padding-bottom: 0 !important;}
 .timeline { width: 100%; position: relative; height: auto !important; overflow: visible !important; }
