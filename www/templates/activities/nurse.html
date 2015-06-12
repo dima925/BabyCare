@@ -27,22 +27,25 @@
                     <label class="default" data-translate>
                         cleverbaby.app.activity.nurse.time_left
                     </label>
-                    <span class="satuan">min</span>
-                    <input ng-model="modal.data.nurse_timeleft" type="number" placeholder="15" class="form-control">
+
+                    <div mobiscroll-nursetime="" mobiscroll-model="modal.data.nurse_timeleft"></div>
+                    <!--<span class="satuan">min</span>
+                    <input ng-model="modal.data.nurse_timeleft" type="number" placeholder="15" class="form-control">-->
                 </div>
                 <div class="kotak" ng-show="manual">
                     <label class="default" data-translate>
                         cleverbaby.app.activity.nurse.time_right
                     </label>
-                    <span class="satuan">min</span>
-                    <input ng-model="modal.data.nurse_timeright" type="number" class="form-control" placeholder="0">
+                    <div mobiscroll-nursetime="" mobiscroll-model="modal.data.nurse_timeright"></div>
+                    <!--<span class="satuan">min</span>
+                    <input ng-model="modal.data.nurse_timeright" type="number" class="form-control" placeholder="0">-->
                 </div>
                 <div class="kotak" ng-show="manual">
                     <label class="default" data-translate>
                         cleverbaby.app.activity.nurse.time_both
                     </label>
-                    <span class="satuan">min</span>
-                    <input ng-model="modal.data.nurse_timeboth" type="number" placeholder="15" class="form-control">
+                    <span class="satuan">{{ (modal.data.nurse_timeleft ? modal.data.nurse_timeleft * 1 : 0) + (modal.data.nurse_timeright ? modal.data.nurse_timeright * 1 : 0) }} min</span>
+                    <!--<input ng-model="modal.data.nurse_timeboth" type="number" placeholder="15" class="form-control">-->
                 </div>
                 <div class="kotak no-border" ng-show="timer"></div>
                 <div class="kotak no-border" ng-show="timer"></div>

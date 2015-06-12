@@ -1149,3 +1149,8 @@ div[mobiscroll-mode="predefined"] input {
 .nv-axislabel{
     white-space: nowrap !important;
 }
+
+div[mobiscroll-nursetime] input {
+  background-color: transparent !important;
+  font-size: 20px;
+}
