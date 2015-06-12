@@ -5,7 +5,7 @@ angular.module('cleverbaby.controllers')
         $scope.cancel = function(){
             $scope.modal.hide();
         };
-
+        
         $scope.selectCaptureImage = function(sourceType){
             $scope.selectCaptureImageModal.hide();
             Image.captureImage(sourceType).then(function(imageURI) {

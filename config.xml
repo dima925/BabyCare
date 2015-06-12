@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.bymo.cleverbaby" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>CleverBaby</name>
-  <description>
-        Track your baby!
+  <description>&#xD;
+        Track your baby!&#xD;
     </description>
-  <author email="info@mycleverbaby.com" href="http://mycleverbaby.com/">
-      Bymo Ltd
+  <author email="info@mycleverbaby.com" href="http://mycleverbaby.com/">&#xD;
+      Bymo Ltd&#xD;
     </author>
   <content src="index.html"/>
   <access origin="*"/>
-  <allow-navigation origin="https://arcane-anchorage-7139.herokuapp.com" />
+  <allow-navigation origin="https://arcane-anchorage-7139.herokuapp.com"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="10000"/>
-  <preference name="AutoHideSplashScreen" value="false" />
-  <preference name="StatusBarStyle" value="lightcontent" />
-  <preference name="StatusBarOverlaysWebView" value="true" />
+  <preference name="AutoHideSplashScreen" value="false"/>
+  <preference name="StatusBarStyle" value="lightcontent"/>
+  <preference name="StatusBarOverlaysWebView" value="true"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>

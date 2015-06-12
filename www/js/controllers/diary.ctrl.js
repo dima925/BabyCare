@@ -1,6 +1,6 @@
 angular.module('cleverbaby.controllers')
-    .controller('DiaryCtrl', ['$location', '$scope', '$ionicModal', 'DailytipService', '$ionicSlideBoxDelegate', 'ActivityService', 'BabyModal', '$rootScope', 'network', '$interval',
-        function ($location, $scope, $ionicModal, DailytipService, $ionicSlideBoxDelegate, ActivityService, BabyModal, $rootScope, network, $interval) {
+    .controller('DiaryCtrl', ['$location', '$scope', '$ionicModal', 'DailytipService', '$ionicSlideBoxDelegate', 'ActivityService', 'BabyModal', '$rootScope', 'network', '$interval', '$localStorage',
+        function ($location, $scope, $ionicModal, DailytipService, $ionicSlideBoxDelegate, ActivityService, BabyModal, $rootScope, network, $interval, $localStorage) {
 
             $scope.editBaby = function(){
                 BabyModal.showModal($rootScope.baby);
@@ -26,45 +26,97 @@ angular.module('cleverbaby.controllers')
                 });
             }
 
-            $scope.countdownPromise = null;
-            $scope.countdownStartTime = null;
+            $scope.refresherPromise = null;
             $scope.babysAge = '';
 
-            $scope.countdownStart = function () {
-                if($scope.countdownPromise) {
-                    $interval.cancel($scope.countdownPromise);
-                }
-                $scope.countdownStartTime = moment();
-                $scope.countdownPromise = $interval(function () {
-                    var now = moment(),
-                        passed = now.diff($scope.countdownStartTime, 'minutes', true);
+            $scope.calculateEtaTimes = function () {
+                // get average times
+                var feedEtaTime = 0,
+                    diaperEtaTime = 0;
 
-                    // decrementing times
-                    if($scope.etaDiaper !== null) {
-                        $scope.etaDiaperDynamic = Math.max(Math.round($scope.etaDiaper - passed), 0);
-                        $scope.etaDiaperProgress = $scope.etaDiaper == 0 ? 0 : Math.round($scope.etaDiaperDynamic * 100 / $scope.etaDiaper);
+                if($localStorage.settings && $localStorage.settings.eta && $localStorage.settings.eta.feed && !isNaN($localStorage.settings.eta.feed) && $localStorage.settings.eta.feed > 0) {
+                    feedEtaTime = $localStorage.settings.eta.feed;
+                } else {
+                    feedEtaTime = ActivityService.getActivityEtaByType($rootScope.babyId, 'feed');
+                }
+
+                if($localStorage.settings && $localStorage.settings.eta && $localStorage.settings.eta.diaper && !isNaN($localStorage.settings.eta.diaper) && $localStorage.settings.eta.diaper > 0) {
+                    diaperEtaTime = $localStorage.settings.eta.diaper;
+                } else {
+                    diaperEtaTime = ActivityService.getActivityEtaByType($rootScope.babyId, 'diaper');
+                }
+
+                var feedLastActivity = ActivityService.getLastActivityByType($rootScope.babyId, 'feed'),
+                    diaperLastActivity = ActivityService.getLastActivityByType($rootScope.babyId, 'diaper');
+
+                // feed calculation
+                if(feedLastActivity) {
+                    var now = moment(),
+                        feedBeginning =  moment(feedLastActivity.time),
+                        feedPassed = now.diff(feedBeginning, 'minutes', true);
+
+                    var feedRemain = Math.max(feedEtaTime - feedPassed, 0),
+                        feedProgress = feedEtaTime == 0 ? 0 : Math.round(100 * feedPassed / feedEtaTime);
+
+                    $scope.feedEtaProgress = Math.min(100, Math.max(0, feedProgress));
+
+                    if(feedRemain <= 0) {
+                        $scope.feedEtaText = 'time to feed';
+                    } else {
+                        $scope.feedEtaText = moment.duration(feedRemain, 'minutes').humanize();
                     }
+
+                    $scope.feedEtaAvailable = true;
+                } else {
+                    $scope.feedEtaAvailable = false;
+                }
+
+                // diaper calculation
+                if(diaperLastActivity) {
+                    var now = moment(),
+                        diaperBeginning =  moment(diaperLastActivity.time),
+                        diaperPassed = now.diff(diaperBeginning, 'minutes', true);
+
+                    var diaperRemain = Math.max(diaperEtaTime - diaperPassed, 0),
+                        diaperProgress = diaperEtaTime == 0 ? 0 : Math.round(100 * diaperPassed / diaperEtaTime);
+
+                    $scope.diaperEtaProgress = Math.min(100, Math.max(0, diaperProgress));
                     
-                    if($scope.etaBottle !== null) {
-                        $scope.etaBottleDynamic =  Math.max(Math.round($scope.etaBottle - passed), 0);
-                        $scope.etaBottleProgress = $scope.etaBottle == 0 ? 0 : Math.round($scope.etaBottleDynamic * 100 / $scope.etaBottle);    
+                    if(diaperRemain <= 0) {
+                        $scope.diaperEtaText = 'time to change';
+                    } else {
+                        $scope.diaperEtaText = moment.duration(diaperRemain, 'minutes').humanize();
                     }
+
+                    $scope.diaperEtaAvailable = true;
+                } else {
+                    $scope.diaperEtaAvailable = false;
+                }
+            }
+
+            $scope.startRefresher = function () {
+                if($scope.refresherPromise) {
+                    $interval.cancel($scope.refresherPromise);
+                }
+                
+                $scope.refresherPromise = $interval(function () {
+                    $scope.calculateEtaTimes();
                 }, 60000);
             };
 
-            $scope.countdownStop = function () {
-                if($scope.countdownPromise)
-                    $interval.cancel($scope.countdownPromise);
+            $scope.stopRefresher = function () {
+                if($scope.refresherPromise)
+                    $interval.cancel($scope.refresherPromise);
             };
 
             // progress coloring rules
             $scope.getProgressColor = function (value) {
+                if(value >= 100)
+                    return '#ff5500' // red
                 if(value > 50) {
-                    return '#66cc00';
-                } else if (value > 0) {
-                    return '#ffcc66';
+                    return '#ffcc66'; // yellow
                 }
-                return '#ff5500' 
+                return '#66cc00'; // green                
             };
 
             // updates baby birthday on request
@@ -93,16 +145,9 @@ angular.module('cleverbaby.controllers')
             }
 
             function updateAvgTimes (baby) {
-                $scope.etaBottle = ActivityService.getActivityEtaByType($rootScope.babyId, 'bottle'); // average
-                $scope.etaDiaper = ActivityService.getActivityEtaByType($rootScope.babyId, 'diaper'), // average
-
-                $scope.etaBottleDynamic = $scope.etaBottle !== null ? $scope.etaBottle : 0;
-                $scope.etaDiaperDynamic = $scope.etaDiaper !== null ? $scope.etaDiaper : 0;
-                
-                $scope.etaBottleProgress = $scope.etaBottle !== null ? ($scope.etaBottle > 0 ? 100 : 0) : undefined;
-                $scope.etaDiaperProgress = $scope.etaDiaper !== null ? ($scope.etaDiaper > 0 ? 100 : 0) : undefined;
-
-                $scope.countdownStart();
+                $scope.calculateEtaTimes();
+                // start automatic refresh
+                $scope.startRefresher();
             }
 
             // general function for UPDATING diary quick data
@@ -248,6 +293,12 @@ angular.module('cleverbaby.controllers')
                 }
             });
 
+            $scope.$on('activityDelete', function (event, activity) {
+                var i = getActivityByUUID(activity.uuid);
+                refreshActivity(activity, 'delete', i);
+                $scope.canBeloadedMore = true;
+            });
+
             $scope.$on('babyUpdate', function (event, baby) {
                 updateBirth(baby);
             });
@@ -338,6 +389,19 @@ angular.module('cleverbaby.controllers')
             $scope.$on('$ionicView.enter', function(){
                 $ionicSlideBoxDelegate.update();
             });
+
+            // ETA Settings
+            $ionicModal.fromTemplateUrl('templates/modals/etasettings.html', {
+                scope: $scope,
+                animation: 'slide-in-up'
+            }).then(function(modal) {
+                $scope.etaSettingsModal = modal;
+            });
+
+            $scope.etaSetting = function(type) {
+                $scope.etaSettingsModal.mode = type;
+                $scope.etaSettingsModal.show();
+            };
         }
     ]
 );

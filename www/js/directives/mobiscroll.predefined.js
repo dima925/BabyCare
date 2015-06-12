@@ -270,7 +270,33 @@ angular.module('cleverbaby.directives')
             }, {
                 'value': 'verysevere',
                 'text': 'Very Severe'
-            }]
+            }],
+
+            'eta_fixed_duration': [{
+                'value': '-1',
+                'text': 'Calculate Automatically'
+            }, {
+                'value': '60',
+                'text': 'Every Hour'
+            }, {
+                'value': '120',
+                'text': 'Every 2 Hours'
+            }, {
+                'value': '180',
+                'text': 'Every 3 Hours'
+            }, {
+                'value': '240',
+                'text': 'Every 4 Hours'
+            }, {
+                'value': '300',
+                'text': 'Every 5 Hours'
+            }, {
+                'value': '360',
+                'text': 'Every 6 Hours'
+            }, {
+                'value': '420',
+                'text': 'Every 7 Hours'
+            }],
     	};
 
         return {

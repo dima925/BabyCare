@@ -12,14 +12,14 @@
                 <div class="kotak autoheight di-block-center no-border di-home">
                     <div class="home-icon botol"><i class="icon-bottle"></i></div>
                     <div class="graph-circle-home">
-                        <div class="progress-wrapper">
-                            <div class="progress" ng-if="etaBottle !== null">{{etaBottleDynamic}}min <span >ETA</span></div>
-                            <div class="progress long-text" ng-if="etaBottle === null" data-translate>cleverbaby.app.diary.etabottle</div>
+                        <div class="progress-wrapper" ng-click="etaSetting('feed')">
+                            <div class="progress" ng-if="feedEtaAvailable">{{feedEtaText}} <span >ETA</span></div>
+                            <div class="progress long-text" ng-if="!feedEtaAvailable" data-translate>cleverbaby.app.diary.etabottle</div>
                             <div
                                 round-progress
                                 max="100"
-                                current="etaBottleProgress"
-                                color="{{getProgressColor(etaBottleProgress)}}"
+                                current="feedEtaProgress"
+                                color="{{getProgressColor(feedEtaProgress)}}"
                                 bgcolor="rgba(255,255,255,.5)"
                                 radius="28"
                                 stroke="3"
@@ -32,14 +32,14 @@
                     </div>
                     <div class="thumbnail-baby" ng-click="editBaby()"><div class="circular"><img ng-src="{{ $root.baby.displayImage | babyImage }}"></div></div>
                     <div class="graph-circle-home">
-                        <div class="progress-wrapper">
-                            <div class="progress" ng-if="etaDiaper !== null">{{etaDiaperDynamic}}min <span >ETA</span></div>
-                            <div class="progress long-text" ng-if="etaDiaper === null" data-translate>cleverbaby.app.diary.etadiaper</div>
+                        <div class="progress-wrapper" ng-click="etaSetting('diaper')">
+                            <div class="progress" ng-if="diaperEtaAvailable">{{diaperEtaText}} <span >ETA</span></div>
+                            <div class="progress long-text" ng-if="!diaperEtaAvailable" data-translate>cleverbaby.app.diary.etadiaper</div>
                             <div
                                     round-progress
                                     max="100"
-                                    current="etaDiaperProgress"
-                                    color="{{getProgressColor(etaDiaperProgress)}}"
+                                    current="diaperEtaProgress"
+                                    color="{{getProgressColor(diaperEtaProgress)}}"
                                     bgcolor="rgba(255,255,255,.5)"
                                     radius="28"
                                     stroke="3"

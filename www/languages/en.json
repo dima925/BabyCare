@@ -54,6 +54,18 @@
     "cleverbaby.app.diary.noActivities": "Oops, nothing here yet! Your baby log entries will be shown here.",
     "cleverbaby.app.diary.startAddEntry": "Start by adding an entry, tap the + button",
 
+    "cleverbaby.app.modal.etasettings.feed.title": "Set the Next Feed Alert Time",
+    "cleverbaby.app.modal.etasettings.feed.desc": "Clever Baby automatically estimates the next feeding time based on the feeding times logged during the last 48 hours.",
+    "cleverbaby.app.modal.etasettings.feed.estimate": "Estimated next feeding:",
+    "cleverbaby.app.modal.etasettings.feed.desc_schedule": "Alternatively you can also set a fixed schedule",
+    "cleverbaby.app.modal.etasettings.feed.schedule": "Feeding Schedule:",
+    
+    "cleverbaby.app.modal.etasettings.diaper.title": "Set the Next Diaper Change Alert Time",
+    "cleverbaby.app.modal.etasettings.diaper.desc": "Clever Baby automatically estimates the next diaper change time based on the change times logged during the last 48 hours.",
+    "cleverbaby.app.modal.etasettings.diaper.estimate": "Estimated change feeding:",
+    "cleverbaby.app.modal.etasettings.diaper.desc_schedule": "Alternatively you can also set a fixed schedule",
+    "cleverbaby.app.modal.etasettings.diaper.schedule": "Change Schedule:",
+
     "cleverbaby.auth.modal.signin.title": "Login",
     "cleverbaby.auth.modal.signin.close": "Close",
     "cleverbaby.auth.modal.signin.email": "Login",
