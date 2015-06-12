@@ -62,8 +62,19 @@ angular.module('cleverbaby', [
         };
 
         $rootScope.showPlusButton = false;
-
+		
+		/**
+         * Global Utility Function: Hides the keyboard when tapping go.
+         * @param input
+         */
+        $rootScope.hideKeyboard = function(){
+            $(document.activeElement).blur();
+            return false;
+        };
+		
         $rootScope.setBaby = function (baby){
+            $rootScope.babyBorn = baby.born;
+            $rootScope.babyGender = baby.gender;
             $rootScope.baby = baby;
             $rootScope.babyId = baby.uuid;
             $localStorage.babyId = baby.uuid;
@@ -124,7 +135,16 @@ angular.module('cleverbaby', [
 
         // hide the splashscreen
         // only call .hide() if we are running inside cordova (webview), otherwise desktop chrome throws an error
-        if (ionic.Platform.isWebView()) $cordovaSplashscreen.hide();
+        if (ionic.Platform.isWebView()) {
+			$timeout(function () {
+				$timeout(function () {
+					//DOM has finished rendering - the double timeout is required otherwise its triggered too early
+					$cordovaSplashscreen.hide();
+				}, 0);
+			}, 0);
+		}
+		
+		
 
     });
 

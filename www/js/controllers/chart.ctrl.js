@@ -10,6 +10,51 @@ angular.module('cleverbaby.controllers')
         refreshDataOnly: false // default: false
     };
 
+    $scope.createGrowthOptions = function(xAxisLabel, yAxisLabel) {
+        var growthOption = {
+            chart: {
+                type: 'lineChart',
+                height: 330,
+                margin : {
+                    top: 20,
+                    right: 20,
+                    bottom: 40,
+                    left: 55
+                },
+                x: function(d){ return d.x; },
+                y: function(d){ return d.y; },
+                useInteractiveGuideline: true,
+                reduceXTicks: false,
+                reduceYTicks: false,
+                showControls: false,
+                showLegend: true,
+                valueFormat: function(d){
+                    return d3.format(',.1f')(d);
+                },
+                dispatch: {
+                    stateChange: function(e){ console.log("stateChange"); },
+                    changeState: function(e){ console.log("changeState"); },
+                    tooltipShow: function(e){ console.log("tooltipShow"); },
+                    tooltipHide: function(e){ console.log("tooltipHide"); }
+                },
+                xAxis:{
+                    axisLabel: xAxisLabel,
+                    axisLabelDistance: 10,
+                    tickFormat: function(d) {
+                        var label = $scope.data[0].values[d].label;
+                        return label;
+                    }
+                },
+                yAxis:{
+                    axisLabel: yAxisLabel,
+                    axisLabelDistance: 50
+                }
+            }
+        };
+
+        return growthOption;
+    };
+
     $scope.createGraph = function (activeDate, periodType){
         //angular.element('.with-3d').html('');
         $scope.discreteOptionsTop = TrendDataChart.createOptions(true, false);
@@ -33,45 +78,63 @@ angular.module('cleverbaby.controllers')
         }, 500);
     };
 
-    $scope.createGrowthGraph = function (activeDate, growthType, periodType) {
-        var generateDate = TrendDataChart.generateDataGrowth(activeDate, 'growth',  $scope.trendInfoObj['growth'], periodType);
+    $scope.growthData;
 
-        $scope.data = [{'values': generateDate[growthType]}];
+    $scope.changeFilterGrowthType = function(growthType, periodFilterType){
+        $scope.data = [
+            {'values': $scope.growthData[growthType]['baby'], 'key': 'baby'},
+            {'values': $scope.growthData[growthType]['3rd'], 'key': '3rd'},
+            {'values': $scope.growthData[growthType]['15th'], 'key': '15th'},
+            {'values': $scope.growthData[growthType]['median'], 'key': 'median'},
+            {'values': $scope.growthData[growthType]['85th'], 'key': '85th'},
+            {'values': $scope.growthData[growthType]['97th'], 'key': '97th'},
+        ];
         console.log($scope.data);
-        $scope.options = {
-            chart: {
-                type: 'lineChart',
-                height: 200,
-                margin : {
-                    top: 20,
-                    right: 20,
-                    bottom: 40,
-                    left: 55
-                },
-                x: function(d){ return d.x; },
-                y: function(d){ return d.y; },
-                useInteractiveGuideline: true,
-                reduceXTicks: false,
-                reduceYTicks: false,
-                showControls: false,
-                showLegend: false,
-                valueFormat: function(d){
-                    return d3.format(',.1f')(d);
-                },
-                dispatch: {
-                    stateChange: function(e){ console.log("stateChange"); },
-                    changeState: function(e){ console.log("changeState"); },
-                    tooltipShow: function(e){ console.log("tooltipShow"); },
-                    tooltipHide: function(e){ console.log("tooltipHide"); }
-                },
-                xAxis:{
-                    tickFormat: function(d) {
-                        var label = $scope.data[0].values[d].label;
-                        return label;
-                    }
-                }
-            }
+
+        var xAxisLabel, yAxisLabel;
+
+        switch(growthType){
+            case 'weight':
+                yAxisLabel = "Weight (kg)";
+                break;
+            case 'height':
+                yAxisLabel = "Length (cm)";
+                break;
+            case 'headCircumference':
+                yAxisLabel  = "Head Circumference (cm)";
+                break;
+            case 'bmi':
+                yAxisLabel  = "BMI";
+                break;
         };
+
+
+        switch(periodFilterType){
+            case 'weekly':
+                xAxisLabel = "Age (Completed Days)";
+                break;
+            case 'monthly':
+                xAxisLabel = "Age (Completed Days)";
+                break;
+            case '3month':
+                xAxisLabel  = "Age (Completed Weeks)";
+                break;
+            case 'all':
+
+                var babyBornMoment = moment($rootScope.babyBorn);
+                var currentMoment = moment();
+                var valueWeeksDifference = parseInt(moment.duration(currentMoment.diff(babyBornMoment)).asDays() / 7);
+                xAxisLabel  = valueWeeksDifference > 13 ? 'Age (Completed Months)': 'Age (Completed Weeks)';
+                break;
+        }
+
+        $scope.options = $scope.createGrowthOptions(xAxisLabel, yAxisLabel);
+    };
+
+    $scope.createGrowthGraph = function (activeDate, growthType, periodType) {
+        $scope.growthData = TrendDataChart.generateDataGrowth(activeDate, 'growth',  $scope.trendInfoObj['growth'], periodType, $rootScope.babyBorn, $rootScope.babyGender);
+        //console.log($scope.growthData);
+        $scope.changeFilterGrowthType(growthType, periodType);
     };
 
     $scope.activeActivityType = "growth";
@@ -121,10 +184,12 @@ angular.module('cleverbaby.controllers')
         }
     });
 
+    $scope.growthTypeTitle = "Weight";
+
     $scope.$watch('growthType', function(newValue, oldValue){
         if(newValue != oldValue){
-            $scope.createGrowthGraph(activeDate, $scope.growthType, $scope.periodTypeGrowth);
-
+            //$scope.createGrowthGraph(activeDate, $scope.growthType, $scope.periodTypeGrowth);
+            $scope.changeFilterGrowthType(newValue, $scope.periodTypeGrowth);
             switch($scope.growthType){
                 case 'weight':
                     $scope.growthTypeTitle = "Weight";

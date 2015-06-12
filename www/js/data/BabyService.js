@@ -135,7 +135,7 @@ angular.module('cleverbaby.data')
                     });
                     handleFile(data).then(function(){
                         $localStorage.babies[data.uuid] = data;
-                        resolve(data);  
+                        resolve(data);
                     })
                 });
             },
@@ -172,7 +172,7 @@ angular.module('cleverbaby.data')
                 }, true);
             },
             deleteUserFromBaby: function(babyId, userId){
-                return network.delete({
+                return network.remove({
                     url: '/babies/'+babyId+'/users/'+userId
                 }, true);
             }
