@@ -1105,6 +1105,10 @@ div[mobiscroll-mode="predefined"] input {
     height: 200px;
 }
 
+.growth-chart-con{
+    height: 355px !important;
+}
+
 .nv-x .nv-axis .tick line {
     display: none;
 }
@@ -1139,4 +1143,8 @@ div[mobiscroll-mode="predefined"] input {
 
 .big-btm-arrow{
     font-size: 34px;
+}
+
+.nv-axislabel{
+    white-space: nowrap !important;
 }

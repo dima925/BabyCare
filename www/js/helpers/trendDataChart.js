@@ -1043,26 +1043,22 @@ angular
             function addWhoActivity(datePeriodFormatted, xNumber){
 
                 var babyBornMoment = moment(babyBorn)
+                var currentMoment = moment();
+                var currentBabyAgeInWeeks = Math.round(moment.duration(currentMoment.diff(babyBornMoment)).asDays() / 7);
+
                 var monthDifference = moment(datePeriodFormatted);
-                var babyAgeInMonths = parseInt(moment.duration(monthDifference.diff(babyBornMoment)).asMonths());
-                var babyAgeInWeeks = parseInt(moment.duration(monthDifference.diff(babyBornMoment)).asDays() / 7);
+                var babyAgeInMonths = Math.round(moment.duration(monthDifference.diff(babyBornMoment)).asMonths());
+                var babyAgeInWeeks = Math.round(moment.duration(monthDifference.diff(babyBornMoment)).asDays() / 7);
 
                 var whoArray = ['3rd', '15th', 'median', '85th', '97th'];
                 var lengthWhoData, weightWhoData, headCircumferenceWhoData, bmiWhoData;
 
                 if(babyAgeInWeeks >= 0){
-                    if(babyAgeInMonths <= 13){
-                        if(periodType == 'weekly' || periodType == 'monthly' || periodType == '3month'){
-                             lengthWhoData = whoData[babyGender]['length']['13weeks'][babyAgeInWeeks].split(' ');
-                             weightWhoData = whoData[babyGender]['weight']['13weeks'][babyAgeInWeeks].split(' ');
-                             headCircumferenceWhoData = whoData[babyGender]['headCircumference']['13weeks'][babyAgeInWeeks].split(' ');
-                             bmiWhoData = whoData[babyGender]['bmi']['13weeks'][babyAgeInWeeks].split(' ');
-                        }else{
-                             lengthWhoData = whoData[babyGender]['length']['0to5years'][babyAgeInMonths].split(' ');
-                             weightWhoData = whoData[babyGender]['weight']['0to5years'][babyAgeInMonths].split(' ');
-                             headCircumferenceWhoData = whoData[babyGender]['headCircumference']['0to5years'][babyAgeInMonths].split(' ');
-                             bmiWhoData = whoData[babyGender]['bmi']['0to5years'][babyAgeInMonths].split(' ');
-                        }
+                    if(currentBabyAgeInWeeks <= 13){
+                         lengthWhoData = whoData[babyGender]['length']['13weeks'][babyAgeInWeeks].split(' ');
+                         weightWhoData = whoData[babyGender]['weight']['13weeks'][babyAgeInWeeks].split(' ');
+                         headCircumferenceWhoData = whoData[babyGender]['headCircumference']['13weeks'][babyAgeInWeeks].split(' ');
+                         bmiWhoData = whoData[babyGender]['bmi']['13weeks'][babyAgeInWeeks].split(' ');
                     }else{
                          lengthWhoData = whoData[babyGender]['length']['0to5years'][babyAgeInMonths].split(' ');
                          weightWhoData = whoData[babyGender]['weight']['0to5years'][babyAgeInMonths].split(' ');
@@ -1191,27 +1187,56 @@ angular
                    })
                 });
             }else if(periodType == 'all'){
-                var babyBornMoment = moment(babyBorn)
-                var currentMoment = moment();
-                var valueMonthsDifference = parseInt(moment.duration(currentMoment.diff(babyBornMoment)).asMonths());
-                var indexX = 0;
-                for(x = 0; x <= valueMonthsDifference+5; x++){
-                    var toDate = moment(babyBorn).add(x+1, 'M');
-                    var fromDate = moment(toDate).subtract(1, 'M');
-                    var fromDateSubtractedFormatted = moment(fromDate).format("MM-DD-YYYY");
-                    var done = false;
 
-                    while(!done){
-                        toDate = moment(toDate).subtract(1, 'd');
-                        var toDateSubtractedFormatted = moment(toDate).format("MM-DD-YYYY");
-                        if(angular.isObject(sortedDataActivityType[toDateSubtractedFormatted]) || toDateSubtractedFormatted == fromDateSubtractedFormatted){
-                            done = true;
-                            addActivity(toDateSubtractedFormatted, indexX, x);
-                            addWhoActivity(toDateSubtractedFormatted, indexX);
-                            indexX++;
+                    var babyBornMoment = moment(babyBorn)
+                    var currentMoment = moment();
+                    var valueMonthsDifference = parseInt(moment.duration(currentMoment.diff(babyBornMoment)).asMonths());
+                    var valueWeeksDifference = parseInt(moment.duration(currentMoment.diff(babyBornMoment)).asDays() / 7);
+                    var indexX = 0;
+
+                    if(valueWeeksDifference > 13){
+                        for(x = 0; x <= valueMonthsDifference; x++){
+                            var toDate = moment(babyBorn).add(x+1, 'M');
+                            var fromDate = moment(toDate).subtract(1, 'M');
+                            var fromDateSubtractedFormatted = moment(fromDate).format("MM-DD-YYYY");
+                            var done = false;
+
+                            while(!done){
+                                var toDateSubtractedFormatted = moment(toDate).format("MM-DD-YYYY");
+                                if(angular.isObject(sortedDataActivityType[toDateSubtractedFormatted]) || toDateSubtractedFormatted == fromDateSubtractedFormatted){
+                                    done = true;
+                                    addActivity(toDateSubtractedFormatted, indexX, x);
+                                    addWhoActivity(toDateSubtractedFormatted, indexX);
+                                    indexX++;
+                                }
+                                toDate = moment(toDate).subtract(1, 'd');
+                            }
+
+
                         }
+                    }else{
+                        for(x = 0; x <= 13; x++){
+
+                            var addVal = 7*x;
+                            var fromDate =  moment(babyBorn).add(addVal, 'd');
+                            var toDate = moment(fromDate).add(7, 'd'); //
+                            var fromDateSubtractedFormatted = moment(fromDate).format("MM-DD-YYYY");
+                            var done = false;
+
+                            while(!done){
+
+                                var toDateSubtractedFormatted = moment(toDate).format("MM-DD-YYYY");
+                                if(angular.isObject(sortedDataActivityType[toDateSubtractedFormatted]) || toDateSubtractedFormatted == fromDateSubtractedFormatted){
+                                    done = true;
+                                    addActivity(toDateSubtractedFormatted, indexX, x);
+                                    addWhoActivity(fromDateSubtractedFormatted, indexX);
+                                    indexX++;
+                                }
+                                toDate = moment(toDate).subtract(1, 'd');
+                            }
+                        }
+
                     }
-                }
             }
 
             console.log(activityData);
