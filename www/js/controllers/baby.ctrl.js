@@ -18,7 +18,7 @@ angular.module('cleverbaby.controllers')
 	    });
 		
         $scope.selectCaptureImage = function(sourceType){
-            $scope.selectCaptureImageModal.hide();
+//            $scope.selectCaptureImageModal.hide();
             Image.captureImage(sourceType).then(function(imageURI) {
                 $scope.baby.displayImage = imageURI;
                 $scope.baby.imageType = 'new';
@@ -26,22 +26,28 @@ angular.module('cleverbaby.controllers')
                 // error
             });
         };
-
-        $scope.showSelectCaptureImageModal = function(){
-            $scope.selectCaptureImageModal.show();
+        
+        $scope.captureImageOption = {
+            success: function(sourceType){
+                $scope.selectCaptureImage(sourceType);
+            }
         };
+//
+//        $scope.showSelectCaptureImageModal = function(){
+//            $scope.selectCaptureImageModal.show();
+//        };
 
-
-        $scope.hideSelectCaptureImageModal = function(){
-            $scope.selectCaptureImageModal.hide();
-        };
-
-        $ionicModal.fromTemplateUrl('templates/modals/selectCaptureImage.html', {
-            scope: $scope,
-            animation: 'slide-in-up'
-        }).then(function(modal) {
-            $scope.selectCaptureImageModal = modal;
-        });
+//
+//        $scope.hideSelectCaptureImageModal = function(){
+//            $scope.selectCaptureImageModal.hide();
+//        };
+//
+//        $ionicModal.fromTemplateUrl('templates/modals/selectCaptureImage.html', {
+//            scope: $scope,
+//            animation: 'slide-in-up'
+//        }).then(function(modal) {
+//            $scope.selectCaptureImageModal = modal;
+//        });
         $scope.$watch('modal.x', function(){
             if($scope.modal.baby){
                 $scope.baby = {
