@@ -75,8 +75,15 @@ angular.module('cleverbaby')
                 templateUrl: "templates/more/invite-others.html",
                 controller: "MoreInviteOthersCtrl",
                 resolve: {
-                    userList: ["BabyService", "$rootScope", function(BabyService, $rootScope){
-                        return BabyService.getUsersList($rootScope.babyId);
+                    userList: ["BabyService", "$rootScope", function(BabyService, $localStorage){
+
+                        for(var key in $localStorage.babies){
+                            if($localStorage.babies.hasOwnProperty(key)){
+                                if($localStorage.babies[key].permission == '1'){
+                                    return BabyService.getUsersList($localStorage.babies[key].uuid);
+                                }
+                            }
+                        }
                     }]
                 }
             }

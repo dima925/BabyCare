@@ -2,18 +2,24 @@ angular.module('cleverbaby.controllers')
     .controller('MoreInviteOthersCtrl', ['$scope', '$localStorage', '$state', '$stateParams', '$rootScope', 'userList', 'BabyService',
         function($scope, $localStorage, $state, $stateParams, $rootScope, userList, BabyService) {
 
-            $scope.userList = userList.data.filter(function(x){
-                return x.user_id != $localStorage.user.id;
-            });
+            $scope.selectedBaby = $localStorage.babies[$rootScope.babyId];
             $scope.removeUser = function(index){
                 var id = $scope.userList[index].id;
                 $scope.userList.splice(index, 1);
-                BabyService.deleteUserFromBaby($rootScope.babyId, id).then(function(){
-
+                BabyService.deleteUserFromBaby($scope.selectedBaby.uuid, id).then(function(){
                 });
             };
 
-            $scope.babies = $localStorage.babies;
+            var babies = [];
+            for(var key in $localStorage.babies){
+                if($localStorage.babies.hasOwnProperty(key)){
+                    if($localStorage.babies[key].permission == '1'){
+                        babies.push($localStorage.babies[key]);
+                    }
+                }
+            }
+
+            $scope.babies = babies;
 
             $scope.invite = function(type){
                 $state.go('app.inviteothers2', {
@@ -23,7 +29,13 @@ angular.module('cleverbaby.controllers')
             };
 
             $scope.changeSelectedBaby = function (selectedBaby) {
+                $scope.userList = [];
                 $scope.selectedBaby = selectedBaby;
+                return BabyService.getUsersList($rootScope.babyId).then(function(userlist){
+                    $scope.userList = userlist.data.filter(function(x){
+                        return x.user_id != $localStorage.user.id;
+                    });
+                });
             };
 
             //$rootScope.allowInviteOthers = $rootScope.allowInviteOthers ? $rootScope.allowInviteOthers : false;
