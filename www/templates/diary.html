@@ -52,7 +52,7 @@
                     </div>
                     <div class="home-icon"><i class="icon-diaper"></i></div>
                 </div>
-                <div class="baby-summary" ng-if="babysAge != ''">
+                <div class="baby-summary" ng-if="babysAge != ''" ng-click="editBaby()">
                     <span class="text-center" ng-if="babyId">{{babysAge}}</span>
                     <span class="text-center" ng-if="babyId">{{babysWeight}} {{babysHeight}}</span>
                 </div>
