@@ -515,7 +515,7 @@ angular.module('cleverbaby.data')
 
                 for(var i = 0; i < activities.length; i++) {
                     if(activity == 'feed') {
-                        if(activities[i].type == 'bottle' || activities[i].type == 'nurse')
+                        if(activities[i].type == 'bottle' || activities[i].type == 'nurse' || activities[i].type == 'solid')
                             return activities[i];
                     } else {
                         if(activities[i].type == activity)
@@ -546,7 +546,7 @@ angular.module('cleverbaby.data')
                     var hasSameType = false;
 
                     if(activity == 'feed') {
-                        hasSameType = (activities[i].type == 'bottle' || activities[i].type == 'nurse');
+                        hasSameType = (activities[i].type == 'bottle' || activities[i].type == 'nurse' || activities[i].type == 'solid');
                     } else {
                         hasSameType = (activities[i].type == activity);
                     }
