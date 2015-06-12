@@ -50,7 +50,7 @@ angular.module('cleverbaby.controllers')
                     diaperLastActivity = ActivityService.getLastActivityByType($rootScope.babyId, 'diaper');
 
                 // feed calculation
-                if(feedLastActivity) {
+                if(feedLastActivity && feedEtaTime !== null) {
                     var now = moment(),
                         feedBeginning =  moment(feedLastActivity.time),
                         feedPassed = now.diff(feedBeginning, 'minutes', true);
@@ -72,7 +72,7 @@ angular.module('cleverbaby.controllers')
                 }
 
                 // diaper calculation
-                if(diaperLastActivity) {
+                if(diaperLastActivity && diaperEtaTime !== null) {
                     var now = moment(),
                         diaperBeginning =  moment(diaperLastActivity.time),
                         diaperPassed = now.diff(diaperBeginning, 'minutes', true);
