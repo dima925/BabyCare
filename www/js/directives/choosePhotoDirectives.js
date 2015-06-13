@@ -15,8 +15,8 @@ angular.module('cleverbaby.directives')
                 $scope.select = function () {
                     $ionicActionSheet.show({
                         buttons:[
-                            {text:'Photo Library'},
-                            {text:'Take Photo'}
+                            {text:'<i class="icon ion ion-images"></i>Photo Library'},
+                            {text:'<i class="icon ion ion-ios-camera"></i>Take Photo'}
                         ],
                         cancelText:'Cancel',
                         cancel: function(){},
