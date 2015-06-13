@@ -1149,3 +1149,8 @@ div[mobiscroll-mode="predefined"] input {
 .nv-axislabel{
     white-space: nowrap !important;
 }
+
+/** Photo choose action modal **/
+.platform-android .action-sheet-has-icons .button {
+    color:#007aff;
+}
