@@ -13,11 +13,18 @@ angular.module('cleverbaby.directives')
                     }
                 }
                 $scope.select = function () {
-                    $ionicActionSheet.show({
-                        buttons:[
+                    var buttons = [
+                            {text:'Photo Library'},
+                            {text:'Take Photo'}
+                        ];
+                    if ( ionic.Platform.isAndroid()){
+                        buttons = [
                             {text:'<i class="icon ion ion-images"></i>Photo Library'},
                             {text:'<i class="icon ion ion-ios-camera"></i>Take Photo'}
-                        ],
+                        ];
+                    }
+                    $ionicActionSheet.show({
+                        buttons:buttons,
                         cancelText:'Cancel',
                         cancel: function(){},
                         buttonClicked:function(index){
