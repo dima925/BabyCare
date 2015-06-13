@@ -146,6 +146,7 @@ angular.module('cleverbaby.data')
                     time: data.time,
                     bottle_type: data.bottle_type,
                     bottle_amount: data.bottle_amount,
+                    bottle_amount_unit: data.bottle_amount_unit,
                     bottle_comment: data.bottle_comment,
                     type: "bottle"
                 }

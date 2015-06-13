@@ -14,7 +14,7 @@ angular
             }
 
             if(activity.type == 'bottle'){
-                str += "Fed" + " " + (activity.bottle_amount? activity.bottle_amount + "oz" : "")
+                str += "Fed" + " " + (activity.bottle_amount ? activity.bottle_amount + (activity.bottle_amount_unit ? activity.bottle_amount_unit : '') : "")
                 + " " + (activity.bottle_type || "");
             }
 
