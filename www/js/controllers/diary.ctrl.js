@@ -122,26 +122,17 @@ angular.module('cleverbaby.controllers')
             // updates baby birthday on request
             function updateBirth (baby) {
                 moment.locale('en');
-                var years, months, days;
-
                 // fill baby information
                 var born = moment(baby.born),
                     now = moment();
                 var ms = now.diff(born, 'milliseconds', true);
-                years = Math.floor(moment.duration(ms).asYears());
-
-                var withoutYears = born.add(years, 'years');
-                ms = now.diff(withoutYears, 'milliseconds', true);
-                months = Math.floor(moment.duration(ms).asMonths());
-
-                var withoutMonths = born.add(months, 'months').add(1, 'days');
-                ms = now.diff(withoutMonths, 'milliseconds', true);
-                days = Math.floor(moment.duration(ms).asDays());
-
-                var yearText = years <= 0 ? '' : (years == 1 ? '1 year' : years + ' years'),
-                    monthText = months <= 0 ? '' : (months == 1 ? '1 month' : months + ' months'),
-                    dayText = days <= 0 ? '' : (days == 1 ? '1 day' : days + ' days');
-                $scope.babysAge = String(yearText + ' ' + monthText + ' ' + dayText + '').trim();
+                $scope.babysAge = humanizeDuration(ms, {
+                    language: "en",
+                    spacer: "",
+                    round: true,
+                    delimiter: " ",
+                    units: ["y", "mo", "d"]
+                });
             }
 
             function updateAvgTimes (baby) {
