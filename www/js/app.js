@@ -103,6 +103,7 @@ angular.module('cleverbaby', [
             $rootScope.$broadcast('auth');
         });
 
+        // timer instance
         $rootScope.timers = timerService;
 
         $ionicModal.fromTemplateUrl('templates/activities/choose.html', {

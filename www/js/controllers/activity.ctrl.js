@@ -46,10 +46,23 @@ angular.module('cleverbaby.controllers')
         $scope.$watch('timer', function (isTimer) {
             $scope.manual = !isTimer;
         });
+
         $scope.switchtimer = function(){
             $scope.manual = !$scope.manual;
             $scope.timer = !$scope.timer;
         };
+
+        $scope.timerStart = function (type, param) {
+            $rootScope.$broadcast('timerEvent', {
+                'type': 'nurse',
+                'backPropagation': false,
+                'direction': false,
+                'command': 'start-' + param, // start, stop
+                'params': {} // other parameters
+            });
+            $scope.closeActivity()    
+        }
+        
 
 		$scope.addNote = function(){
 			$ionicModal.fromTemplateUrl('templates/modals/addnote.html', {

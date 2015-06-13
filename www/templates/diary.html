@@ -1,5 +1,5 @@
 <ion-view>
-    <ion-content class="fixheight" has-bouncing="false">
+    <ion-content class="fixheight" has-bouncing="false" delegate-handle="mainScroll">
         <ion-nav-bar class="bar-positive">
             <ion-nav-title cb-baby-drop-down></ion-nav-title>
             <ion-nav-buttons side="right">
@@ -134,21 +134,4 @@
                 ng-if="canBeloadedMore">
         </ion-infinite-scroll>
     </ion-content>
-    <div class="fixed-outside nurse timer-counter" ng-show="timerRunning">
-        <div class="row">
-            <div class="col" style="text-align:left;">Nursing Timer</div>
-            <div class="col" style="text-align:right;"><i class="icon-close"></i></div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <button class="btn" ng-click="$root.timers.stopTimer()">END LEFT</button>
-            </div>
-            <div class="col container-center counter">
-                <p class="text-center center-block"><timer interval="1000">{{minutes}}:{{seconds}}</timer></p>
-            </div>
-            <div class="col">
-                <button class="btn">Start Right</button>
-            </div>
-        </div>
-    </div>
 </ion-view>
