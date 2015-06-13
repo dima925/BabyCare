@@ -17,9 +17,14 @@ angular.module('cleverbaby.controllers')
 
             $scope.eventSources = [];
 
+            moment.locale('en');
+
             ActivityService.getActivityCalendar($rootScope.baby.uuid).then(function(activityCalendar) {
                 $scope.activityCalendar = activityCalendar;
                 $scope.refreshCalendar();
+                
+                var today = (new Date()).setHours(0,0,0,0);
+                $scope.alertOnDayClick(new Date(today));
             });
 
             /* event sources array*/
@@ -51,8 +56,8 @@ angular.module('cleverbaby.controllers')
                 $scope.selectedMonth = date.getMonth();
                 $scope.selectedYear = date.getFullYear();
                 
-                start = 0;
-                limit = 100;
+                var start = 0,
+                    limit = 100;
                 ActivityService.getActivitiesByDate($rootScope.baby.uuid, date, start, limit).then(function(activities) {
                     $scope.activities = activities;
                     $scope.hasContent = true;
