@@ -1154,3 +1154,6 @@ div[mobiscroll-nursetime] input {
   background-color: transparent !important;
   font-size: 20px;
 }
+
+.activity-calendar-day {padding-top: 0px; /*padding-bottom: 0px; margin-bottom: 0px;*/ }
+.activity-calendar-day.not-first-item:after { position: absolute; content: ""; border: 1px solid #c9c9c9; height: 44%; left:87px; z-index: -1;}

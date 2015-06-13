@@ -402,6 +402,46 @@ angular.module('cleverbaby.controllers')
                 $scope.etaSettingsModal.mode = type;
                 $scope.etaSettingsModal.show();
             };
+
+            // Home timeline helpers
+            $scope.getElementHeight = function (activity, index) {
+                var titledHeight = 79,
+                    normalHeight = 50;
+
+                if(index == 0)
+                    return titledHeight;
+
+                if($scope.activities.length <= 0)
+                    return normalHeight;
+
+                var firstMoment = moment($scope.activities[index - 1].time),
+                    nextMoment = moment(activity.time);
+
+                if(nextMoment.isSame(firstMoment, 'd'))
+                    return normalHeight;
+                return titledHeight;
+            };
+
+            $scope.showTitle = function (activity, index) {
+                if(index == 0)
+                    return true;
+
+                if($scope.activities.length <= 0)
+                    return false;
+
+                var firstMoment = moment($scope.activities[index - 1].time),
+                    nextMoment = moment(activity.time);
+
+                return !nextMoment.isSame(firstMoment, 'd');
+            };
+
+            $scope.getCalendarDay = function (date) {
+                var calDay = moment(date).calendar(),
+                    timeIndex = String(calDay).indexOf(' at ');
+                if(timeIndex == -1)
+                    return moment(date).format('ddd, LL');
+                return calDay.substring(0, timeIndex);
+            };
         }
     ]
 );
