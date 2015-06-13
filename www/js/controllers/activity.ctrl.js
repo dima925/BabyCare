@@ -79,24 +79,30 @@ angular.module('cleverbaby.controllers')
             $scope.modal.data.comment = '';
         };
 
-		$scope.closeAddNoteModal = function(){
-            $scope.modalAddNote.comment = "";
-            $scope.modalAddNote.hide();
-		};
+//		$scope.closeAddNoteModal = function(){
+//            $scope.modalAddNote.comment = "";
+//            $scope.modalAddNote.hide();
+//		};
 
-        $scope.addPhoto = function(){
-            $ionicModal.fromTemplateUrl('templates/modals/addphoto.html', {
-                scope: $scope,
-                animation: 'slide-in-up'
-            }).then(function(modal) {
-                $scope.modalAddPhoto = modal;
-                $scope.modalAddPhoto.name = 'photoModal';
-                $scope.modalAddPhoto.show();
-            });
+//        $scope.addPhoto = function(){
+//            $ionicModal.fromTemplateUrl('templates/modals/addphoto.html', {
+//                scope: $scope,
+//                animation: 'slide-in-up'
+//            }).then(function(modal) {
+//                $scope.modalAddPhoto = modal;
+//                $scope.modalAddPhoto.name = 'photoModal';
+//                $scope.modalAddPhoto.show();
+//            });
+//        };
+        
+        $scope.captureImageOption = {
+            success: function(sourceType){
+                $scope.selectCaptureImage(sourceType);
+            }
         };
 
         $scope.selectCaptureImage = function(sourceType){
-            $scope.modalAddPhoto.hide();
+//            $scope.modalAddPhoto.hide();
             Image.captureImage(sourceType).then(function(imageURI) {
                 $scope.modal.data.media.push({
                     displayImage: imageURI,

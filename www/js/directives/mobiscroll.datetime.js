@@ -59,7 +59,7 @@ angular.module('cleverbaby.directives')
                     });
 
                     function updateInput() {
-                        jiInput.val( moment(scope.appleDateModel).calendar() );
+                        jiInput.val( moment(scope.appleDateModel).format('Do MMMM [at] h:mm a'));
                     }
 
                     // user change
@@ -100,13 +100,13 @@ angular.module('cleverbaby.directives')
                     if(typeof newDateTime == 'undefined')
                         newDateTime = new Date();
                     
-                    $(element).find('.mobiscroll-input').val(moment(newDateTime).calendar());
+                    $(element).find('.mobiscroll-input').val(moment(newDateTime).format('Do MMMM [at] h:mm a'));
                     $(element).find('.mobiscroll-hidden').mobiscroll('setVal', newDateTime, true, false);
                 });
 
                 // interface changes > update visible input & ng-model
                 $(element).find('.mobiscroll-hidden').on('change', function(event) {
-                    $(element).find('.mobiscroll-input').val(moment(event.target.value).calendar());
+                    $(element).find('.mobiscroll-input').val(moment(event.target.value).format('Do MMMM [at] h:mm a'));
                     scope.$apply(function () {
                         scope.mobiscrollModel = moment(event.target.value).toDate();    
                     });
