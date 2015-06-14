@@ -123,8 +123,8 @@
         <h3></h3>
         <ion-list>
             <div collection-repeat="activity in activities" collection-item-height="getElementHeight(activity, $index)" collection-item-width = "100%">
-                <h3 ng-if="showTitle(activity, $index)" class="pd activity-calendar-day" ng-class="{'not-first-item': !$first}" ion-affix data-affix-within-parent-with-class="timeline"> {{getCalendarDay(activity.time)}}</h3>
-                <timeline-item activity="activity"></timeline-item>
+                <h3 ng-if="showTitle(activity, $index)" class="pd activity-calendar-day" ion-affix data-affix-within-parent-with-class="timeline"> {{getCalendarDay(activity.time)}}</h3>
+                <timeline-item activity="activity" ng-class="{'is-last-activity' : nextIsTitle(activity, $index)}"></timeline-item>
             </div>
             <div data-translate class="no-activities" ng-if="activities.length == 0">cleverbaby.app.diary.noActivities</div>
         </ion-list>

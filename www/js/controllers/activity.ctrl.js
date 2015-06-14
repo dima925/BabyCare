@@ -60,7 +60,7 @@ angular.module('cleverbaby.controllers')
                 'command': 'start-' + param, // start, stop
                 'params': {} // other parameters
             });
-            $scope.closeActivity()    
+            $scope.closeActivity();
         }
         
 

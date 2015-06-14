@@ -40,13 +40,18 @@ angular
                 }
 
                 // refresher
-                $interval(function(){
+                var intervalId = $interval(function(){
                     setDate($scope.timelineDate);
                 }, 10000);
 
                 // outside changes
                 $scope.$watch('timelineDate', function (x) {
                     setDate(x);
+                });
+
+                $scope.$on('$destroy', function () {
+                    if(intervalId)
+                        $interval.cancel(intervalId);
                 });
             },
         }

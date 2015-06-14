@@ -426,6 +426,19 @@ angular.module('cleverbaby.controllers')
                 return !nextMoment.isSame(firstMoment, 'd');
             };
 
+            $scope.nextIsTitle = function (activity, index) {
+                if($scope.activities.length <= 0)
+                    return true;
+
+                if(index == $scope.activities.length - 1)
+                    return true;                
+
+                var firstMoment = moment($scope.activities[index + 1].time),
+                    nextMoment = moment(activity.time);
+
+                return !nextMoment.isSame(firstMoment, 'd');
+            };
+
             $scope.getCalendarDay = function (date) {
                 var calDay = moment(date).calendar(),
                     timeIndex = String(calDay).indexOf(' at ');

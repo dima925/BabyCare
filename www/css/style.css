@@ -1166,5 +1166,5 @@ div[mobiscroll-nursetime] input {
   font-size: 20px;
 }
 
-.activity-calendar-day {padding-top: 0px; /*padding-bottom: 0px; margin-bottom: 0px;*/ }
-.activity-calendar-day.not-first-item:after {}
+.activity-calendar-day {padding-top: 0px;}
+.is-last-activity .activity-icon:after { border: 1px solid transparent !important; }
