@@ -13,7 +13,7 @@ angular.module('cleverbaby.directives')
                 return '<input type="text" class="mobiscroll-input ' + usrClasses + '" style="' + usrStyles + '" readonly="readonly"/>';
             },
             link: function(scope, element, attrs) {
-
+                
             	var mode = angular.isDefined(scope.mobiscrollMode) ? scope.mobiscrollMode : MODE_PREDEFINED,
             		data = [],
                     isApple = ionic.Platform.isWebView() && (ionic.Platform.isIPad() || ionic.Platform.isIOS());
@@ -21,7 +21,7 @@ angular.module('cleverbaby.directives')
                 // from 0min to 60 min, interval 1min
                 for(var v = 0; v <= 60; v++) {
                     data.push({
-                        'value': v,
+                        'value': v * 60,
                         'text': v + ' min'
                     });
                 }
@@ -41,8 +41,9 @@ angular.module('cleverbaby.directives')
 
         		jInput.on('change', function (event) {
     				// update model
-    				scope.mobiscrollModel = jInput.val();
-    				scope.$apply();
+                    $timeout(function () {
+                        scope.mobiscrollModel = jInput.val();    
+                    });
         		});
 
             	scope.$watch('mobiscrollModel', function (newModel, oldModel) {

@@ -2,17 +2,21 @@ angular.module('cleverbaby.controllers')
 .controller('activityCtrl', ['$rootScope', '$scope', '$timeout', '$window', 'ActivityService', 'NotificationService', '$ionicModal', 'Image', '$ionicActionSheet',
     function ($rootScope, $scope, $timeout, $window, ActivityService, NotificationService, $ionicModal, Image, $ionicActionSheet) {
 
-        $scope.saveActivity = function(type){
+        $scope.saveActivity = function(type, callback){
 
             $scope.modal.data.type = type;
             if($scope.modal.mode == 'add'){
                 ActivityService.addActivity($scope.modal.data, $rootScope.babyId).then(function(activity){
                     $rootScope.$broadcast('activityAdd', activity);
+                    if(callback && angular.isFunction(callback))
+                        callback($scope.modal.mode, activity);
                     $scope.modal.hide();
                 });
             } else {
                 ActivityService.editActivity($scope.modal.data.uuid, $scope.modal.data, $rootScope.babyId).then(function(activity){
                     $rootScope.$broadcast('activityEdit', activity);
+                    if(callback && angular.isFunction(callback))
+                        callback($scope.modal.mode, activity);
                     $scope.modal.hide();
                 });
             }
@@ -53,14 +57,20 @@ angular.module('cleverbaby.controllers')
         };
 
         $scope.timerStart = function (type, param) {
-            $rootScope.$broadcast('timerEvent', {
-                'type': 'nurse',
-                'backPropagation': false,
-                'direction': false,
-                'command': 'start-' + param, // start, stop
-                'params': {} // other parameters
+            $scope.saveActivity(type, function (mode, activity) {
+                $rootScope.$broadcast('timerEvent', {
+                    'type': 'nurse',
+                    'eventName': 'command',
+                    'backPropagation': false,
+                    'direction': false,
+                    'command': 'start-' + param, // start, stop
+                    'params': {
+                        'timeLeft': activity.nurse_timeleft,
+                        'timeRight': activity.nurse_timeright
+                    }, // other parameters
+                    'activity': activity,
+                });
             });
-            $scope.closeActivity();
         }
         
 
@@ -148,6 +158,32 @@ angular.module('cleverbaby.controllers')
             return false;
         };
 
+        // Nurse activity specific
+        $scope.$watch('modal.data.nurse_timeleft', function (timeleft) {
+            if(angular.isUndefined(timeleft))
+                return;
+            var valL = isNaN(timeleft) ? 0 : timeleft,
+                valR = angular.isUndefined($scope.modal.data.nurse_timeright) ? 0 : $scope.modal.data.nurse_timeright;
+            $scope.modal.data.nurse_timeboth = Number(valL) + Number(valR);
+        });
+
+        $scope.$watch('modal.data.nurse_timeright', function (timeright) {
+            if(angular.isUndefined(timeright))
+                return;
+            var valL = angular.isUndefined($scope.modal.data.nurse_timeleft) ? 0 : $scope.modal.data.nurse_timeleft,
+                valR = isNaN(timeright) ? 0 : timeright;
+            $scope.modal.data.nurse_timeboth = Number(valL) + Number(valR);
+        });
+
+        $scope.getTimeMinutes = function (value, includeUnit) {
+            var u = includeUnit ? 'min' : '';
+            if(angular.isUndefined(value))
+                return (0 + u);
+            var b = (value - value % 60) / 60;
+            if(isNaN(b))
+                return (0 + u);
+            return (b + u);
+        };
     }
 ]);
 

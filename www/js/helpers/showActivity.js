@@ -6,10 +6,16 @@ angular
 
             if(activity.type == 'nurse'){
                 if(activity.nurse_timeleft){
-                    str += "Left " + activity.nurse_timeleft + "m ";
+                    var l = Number(activity.nurse_timeleft),
+                        m = (l - l % 60) / 60,
+                        s = l % 60;
+                    str += "Left " + (m > 0 ? m + "m " : '') + (s > 0 ? s + "s" : '') + ', ';
                 }
                 if(activity.nurse_timeright){
-                    str += "Right " + activity.nurse_timeright + "m";
+                    var r = Number(activity.nurse_timeright),
+                        m = (r - r % 60) / 60,
+                        s = activity.nurse_timeright % 60;
+                    str += "Right " + (m > 0 ? m + "m " : '') + (s > 0 ? s + "s" : '') + ', ';
                 }
             }
 
