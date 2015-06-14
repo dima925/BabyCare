@@ -203,6 +203,10 @@ angular.module('cleverbaby.controllers')
                 return new Date(date).setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0);
             }
 
+            function isFuture(date){
+                return new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0);
+            }
+
             function getActivityByUUID(uuid){
                 for(var i = 0; i<$scope.activities.length; ++i) {
                     if ($scope.activities[i].uuid == uuid) {
@@ -275,9 +279,10 @@ angular.module('cleverbaby.controllers')
                 } else if(!isToDay($scope.activities[i].time) && isToDay(activity.time)){
                     increaseTodayStatus(activity);
                 }
-                if(activity.time > $scope.activities[$scope.activities.length-1].time || $scope.activities.length<limit){
+
+                if(!isFuture(activity.time) && (activity.time > $scope.activities[$scope.activities.length-1].time || $scope.activities.length < limit)) {
                     refreshActivity(activity, 'edit', i);
-                } else{
+                } else {
                     --start;
                     refreshActivity(activity, 'delete', i);
                     $scope.canBeloadedMore = true;
@@ -427,12 +432,9 @@ angular.module('cleverbaby.controllers')
             };
 
             $scope.nextIsTitle = function (activity, index) {
-                if($scope.activities.length <= 0)
+                if($scope.activities.length <= 0 || index == ($scope.activities.length - 1) || index > ($scope.activities.length - 1))
                     return true;
-
-                if(index == $scope.activities.length - 1)
-                    return true;                
-
+                
                 var firstMoment = moment($scope.activities[index + 1].time),
                     nextMoment = moment(activity.time);
 
