@@ -311,7 +311,7 @@ h4, h5{
 }
 
 .fixed-outside .btn {
-  padding: 4px 0px;
+  padding: 4px 0px !important;
 }
 
 ion-tabs.has-fixed-outside ion-content.has-tabs {
