@@ -299,18 +299,27 @@ h4, h5{
 /*END ADD NEW TASK*/
 /*START TIMER BOTTOM*/
 
-.fixed-outside{
+.fixed-outside {
   position: absolute;
-  bottom: 44px;
+  bottom: 49px;
   color:#000;
   width: 100%;
   height: 100px;
   text-align:center;
   background: #EAEAEA;
+  z-index: 100;
+}
+
+.fixed-outside .btn {
+  padding: 4px 0px !important;
+}
+
+ion-tabs.has-fixed-outside ion-content.has-tabs {
+  bottom: 150px;
 }
 
 .has-bottom .scroll{
-  padding-bottom:120px !important;
+  padding-bottom: 120px !important;
 }
 
 .button-circle {
@@ -477,9 +486,9 @@ input{
 .text-right { text-align: right !important;}
 .text-center { text-align: center !important;}
 .text-justify { text-align: justify !important;}
-.btn { padding: 10px; display: block; color: #fff; font-size:22px; }
-.header a.btn.left { position: absolute;top: 15px; left: 0;}
-.header a.btn.right { position: absolute;top: 15px; right: 0;}
+.btn { padding: 11px 6px; display: block; color: #fff; font-size:22px; }
+.header a.btn.left { position: absolute; left: 0;}
+.header a.btn.right { position: absolute; right: 0;}
 .btn-trigger { padding:6px 10px; font-size: 22px;}
 .btn-trigger.left { position: absolute;top: 0; left: 0;  }
 .btn-trigger.right { position: absolute;top: 0; right: 0;}
@@ -503,8 +512,10 @@ input{
   text-shadow:0 0 1px #fff, 2px 0 0 #fff, -2px 0 0 #fff, 0 0 1px #fff, 0 -2px 0 #fff; z-index: +100;}
 
 .timer-counter { color: #fff;}
-.timer-counter .counter { margin-top: 15px }
-.timer-counter button.btn { margin: 10px 0 0 0; border-radius: 4px; border:1px solid ; color: #fff; background: none; font-size: 16px; padding: 4px 10px; width: 100%; }
+.timer-counter .counter { margin-top: 25px; font-size: 20px; }
+.timer-counter button.btn { margin: 0; border-radius: 4px; border:1px solid ; color: #fff; background: none; font-size: 16px; padding: 4px 10px; width: 100%; }
+.timer-counter button.btn.activated { background-color: rgba(255, 255, 255, 0.1); }
+.timer-counter .icon-close { font-size: 17px; }
 
 /* color activity */
 .more {background: #232323;}
@@ -686,6 +697,7 @@ span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px; di
 .pd{padding: 8px 10px 0; font-size: 17px; margin-top: 0px;}
 .kartu{background: #fafafa; margin: 15px 10px; padding: 8px 0 6px;}
 .kartu h2 { color: #5a5a5a;}
+.kartu .item {background: #fafafa;}
 .no-padding{padding:0 !important;}
 .no-padding-top{padding-top: 0!important; padding-bottom: 0 !important;}
 .timeline { width: 100%; position: relative; height: auto !important; overflow: visible !important; }
@@ -739,10 +751,8 @@ span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px; di
 .wrapper-dropdown {
   width: 80%; margin: 10px auto; padding: 10px 12px; background: #fff; color: #000; border-radius:4px;
 }
-.wrapper-dropdown .header { padding: 0; border-color:#000; height: 49px; margin-bottom: 10px}
-.wrapper-dropdown .header .btn { position: absolute;top: -4px;}
-.wrapper-dropdown h2 { font-size: 22px;}
-.wrapper-dropdown h2 { margin-top: -1px;}
+.wrapper-dropdown .header { padding: 0; border-color:#000; height: 49px; margin-bottom: 10px; display: -webkit-flex;  display: flex; }
+.wrapper-dropdown h2 { font-size: 22px; -webkit-align-self: center; align-self: center; margin-top: -1px; max-width: 80%; margin: 0 auto}
 .wrapper-dropdown h2, .wrapper-dropdown a { color: #000;}
 .wrapper-dropdown .item { padding: 0; margin: 6px 0 5px; float: left; width: 100%; height: 49px;}
 .wrapper-dropdown .item h2 { float: left; font-size: 18px; margin: 14px 0 0 10px}
@@ -1149,6 +1159,7 @@ div[mobiscroll-mode="predefined"] input {
     white-space: nowrap !important;
 }
 
+<<<<<<< HEAD
 .trend-chart-include{
     position: relative;
     padding: 0px;
@@ -1172,3 +1183,12 @@ div[mobiscroll-mode="predefined"] input {
     fill-opacity: .95!important;
     stroke-opacity: .95!important;
 }
+=======
+div[mobiscroll-nursetime] input {
+  background-color: transparent !important;
+  font-size: 20px;
+}
+
+.activity-calendar-day {padding-top: 0px;}
+.is-last-activity .activity-icon:after { border: 1px solid transparent !important; }
+>>>>>>> c9dbb135d032863f6f880119145181ccf7f877f9

@@ -30,13 +30,12 @@
         <ion-item nav-clear menu-close href="#/auth/signup">
           SignUp
         </ion-item>
-
       </ion-list>
     </ion-content>
   </ion-side-menu>
 </ion-side-menus>
 
-<ion-tabs class="tabs-icon-top tabs-stable cleverbaby-main-tab">
+<ion-tabs class="tabs-icon-top tabs-stable cleverbaby-main-tab" ng-class="{'has-fixed-outside': timerRunning}">
     <ion-tab title="Home" icon="icon-home" ui-sref="app.diary">
         <ion-nav-view name="home"></ion-nav-view>
     </ion-tab>
@@ -52,3 +51,5 @@
         <ion-nav-view name="more"></ion-nav-view>
     </ion-tab>
 </ion-tabs>
+
+<timer-nurse is-shown="timerRunning"></timer-nurse>

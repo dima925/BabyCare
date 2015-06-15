@@ -18,7 +18,7 @@ angular.module('cleverbaby.controllers')
 	    });
 		
         $scope.selectCaptureImage = function(sourceType){
-            $scope.selectCaptureImageModal.hide();
+//            $scope.selectCaptureImageModal.hide();
             Image.captureImage(sourceType).then(function(imageURI) {
                 $scope.baby.displayImage = imageURI;
                 $scope.baby.imageType = 'new';
@@ -26,28 +26,37 @@ angular.module('cleverbaby.controllers')
                 // error
             });
         };
-
-        $scope.showSelectCaptureImageModal = function(){
-            $scope.selectCaptureImageModal.show();
+        
+        $scope.captureImageOption = {
+            success: function(sourceType){
+                $scope.selectCaptureImage(sourceType);
+            }
         };
+//
+//        $scope.showSelectCaptureImageModal = function(){
+//            $scope.selectCaptureImageModal.show();
+//        };
 
-
-        $scope.hideSelectCaptureImageModal = function(){
-            $scope.selectCaptureImageModal.hide();
-        };
-
-        $ionicModal.fromTemplateUrl('templates/modals/selectCaptureImage.html', {
-            scope: $scope,
-            animation: 'slide-in-up'
-        }).then(function(modal) {
-            $scope.selectCaptureImageModal = modal;
-        });
+//
+//        $scope.hideSelectCaptureImageModal = function(){
+//            $scope.selectCaptureImageModal.hide();
+//        };
+//
+//        $ionicModal.fromTemplateUrl('templates/modals/selectCaptureImage.html', {
+//            scope: $scope,
+//            animation: 'slide-in-up'
+//        }).then(function(modal) {
+//            $scope.selectCaptureImageModal = modal;
+//        });
         $scope.$watch('modal.x', function(){
             if($scope.modal.baby){
                 $scope.baby = {
                     name: $scope.modal.baby.name || "",
                     born: $scope.modal.baby.born ? new Date($scope.modal.baby.born) : new Date(),
                     gender: $scope.modal.baby.gender || "m",
+                    width: $scope.modal.data.width || 0,
+                    length: $scope.modal.data.length || 0,
+                    head: $scope.modal.data.head || 0,
                     displayImage: $scope.modal.baby.displayImage
                 };
             }
@@ -57,8 +66,12 @@ angular.module('cleverbaby.controllers')
             $scope.modal.baby.name = $scope.baby.name;
             $scope.modal.baby.born = $scope.baby.born;
             $scope.modal.baby.gender = $scope.baby.gender;
+            $scope.modal.baby.weight = $scope.modal.data.weight;
+            $scope.modal.baby.length = $scope.modal.data.length;
+            $scope.modal.baby.head = $scope.modal.data.head;
             $scope.modal.baby.displayImage = $scope.baby.displayImage;
             $scope.modal.baby.imageType = $scope.baby.imageType;
+
             BabyService.add($scope.modal.baby).then(function(baby){
                 $rootScope.$broadcast('babyAdd', baby);
                 $scope.modal.hide();
@@ -71,8 +84,12 @@ angular.module('cleverbaby.controllers')
             $scope.modal.baby.name = $scope.baby.name;
             $scope.modal.baby.born = $scope.baby.born;
             $scope.modal.baby.gender = $scope.baby.gender;
+            $scope.modal.baby.weight = $scope.modal.data.weight;
+            $scope.modal.baby.length = $scope.modal.data.length;
+            $scope.modal.baby.head = $scope.modal.data.head;
             $scope.modal.baby.displayImage = $scope.baby.displayImage;
             $scope.modal.baby.imageType = $scope.baby.imageType;
+
             BabyService.edit($scope.modal.baby).then(function(baby){
                 $rootScope.$broadcast('babyUpdate', baby);
                 $scope.modal.hide();

@@ -73,8 +73,12 @@ angular.module('cleverbaby', [
         };
 		
         $rootScope.setBaby = function (baby){
+
             $rootScope.babyBorn = baby.born;
             $rootScope.babyGender = baby.gender;
+            $rootScope.babyWidth = baby.width;
+            $rootScope.babyLength = baby.length;
+            $rootScope.babyHeadr = baby.head;
             $rootScope.baby = baby;
             $rootScope.babyId = baby.uuid;
             $localStorage.babyId = baby.uuid;
@@ -103,6 +107,7 @@ angular.module('cleverbaby', [
             $rootScope.$broadcast('auth');
         });
 
+        // timer instance
         $rootScope.timers = timerService;
 
         $ionicModal.fromTemplateUrl('templates/activities/choose.html', {

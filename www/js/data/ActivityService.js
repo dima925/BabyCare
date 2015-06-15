@@ -146,6 +146,7 @@ angular.module('cleverbaby.data')
                     time: data.time,
                     bottle_type: data.bottle_type,
                     bottle_amount: data.bottle_amount,
+                    bottle_amount_unit: data.bottle_amount_unit,
                     bottle_comment: data.bottle_comment,
                     type: "bottle"
                 }
@@ -284,20 +285,29 @@ angular.module('cleverbaby.data')
                 });
             },
             deleteActivity: function (uuid, data, babies) {
-                return $q(function(resolve, reject){
-                    //var data = [];
-
+                return $q(function(resolve, reject) {
                     var medias = data.media;
 
                     data = filter(data);
                     data.uuid = uuid;
                     data.babies = babies;
 
-                    /*network.put({
+                    network.remove({
                         data: data,
                         url: '/activities/'+uuid
-                    });*/
+                    });
 
+                    var index = -1;
+                    for(var i=0; i < $localStorage.activities[data.babies].length; ++i){
+                        if($localStorage.activities[data.babies][i].uuid == data.uuid){
+                            index = i;
+                            break;
+                        }
+                    }
+
+                    if(index > 0) {
+                        $localStorage.activities[data.babies].splice(index, 1);
+                    }
                     resolve(data);
                 });
             },
@@ -505,8 +515,13 @@ angular.module('cleverbaby.data')
                     });
 
                 for(var i = 0; i < activities.length; i++) {
-                    if(activities[i].type == activity)
-                        return activities[i];
+                    if(activity == 'feed') {
+                        if(activities[i].type == 'bottle' || activities[i].type == 'nurse' || activities[i].type == 'solid')
+                            return activities[i];
+                    } else {
+                        if(activities[i].type == activity)
+                            return activities[i];
+                    }
                 }
                 return null;
             },
@@ -529,7 +544,15 @@ angular.module('cleverbaby.data')
                     var hours = moment().diff(moment(activities[i].time), 'hours', true);
                     if(hours > 48)
                         break;
-                    if(activities[i].type == activity) {
+                    var hasSameType = false;
+
+                    if(activity == 'feed') {
+                        hasSameType = (activities[i].type == 'bottle' || activities[i].type == 'nurse' || activities[i].type == 'solid');
+                    } else {
+                        hasSameType = (activities[i].type == activity);
+                    }
+
+                    if(hasSameType) {
                         if(lastActivity == null) {
                             lastActivity = activities[i];
                             continue;

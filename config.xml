@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.bymo.cleverbaby" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.mycleverbaby.cleverbaby" version="1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Clever Baby</name>
   <description>The easiest way to track your baby's well-being, growth and development</description>
   <author email="info@mycleverbaby.com" href="http://www.mycleverbaby.com/">Clever Ltd</author>

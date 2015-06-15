@@ -6,6 +6,7 @@ angular.module('cleverbaby.directives')
             require: "?ngModel",
             scope: {
                 'mobiscrollModel': '=',
+                'calendarFormat': '@',
             },
             template: function(element, attrs) {
                 var usrClasses = angular.isDefined(attrs['class-child']) ? attrs['class-child'] : '';
@@ -36,6 +37,16 @@ angular.module('cleverbaby.directives')
                 });
                 moment.locale('en');
 
+                var calendarFormat = true;
+                if(angular.isDefined(scope.calendarFormat) && scope.calendarFormat === 'false')
+                    calendarFormat = false;
+
+                function formatMoment (mdate) {
+                    if(calendarFormat)
+                        return mdate.calendar();
+                    return mdate.format('Do MMMM [at] h:mm a');
+                }
+
             	// APPLE 
                 var isApple = ionic.Platform.isWebView() && (ionic.Platform.isIPad() || ionic.Platform.isIOS());
                 if (isApple) {
@@ -59,7 +70,7 @@ angular.module('cleverbaby.directives')
                     });
 
                     function updateInput() {
-                        jiInput.val( moment(scope.appleDateModel).calendar() );
+                        jiInput.val( formatMoment(moment(scope.appleDateModel)) );
                     }
 
                     // user change
@@ -100,13 +111,13 @@ angular.module('cleverbaby.directives')
                     if(typeof newDateTime == 'undefined')
                         newDateTime = new Date();
                     
-                    $(element).find('.mobiscroll-input').val(moment(newDateTime).calendar());
+                    $(element).find('.mobiscroll-input').val( formatMoment(moment(newDateTime)) );
                     $(element).find('.mobiscroll-hidden').mobiscroll('setVal', newDateTime, true, false);
                 });
 
                 // interface changes > update visible input & ng-model
                 $(element).find('.mobiscroll-hidden').on('change', function(event) {
-                    $(element).find('.mobiscroll-input').val(moment(event.target.value).calendar());
+                    $(element).find('.mobiscroll-input').val( formatMoment(moment(event.target.value)) );
                     scope.$apply(function () {
                         scope.mobiscrollModel = moment(event.target.value).toDate();    
                     });
