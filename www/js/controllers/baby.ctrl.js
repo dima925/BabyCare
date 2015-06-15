@@ -54,6 +54,9 @@ angular.module('cleverbaby.controllers')
                     name: $scope.modal.baby.name || "",
                     born: $scope.modal.baby.born ? new Date($scope.modal.baby.born) : new Date(),
                     gender: $scope.modal.baby.gender || "m",
+                    width: $scope.modal.data.width || 0,
+                    length: $scope.modal.data.length || 0,
+                    head: $scope.modal.data.head || 0,
                     displayImage: $scope.modal.baby.displayImage
                 };
             }
@@ -63,8 +66,12 @@ angular.module('cleverbaby.controllers')
             $scope.modal.baby.name = $scope.baby.name;
             $scope.modal.baby.born = $scope.baby.born;
             $scope.modal.baby.gender = $scope.baby.gender;
+            $scope.modal.baby.weight = $scope.modal.data.weight;
+            $scope.modal.baby.length = $scope.modal.data.length;
+            $scope.modal.baby.head = $scope.modal.data.head;
             $scope.modal.baby.displayImage = $scope.baby.displayImage;
             $scope.modal.baby.imageType = $scope.baby.imageType;
+
             BabyService.add($scope.modal.baby).then(function(baby){
                 $rootScope.$broadcast('babyAdd', baby);
                 $scope.modal.hide();
@@ -77,8 +84,12 @@ angular.module('cleverbaby.controllers')
             $scope.modal.baby.name = $scope.baby.name;
             $scope.modal.baby.born = $scope.baby.born;
             $scope.modal.baby.gender = $scope.baby.gender;
+            $scope.modal.baby.weight = $scope.modal.data.weight;
+            $scope.modal.baby.length = $scope.modal.data.length;
+            $scope.modal.baby.head = $scope.modal.data.head;
             $scope.modal.baby.displayImage = $scope.baby.displayImage;
             $scope.modal.baby.imageType = $scope.baby.imageType;
+
             BabyService.edit($scope.modal.baby).then(function(baby){
                 $rootScope.$broadcast('babyUpdate', baby);
                 $scope.modal.hide();
