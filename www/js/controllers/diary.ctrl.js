@@ -122,26 +122,17 @@ angular.module('cleverbaby.controllers')
             // updates baby birthday on request
             function updateBirth (baby) {
                 moment.locale('en');
-                var years, months, days;
-
                 // fill baby information
                 var born = moment(baby.born),
                     now = moment();
                 var ms = now.diff(born, 'milliseconds', true);
-                years = Math.floor(moment.duration(ms).asYears());
-
-                var withoutYears = born.add(years, 'years');
-                ms = now.diff(withoutYears, 'milliseconds', true);
-                months = Math.floor(moment.duration(ms).asMonths());
-
-                var withoutMonths = born.add(months, 'months').add(1, 'days');
-                ms = now.diff(withoutMonths, 'milliseconds', true);
-                days = Math.floor(moment.duration(ms).asDays());
-
-                var yearText = years <= 0 ? '' : (years == 1 ? '1 year' : years + ' years'),
-                    monthText = months <= 0 ? '' : (months == 1 ? '1 month' : months + ' months'),
-                    dayText = days <= 0 ? '' : (days == 1 ? '1 day' : days + ' days');
-                $scope.babysAge = String(yearText + ' ' + monthText + ' ' + dayText + '').trim();
+                $scope.babysAge = humanizeDuration(ms, {
+                    language: "en",
+                    spacer: "",
+                    round: true,
+                    delimiter: " ",
+                    units: ["y", "mo", "d"]
+                });
             }
 
             function updateAvgTimes (baby) {
@@ -210,6 +201,10 @@ angular.module('cleverbaby.controllers')
 
             function isToDay(date){
                 return new Date(date).setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0);
+            }
+
+            function isFuture(date){
+                return new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0);
             }
 
             function getActivityByUUID(uuid){
@@ -284,9 +279,10 @@ angular.module('cleverbaby.controllers')
                 } else if(!isToDay($scope.activities[i].time) && isToDay(activity.time)){
                     increaseTodayStatus(activity);
                 }
-                if(activity.time > $scope.activities[$scope.activities.length-1].time || $scope.activities.length<limit){
+
+                if(!isFuture(activity.time) && (activity.time > $scope.activities[$scope.activities.length-1].time || $scope.activities.length < limit)) {
                     refreshActivity(activity, 'edit', i);
-                } else{
+                } else {
                     --start;
                     refreshActivity(activity, 'delete', i);
                     $scope.canBeloadedMore = true;
@@ -401,6 +397,56 @@ angular.module('cleverbaby.controllers')
             $scope.etaSetting = function(type) {
                 $scope.etaSettingsModal.mode = type;
                 $scope.etaSettingsModal.show();
+            };
+
+            // Home timeline helpers
+            $scope.getElementHeight = function (activity, index) {
+                var titledHeight = 79,
+                    normalHeight = 50;
+
+                if(index == 0)
+                    return titledHeight;
+
+                if($scope.activities.length <= 0)
+                    return normalHeight;
+
+                var firstMoment = moment($scope.activities[index - 1].time),
+                    nextMoment = moment(activity.time);
+
+                if(nextMoment.isSame(firstMoment, 'd'))
+                    return normalHeight;
+                return titledHeight;
+            };
+
+            $scope.showTitle = function (activity, index) {
+                if(index == 0)
+                    return true;
+
+                if($scope.activities.length <= 0)
+                    return false;
+
+                var firstMoment = moment($scope.activities[index - 1].time),
+                    nextMoment = moment(activity.time);
+
+                return !nextMoment.isSame(firstMoment, 'd');
+            };
+
+            $scope.nextIsTitle = function (activity, index) {
+                if($scope.activities.length <= 0 || index == ($scope.activities.length - 1) || index > ($scope.activities.length - 1))
+                    return true;
+                
+                var firstMoment = moment($scope.activities[index + 1].time),
+                    nextMoment = moment(activity.time);
+
+                return !nextMoment.isSame(firstMoment, 'd');
+            };
+
+            $scope.getCalendarDay = function (date) {
+                var calDay = moment(date).calendar(),
+                    timeIndex = String(calDay).indexOf(' at ');
+                if(timeIndex == -1)
+                    return moment(date).format('ddd, LL');
+                return calDay.substring(0, timeIndex);
             };
         }
     ]

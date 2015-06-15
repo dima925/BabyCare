@@ -1,5 +1,5 @@
 <ion-view>
-    <ion-content class="fixheight" has-bouncing="false">
+    <ion-content class="fixheight" has-bouncing="false" delegate-handle="mainScroll">
         <ion-nav-bar class="bar-positive">
             <ion-nav-title cb-baby-drop-down></ion-nav-title>
             <ion-nav-buttons side="right">
@@ -13,7 +13,7 @@
                     <div class="home-icon botol"><i class="icon-bottle"></i></div>
                     <div class="graph-circle-home">
                         <div class="progress-wrapper" ng-click="etaSetting('feed')">
-                            <div class="progress" ng-if="feedEtaAvailable">{{feedEtaText}} <span >ETA</span></div>
+                            <div class="progress" ng-if="feedEtaAvailable">{{feedEtaText}} <span >left</span></div>
                             <div class="progress long-text" ng-if="!feedEtaAvailable" data-translate>cleverbaby.app.diary.etabottle</div>
                             <div
                                 round-progress
@@ -33,7 +33,7 @@
                     <div class="thumbnail-baby" ng-click="editBaby()"><div class="circular"><img ng-src="{{ $root.baby.displayImage | babyImage }}"></div></div>
                     <div class="graph-circle-home">
                         <div class="progress-wrapper" ng-click="etaSetting('diaper')">
-                            <div class="progress" ng-if="diaperEtaAvailable">{{diaperEtaText}} <span >ETA</span></div>
+                            <div class="progress" ng-if="diaperEtaAvailable">{{diaperEtaText}} <span >left</span></div>
                             <div class="progress long-text" ng-if="!diaperEtaAvailable" data-translate>cleverbaby.app.diary.etadiaper</div>
                             <div
                                     round-progress
@@ -115,14 +115,16 @@
             <p class="justify padding" ng-click="clickTip()">{{dailyTip}}</p>
           </div>
         </div>
-        <h3 class="pd" ion-affix data-affix-within-parent-with-class="timeline">Today</h3>
+
         <div class="no-activities-arrow-text-con" ng-if="activities.length == 0">
             <div data-translate class="no-activities">cleverbaby.app.diary.startAddEntry</div>
             <div class="big-btm-arrow no-activities ion-arrow-down-c"></div>
         </div>
+        <h3></h3>
         <ion-list>
-            <div collection-repeat="activity in activities" collection-item-height="50" collection-item-width = "100%">
-                <timeline-item activity="activity"></timeline-item>
+            <div collection-repeat="activity in activities" collection-item-height="getElementHeight(activity, $index)" collection-item-width = "100%">
+                <h3 ng-if="showTitle(activity, $index)" class="pd activity-calendar-day" ion-affix data-affix-within-parent-with-class="timeline"> {{getCalendarDay(activity.time)}}</h3>
+                <timeline-item activity="activity" ng-class="{'is-last-activity' : nextIsTitle(activity, $index)}"></timeline-item>
             </div>
             <div data-translate class="no-activities" ng-if="activities.length == 0">cleverbaby.app.diary.noActivities</div>
         </ion-list>
@@ -132,21 +134,4 @@
                 ng-if="canBeloadedMore">
         </ion-infinite-scroll>
     </ion-content>
-    <div class="fixed-outside nurse timer-counter" ng-show="timerRunning">
-        <div class="row">
-            <div class="col" style="text-align:left;">Nursing Timer</div>
-            <div class="col" style="text-align:right;"><i class="icon-close"></i></div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <button class="btn" ng-click="$root.timers.stopTimer()">END LEFT</button>
-            </div>
-            <div class="col container-center counter">
-                <p class="text-center center-block"><timer interval="1000">{{minutes}}:{{seconds}}</timer></p>
-            </div>
-            <div class="col">
-                <button class="btn">Start Right</button>
-            </div>
-        </div>
-    </div>
 </ion-view>

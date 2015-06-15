@@ -2,6 +2,7 @@
     <div class="wrapper nurse" ng-click="$event.stopPropagation()">
         <form ng-submit="hideKeyboard()">
             <div class="header">
+                <div style="display: none !important;">{{resetOnShow = 'nurse'}}</div>
                 <h2 class="title">
                     <span class="icon-breast-feeding"></span>
                     <span data-translate>cleverbaby.app.activity.nurse.title</span>
@@ -27,34 +28,39 @@
                     <label class="default" data-translate>
                         cleverbaby.app.activity.nurse.time_left
                     </label>
-                    <span class="satuan">min</span>
-                    <input ng-model="modal.data.nurse_timeleft" type="number" placeholder="15" class="form-control">
+                    <div mobiscroll-nursetime="" mobiscroll-model="modal.data.nurse_timeleft"></div>
                 </div>
                 <div class="kotak" ng-show="manual">
                     <label class="default" data-translate>
                         cleverbaby.app.activity.nurse.time_right
                     </label>
-                    <span class="satuan">min</span>
-                    <input ng-model="modal.data.nurse_timeright" type="number" class="form-control" placeholder="0">
+                    <div mobiscroll-nursetime="" mobiscroll-model="modal.data.nurse_timeright"></div>
                 </div>
                 <div class="kotak" ng-show="manual">
                     <label class="default" data-translate>
                         cleverbaby.app.activity.nurse.time_both
                     </label>
-                    <span class="satuan">min</span>
-                    <input ng-model="modal.data.nurse_timeboth" type="number" placeholder="15" class="form-control">
+                    <span class="satuan">
+                        {{ getTimeMinutes(modal.data.nurse_timeboth) }} min
+                    </span>
                 </div>
-                <div class="kotak no-border" ng-show="timer"></div>
-                <div class="kotak no-border" ng-show="timer"></div>
+                <div class="row kotak" ng-show="timer" ng-if="modal.data.nurse_timeleft && modal.data.nurse_timeright">
+                    <div class="col text-center">
+                        {{ getTimeMinutes(modal.data.nurse_timeleft, true) }}
+                    </div>
+                    <div class="col text-center">
+                        {{ getTimeMinutes(modal.data.nurse_timeright, true) }}
+                    </div>
+                </div>
                 <div class="row kotak" ng-show="timer">
-                    <div class="col">
+                    <div class="col text-center">
                         <div class="rumah-radio">
-                            <ion-radio ng-click="$root.timers.setTimer(); closeActivity()" name="timer" class="border-right tab-style text-center">Start Left</ion-radio>
+                            <label class="border-right tab-style text-center item item-radio" ng-click="timerStart('nurse', 'left')"><div class="item-content disable-pointer-events"><span>Start Left</span></div></label>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col text-center">
                         <div class="rumah-radio">
-                            <ion-radio ng-click="$root.timers.setTimer(); closeActivity()" name="timer" class="border-right tab-style text-center">Start Right</ion-radio>
+                            <label class="border-right tab-style text-center item item-radio" ng-click="timerStart('nurse', 'right')"><div class="item-content disable-pointer-events"><span>Start Right</span></div></label>
                         </div>
                     </div>
                 </div>
