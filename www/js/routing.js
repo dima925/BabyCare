@@ -31,14 +31,6 @@ angular.module('cleverbaby')
         }
     })
 
-    .state('app.browse', {
-        url: "/browse",
-        views: {
-            'browse': {
-                templateUrl: "templates/browse.html"
-            }
-        }
-    })
     .state('app.diary', {
         url: "/diary",
         cache: false,
