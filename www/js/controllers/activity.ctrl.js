@@ -149,6 +149,17 @@ angular.module('cleverbaby.controllers')
             }
         });
 
+        $scope.$on('modal.shown', function (e, a) {
+            if(a.mode != 'add' || angular.isUndefined($scope.resetOnShow))
+                return;
+
+            if($scope.resetOnShow == 'nurse') {
+                $scope.timer = false;
+                $scope.modal.data.nurse_timeleft = 0;
+                $scope.modal.data.nurse_timeright = 0;
+            }
+        });
+
         /**
          * Hides the keyboard when tapping go.
          * @param input
