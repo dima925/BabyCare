@@ -27,7 +27,8 @@ angular.module('cleverbaby.directives')
             link: function (scope, element) {
             	// private
             	var intervalId = null,
-            		intervalStart = null;
+            		intervalMinute = null,
+            		intervalTrackTime = null;
             	
             	// public
             	scope.isShown = false;
@@ -45,16 +46,6 @@ angular.module('cleverbaby.directives')
             	// button texts (future updates happens depending progress)
             	scope.leftButton = texts.buttonLeft[0];
             	scope.rightButton = texts.buttonRight[0];
-            	
-
-            	function refresher() {
-            		if(scope.inProgress == 'none')
-            			return;
-            		if(scope.inProgress == 'left')
-            			scope.timeLeft++;
-            		if(scope.inProgress == 'right')
-            			scope.timeRight++;
-            	}
 
             	function formatTime(t) {
             		var d = moment.duration(t, 'seconds'),
@@ -73,15 +64,49 @@ angular.module('cleverbaby.directives')
             		return mt + ':' + st;
             	}
 
+            	function roundToMinutes(s) {
+            		if(isNaN(s))
+            			return 0;
+            		var m = 0;
+            		if(s % 60 <= 30) {
+            			m = (s - s % 60);
+            		} else {
+            			m = (s + (60 - s % 60));
+            		} 
+            		return m;
+            	}
+
             	// call to update time data of activity
             	function updateActivity () {
-            		scope.activity.nurse_timeleft = scope.timeLeft;
-            		scope.activity.nurse_timeright = scope.timeRight;
-            		scope.activity.nurse_timeboth = scope.timeLeft + scope.timeRight;
+            		// should be rounded to minutes
+            		scope.activity.nurse_timeleft = roundToMinutes(scope.timeLeft);
+            		scope.activity.nurse_timeright = roundToMinutes(scope.timeRight);
+            		scope.activity.nurse_timeboth = scope.activity.nurse_timeleft + scope.activity.nurse_timeright;
 
             		ActivityService.editActivity(scope.activity.uuid, scope.activity, $rootScope.babyId).then(function(activity){
                     	$rootScope.$broadcast('activityEdit', activity);
                 	});
+            	}
+
+            	function refresher() {
+            		if(scope.inProgress == 'none')
+            			return;
+
+            		var now = moment(),
+            			passed = now.diff(intervalTrackTime, 'seconds', true);
+
+        			passed = Number(Number(passed).toFixed(0));
+
+            		if(scope.inProgress == 'left')
+            			scope.timeLeft += passed;
+            		if(scope.inProgress == 'right')
+            			scope.timeRight+= passed;
+
+            		intervalTrackTime = moment();
+            	}
+
+            	function autoSavePerMinute() {
+            		updateActivity();
             	}
 
             	scope.open = function () {
@@ -106,18 +131,28 @@ angular.module('cleverbaby.directives')
             	scope.start = function () {
             		if(intervalId)
             			$interval.cancel(intervalId);
-            		intervalStart = moment();
+            		if(intervalMinute)
+            			$interval.cancel(intervalMinute);
+
+            		intervalTrackTime = moment();
             		scope.isShown = true;
-            		intervalId = $interval(refresher, 1000);
+            		
+            		intervalId = $interval(refresher, 1000); // per second
+            		intervalMinute = $interval(autoSavePerMinute, 60000); // per minute
             	};
 
             	scope.stop = function () {
             		if(intervalId)
             			$interval.cancel(intervalId);
+            		if(intervalMinute)
+            			$interval.cancel(intervalMinute);
+
             		// we save time data when timer is stopped
             		if(scope.activity) {
             			updateActivity();
             		}
+            		
+            		intervalTrackTime = null;
             		scope.inProgress = 'none';
             	};
 
