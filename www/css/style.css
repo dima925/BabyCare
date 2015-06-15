@@ -1148,3 +1148,27 @@ div[mobiscroll-mode="predefined"] input {
 .nv-axislabel{
     white-space: nowrap !important;
 }
+
+.trend-chart-include{
+    position: relative;
+    padding: 0px;
+}
+
+.trend-chart-on{
+    padding: 0px;
+}
+
+.trend-chart-include .kotak.no-border{
+    padding: 0px 10px;
+}
+
+.growth-nvd3{
+    left: -9px;
+    position: relative;
+}
+
+.growth-nvd3 .nv-series-0 .nv-point{
+    stroke-width: 2px;
+    fill-opacity: .95!important;
+    stroke-opacity: .95!important;
+}
