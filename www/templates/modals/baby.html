@@ -33,27 +33,27 @@
 					</label>
 					<input ng-model="baby.gender" type="text" placeholder="" class="form-control">
 				</div>
-
 				<div class="kotak">
                     <label class="default">
                         Birth Weight
                     </label>
-                    <div mobiscroll-weight="" mobiscroll-model="baby.weight" mobiscroll-mode="weight" mobiscroll-model-value="modal.data.weight" mobiscroll-model-unit="modal.data.growth_weight_unit" mobiscroll-id="activity_growth_weight" cat="1" class="form-control"></div>
+                    <div mobiscroll-weight="" mobiscroll-mode="weight" mobiscroll-model-value="modal.data.weight" mobiscroll-model-unit="modal.data.growth_weight_unit" mobiscroll-id="activity_growth_weight" cat="1" class="form-control">
+                    </div>
                 </div>
-
-                 <div class="kotak">
+                <div class="kotak">
                     <label class="default">
                         Birth Length
                     </label>
-                    <div mobiscroll-customunits="" mobiscroll-mode="length" mobiscroll-model="baby.length" mobiscroll-model-value="modal.data.length" mobiscroll-model-unit="modal.data.growth_height_unit" mobiscroll-id="activity_growth_height" class="form-control"></div>
+                    <div mobiscroll-customunits="" mobiscroll-mode="length" mobiscroll-model-value="modal.data.length" mobiscroll-model-unit="modal.data.growth_height_unit" mobiscroll-id="activity_growth_height" class="form-control">
+                    </div>
                 </div>
                 <div class="kotak last-border">
                     <label class="default">
                         Birth Head Circumference
                     </label>
-                    <div mobiscroll-customunits="" mobiscroll-mode="length" mobiscroll-model="baby.head" mobiscroll-model-value="modal.data.head" mobiscroll-model-unit="modal.data.growth_headsize_unit" mobiscroll-id="activity_growth_headsize" class="form-control"></div>
+                    <div mobiscroll-customunits="" mobiscroll-mode="length" mobiscroll-model-value="modal.data.head" mobiscroll-model-unit="modal.data.growth_headsize_unit" mobiscroll-id="activity_growth_headsize" class="form-control">
+                    </div>
                 </div>
-
 			</div>
 			<div class="to-bottom" ng-if="showFooter">
 				<div class="kotak no-border" ng-if="edit">

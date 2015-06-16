@@ -15,7 +15,7 @@ angular.module('cleverbaby.directives')
                         usrStyles = angular.isDefined(attrs['style-child']) ? attrs['style-child'] : '',
                         usrPlaceholder = angular.isDefined(attrs['placeholder']) ? attrs['placeholder'] : '';
 
-                    return '<input type="text" class="mobiscroll-input ' + usrClasses + '" style="' + usrStyles + ' background-color: transparent;" placeholder="' + usrPlaceholder + '" readonly="readonly" /><input type="text" class="mobiscroll-hidden" readonly="readonly" />';
+                    return '<input type="text" class="mobiscroll-input ' + usrClasses + '" style="' + usrStyles + ' background-color: transparent;" placeholder="' + usrPlaceholder + '" readonly="readonly" /><input type="hidden" class="mobiscroll-hidden" readonly="readonly" />';
                 },
 
                 link: function(scope, element, attrs) {
