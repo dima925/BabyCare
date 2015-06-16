@@ -1162,7 +1162,6 @@ div[mobiscroll-mode="predefined"] input {
     white-space: nowrap !important;
 }
 
-<<<<<<< HEAD
 .trend-chart-include{
     position: relative;
     padding: 0px;
@@ -1186,7 +1185,6 @@ div[mobiscroll-mode="predefined"] input {
     fill-opacity: .95!important;
     stroke-opacity: .95!important;
 }
-=======
 div[mobiscroll-nursetime] input {
   background-color: transparent !important;
   font-size: 20px;
@@ -1194,4 +1192,12 @@ div[mobiscroll-nursetime] input {
 
 .activity-calendar-day {padding-top: 0px;}
 .is-last-activity .activity-icon:after { border: 1px solid transparent !important; }
->>>>>>> c9dbb135d032863f6f880119145181ccf7f877f9
+.platform-android .action-sheet .action-sheet-title, .platform-android .action-sheet .button{
+    padding-left: 25px;
+}
+.platform-android .action-sheet-has-icons .button {
+  padding-left: 56px;
+}
+.platform-android .action-sheet .action-sheet-title{
+    /*text-align: center;*/
+}

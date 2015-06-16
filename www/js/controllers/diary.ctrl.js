@@ -138,7 +138,7 @@ angular.module('cleverbaby.controllers')
                 var ms = now.diff(born, 'milliseconds', true);
                 $scope.babysAge = humanizeDuration(ms, {
                     language: "en",
-                    spacer: "",
+                    spacer: " ",
                     round: true,
                     delimiter: " ",
                     units: ["y", "mo", "d"]
