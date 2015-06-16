@@ -894,12 +894,15 @@ visibility:visible; width: 60px; height: 60px;
 }
 
 /*OVERIDE CALENDAR CSS*/
-.fc-button { background: none !important; box-shadow: 0 !important; border:0 !important; height: auto !important; margin: 18px 5px 5px !important; font-size: 22px; color: #c5c5c5 !important; }
+.fc-button { background: none !important; box-shadow: 0 !important; border:0 !important; height: auto !important; margin: 5px 5px 5px !important; font-size: 22px; color: #c5c5c5 !important; }
 .fc-button:before { font-family: "Simple-Line-Icons" !important;}
 .fc-button .fc-text-arrow { display: none;}
 .fc-button-prev:before { content: "\e07a" !important;}
 .fc-button-next:before { content: "\e079" !important;}
-.fc-header-title h2 { margin-top:30px !important; color: #02b6ef; font-size: 18px; }
+.fc-header-title h2 { margin-top:17px !important; color: #02b6ef; font-size: 18px; }
+.fc-header .fc-button { 
+  margin-bottom: 1px !important;
+}
 table.fc-border-separate thead tr { background: #e5f8fd !important; text-transform:uppercase;}
 table.fc-border-separate tr:nth-child(even) { background: #e5f8fd }
 table.fc-border-separate tr:nth-child(odd) { background: #dbf5fd }
