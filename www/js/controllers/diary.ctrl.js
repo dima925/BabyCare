@@ -138,7 +138,7 @@ angular.module('cleverbaby.controllers')
                 var ms = now.diff(born, 'milliseconds', true);
                 $scope.babysAge = humanizeDuration(ms, {
                     language: "en",
-                    spacer: "",
+                    spacer: " ",
                     round: true,
                     delimiter: " ",
                     units: ["y", "mo", "d"]
@@ -158,8 +158,8 @@ angular.module('cleverbaby.controllers')
                 
                 var lastGrowth = ActivityService.getLastActivityByType($rootScope.babyId, 'growth');
                 if(lastGrowth) {
-                    $scope.babysWeight = (Number(lastGrowth.growth_weight/1000).toFixed(1)) + ' ' + (lastGrowth.growth_weight_unit || '');
-                    $scope.babysHeight = lastGrowth.growth_height + ' ' + (lastGrowth.growth_height_unit || '');
+                    $scope.babysWeight = (Number(baby.baby_weight/1000).toFixed(1)) + ' ' + (baby.baby_weight_unit || '');
+                    $scope.babysHeight = baby.baby_height + ' ' + (baby.baby_height_unit || '');
                 } else {
                     $scope.babysWeight = 'Please add growth progress';
                     $scope.babysHeight = '';
