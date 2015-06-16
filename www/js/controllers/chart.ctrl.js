@@ -24,6 +24,7 @@ angular.module('cleverbaby.controllers')
                 x: function(d){ return d.x; },
                 y: function(d){ return d.y; },
                 useInteractiveGuideline: true,
+                interactive: true,
                 reduceXTicks: false,
                 reduceYTicks: false,
                 showControls: false,
@@ -46,8 +47,9 @@ angular.module('cleverbaby.controllers')
                     }
                 },
                 yAxis:{
-                    axisLabel: yAxisLabel,
-                    axisLabelDistance: 50
+                    rotateLabels: 70
+                    //axisLabel: yAxisLabel,
+                    //axisLabelDistance: 50
                 }
             }
         };
@@ -57,12 +59,35 @@ angular.module('cleverbaby.controllers')
 
     $scope.createGraph = function (activeDate, periodType){
         //angular.element('.with-3d').html('');
-        $scope.discreteOptionsTop = TrendDataChart.createOptions(true, false);
-        $scope.discreteOptionsBot = TrendDataChart.createOptions(false, true);
+
         var generateDate = TrendDataChart.generateData(activeDate, $scope.activeActivityType,  $scope.trendInfoObj[$scope.activeActivityType], periodType);
         $scope.discreteChartDataTop = generateDate.top;
         $scope.discreteChartDataBot = generateDate.bot;
         $scope.averageDataResult = TrendDataChart.calculateAverageData(activeDate, $scope.activeActivityType,  $scope.trendInfoObj[$scope.activeActivityType], periodType);
+
+
+        var xTickValues, yAxisFormat, yTickValues;
+        yAxisFormat = '.1f';
+
+        switch($scope.activeActivityType){
+            case 'sleep':
+                yTickValues = []
+                for(var x = 0; x <= 100; x++){
+                    yTickValues.push(x);
+                }
+                yAxisFormat = '.0f';
+                break;
+            case 'diaper':
+                yTickValues = []
+                for(var x = 0; x <= 100; x++){
+                    yTickValues.push(x);
+                }
+                yAxisFormat = '.0f';
+                break;
+        };
+
+        $scope.discreteOptionsTop = TrendDataChart.createOptions(true, false, xTickValues, yTickValues, '.1f');
+        $scope.discreteOptionsBot = TrendDataChart.createOptions(false, true, xTickValues, yTickValues, yAxisFormat);
 
         $timeout(function(){
             angular.element('.bottom-nvd3-chart .tick text').attr('x', -20);
@@ -104,7 +129,7 @@ angular.module('cleverbaby.controllers')
                 yAxisLabel  = "Head Circumference (cm)";
                 break;
             case 'bmi':
-                yAxisLabel  = "BMI";
+                yAxisLabel  = "BMIogwa";
                 break;
         };
 
@@ -126,7 +151,7 @@ angular.module('cleverbaby.controllers')
                 var valueWeeksDifference = parseInt(moment.duration(currentMoment.diff(babyBornMoment)).asDays() / 7);
                 xAxisLabel  = valueWeeksDifference > 13 ? 'Age (Completed Months)': 'Age (Completed Weeks)';
                 break;
-        }
+        };
 
         $scope.options = $scope.createGrowthOptions(xAxisLabel, yAxisLabel);
     };

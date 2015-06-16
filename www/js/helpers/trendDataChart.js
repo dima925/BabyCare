@@ -823,7 +823,7 @@ angular
         /**
          * creates the options required by the plugin.
          */
-        function createOptions(showXAxis, rightAlignYAxis, xAxisLabel, yAxisLabel, tickValues) {
+        function createOptions(showXAxis, rightAlignYAxis, xTickValues, yTickValues, yAxisFormat, xAxisLabel, yAxisLabel) {
             return {
                 chart: {
                     type: 'discreteBarChart',
@@ -840,14 +840,18 @@ angular
                     reduceXTicks: false,
                     reduceYTicks: false,
                     valueFormat: function(d){
-                        return d3.format(',.1f')(d);
+                        return d3.format('.0f')(d);
                     },
                     transitionDuration: 500,
                     yAxis:{
-                        showMaxMin: false
+                        showMaxMin: false,
+                        tickValues: yTickValues,
+                        tickFormat: function (d){
+                            return d3.format(yAxisFormat)(d);
+                        }
                     },
                     xAxis: {
-                        tickValues: tickValues,
+                        tickValues: xTickValues,
                         axisLabel: xAxisLabel
                     },
                     showYAxis: true,

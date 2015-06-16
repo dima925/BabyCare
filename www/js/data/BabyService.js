@@ -108,7 +108,7 @@ angular.module('cleverbaby.data')
                 return {
                 }
             },
-            add: function(data){
+            add: function(data){ 
                 return $q(function(resolve, reject){
                     data.createdAt = new Date();
                     data.uuid = generateUniqueId($localStorage.user.id);
@@ -126,6 +126,7 @@ angular.module('cleverbaby.data')
                         reject();
                     });
                 });
+
             },
             edit: function(data){
                 return $q(function(resolve, reject){
