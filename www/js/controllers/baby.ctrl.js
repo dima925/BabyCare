@@ -54,9 +54,9 @@ angular.module('cleverbaby.controllers')
                     name: $scope.modal.baby.name || "",
                     born: $scope.modal.baby.born ? new Date($scope.modal.baby.born) : new Date(),
                     gender: $scope.modal.baby.gender || "m",
-                    width: $scope.modal.data.width || 0,
-                    length: $scope.modal.data.length || 0,
-                    head: $scope.modal.data.head || 0,
+                    weight: $scope.modal.baby.weight || 0,
+                    length: $scope.modal.baby.length || 0,
+                    head: $scope.modal.baby.head || 0,
                     displayImage: $scope.modal.baby.displayImage
                 };
             }
@@ -66,9 +66,9 @@ angular.module('cleverbaby.controllers')
             $scope.modal.baby.name = $scope.baby.name;
             $scope.modal.baby.born = $scope.baby.born;
             $scope.modal.baby.gender = $scope.baby.gender;
-            $scope.modal.baby.weight = $scope.modal.data.weight;
-            $scope.modal.baby.length = $scope.modal.data.length;
-            $scope.modal.baby.head = $scope.modal.data.head;
+            $scope.modal.baby.weight = $scope.baby.weight;
+            $scope.modal.baby.length = $scope.baby.length;
+            $scope.modal.baby.head = $scope.baby.head;
             $scope.modal.baby.displayImage = $scope.baby.displayImage;
             $scope.modal.baby.imageType = $scope.baby.imageType;
 
@@ -84,9 +84,9 @@ angular.module('cleverbaby.controllers')
             $scope.modal.baby.name = $scope.baby.name;
             $scope.modal.baby.born = $scope.baby.born;
             $scope.modal.baby.gender = $scope.baby.gender;
-            $scope.modal.baby.weight = $scope.modal.data.weight;
-            $scope.modal.baby.length = $scope.modal.data.length;
-            $scope.modal.baby.head = $scope.modal.data.head;
+            $scope.modal.baby.weight = $scope.baby.weight;
+            $scope.modal.baby.length = $scope.baby.length;
+            $scope.modal.baby.head = $scope.baby.head;
             $scope.modal.baby.displayImage = $scope.baby.displayImage;
             $scope.modal.baby.imageType = $scope.baby.imageType;
 
