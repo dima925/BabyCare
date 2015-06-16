@@ -18,11 +18,9 @@
                 <p>Development Milestones</p>
                 <ion-list>
                     <div collection-repeat="activity in activities" collection-item-height="50" collection-item-width="80%">
-                        <timeline-item activity="activity"></timeline-item>
+                        <timeline-item activity="activity" ng-class="{'is-last-activity': $last}"></timeline-item>
                     </div>
                 </ion-list>
-                <ion-infinite-scroll on-infinite="loadMore()" distance="1%" ng-if="canBeloadedMore">
-                </ion-infinite-scroll>
             </div>
         </div>
     </ion-content>
