@@ -29,6 +29,16 @@ angular.module('cleverbaby.controllers')
             $scope.refresherPromise = null;
             $scope.babysAge = '';
 
+            $scope.hasBabyAge = function () {
+                if(angular.isUndefined($localStorage.babies))
+                    return false;
+                if(angular.isUndefined($localStorage.babies[$rootScope.babyId]))
+                    return false;
+                if($localStorage.babies[$rootScope.babyId].born)
+                    return true;
+                return false;
+            };
+
             $scope.calculateEtaTimes = function () {
                 // get average times
                 var feedEtaTime = 0,

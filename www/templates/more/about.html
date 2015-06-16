@@ -1,5 +1,5 @@
 <ion-view view-title="{{'cleverbaby.app.more.about.title' | translate}}">
-    <ion-content has-bouncing="false">
+    <ion-content has-bouncing="false" on-scroll="dynamicStatusBar('aboutMainScroll')" delegate-handle="aboutMainScroll">
         <div class="wrapper-tab more-page">
             <ion-nav-bar class="bar-positive">
                 <ion-nav-buttons side="left">

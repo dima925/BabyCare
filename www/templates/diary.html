@@ -1,5 +1,5 @@
 <ion-view>
-    <ion-content class="fixheight" has-bouncing="false" delegate-handle="mainScroll">
+    <ion-content class="fixheight" has-bouncing="false" on-scroll="dynamicStatusBar('diaryMainScroll')" delegate-handle="diaryMainScroll">
         <ion-nav-bar class="bar-positive">
             <ion-nav-title cb-baby-drop-down></ion-nav-title>
             <ion-nav-buttons side="right">
@@ -52,12 +52,12 @@
                     </div>
                     <div class="home-icon"><i class="icon-diaper"></i></div>
                 </div>
-                <div class="baby-summary" ng-if="babysAge != ''" ng-click="editBaby()">
+                <div class="baby-summary" ng-if="hasBabyAge()" ng-click="editBaby()">
                     <span class="text-center" ng-if="babyId">{{babysAge}}</span>
                     <span class="text-center" ng-if="babyId">{{babysWeight}} {{babysHeight}}</span>
                 </div>
 
-                <div class="baby-summary" ng-if="babysAge == ''" ng-click="editBaby()">
+                <div class="baby-summary" ng-if="!hasBabyAge()" ng-click="editBaby()">
                     <!-- no birthday and age -->
                     <span class="text-center" data-translate>cleverbaby.app.diary.welcome</span>
                     <span class="text-center" data-translate>cleverbaby.app.diary.tapbaby</span>
