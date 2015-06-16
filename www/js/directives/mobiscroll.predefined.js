@@ -21,6 +21,17 @@ angular.module('cleverbaby.directives')
                 'text': 'SpitUp'
             }],
 
+            'gender':[
+                {
+                    'value': 'm',
+                    'text': 'Boy'
+                },
+                {
+                    'value': 'f',
+                    'text': 'Girl'
+                }
+            ],
+
     		'bottle_type': [{
     			'value': 'formula',
     			'text': 'Formula',
