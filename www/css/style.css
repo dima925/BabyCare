@@ -1185,6 +1185,13 @@ div[mobiscroll-mode="predefined"] input {
     fill-opacity: .95!important;
     stroke-opacity: .95!important;
 }
+div[mobiscroll-nursetime] input {
+  background-color: transparent !important;
+  font-size: 20px;
+}
+
+.activity-calendar-day {padding-top: 0px;}
+.is-last-activity .activity-icon:after { border: 1px solid transparent !important; }
 .platform-android .action-sheet .action-sheet-title, .platform-android .action-sheet .button{
     padding-left: 25px;
 }
