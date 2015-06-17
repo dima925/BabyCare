@@ -200,10 +200,8 @@ angular.module('cleverbaby.directives')
                         if (event.target.value && event.target.value !== '') {
                             valObj = JSON.parse(event.target.value);
 
-                            $timeout(function () {
-                                scope.mobiscrollModelValue = valObj.value;
-                                scope.mobiscrollModelUnit = valObj.unit;    
-                            });
+                            scope.mobiscrollModelValue = valObj.value;
+                            scope.mobiscrollModelUnit = valObj.unit;    
                         }
                     });
 
