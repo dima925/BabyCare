@@ -188,6 +188,7 @@ angular.module('cleverbaby.directives')
                     // update interface changes > update visible input & ng-model
                     jHidden.on('change', function(event) {
                         jInput.val(getFriendlyValue(event.target.value));
+                        console.log(this.id);
 
                         if (event.target.value && event.target.value !== '') {
                             var valObj = JSON.parse(event.target.value);
@@ -204,9 +205,6 @@ angular.module('cleverbaby.directives')
                         if (typeof newValue == 'undefined') {
                             newValue = getDefaults().value;
                         }
-
-                        if (newValue === oldValue)
-                            return;
 
                         var valObj = {
                             valueInt: (newValue - (newValue % 1000)) / 1000,
