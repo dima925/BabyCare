@@ -1,11 +1,13 @@
 angular.module('cleverbaby.directives')
-    .directive('mobiscrollWeight', ['$timeout', '$sce', 'MeasureunitService', '$localStorage',
-        function($timeout, $sce, MeasureunitService, $localStorage) {
+    .directive('mobiscrollWeight', ['$timeout', '$sce', 'MeasureunitService', 'ConvertunitService', '$localStorage',
+        function($timeout, $sce, MeasureunitService, ConvertunitService, $localStorage) {
 
             return {
                 restrict: 'A',
                 scope: {
+                    // stored value for bi-directional update (wachted inside)
                     'mobiscrollModelValue': '=',
+                    // our directive controls units so there is no need to listen outside unit changes separately
                     'mobiscrollModelUnit': '=',
                     'mobiscrollId': '@',
                     'mobiscrollMode': '@',
@@ -15,7 +17,7 @@ angular.module('cleverbaby.directives')
                         usrStyles = angular.isDefined(attrs['style-child']) ? attrs['style-child'] : '',
                         usrPlaceholder = angular.isDefined(attrs['placeholder']) ? attrs['placeholder'] : '';
 
-                    return '<input type="text" class="mobiscroll-input ' + usrClasses + '" style="' + usrStyles + ' background-color: transparent;" placeholder="' + usrPlaceholder + '" readonly="readonly" /><input type="hidden" class="mobiscroll-hidden" readonly="readonly" />';
+                    return '<input type="text" class="mobiscroll-input ' + usrClasses + '" style="' + usrStyles + ' background-color: transparent;" placeholder="' + usrPlaceholder + '" readonly="readonly" /><input type="text" class="mobiscroll-hidden" readonly="readonly" />';
                 },
 
                 link: function(scope, element, attrs) {
@@ -28,6 +30,20 @@ angular.module('cleverbaby.directives')
                         units = measure.units[cat],
                         systemUnit = measure.units[cat][measure.value],
                         isApple = ionic.Platform.isWebView() && (ionic.Platform.isIPad() || ionic.Platform.isIOS());
+
+                    var convert = ConvertunitService.weight;
+                    var defSetup = {
+                        'weight': {
+                            'kg': {
+                                'intRange': getRange(1, 30, 1),
+                                'fltRange': getRange(0, 9, 1),
+                            },
+                            'lb': {
+                                'intRange': getRange(1, 70, 1),
+                                'fltRange': getRange(0, 9, 1),
+                            },
+                        }
+                    };
 
                     function getRange (min, max, step) {
                         var list = [];
@@ -43,25 +59,17 @@ angular.module('cleverbaby.directives')
                                 return "";
                             valObj = JSON.parse(value);
                         }
-                        return valObj.valueInt + '.' + valObj.valueFlt + ' ' + valObj.unit;
+                        var values = convert[valObj.unit].parse(valObj.value);
+                        return values.valueInt + '.' + values.valueFlt + ' ' + valObj.unit;
                     }
 
-                    function getLastInputValueInt () {
+                    function getLastInputValue () {
                         if( typeof $localStorage.inputHistory == 'undefined' ||
                             typeof $localStorage.inputHistory[mode] == 'undefined' ||
                             typeof $localStorage.inputHistory[mode]['mb_' + scope.mobiscrollId] == 'undefined' ||
-                            typeof $localStorage.inputHistory[mode]['mb_' + scope.mobiscrollId].valueInt == 'undefined')
+                            typeof $localStorage.inputHistory[mode]['mb_' + scope.mobiscrollId].value == 'undefined')
                             return null;
-                        return $localStorage.inputHistory[mode]['mb_' + scope.mobiscrollId].valueInt;
-                    }
-
-                    function getLastInputValueFlt () {
-                        if( typeof $localStorage.inputHistory == 'undefined' ||
-                            typeof $localStorage.inputHistory[mode] == 'undefined' ||
-                            typeof $localStorage.inputHistory[mode]['mb_' + scope.mobiscrollId] == 'undefined' ||
-                            typeof $localStorage.inputHistory[mode]['mb_' + scope.mobiscrollId].valueFlt == 'undefined')
-                            return null;
-                        return $localStorage.inputHistory[mode]['mb_' + scope.mobiscrollId].valueFlt;
+                        return $localStorage.inputHistory[mode]['mb_' + scope.mobiscrollId].value;
                     }
 
                     function getLastInputUnit () {
@@ -73,43 +81,27 @@ angular.module('cleverbaby.directives')
                         return $localStorage.inputHistory[mode]['mb_' + scope.mobiscrollId].unit;
                     }
 
-                    function setLastInput (valueInt, valueFlt, unit) {
+                    function setLastInput (value, unit) {
                         if(!$localStorage.inputHistory)
                             $localStorage.inputHistory = {};
                         if(!$localStorage.inputHistory[mode])
                             $localStorage.inputHistory[mode] = {};
 
                         $localStorage.inputHistory[mode]['mb_' + scope.mobiscrollId] = {
-                            valueInt: valueInt,
-                            valueFlt: valueFlt,
+                            value: value,
                             unit: unit
                         }
                     }
 
                     function getDefaults () {
-                        var lastValInt = getLastInputValueInt(),
-                            lastValFlt = getLastInputValueFlt(),
+                        var lastVal = getLastInputValue(),
                             lastUnit = getLastInputUnit();
 
                         var valObj = {
-                            valueInt: lastValInt ? lastValInt : 0,
-                            valueFlt: lastValFlt ? lastValFlt : 0,
+                            value: lastVal ? lastVal : 0,
                             unit: lastUnit ? lastUnit : systemUnit
                         }
                         return valObj;
-                    }
-
-                    var defSetup = {
-                        'weight': {
-                            'kg': {
-                                'intRange': getRange(1, 30, 1),
-                                'fltRange': getRange(0, 9, 1),
-                            },
-                            'lb': {
-                                'intRange': getRange(1, 70, 1),
-                                'fltRange': getRange(0, 9, 1),
-                            },
-                        }
                     }
 
                     var prevUnit = '',
@@ -152,32 +144,36 @@ angular.module('cleverbaby.directives')
                             if (val !== '') {
                                 var valObj = JSON.parse(val);
                                 if ((typeof valObj === "object") && (valObj !== null)) {
-                                    return [valObj['valueInt'], valObj['valueFlt'], valObj['unit']];
+                                    // we have object here
+                                    var values = convert[valObj.unit].parse(valObj.value);
+                                    return [values.valueInt, values.valueFlt, valObj.unit];
                                 }
                             }
-                            return [getDefaults().valueInt, getDefaults().valueFlt, getDefaults().unit];
+                            var unit = getDefaults().unit,
+                                value = getDefaults().value,
+                                values = convert[unit].parse(value);
+                            return [values.valueInt, values.valueFlt, unit];
                         },
                         formatValue: function(data) {
+                            //debugger;
                             var valObj = {
-                                'valueInt': data[0],
-                                'valueFlt': data[1],
+                                'value': convert[data[2]].normalize(data[0], data[1]),
                                 'unit': data[2],
                             };
                             return JSON.stringify(valObj);
                         },
                         onSelect: function(valueText, inst) {
-                            if(valueText == '')
+                            if(valueText && valueText == '')
                                 return;
 
                             var valObj = JSON.parse(valueText);
-                            setLastInput(valObj.valueInt, valObj.valueFlt, valObj.unit)
+                            setLastInput(valObj.value, valObj.unit)
                         }
                     });
     
                     scope.currentObj = {
-                        valueInt: null,
-                        valueFlt: null,
-                        unit: null
+                        value: 0,
+                        unit: scope.mobiscrollModelUnit
                     };
 
                     // redirect clicks
@@ -187,49 +183,51 @@ angular.module('cleverbaby.directives')
 
                     // update interface changes > update visible input & ng-model
                     jHidden.on('change', function(event) {
+                        console.log(this.id + ' > jHidden change');
+
                         jInput.val(getFriendlyValue(event.target.value));
-                        console.log(this.id);
 
                         if (event.target.value && event.target.value !== '') {
                             var valObj = JSON.parse(event.target.value);
 
-                            scope.mobiscrollModelValue = valObj.valueInt * 1000 + valObj.valueFlt * 100;
+                            scope.currentObj.value = valObj.value;
+                            scope.currentObj.unit = valObj.unit;
+
+                            scope.mobiscrollModelValue = valObj.value;
                             scope.mobiscrollModelUnit = valObj.unit;    
                         }
                     });
 
                     // model changes > update visible and mobi
                     scope.$watch('mobiscrollModelValue', function(newValue, oldValue) {
+                        console.log(scope.id + ' > mobiscrollModelValue watch');
+
                         if (typeof newValue == 'undefined') {
                             newValue = getDefaults().value;
                         }
 
+                        // newValue should be Normalized value
                         var valObj = {
-                            valueInt: (newValue - (newValue % 1000)) / 1000,
-                            valueFlt: Number((newValue % 1000) / 100).toFixed(),
+                            value: newValue,
                             unit: scope.currentObj.unit ? scope.currentObj.unit : getDefaults().unit
                         };
 
                         jHidden.mobiscroll('setVal', JSON.stringify(valObj), true, true);
                     });
 
-                    // model changes > update visible and mobi
-                    scope.$watch('mobiscrollModelUnit', function(newUnit, oldUnit) {
-                        if (typeof newUnit == 'undefined') {
-                            newUnit = getDefaults().unit;
+                    /*
+                    // LB normalization and parse test
+                    var vals = [];
+                    for (var i = 1; i < 70; i++) {
+                        for(var j = 0; j <= 9; j++) {
+                            vals.push( convert['lb'].normalize(i, j) );
                         }
-
-                        if (newUnit == oldUnit)
-                            return;
-
-                        var valObj = {
-                            valueInt: scope.currentObj.valueInt? scope.currentObj.valueInt : getDefaults().valueInt,
-                            valueFlt: scope.currentObj.valueFlt? scope.currentObj.valueFlt : getDefaults().valueFlt,
-                            unit: newUnit
-                        };
-
-                        jHidden.mobiscroll('setVal', JSON.stringify(valObj), true, true);
-                    });
+                    }
+                    console.log(vals);
+                    for(var ix in vals) {
+                        console.log( convert['lb'].parse(vals[ix]));
+                    }
+                    */
                 }
             }
         }
