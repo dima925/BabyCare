@@ -49,7 +49,7 @@ angular.module('cleverbaby')
                 var mm = normValue / normalizer;
                 return {
                     valueInt: (mm - (mm % 1)),
-                    valueFlt: Number(mm % 10).toFixed(1) * 10
+                    valueFlt: Number(mm % 1).toFixed(1) * 10
                 }
             }
     	};
@@ -85,7 +85,7 @@ angular.module('cleverbaby')
     	serviceObject.volume.oz = {
     		'normalize': function (value) {
                 // to ml * normalizer
-                return value * 29.6 * normalizer;
+                return Number((value * 29.6 * normalizer).toFixed(0));
             },
             'parse': function (normValue) {
                 // back from ml * normalizer
@@ -94,7 +94,7 @@ angular.module('cleverbaby')
 
             	// allow 0.5 precision
             	var vInt = aprx - aprx % 1,
-            		vFlt = (aprx % 1) * 10;
+            		vFlt = Number(((aprx % 1) * 10).toFixed(0));
 
         		if(0 < vFlt && vFlt < 5)
         			vFlt = 0;
@@ -103,7 +103,7 @@ angular.module('cleverbaby')
         			vInt ++;
         		}
 
-                return (Number(vInt) + Number('0.' + valueFlt));
+                return (Number(vInt) + Number('0.' + vFlt));
             }
     	};
 

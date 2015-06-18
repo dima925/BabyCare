@@ -214,10 +214,10 @@ angular.module('cleverbaby.directives')
 
                         jHidden.mobiscroll('setVal', JSON.stringify(valObj), true, true);
                     });
-
-                    /* 
-                    var x = convert['kg'].normalize(11, 48);
-                    var y = convert['kg'].parse(x);                   
+                    
+                    /*
+                    var x = ConvertunitService.temperature['c'].normalize(36, 8);
+                    var y = ConvertunitService.temperature['c'].parse(x);
                     // LB normalization and parse test
                     var vals = [];
                     for (var i = 1; i < 70; i++) {
