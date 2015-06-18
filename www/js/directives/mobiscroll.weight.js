@@ -36,11 +36,11 @@ angular.module('cleverbaby.directives')
                         'weight': {
                             'kg': {
                                 'intRange': getRange(1, 30, 1),
-                                'fltRange': getRange(0, 9, 1),
+                                'fltRange': getRange(0, 99, 1),
                             },
                             'lb': {
                                 'intRange': getRange(1, 70, 1),
-                                'fltRange': getRange(0, 9, 1),
+                                'fltRange': getRange(0, 99, 1),
                             },
                         }
                     };
