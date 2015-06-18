@@ -559,6 +559,8 @@ input{
 .solid .footer a.btn-mid, .solid-color { color: #ffcc00 }
 .allergy { background: #5c6bc0; } 
 .allergy .footer a.btn-mid, .allergy-color { color: #5c6bc0 }
+.born { background: #00e15a; } 
+.born .footer a.btn-mid, .born-color { color: #00e15a }
 .dropdown {background: #fff;}
 
 input:checked ~ label.mood { opacity: 1;}
