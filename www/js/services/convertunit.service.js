@@ -11,14 +11,14 @@ angular.module('cleverbaby')
     	serviceObject.weight.kg = {
     		'normalize': function (valueInt, valueFlt) {
                 // to grams * normalizer
-                return (valueInt * 1000 + valueFlt * 100) * normalizer;
+                return (valueInt * 1000 + valueFlt * 10) * normalizer;
             },
             'parse': function (normValue) {
                 // back from grams * normalizer
                 var grams = normValue / normalizer;
                 return {
                     valueInt: (grams - (grams % 1000)) / 1000,
-                    valueFlt: (grams % 1000) / 100
+                    valueFlt: (grams % 1000) / 10
                 }
             }
     	};
@@ -33,7 +33,7 @@ angular.module('cleverbaby')
                 var lb = normValue / (453.6 * normalizer);
                 return {
                     valueInt: (lb - (lb % 1)),
-                    valueFlt: Number(lb % 1).toFixed(1) * 10
+                    valueFlt: Number(lb % 1).toFixed(2) * 100
                 };
             }
     	};
