@@ -186,7 +186,7 @@ angular.module('cleverbaby.directives')
 
                     // update interface changes > update visible input & ng-model
                     jHidden.on('change', function(event) {
-                        console.log(this.id + ' > jHidden change');
+                        //console.log(this.id + ' > jHidden change');
 
                         jInput.val(getFriendlyValue(event.target.value));
 
@@ -205,7 +205,7 @@ angular.module('cleverbaby.directives')
 
                     // model changes > update visible and mobi
                     scope.$watch('mobiscrollModelValue', function(newValue, oldValue) {
-                        console.log(scope.id + ' > mobiscrollModelValue watch');
+                        //console.log(scope.id + ' > mobiscrollModelValue watch');
 
                         if (typeof newValue == 'undefined') {
                             newValue = getDefaults().value;

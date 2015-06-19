@@ -58,7 +58,7 @@ angular.module('cleverbaby.directives')
                                 return "";
                             valObj = JSON.parse(value);
                         }
-                        return valObj.value + ' ' + valObj.unit;
+                        return convert[valObj.unit].parse(valObj.value) + ' ' + valObj.unit;
                     }
 
                     function getLastInputValue () {
