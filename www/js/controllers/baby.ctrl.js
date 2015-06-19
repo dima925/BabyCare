@@ -55,8 +55,8 @@ angular.module('cleverbaby.controllers')
                     born: $scope.modal.baby.born ? new Date($scope.modal.baby.born) : new Date(),
                     gender: $scope.modal.baby.gender || "m",
                     weight: $scope.modal.baby.weight || 0,
-                    length: $scope.modal.baby.length || 0,
-                    head: $scope.modal.baby.head || 0,
+                    height: $scope.modal.baby.height || 0,
+                    headsize: $scope.modal.baby.headsize || 0,
                     displayImage: $scope.modal.baby.displayImage
                 };
             }
@@ -67,15 +67,15 @@ angular.module('cleverbaby.controllers')
             $scope.modal.baby.born = $scope.baby.born;
             $scope.modal.baby.gender = $scope.baby.gender;
             $scope.modal.baby.weight = $scope.baby.weight;
-            $scope.modal.baby.length = $scope.baby.length;
-            $scope.modal.baby.head = $scope.baby.head;
+            $scope.modal.baby.height = $scope.baby.height;
+            $scope.modal.baby.headsize = $scope.baby.headsize;
             $scope.modal.baby.displayImage = $scope.baby.displayImage;
             $scope.modal.baby.imageType = $scope.baby.imageType;
             $scope.modal.baby.type = 'growth';
             $scope.modal.baby.media = [];
-            $scope.modal.baby.growth_headsize =  $scope.baby.head;
-            $scope.modal.baby.growth_height = $scope.baby.length;
             $scope.modal.baby.growth_weight = $scope.baby.weight;
+            $scope.modal.baby.growth_height = $scope.baby.height;
+            $scope.modal.baby.growth_headsize =  $scope.baby.headsize;
             $scope.modal.baby.time = $scope.baby.born;
 
             BabyService.add($scope.modal.baby).then(function(baby){
@@ -96,15 +96,15 @@ angular.module('cleverbaby.controllers')
             $scope.modal.baby.born = $scope.baby.born;
             $scope.modal.baby.gender = $scope.baby.gender;
             $scope.modal.baby.weight = $scope.baby.weight;
-            $scope.modal.baby.length = $scope.baby.length;
-            $scope.modal.baby.head = $scope.baby.head;
+            $scope.modal.baby.height = $scope.baby.height;
+            $scope.modal.baby.headsize = $scope.baby.headsize;
             $scope.modal.baby.displayImage = $scope.baby.displayImage;
             $scope.modal.baby.imageType = $scope.baby.imageType;
             $scope.modal.baby.type = 'growth';
             $scope.modal.baby.media = [];
-            $scope.modal.baby.growth_headsize =  $scope.baby.head;
-            $scope.modal.baby.growth_height = $scope.baby.length;
             $scope.modal.baby.growth_weight = $scope.baby.weight;
+            $scope.modal.baby.growth_height = $scope.baby.height;
+            $scope.modal.baby.growth_headsize =  $scope.baby.headsize;
             $scope.modal.baby.time = $scope.baby.born;
 
             BabyService.edit($scope.modal.baby).then(function(baby){

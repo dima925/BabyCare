@@ -1,5 +1,5 @@
 angular.module('cleverbaby.directives')
-    .directive('mobiscrollWeight', ['$timeout', '$sce', 'MeasureunitService', 'ConvertunitService', '$localStorage',
+    .directive('mobiscrollTemp', ['$timeout', '$sce', 'MeasureunitService', 'ConvertunitService', '$localStorage',
         function($timeout, $sce, MeasureunitService, ConvertunitService, $localStorage) {
 
             return {
@@ -25,25 +25,22 @@ angular.module('cleverbaby.directives')
 
                     var jInput = $(element).find('.mobiscroll-input'),
                         jHidden = $(element).find('.mobiscroll-hidden'),
-                        mode = 'weight',
-                        cat = angular.isDefined(attrs['cat']) ? attrs['cat'] : 0,  // ml or L
+                        mode = 'temp',
                         measure = MeasureunitService.getSettings()[mode],
-                        units = measure.units[cat],
-                        systemUnit = measure.units[cat][measure.value],
+                        units = measure.units,
+                        systemUnit = measure.units[measure.value],
                         isApple = ionic.Platform.isWebView() && (ionic.Platform.isIPad() || ionic.Platform.isIOS());
 
-                    var convert = ConvertunitService.weight;
+                    var convert = ConvertunitService.temp;
                     var defSetup = {
-                        'weight': {
-                            'kg': {
-                                'intRange': getRange(1, 30, 1),
-                                'fltRange': getRange(0, 99, 1),
-                                'fltRangeNorm': getRangeNorm(0, 99, 1)
+                        'temp': {
+                            'C': {
+                                'intRange': getRange(35, 44, 1),
+                                'fltRange': getRange(0, 9, 1),
                             },
-                            'lb': {
-                                'intRange': getRange(1, 70, 1),
-                                'fltRange': getRange(0, 99, 1),
-                                'fltRangeNorm': getRangeNorm(0, 99, 1)
+                            'F': {
+                                'intRange': getRange(95, 111, 1),
+                                'fltRange': getRange(0, 9, 1),
                             },
                         }
                     };
@@ -53,22 +50,6 @@ angular.module('cleverbaby.directives')
                         for (var v = min; v <= max; v += step)
                             list.push(v);
                         return list;
-                    }
-
-                    function getRangeNorm (min, max, step) {
-                        var list = [];
-                        for (var v = min; v <= max; v += step) {
-                            var t = v;
-                            if(v <= 0) {
-                                t = '00'
-                            } else if(v < 10){
-                                t = '0' + v;
-                            } else if(v % 10 === 0)
-                                t = '' + (v / 10).toFixed(0);
-                            list.push(t);
-                        }
-                            
-                        return list;    
                     }
 
                     function getFriendlyValue (value) {
@@ -129,11 +110,10 @@ angular.module('cleverbaby.directives')
                         wheel = [
                             [{
                                 label: '',
-                                values: defSetup[mode][getDefaults().unit].intRange,
+                                values: defSetup[mode][getDefaults().unit].intRange
                             }, {
                                 label: '',
-                                keys: defSetup[mode][getDefaults().unit].fltRange,
-                                values: defSetup[mode][getDefaults().unit].fltRangeNorm
+                                values: defSetup[mode][getDefaults().unit].fltRange
                             }, {
                                 label: 'Unit',
                                 values: units
