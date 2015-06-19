@@ -1,5 +1,5 @@
 angular.module('cleverbaby.directives')
-    .directive('cbTimeLineChart', ['ActivityService', '$timeout', '$ionicModal', '$rootScope', function (ActivityService, $timeout, $ionicModal, $rootScope) {
+    .directive('cbTimeLineChart', ['ActivityService', '$timeout', '$ionicModal', '$ionicScrollDelegate', '$rootScope', function (ActivityService, $timeout, $ionicModal, $ionicScrollDelegate, $rootScope) {
         return {
             restrict: 'E',
             templateUrl: 'templates/elements/timeline-chart.html',
@@ -131,6 +131,63 @@ angular.module('cleverbaby.directives')
 
                     console.log(scope.orderedDateFinal);
                 });
+				
+				$timeout(function () {
+					$timeout(function(){
+						// fix the problem that vertical scrolling is not working when dragging inside the horizontal ion-scroll views, wrapped in double timeout to only execute when DOM is fully finished rendering
+							
+						for (i = 0; i < scope.orderedDateFinal.length; i++) { 
+							// bit ugly, executes the touch event override code below for each horizontal scroll view, not sure this is the best way, but it works for the moment 
+							var anon = function(i) {
+								var sv = $ionicScrollDelegate.$getByHandle('horizontal'+i).getScrollView();
+								
+								var container = sv.__container;
+
+								var originaltouchStart = sv.touchStart;
+								var originalmouseDown = sv.mouseDown;
+								var originaltouchMove = sv.touchMove;
+								var originalmouseMove = sv.mouseMove;
+
+								container.removeEventListener('touchstart', sv.touchStart);
+								container.removeEventListener('mousedown', sv.mouseDown);
+								document.removeEventListener('touchmove', sv.touchMove);
+								document.removeEventListener('mousemove', sv.mousemove);
+								
+
+								sv.touchStart = function(e) {
+								  e.preventDefault = function(){}
+								  if (originaltouchStart) originaltouchStart.apply(sv, [e]);
+								}
+
+								sv.touchMove = function(e) {
+								  e.preventDefault = function(){}
+								  if (originaltouchMove) originaltouchMove.apply(sv, [e]);
+								}
+								
+								sv.mouseDown = function(e) {
+								  e.preventDefault = function(){}
+								  if (originalmouseDown) originalmouseDown.apply(sv, [e]);
+								}
+
+								sv.mouseMove = function(e) {
+								  e.preventDefault = function(){}
+								  if (originalmouseMove) originalmouseMove.apply(sv, [e]);
+								}
+
+								container.addEventListener("touchstart", sv.touchStart, false);
+								container.addEventListener("mousedown", sv.mouseDown, false);
+								document.addEventListener("touchmove", sv.touchMove, false);
+								document.addEventListener("mousemove", sv.mouseMove, false);
+							
+							} 
+							anon(i);
+						}
+						
+						
+						
+						
+					}, 0);
+				}, 0);
             }
         }
     }]);
