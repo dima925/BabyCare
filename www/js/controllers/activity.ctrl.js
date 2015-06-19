@@ -73,26 +73,25 @@ angular.module('cleverbaby.controllers')
             });
         }
         
-
-		$scope.addNote = function(){
-			$ionicModal.fromTemplateUrl('templates/modals/addnote.html', {
-				animation: 'slide-in-up',
-                name: 'noteModal'
-			  }).then(function(modal) {
-                $scope.modalAddNote = modal;
-                $scope.modalAddNote.comment = $scope.modal.data.comment || "";
-				$scope.modalAddNote.show();
-			});
-		};
+        $ionicModal.fromTemplateUrl('templates/modals/addnote.html', {
+            animation: 'slide-in-up',
+            name: 'noteModal'
+        }).then(function(modal) {
+            $scope.modalAddNote = modal;            
+        });
+        $scope.addNote = function(){
+            $scope.modalAddNote.comment = $scope.modal.data.comment || "";
+            $scope.modalAddNote.show();
+        };
 
         $scope.deleteNote = function(){
             $scope.modal.data.comment = '';
         };
 
-//		$scope.closeAddNoteModal = function(){
-//            $scope.modalAddNote.comment = "";
-//            $scope.modalAddNote.hide();
-//		};
+        $scope.closeAddNoteModal = function(){
+            $scope.modalAddNote.comment = "";
+            $scope.modalAddNote.hide();
+        };
 
 //        $scope.addPhoto = function(){
 //            $ionicModal.fromTemplateUrl('templates/modals/addphoto.html', {
@@ -143,7 +142,7 @@ angular.module('cleverbaby.controllers')
 
         $scope.$on('modal.hidden', function(e, a){
             if($scope.modalAddNote && a.name == 'noteModal'){
-                if($scope.modalAddNote.comment !== null){
+                if($scope.modalAddNote.comment){
                     $scope.modal.data.comment = $scope.modalAddNote.comment;
                 }
             }

@@ -28,6 +28,7 @@ angular.module('cleverbaby.directives')
                         units = measure.units[cat],
                         systemUnit = measure.units[cat][measure.value],
                         isApple = ionic.Platform.isWebView() && (ionic.Platform.isIPad() || ionic.Platform.isIOS());
+                console.log('jHidden', jHidden);
 
                     function getRange (min, max, step) {
                         var list = [];
@@ -199,10 +200,8 @@ angular.module('cleverbaby.directives')
                         if (event.target.value && event.target.value !== '') {
                             valObj = JSON.parse(event.target.value);
 
-                            $timeout(function () {
-                                scope.mobiscrollModelValue = valObj.value;
-                                scope.mobiscrollModelUnit = valObj.unit;    
-                            });
+                            scope.mobiscrollModelValue = valObj.value;
+                            scope.mobiscrollModelUnit = valObj.unit;    
                         }
                     });
 
@@ -211,9 +210,6 @@ angular.module('cleverbaby.directives')
                         if (typeof newValue == 'undefined') {
                             newValue = getDefaults().value;
                         }
-
-                        if (newValue == oldValue)
-                            return;
 
                         var valObj = {
                             value: newValue,

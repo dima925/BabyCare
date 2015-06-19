@@ -15,7 +15,7 @@ angular.module('cleverbaby.directives')
                         usrStyles = angular.isDefined(attrs['style-child']) ? attrs['style-child'] : '',
                         usrPlaceholder = angular.isDefined(attrs['placeholder']) ? attrs['placeholder'] : '';
 
-                    return '<input type="text" class="mobiscroll-input ' + usrClasses + '" style="' + usrStyles + ' background-color: transparent;" placeholder="' + usrPlaceholder + '" readonly="readonly" /><input type="text" class="mobiscroll-hidden" readonly="readonly" />';
+                    return '<input type="text" class="mobiscroll-input ' + usrClasses + '" style="' + usrStyles + ' background-color: transparent;" placeholder="' + usrPlaceholder + '" readonly="readonly" /><input type="hidden" class="mobiscroll-hidden" readonly="readonly" />';
                 },
 
                 link: function(scope, element, attrs) {
@@ -188,14 +188,13 @@ angular.module('cleverbaby.directives')
                     // update interface changes > update visible input & ng-model
                     jHidden.on('change', function(event) {
                         jInput.val(getFriendlyValue(event.target.value));
+                        console.log(this.id);
 
                         if (event.target.value && event.target.value !== '') {
                             var valObj = JSON.parse(event.target.value);
 
-                            $timeout(function () {
-                                scope.mobiscrollModelValue = valObj.valueInt * 1000 + valObj.valueFlt * 100;
-                                scope.mobiscrollModelUnit = valObj.unit;    
-                            });
+                            scope.mobiscrollModelValue = valObj.valueInt * 1000 + valObj.valueFlt * 100;
+                            scope.mobiscrollModelUnit = valObj.unit;    
                         }
                     });
 
@@ -204,9 +203,6 @@ angular.module('cleverbaby.directives')
                         if (typeof newValue == 'undefined') {
                             newValue = getDefaults().value;
                         }
-
-                        if (newValue === oldValue)
-                            return;
 
                         var valObj = {
                             valueInt: (newValue - (newValue % 1000)) / 1000,

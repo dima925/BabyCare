@@ -57,7 +57,7 @@ angular.module('cleverbaby.controllers')
                 $scope.selectedYear = date.getFullYear();
                 
                 var start = 0,
-                    limit = 100;
+                    limit = 3000;
                 ActivityService.getActivitiesByDate($rootScope.baby.uuid, date, start, limit).then(function(activities) {
                     $scope.activities = activities;
                     $scope.hasContent = true;

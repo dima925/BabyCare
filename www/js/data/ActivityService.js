@@ -73,6 +73,9 @@ angular.module('cleverbaby.data')
                     growth_height: data.growth_height,
                     growth_weight: data.growth_weight,
                     growth_headsize: data.growth_headsize,
+                    growth_weight_unit: data.growth_weight_unit,
+                    growth_height_unit: data.growth_height_unit,
+                    growth_headsize_unit: data.growth_headsize_unit,
                     type: "growth"
                 }
             }
@@ -315,11 +318,11 @@ angular.module('cleverbaby.data')
                 return $q(function(resolve, reject){
 
                     var medias = data.media;
-
+                    console.log('middel', data);
                     data = filter(data);
                     data.uuid = uuid;
                     data.babies = babies;
-
+                    console.log('middel', data);
                     network.put({
                         data: data,
                         url: '/activities/'+uuid
@@ -394,6 +397,7 @@ angular.module('cleverbaby.data')
                     Array.prototype.push.apply(middle, activities.slice(0, i));
                     middle.push(data);
                     Array.prototype.push.apply(middle, activities.slice(i, activities.length));
+                    console.log('middel', middle);
                     $localStorage.activities[data.babies] = middle;
                     resolve(data);
                 });

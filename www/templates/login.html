@@ -1,6 +1,6 @@
 <ion-modal-view  class="loginbg">
   
-  <ion-content has-bouncing="false">
+  <ion-content has-bouncing="false" on-scroll="dynamicStatusBar('loginMainScroll')" delegate-handle="loginMainScroll">
     <ion-header-bar class="bar-positive">
     <h1 class="title" data-translate>cleverbaby.auth.modal.signin.title</h1>
     <div class="buttons">

@@ -559,6 +559,8 @@ input{
 .solid .footer a.btn-mid, .solid-color { color: #ffcc00 }
 .allergy { background: #5c6bc0; } 
 .allergy .footer a.btn-mid, .allergy-color { color: #5c6bc0 }
+.born { background: #00e15a; } 
+.born .footer a.btn-mid, .born-color { color: #00e15a }
 .dropdown {background: #fff;}
 
 input:checked ~ label.mood { opacity: 1;}
@@ -601,6 +603,11 @@ label.mood.sad:before { content: "\e619"; }
 .rumah-radio.on-white {  border: 1px solid rgba(0,0,0,.3); color: #000 !important; }
 .rumah-radio.on-white .item-content span { color: rgba(0,0,0,.6);}
 
+.form-inline .kotak { border-bottom: 1px solid rgba(0,0,0,.3); padding-bottom: 3px;}
+.form-inline .kotak label { font-size: 1.3em;  }
+.form-inline .kotak:not(.autoheight) label { margin-top: 14px;}
+.form-inline .kotak input { float: right; font-size: 1.3em; text-align: right; padding:0; height: auto; margin-top: 1px }
+.form-inline .kotak:not(.autoheight) input { margin-top: 15px;}
 .kotak .item {
 background-color:transparent;
 color:#fff;
@@ -774,7 +781,7 @@ span.fa.timeline { position: relative; padding: 2px 0 0 4px; font-size: 18px; di
 .add-edit-baby .kotak { margin: 0; border-bottom:1px solid #e7e7e7; color: #000; padding:0 10px; }
 .add-edit-baby input { color: #000;  width: 100%;}
 input.form-control-text {  text-align: left !important; float: left !important;}
-.add-edit-baby .kotak .btn, .wrapper.add button.btn { margin: 10px 0 0 0; border-radius: 4px; border:1px solid #000; color: #000; background: #fff; font-size: 16px; padding: 4px 10px; width: 100%; }
+.add-edit-baby .kotak .btn, .add button.btn { margin: 10px 0 0 0; border-radius: 4px; border:1px solid #000; color: #000; background: #fff; font-size: 16px; padding: 4px 10px; width: 100%; }
 .to-bottom { position: absolute; bottom: 0; width: 100%; padding: 0px;}
 .to-bottom .button.button-block  {  
 	margin-top: 10px;
@@ -894,12 +901,15 @@ visibility:visible; width: 60px; height: 60px;
 }
 
 /*OVERIDE CALENDAR CSS*/
-.fc-button { background: none !important; box-shadow: 0 !important; border:0 !important; height: auto !important; margin: 18px 5px 5px !important; font-size: 22px; color: #c5c5c5 !important; }
+.fc-button { background: none !important; box-shadow: 0 !important; border:0 !important; height: auto !important; margin: 5px 5px 5px !important; font-size: 22px; color: #c5c5c5 !important; }
 .fc-button:before { font-family: "Simple-Line-Icons" !important;}
 .fc-button .fc-text-arrow { display: none;}
 .fc-button-prev:before { content: "\e07a" !important;}
 .fc-button-next:before { content: "\e079" !important;}
-.fc-header-title h2 { margin-top:30px !important; color: #02b6ef; font-size: 18px; }
+.fc-header-title h2 { margin-top:17px !important; color: #02b6ef; font-size: 18px; }
+.fc-header .fc-button { 
+  margin-bottom: 1px !important;
+}
 table.fc-border-separate thead tr { background: #e5f8fd !important; text-transform:uppercase;}
 table.fc-border-separate tr:nth-child(even) { background: #e5f8fd }
 table.fc-border-separate tr:nth-child(odd) { background: #dbf5fd }
@@ -923,7 +933,8 @@ td.fc-day { margin: 0 !important;padding:0 !important; margin: 0 !important; }
 .chart-description span { font-size: .8em; width: 100%; display: inline-block;}
 
 /*addnote/addpic*/
-.wrapper.add {  background: #fff; }
+.wrapper.add {  background: #fff; } 
+.add { padding: 5px; }
 .wrapper.add * { color: #000 !important; border-color: #000; }
 .wrapper.add textarea { color: #000 !important; height: 180px; }
 .wrapper.add textarea::-webkit-input-placeholder {   color: #000 !important; opacity: .9 !important }
@@ -1092,9 +1103,7 @@ div[mobiscroll-mode="predefined"] input {
 }
 
 .label-subtext{
-    position: absolute;
-    width: 176px;
-    margin-top: 20px;
+    font-size: .7em; line-height: 1.2em; opacity: .6
 }
 
 .bottom-nvd3-chart{
@@ -1138,7 +1147,7 @@ div[mobiscroll-mode="predefined"] input {
 /** No activities in Diary **/
 
 .no-activities{
-    width: 170px;
+    width: 230px;
     text-align: center;
     margin: auto auto;
 }
@@ -1159,7 +1168,6 @@ div[mobiscroll-mode="predefined"] input {
     white-space: nowrap !important;
 }
 
-<<<<<<< HEAD
 .trend-chart-include{
     position: relative;
     padding: 0px;
@@ -1183,7 +1191,6 @@ div[mobiscroll-mode="predefined"] input {
     fill-opacity: .95!important;
     stroke-opacity: .95!important;
 }
-=======
 div[mobiscroll-nursetime] input {
   background-color: transparent !important;
   font-size: 20px;
@@ -1191,4 +1198,12 @@ div[mobiscroll-nursetime] input {
 
 .activity-calendar-day {padding-top: 0px;}
 .is-last-activity .activity-icon:after { border: 1px solid transparent !important; }
->>>>>>> c9dbb135d032863f6f880119145181ccf7f877f9
+.platform-android .action-sheet .action-sheet-title, .platform-android .action-sheet .button{
+    padding-left: 25px;
+}
+.platform-android .action-sheet-has-icons .button {
+  padding-left: 56px;
+}
+.platform-android .action-sheet .action-sheet-title{
+    /*text-align: center;*/
+}

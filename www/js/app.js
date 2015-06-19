@@ -42,9 +42,9 @@ angular.module('cleverbaby', [
             }*/
         }
 
-        $rootScope.dynamicStatusBar = function () {
-            var pos = $ionicScrollDelegate.$getByHandle('mainScroll').getScrollPosition();
-            if(window.StatusBar) {
+        $rootScope.dynamicStatusBar = function (delegate) {
+            var pos = $ionicScrollDelegate.$getByHandle(delegate).getScrollPosition();
+            if(window.StatusBar && (ionic.Platform.isIPad() || ionic.Platform.isIOS())) {
                 if(pos.top > 50) {
                     if($cordovaStatusbar.isVisible())
                         $cordovaStatusbar.hide();

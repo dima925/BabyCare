@@ -1,6 +1,6 @@
 angular.module('cleverbaby.controllers')
-.controller('BabyCtrl', ['$scope','$ionicModal', '$rootScope', 'Image', 'NotificationService', 'BabyService', 
-        function ($scope, $ionicModal, $rootScope, Image, NotificationService, BabyService) {
+.controller('BabyCtrl', ['$scope','$ionicModal', '$rootScope', 'Image', 'NotificationService', 'BabyService', 'ActivityService',
+        function ($scope, $ionicModal, $rootScope, Image, NotificationService, BabyService, ActivityService) {
 
         $scope.cancel = function(){
             $scope.modal.hide();
@@ -54,9 +54,9 @@ angular.module('cleverbaby.controllers')
                     name: $scope.modal.baby.name || "",
                     born: $scope.modal.baby.born ? new Date($scope.modal.baby.born) : new Date(),
                     gender: $scope.modal.baby.gender || "m",
-                    width: $scope.modal.data.width || 0,
-                    length: $scope.modal.data.length || 0,
-                    head: $scope.modal.data.head || 0,
+                    weight: $scope.modal.baby.weight || 0,
+                    length: $scope.modal.baby.length || 0,
+                    head: $scope.modal.baby.head || 0,
                     displayImage: $scope.modal.baby.displayImage
                 };
             }
@@ -66,11 +66,17 @@ angular.module('cleverbaby.controllers')
             $scope.modal.baby.name = $scope.baby.name;
             $scope.modal.baby.born = $scope.baby.born;
             $scope.modal.baby.gender = $scope.baby.gender;
-            $scope.modal.baby.weight = $scope.modal.data.weight;
-            $scope.modal.baby.length = $scope.modal.data.length;
-            $scope.modal.baby.head = $scope.modal.data.head;
+            $scope.modal.baby.weight = $scope.baby.weight;
+            $scope.modal.baby.length = $scope.baby.length;
+            $scope.modal.baby.head = $scope.baby.head;
             $scope.modal.baby.displayImage = $scope.baby.displayImage;
             $scope.modal.baby.imageType = $scope.baby.imageType;
+            $scope.modal.baby.type = 'growth';
+            $scope.modal.baby.media = [];
+            $scope.modal.baby.growth_headsize =  $scope.baby.head;
+            $scope.modal.baby.growth_height = $scope.baby.length;
+            $scope.modal.baby.growth_weight = $scope.baby.weight;
+            $scope.modal.baby.time = $scope.baby.born;
 
             BabyService.add($scope.modal.baby).then(function(baby){
                 $rootScope.$broadcast('babyAdd', baby);
@@ -79,17 +85,27 @@ angular.module('cleverbaby.controllers')
             }, function(err){
                 NotificationService.notify(err.data.message);
             });
+
+            ActivityService.addActivity($scope.modal.baby, $rootScope.babyId).then(function(activity){
+                $rootScope.$broadcast('activityAdd', activity);
+            });  
         };
 
         $scope.update = function(){
             $scope.modal.baby.name = $scope.baby.name;
             $scope.modal.baby.born = $scope.baby.born;
             $scope.modal.baby.gender = $scope.baby.gender;
-            $scope.modal.baby.weight = $scope.modal.data.weight;
-            $scope.modal.baby.length = $scope.modal.data.length;
-            $scope.modal.baby.head = $scope.modal.data.head;
+            $scope.modal.baby.weight = $scope.baby.weight;
+            $scope.modal.baby.length = $scope.baby.length;
+            $scope.modal.baby.head = $scope.baby.head;
             $scope.modal.baby.displayImage = $scope.baby.displayImage;
             $scope.modal.baby.imageType = $scope.baby.imageType;
+            $scope.modal.baby.type = 'growth';
+            $scope.modal.baby.media = [];
+            $scope.modal.baby.growth_headsize =  $scope.baby.head;
+            $scope.modal.baby.growth_height = $scope.baby.length;
+            $scope.modal.baby.growth_weight = $scope.baby.weight;
+            $scope.modal.baby.time = $scope.baby.born;
 
             BabyService.edit($scope.modal.baby).then(function(baby){
                 $rootScope.$broadcast('babyUpdate', baby);
@@ -97,6 +113,10 @@ angular.module('cleverbaby.controllers')
             }, function(err){
                 NotificationService.notify(err.data.message);
             });
+
+            ActivityService.addActivity($scope.modal.baby, $rootScope.babyId).then(function(activity){
+                $rootScope.$broadcast('activityAdd', activity);         
+            });  
         };
 
         $scope.delete = function(){

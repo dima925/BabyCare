@@ -27,33 +27,33 @@
 					<!--<input ng-model="baby.born" type="datetime-local" value="2004-08-31" class="form-control">-->
 					<div mobiscroll-datetime="" mobiscroll-model="baby.born" class-child="form-control" calendar-format="false"></div>
 				</div>
-				<div class="kotak last-border">
+				<div class="kotak">
 					<label class="default">
 						Gender
 					</label>
 					<div mobiscroll-predefined="" mobiscroll-mode="predefined" mobiscroll-model="baby.gender" mobiscroll-values="gender" class="form-control"></div>
 				</div>
-
 				<div class="kotak">
                     <label class="default">
                         Birth Weight
                     </label>
-                    <div mobiscroll-weight="" mobiscroll-model="baby.weight" mobiscroll-mode="weight" mobiscroll-model-value="modal.data.weight" mobiscroll-model-unit="modal.data.growth_weight_unit" mobiscroll-id="activity_growth_weight" cat="1" class="form-control"></div>
-                </div>
-
-                 <div class="kotak">
-                    <label class="default">
-                        Birth Length
-                    </label>
-                    <div mobiscroll-customunits="" mobiscroll-mode="length" mobiscroll-model="baby.length" mobiscroll-model-value="modal.data.length" mobiscroll-model-unit="modal.data.growth_height_unit" mobiscroll-id="activity_growth_height" class="form-control"></div>
+                    <div mobiscroll-weight="" mobiscroll-mode="weight" mobiscroll-model-value="baby.weight" mobiscroll-model-unit="baby.growth_weight_unit" mobiscroll-id="activity_growth_weight" cat="1" class="form-control">
+                    </div>
                 </div>
                 <div class="kotak">
                     <label class="default">
+                        Birth Length
+                    </label>
+                    <div mobiscroll-customunits="" mobiscroll-mode="length" mobiscroll-model-value="baby.length" mobiscroll-model-unit="baby.growth_height_unit" mobiscroll-id="activity_growth_height" class="form-control">
+                    </div>
+                </div>
+                <div class="kotak last-border">
+                    <label class="default">
                         Birth Head Circumference
                     </label>
-                    <div mobiscroll-customunits="" mobiscroll-mode="length" mobiscroll-model="baby.head" mobiscroll-model-value="modal.data.head" mobiscroll-model-unit="modal.data.growth_headsize_unit" mobiscroll-id="activity_growth_headsize" class="form-control"></div>
+                    <div mobiscroll-customunits="" mobiscroll-mode="length" mobiscroll-model-value="baby.head"  mobiscroll-model-unit="baby.growth_headsize_unit" mobiscroll-id="activity_growth_headsize" class="form-control">
+                    </div>
                 </div>
-
 			</div>
 			<div class="to-bottom" ng-if="showFooter">
 				<div class="kotak no-border" ng-if="edit">
