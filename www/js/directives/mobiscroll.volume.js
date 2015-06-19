@@ -10,6 +10,8 @@ angular.module('cleverbaby.directives')
                     // our directive controls units so there is no need to listen outside unit changes separately
                     'mobiscrollModelUnit': '=',
                     'mobiscrollId': '@',
+                    'defaultValue': '@',
+                    'defaultUnit': '@'
                 },
                 template: function(element, attrs) {
                     var usrClasses = angular.isDefined(attrs['class-child']) ? attrs['class-child'] : '',
@@ -91,11 +93,13 @@ angular.module('cleverbaby.directives')
 
                     function getDefaults () {
                         var lastVal = getLastInputValue(),
-                            lastUnit = getLastInputUnit();
+                            lastUnit = getLastInputUnit(),
+                            defValue = scope.defaultValue ? scope.defaultValue : 0,
+                            defUnit = scope.defaultUnit ? scope.defaultUnit : systemUnit;
 
                         var valObj = {
-                            value: lastVal ? lastVal : 0,
-                            unit: lastUnit ? lastUnit : systemUnit
+                            value: lastVal ? lastVal : defValue,
+                            unit: lastUnit ? lastUnit : defUnit
                         }
                         return valObj;
                     }
