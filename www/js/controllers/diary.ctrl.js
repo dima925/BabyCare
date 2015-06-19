@@ -353,24 +353,6 @@ angular.module('cleverbaby.controllers')
                 BabyModal.showModal($rootScope.baby);
             };
 
-            $scope.noData = true;
-
-            $ionicModal.fromTemplateUrl('templates/timeline.html', function (modal) {
-                $scope.newTemplate = modal;
-            });
-
-            $ionicModal.fromTemplateUrl('templates/activities/choose.html',function(activity){
-                $scope.activityModal = activity;
-            });
-
-            $scope.newActivity = function(){
-                $scope.activityModal.show();
-            };
-
-            $scope.newTask = function () {
-                $scope.newTemplate.show();
-            };
-
             var showTip = DailytipService.showDailtyTip();
 
             if(showTip) {
