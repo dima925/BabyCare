@@ -38,10 +38,12 @@ angular.module('cleverbaby.directives')
                             'kg': {
                                 'intRange': getRange(1, 30, 1),
                                 'fltRange': getRange(0, 99, 1),
+                                'fltRangeNorm': getRangeNorm(0, 99, 1)
                             },
                             'lb': {
                                 'intRange': getRange(1, 70, 1),
                                 'fltRange': getRange(0, 99, 1),
+                                'fltRangeNorm': getRangeNorm(0, 99, 1)
                             },
                         }
                     };
@@ -51,6 +53,22 @@ angular.module('cleverbaby.directives')
                         for (var v = min; v <= max; v += step)
                             list.push(v);
                         return list;
+                    }
+
+                    function getRangeNorm (min, max, step) {
+                        var list = [];
+                        for (var v = min; v <= max; v += step) {
+                            var t = v;
+                            if(v <= 0) {
+                                t = '00'
+                            } else if(v < 10){
+                                t = '0' + v;
+                            } else if(v % 10 === 0)
+                                t = '' + (v / 10).toFixed(0);
+                            list.push(t);
+                        }
+                            
+                        return list;    
                     }
 
                     function getFriendlyValue (value) {
@@ -111,10 +129,11 @@ angular.module('cleverbaby.directives')
                         wheel = [
                             [{
                                 label: '',
-                                values: defSetup[mode][getDefaults().unit].intRange
+                                values: defSetup[mode][getDefaults().unit].intRange,
                             }, {
                                 label: '',
-                                values: defSetup[mode][getDefaults().unit].fltRange
+                                keys: defSetup[mode][getDefaults().unit].fltRange,
+                                values: defSetup[mode][getDefaults().unit].fltRangeNorm
                             }, {
                                 label: 'Unit',
                                 values: units

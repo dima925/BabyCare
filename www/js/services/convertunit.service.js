@@ -111,12 +111,12 @@ angular.module('cleverbaby')
     	serviceObject.temp.C = {
     		'normalize': function (valueInt, valueFlt) {
     			// to F * normalizer
-    			return ((Number(valueInt) + Number('0.' + valueFlt)) * 1.8 + 32) * normalizer;
+    			return ((Number(valueInt) + Number('0.' + valueFlt)) * 1.8 + 32).toFixed(1) * normalizer;
     		},
     		'parse': function (normValue) {
     			// back from C * normalizer
     			var val = normValue / normalizer,
-    				c = (val - 32) / 1.8;
+    				c = Number(((val - 32) / 1.8).toFixed(1));
 				return {
 					valueInt: (c - c % 1),
 					valueFlt: Number(c % 1).toFixed(1) * 10
