@@ -1,5 +1,5 @@
 angular.module('cleverbaby.directives')
-    .directive('mobiscrollWeight', ['$timeout', '$sce', 'MeasureunitService', 'ConvertunitService', '$localStorage',
+    .directive('mobiscrollLength', ['$timeout', '$sce', 'MeasureunitService', 'ConvertunitService', '$localStorage',
         function($timeout, $sce, MeasureunitService, ConvertunitService, $localStorage) {
 
             return {
@@ -23,23 +23,23 @@ angular.module('cleverbaby.directives')
 
                     var jInput = $(element).find('.mobiscroll-input'),
                         jHidden = $(element).find('.mobiscroll-hidden'),
-                        mode = 'weight',
+                        mode = 'length',
                         cat = angular.isDefined(attrs['cat']) ? attrs['cat'] : 0,  // ml or L
                         measure = MeasureunitService.getSettings()[mode],
                         units = measure.units[cat],
                         systemUnit = measure.units[cat][measure.value],
                         isApple = ionic.Platform.isWebView() && (ionic.Platform.isIPad() || ionic.Platform.isIOS());
 
-                    var convert = ConvertunitService.weight;
+                    var convert = ConvertunitService.length;
                     var defSetup = {
-                        'weight': {
-                            'kg': {
-                                'intRange': getRange(1, 30, 1),
-                                'fltRange': getRange(0, 99, 1),
+                        'length': {
+                            'cm': {
+                                'intRange': getRange(30, 160, 1),
+                                'fltRange': getRange(0, 9, 1),
                             },
-                            'lb': {
-                                'intRange': getRange(1, 70, 1),
-                                'fltRange': getRange(0, 99, 1),
+                            'inch': {
+                                'intRange': getRange(10, 65, 1),
+                                'fltRange': getRange(0, 9, 1),
                             },
                         }
                     };
@@ -191,6 +191,7 @@ angular.module('cleverbaby.directives')
 
                             scope.currentObj.value = valObj.value;
                             scope.currentObj.unit = valObj.unit;
+
                             $timeout(function () {
                                 scope.mobiscrollModelValue = valObj.value;
                                 scope.mobiscrollModelUnit = valObj.unit;    

@@ -38,8 +38,8 @@ angular.module('cleverbaby')
             }
     	};
 
-    	serviceObject.height = {};
-    	serviceObject.height.cm = {
+    	serviceObject.length = {};
+    	serviceObject.length.cm = {
     		'normalize': function (valueInt, valueFlt) {
                 // to mm * normalizer
                 return (Number(valueInt) + Number('0.' + valueFlt)) * normalizer;
@@ -53,7 +53,7 @@ angular.module('cleverbaby')
                 }
             }
     	};
-    	serviceObject.height.inch = {
+    	serviceObject.length.inch = {
     		'normalize': function (valueInt, valueFlt) {
                 // to mm * normalizer
                 // 1 inch = 25.4 mm
@@ -107,8 +107,8 @@ angular.module('cleverbaby')
             }
     	};
 
-    	serviceObject.temperature = {};
-    	serviceObject.temperature.c = {
+    	serviceObject.temp = {};
+    	serviceObject.temp.C = {
     		'normalize': function (valueInt, valueFlt) {
     			// to F * normalizer
     			return ((Number(valueInt) + Number('0.' + valueFlt)) * 1.8 + 32) * normalizer;
@@ -123,7 +123,7 @@ angular.module('cleverbaby')
 				}
     		}
     	};
-    	serviceObject.temperature.f = {
+    	serviceObject.temp.F = {
     		'normalize': function (valueInt, valueFlt) {
     			// multiply normalizer
     			return (Number(valueInt) + Number('0.' + valueFlt)) * normalizer;
