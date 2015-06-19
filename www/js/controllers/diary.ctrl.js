@@ -1,6 +1,6 @@
 angular.module('cleverbaby.controllers')
-    .controller('DiaryCtrl', ['$location', '$scope', '$ionicModal', 'DailytipService', '$ionicSlideBoxDelegate', 'ActivityService', 'BabyModal', '$rootScope', 'network', '$interval', '$localStorage',
-        function ($location, $scope, $ionicModal, DailytipService, $ionicSlideBoxDelegate, ActivityService, BabyModal, $rootScope, network, $interval, $localStorage) {
+    .controller('DiaryCtrl', ['$location', '$scope', '$ionicModal', 'DailytipService', '$ionicSlideBoxDelegate', 'ActivityService', 'BabyModal', '$rootScope', 'network', '$interval', '$localStorage', 'ConvertunitService',
+        function ($location, $scope, $ionicModal, DailytipService, $ionicSlideBoxDelegate, ActivityService, BabyModal, $rootScope, network, $interval, $localStorage, convert) {
 
             $scope.editBaby = function(){
                 BabyModal.showModal($rootScope.baby);
@@ -158,10 +158,10 @@ angular.module('cleverbaby.controllers')
                 
                 var lastGrowth = ActivityService.getLastActivityByType($rootScope.babyId, 'growth');
                 if(lastGrowth) {
-                    $scope.babysWeight = (Number(lastGrowth.growth_weight/1000).toFixed(1)) + ' ' + (lastGrowth.growth_weight_unit || '');
-                    $scope.babysHeight = lastGrowth.growth_height + ' ' + (lastGrowth.growth_height_unit || '');
+                    $scope.babysWeight = convert.weight[lastGrowth.growth_weight_unit].toString(lastGrowth.growth_weight) + ", "; 
+                    $scope.babysHeight = convert.length[lastGrowth.growth_height_unit].toString(lastGrowth.growth_height);
                 } else {
-                    $scope.babysWeight = 'Please add growth progress';
+                    $scope.babysWeight = '';
                     $scope.babysHeight = '';
                 }
             }

@@ -20,6 +20,10 @@ angular.module('cleverbaby')
                     valueInt: (grams - (grams % 1000)) / 1000,
                     valueFlt: (grams % 1000) / 10
                 }
+            },
+            toString: function (normValue) {
+                var v = this.parse(normValue)
+                return (Number(v.valueInt) + Number('0.' + v.valueFlt)) + ' kg';
             }
     	};
     	serviceObject.weight.lb = {
@@ -35,6 +39,10 @@ angular.module('cleverbaby')
                     valueInt: (lb - (lb % 1)),
                     valueFlt: Number(lb % 1).toFixed(2) * 100
                 };
+            },
+            toString: function (normValue) {
+                var v = this.parse(normValue)
+                return (Number(v.valueInt) + Number('0.' + v.valueFlt)) + ' lb';
             }
     	};
 
@@ -51,6 +59,10 @@ angular.module('cleverbaby')
                     valueInt: (mm - (mm % 1)),
                     valueFlt: Number(mm % 1).toFixed(1) * 10
                 }
+            },
+            toString: function (normValue) {
+                var v = this.parse(normValue)
+                return (Number(v.valueInt) + Number('0.' + v.valueFlt)) + ' cm';
             }
     	};
     	serviceObject.length.inch = {
@@ -66,6 +78,10 @@ angular.module('cleverbaby')
                     valueInt: (mm - (mm % 1)),
                     valueFlt: Number(mm % 1).toFixed(1) * 10
                 };
+            },
+            toString: function (normValue) {
+                var v = this.parse(normValue)
+                return (Number(v.valueInt) + Number('0.' + v.valueFlt)) + ' inch';
             }
     	}
 		
@@ -80,6 +96,10 @@ angular.module('cleverbaby')
                 // back from ml * normalizer
                 var v = normValue / normalizer;
                 return v;
+            },
+            toString: function (normValue) {
+                var v = this.parse(normValue)
+                return v + ' ml';
             }
     	};
     	serviceObject.volume.oz = {
@@ -104,6 +124,10 @@ angular.module('cleverbaby')
         		}
 
                 return (Number(vInt) + Number('0.' + vFlt));
+            },
+            toString: function (normValue) {
+                var v = this.parse(normValue)
+                return v + ' oz';
             }
     	};
 
@@ -121,7 +145,11 @@ angular.module('cleverbaby')
 					valueInt: (c - c % 1),
 					valueFlt: Number(c % 1).toFixed(1) * 10
 				}
-    		}
+    		},
+            toString: function (normValue) {
+                var v = this.parse(normValue)
+                return (Number(v.valueInt) + Number('0.' + v.valueFlt)) + ' C';
+            }
     	};
     	serviceObject.temp.F = {
     		'normalize': function (valueInt, valueFlt) {
@@ -135,7 +163,11 @@ angular.module('cleverbaby')
                     valueInt: (f - (f % 1)),
                     valueFlt: Number(f % 1).toFixed(1) * 10
                 }
-    		}
+    		},
+            toString: function (normValue) {
+                var v = this.parse(normValue)
+                return (Number(v.valueInt) + Number('0.' + v.valueFlt)) + ' F';
+            }
     	}
 
     	return serviceObject;
