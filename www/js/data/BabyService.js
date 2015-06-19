@@ -51,7 +51,7 @@ angular.module('cleverbaby.data')
                 return $cordovaFileTransfer.download(
                     network.makeUrl('/babies/'+baby.uuid+'/media'),
                     destintion, {
-                        auth_token: $localStorage.token
+                        authtoken: $localStorage.token
                     }, true).then(function(){
                         return destintion;
                     }, function(err){

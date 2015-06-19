@@ -7,6 +7,7 @@ angular
         //baseUrl: 'http://192.168.56.1:3000',
         //baseUrl: 'http://localhost:3000',
         baseUrl: 'https://arcane-anchorage-7139.herokuapp.com',
+		// baseUrl: 'http://cbaby.elasticbeanstalk.com',
         apiVersion: 'v1',
         googleId: '692197579389-1tr4luact0pjjce4r47egob64bgoac51.apps.googleusercontent.com',
         facebookId: '1575754259375108'
@@ -24,7 +25,7 @@ angular
             function request(options, now){
                 options.url = makeUrl(options.url);
                 options.headers = {
-                    auth_token: $localStorage.token
+                    authtoken: $localStorage.token
                 };
                 if(!now) {
                     if(angular.isUndefined($localStorage.queue))
