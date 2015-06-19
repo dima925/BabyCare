@@ -80,6 +80,7 @@ angular.module('cleverbaby.controllers')
 
             BabyService.add($scope.modal.baby).then(function(baby){
                 $rootScope.$broadcast('babyAdd', baby);
+                $rootScope.setBaby(baby);
                 $scope.modal.hide();
             }, function(err){
                 NotificationService.notify(err.data.message);
