@@ -1,5 +1,7 @@
 ### On Windows/General:
 
+This repository contains the code that is based on the IONIC framework.
+
 1.  Install NodeJS from https://nodejs.org/
 2.  ```npm cache clean``` Clean up some leftovers, may not be required always but doesn't hurt 
 3.  ```npm install -g ionic cordova bower gulp``` Installs Ionic+Cordova, Bower and Gulp
