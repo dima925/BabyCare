@@ -25,3 +25,10 @@
 6.  ```ionic state restore```
 7.  ```bower install```
 8.  ```ionic emulate ios``` or ```ionic run ios```
+
+* `SystemConfiguration.framework`
+
+Copyright
+---------
+
+Copyright (c) 2015 Anatoly Sokolov.
