@@ -5,7 +5,7 @@ This repository contains the code that is based on the IONIC framework.
 1.  Install NodeJS from https://nodejs.org/
 2.  ```npm cache clean``` Clean up some leftovers, may not be required always but doesn't hurt 
 3.  ```npm install -g ionic cordova bower gulp``` Installs Ionic+Cordova, Bower and Gulp
-4.  ```git clone https://gitlab.com/rhaenni/cleverbaby.git``` Strongly suggested to clone into C:\ or similar so you end up with C:\cleverbaby or a similar very SHORT path (long paths will often cause ```npm install``` to fail on windows since some dependencies will end up in subfolders that are longer than 256 characters)
+4.  ```git clone https://gitlab.com/truth86/BabyCare.git``` Strongly suggested to clone into C:\ or similar so you end up with C:\cleverbaby or a similar very SHORT path (long paths will often cause ```npm install``` to fail on windows since some dependencies will end up in subfolders that are longer than 256 characters)
 5.  CD into the project directory and continue with the below: 
 6.  ```npm install``` (in the repository)
 7.  ```bower install```
@@ -28,7 +28,8 @@ This repository contains the code that is based on the IONIC framework.
 7.  ```bower install```
 8.  ```ionic emulate ios``` or ```ionic run ios```
 
-* `SystemConfiguration.framework`
+### Production
+http://mycleverbaby.com/
 
 Copyright
 ---------
